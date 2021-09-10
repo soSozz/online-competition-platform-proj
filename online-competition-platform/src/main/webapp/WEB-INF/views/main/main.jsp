@@ -3,8 +3,6 @@ uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% request.setCharacterEncoding("utf-8"); %>
-<!-- Custom Stylesheet -->
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet" />
 
 <div class="container">
   <div class="justify-content-md-center">
@@ -83,12 +81,3 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   </div>
 </div>
 <!-- End Row -->
-
-<!--**********************************
-        Scripts
-    ***********************************-->
-<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
-<script src="${contextPath}/resources/js/custom.min.js"></script>
-<script src="${contextPath}/resources/js/settings.js"></script>
-<script src="${contextPath}/resources/js/gleek.js"></script>
-<script src="${contextPath}/resources/js/styleSwitcher.js"></script>

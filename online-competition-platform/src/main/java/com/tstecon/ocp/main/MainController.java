@@ -24,6 +24,6 @@ public class MainController extends BaseController {
 
 	@RequestMapping(value = { "/" }, method = { RequestMethod.GET })
 	public String mainOnlySlash(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return "/";
+		return "/main/main";
 	}
 }

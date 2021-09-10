@@ -12,11 +12,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<%-- <link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" media="screen"> --%>
-<%-- <script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js" type="text/javascript"></script> --%>
-
 <title><tiles:insertAttribute name="title" /></title>
-	
+
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 	<div>
@@ -36,7 +35,16 @@
         		<tiles:insertAttribute name="footer" />
         	</footer>
 		</div>
-    </div>        	
+    </div>        
+    	
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 </body>      
         
         
