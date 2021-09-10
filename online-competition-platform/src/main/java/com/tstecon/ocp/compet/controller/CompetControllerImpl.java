@@ -26,7 +26,7 @@ public class CompetControllerImpl implements CompetController {
 	
 	@Override
 	@RequestMapping(value="/compet/competInfo", method = RequestMethod.GET)
-	public ModelAndView competInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView CompetInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
 		String viewName = (String)request.getAttribute("viewName");

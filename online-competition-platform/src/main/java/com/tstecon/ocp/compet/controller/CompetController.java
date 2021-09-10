@@ -6,5 +6,5 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface CompetController {
-	public ModelAndView competInfo(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView CompetInfo(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }
