@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
@@ -26,12 +27,13 @@ public class CompetControllerImpl implements CompetController {
 	
 	@Override
 	@RequestMapping(value="/compet/competInfo", method = RequestMethod.GET)
-	public ModelAndView CompetInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView CompetInfo(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		Map<String,List<CompetVO>> competInfo = competService.CompetInfo();
+		Map<String,List<CompetVO>> competInfo = competService.CompetInfo(compet_id);
 		mav.addObject("competInfo", competInfo);
 		return mav;
 	}
