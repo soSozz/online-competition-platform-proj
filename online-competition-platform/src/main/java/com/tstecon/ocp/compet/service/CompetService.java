@@ -11,5 +11,5 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Service
 public interface CompetService {
-	public Map<String,List<CompetVO>> CompetInfo() throws DataAccessException;
+	public Map<String,List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException;
 }

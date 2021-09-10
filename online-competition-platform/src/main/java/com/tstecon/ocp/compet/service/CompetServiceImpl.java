@@ -15,10 +15,10 @@ public class CompetServiceImpl implements CompetService{
 	private CompetDAO competDAO;
 
 	@Override
-	public Map<String, List<CompetVO>> CompetInfo() throws DataAccessException {
+	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
 		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
-		List<CompetVO> competList=competDAO.selectCompetPoster("compet");
-		CompetMap.put("compet",competList);
+		List<CompetVO> competList=competDAO.selectCompetPoster("poster");
+		CompetMap.put("Poster",competList);
 		competList=competDAO.selectCompetInfo("info");
 		CompetMap.put("info",competList);
 
