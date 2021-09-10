@@ -22,7 +22,7 @@ public class CompetControllerImpl implements CompetController {
 	private CompetService competService;
 	
 	@Autowired
-	private CompetDAO competDao;
+	private CompetDAO competDAO;
 	
 	@Override
 	@RequestMapping(value="/compet/competInfo", method = RequestMethod.GET)
