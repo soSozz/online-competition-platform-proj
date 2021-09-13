@@ -9,7 +9,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
+import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 @Service("competService")
 public class CompetServiceImpl implements CompetService{
@@ -26,6 +28,13 @@ public class CompetServiceImpl implements CompetService{
 		CompetMap.put("info",competList);
 
 		return CompetMap;
+	}
+	
+	//대회 공지사항: 작은 포스터 가져오기
+	@Override
+	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
+		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
+		return CompetSmallPoster;
 	}
 
 }
