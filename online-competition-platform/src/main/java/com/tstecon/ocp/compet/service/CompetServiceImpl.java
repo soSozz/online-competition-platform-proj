@@ -14,6 +14,7 @@ public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
 
+//	대회안내
 	@Override
 	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
 		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
