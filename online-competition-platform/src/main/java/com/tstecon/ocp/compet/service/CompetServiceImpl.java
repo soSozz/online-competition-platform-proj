@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 public class CompetServiceImpl implements CompetService{
 	@Autowired
@@ -29,8 +30,8 @@ public class CompetServiceImpl implements CompetService{
 	//대회 공지사항: 작은 포스터 가져오기
 	@Override
 	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
-		//competDAO: 해당 대회 작은 포스터 가져오기
-		return null;
+		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
+		return CompetSmallPoster;
 	}
 
 }

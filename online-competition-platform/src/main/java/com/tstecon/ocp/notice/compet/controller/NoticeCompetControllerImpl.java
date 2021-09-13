@@ -42,6 +42,7 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 		mav.addObject("smallPoster", smallPoster);
 		return mav;
 	}
+}
 	
 //	@Override
 //	@RequestMapping(value="/member/listMembers.do", method = RequestMethod.GET)

@@ -14,27 +14,16 @@ import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 public class NoticeCompetServiceImpl implements NoticeCompetService{
 	@Autowired
-	private NoticeCompetDAO NociteCompetDAO;
+	private NoticeCompetDAO noticeCompetDAO;
 	
 	@Override
 	public List<NoticeCompetVO> listCompetNotices(String compet_id) throws DataAccessException{
-		List<NoticeCompetVO> competList=competDAO.selectCompetPoster("poster");
-		CompetMap.put("Poster",competList);
-		competList=competDAO.selectCompetInfo("info");
-		CompetMap.put("info",competList);
+		List<NoticeCompetVO> listCompetNotices = noticeCompetDAO.selectNoticesCompetList(compet_id);
 		
-		return null;
+		
+		return listCompetNotices;
 	}
-//	@Override
-//	public Map<String, List<NoticeCompetVO>> CompetInfo(String compet_id) throws DataAccessException {
-//		Map<String,List<NoticeCompetVO>> CompetMap=new HashMap<String,List<NoticeCompetVO>>();
-//		List<CompetVO> competList=competDAO.selectCompetPoster("poster");
-//		CompetMap.put("Poster",competList);
-//		competList=competDAO.selectCompetInfo("info");
-//		CompetMap.put("info",competList);
-//
-//		return CompetMap;
-//	}
+
 	
 	
 }

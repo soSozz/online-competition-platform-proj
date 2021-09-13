@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
+import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
 public class CompetDAOImpl implements CompetDAO{
@@ -24,6 +25,12 @@ public class CompetDAOImpl implements CompetDAO{
 	public List<CompetVO> selectCompetInfo(String compet_id) throws DataAccessException {
 		List<CompetVO> competList = (ArrayList)sqlSession.selectOne("mapper.compet.selectCompetInfo",compet_id);
 		return null;
+	}
+	
+	@Override
+	public CompetFileVO selectCompetSmallPoster(String compet_id) throws DataAccessException {
+		CompetFileVO competFile = sqlSession.selectOne("mapper.notice.compet.selectSmallPoster",compet_id);
+		return competFile;
 	}
 
 }
