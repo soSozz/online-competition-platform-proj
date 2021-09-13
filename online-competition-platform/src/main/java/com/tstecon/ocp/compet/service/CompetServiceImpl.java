@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
+import com.tstecon.ocp.compet.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
 public class CompetServiceImpl implements CompetService{
@@ -24,6 +25,12 @@ public class CompetServiceImpl implements CompetService{
 		CompetMap.put("info",competList);
 
 		return CompetMap;
+	}
+//문의 게시판
+	@Override
+	public List<CompetQnaVO> qnalistArticles() throws Exception {
+		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
+		return qnaList;
 	}
 
 }

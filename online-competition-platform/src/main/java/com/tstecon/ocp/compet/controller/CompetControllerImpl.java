@@ -38,5 +38,17 @@ public class CompetControllerImpl implements CompetController {
 		mav.addObject("competInfo", competInfo);
 		return mav;
 	}
+//문의 페이지	
+	@Override
+	@RequestMapping(value= "/compet/qna.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		List qnaList = competService.qnalistArticles();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("qnaList", qnaList);
+		return mav;
+		
+	}
+	
 
 }

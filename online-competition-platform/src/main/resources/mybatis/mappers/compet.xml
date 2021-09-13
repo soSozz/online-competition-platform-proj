@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace = "mapper.compet"> <!-- 리절트맵 정의 -->
-	<resultMap id = "competResult" type = "competVO"> <!-- Compet의 resultMap -->
+	<resultMap id = "competResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
 		<result property = "compet_limit" column = "compet_limit" />
@@ -17,12 +17,25 @@
 	</resultMap>
 	
 	<resultMap id = "competFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
-		<result property = "compet_file_id" column = "compet_file_id" />
+        <result property = "compet_file_id" column = "compet_file_id" />
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "compet_file_type" column = "compet_file_type" />
 		<result property = "compet_file_name" column = "compet_file_name" />
 	</resultMap>
 	
+
+    <resultMap id="qnaResult" type="competQnaVO"> <!-- Compet_qna의 resultMap -->
+        <result property="compet_qna_id" column="compet_qna_id" />
+        <result property="mem_id" column="mem_id" />
+        <result property="compet_id" column="compet_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="compet_qna_title" column="compet_qna_title" />
+        <result property="compet_qna_date" column="compet_qna_date" />
+        <result property="compet_qna_view" column="compet_qna_view" />
+        <result property="parent_id" column="parent_id" />
+        <result property="compet_qna_text" column="compet_qna_text" />
+   </resultMap>
+ 
 	
 	
 	<select id = "selectCompetPoster" resultMap = "competFileResult" parameterType = "int">
@@ -40,4 +53,15 @@
 			where compet_id = #{compet_id}
 		]]>
 	</select>
+	
+	<select id="selectAllQnaList" resultMap="qnaResult">
+  <![CDATA[
+     SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
+     from  compet_qna
+     START WITH = parent_id=0
+     CONNECT BY PRIOR compet_qna_id=parent_id
+     ORDER SIBLINGS BY compet_qna_id DESC                                  
+  ]]>
+</select>
+	
 </mapper>
