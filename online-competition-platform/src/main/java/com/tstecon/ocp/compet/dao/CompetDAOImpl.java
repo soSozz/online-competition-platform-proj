@@ -19,14 +19,14 @@ public class CompetDAOImpl implements CompetDAO{
 //	대회안내 포스터
 	@Override
 	public List<CompetVO> selectCompetPoster(String compet_id) throws DataAccessException {
-		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mapper.compet.selectCompetPoster",compet_id);
+		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetPoster",compet_id);
 		return competList;
 	}
 //	대회안내 내용
 	@Override
 	public List<CompetVO> selectCompetInfo(String compet_id) throws DataAccessException {
-		List<CompetVO> competList = (ArrayList)sqlSession.selectOne("mapper.compet.selectCompetInfo",compet_id);
-		return null;
+		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetInfo",compet_id);
+		return competList;
 	}
 
 }

@@ -21,7 +21,7 @@ public class CompetServiceImpl implements CompetService{
 	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
 		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
 		List<CompetVO> competList=competDAO.selectCompetPoster("poster");
-		CompetMap.put("Poster",competList);
+		CompetMap.put("poster",competList);
 		competList=competDAO.selectCompetInfo("info");
 		CompetMap.put("info",competList);
 
