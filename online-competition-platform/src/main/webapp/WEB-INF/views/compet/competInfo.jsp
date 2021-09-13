@@ -28,7 +28,7 @@
 <title>대회 안내</title>
 </head>
 <body>
-
+	<div class = "poster"><a href = "<%-- ${contextPath}/compet/competInfo.do?compet_id=${} --%>#"><img src = ""/></a></div>
 </body>
 >>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 </html>

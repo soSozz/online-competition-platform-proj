@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
+@Service("competService")
 public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
