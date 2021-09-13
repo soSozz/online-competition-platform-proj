@@ -1,0 +1,22 @@
+.logo__icon {
+	position: relative;
+	bottom: 12px;
+	right: 20px;
+	width: 85px;
+}
+
+.login {
+	position: relative;
+	right: 55px;
+}
+
+.mypage {
+	position: relative;
+	right: 40px;
+}
+
+.alert {
+	position: relative;
+	right: 60px;
+	top: 9px;
+}
