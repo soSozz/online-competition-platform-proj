@@ -2,6 +2,9 @@ package com.tstecon.ocp.compet.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("competVO")
 public class CompetVO {
 	private int compet_id;
 	private int categ_id;

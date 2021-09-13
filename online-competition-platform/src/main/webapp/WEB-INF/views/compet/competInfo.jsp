@@ -15,6 +15,7 @@
 <title>대회 안내</title>
 </head>
 <body>
-
+	<div class = "poster"><a href = "<%-- ${contextPath}/compet/competInfo.do?compet_id=${competInfo.poster} --%>#"><img src = "/src/webapp/resources/images/imgs/1.jpg"/></a></div>
+	
 </body>
 </html>

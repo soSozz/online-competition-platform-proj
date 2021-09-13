@@ -6,11 +6,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
+<<<<<<< HEAD
 import com.tstecon.ocp.compet.vo.CompetQnaVO;
+=======
+import com.tstecon.ocp.compet.vo.CompetFileVO;
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
+@Service("competService")
 public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
@@ -20,17 +27,26 @@ public class CompetServiceImpl implements CompetService{
 	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
 		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
 		List<CompetVO> competList=competDAO.selectCompetPoster("poster");
-		CompetMap.put("Poster",competList);
+		CompetMap.put("poster",competList);
 		competList=competDAO.selectCompetInfo("info");
 		CompetMap.put("info",competList);
 
 		return CompetMap;
 	}
+<<<<<<< HEAD
 //문의 게시판
 	@Override
 	public List<CompetQnaVO> qnalistArticles() throws Exception {
 		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
 		return qnaList;
+=======
+	
+	//대회 공지사항: 작은 포스터 가져오기
+	@Override
+	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
+		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
+		return CompetSmallPoster;
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	}
 
 }

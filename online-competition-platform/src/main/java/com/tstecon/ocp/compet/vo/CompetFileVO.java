@@ -1,5 +1,8 @@
 package com.tstecon.ocp.compet.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component("competFileVO")
 public class CompetFileVO {
 	private int compet_file_id;
 	private int compet_id;
