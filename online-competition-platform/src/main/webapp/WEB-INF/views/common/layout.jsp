@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"
+    isELIgnored="false"
+    %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("utf-8");
+%>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title><tiles:insertAttribute name="title" /></title>
+
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+	<div>
+		<div>
+			<header>
+				   <tiles:insertAttribute name="header" />
+			</header>
+			<div class="clear"></div>
+			<aside>
+				 <tiles:insertAttribute name="side" />
+			</aside>
+			<article>
+			 	<tiles:insertAttribute name="body" />
+			</article>
+			<div class="clear"></div>
+			<footer>
+        		<tiles:insertAttribute name="footer" />
+        	</footer>
+		</div>
+    </div>        
+    	
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+</body>      
+        
+        
