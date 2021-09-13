@@ -11,5 +11,6 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Service
 public interface CompetService {
+//	대회 안내
 	public Map<String,List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException;
 }
