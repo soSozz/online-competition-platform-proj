@@ -9,11 +9,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
-<<<<<<< HEAD
 import com.tstecon.ocp.compet.vo.CompetQnaVO;
-=======
 import com.tstecon.ocp.compet.vo.CompetFileVO;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
@@ -33,20 +30,20 @@ public class CompetServiceImpl implements CompetService{
 
 		return CompetMap;
 	}
-<<<<<<< HEAD
+
 //문의 게시판
 	@Override
 	public List<CompetQnaVO> qnalistArticles() throws Exception {
 		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
 		return qnaList;
-=======
+	}
 	
-	//대회 공지사항: 작은 포스터 가져오기
+//대회 공지사항: 작은 포스터 가져오기
 	@Override
 	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
 		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 	}
 
 }

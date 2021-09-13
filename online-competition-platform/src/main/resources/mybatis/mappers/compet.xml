@@ -3,11 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<<<<<<< HEAD
+
 <mapper namespace = "mapper.compet"> <!-- 리절트맵 정의 -->
-=======
-<mapper namespace = "mappers.compet"> <!-- 리절트맵 정의 -->
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
+
+
 	<resultMap id = "competResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
@@ -28,11 +28,11 @@
 	</resultMap>
 	
 
-<<<<<<< HEAD
+
     <resultMap id="qnaResult" type="competQnaVO"> <!-- Compet_qna의 resultMap -->
-=======
-    <resultMap id="qnaResult" type="CompetVO"> <!-- Compet_qna의 resultMap -->
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
+
+
         <result property="compet_qna_id" column="compet_qna_id" />
         <result property="mem_id" column="mem_id" />
         <result property="compet_id" column="compet_id" />
@@ -62,7 +62,7 @@
 		]]>
 	</select>
 	
-<<<<<<< HEAD
+
 	<select id="selectAllQnaList" resultMap="qnaResult">
   <![CDATA[
      SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
@@ -72,7 +72,7 @@
      ORDER SIBLINGS BY compet_qna_id DESC                                  
   ]]>
 </select>
-=======
+
 <!-- 	<select id="selectAllQnaList" resultMap="qnaResult">
   <![CDATA[
      SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title,
@@ -81,6 +81,6 @@
   ]]>
 
 </select> -->
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 	
 </mapper>

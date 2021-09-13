@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
+
 import com.tstecon.ocp.compet.vo.CompetQnaVO;
-=======
 import com.tstecon.ocp.compet.vo.CompetFileVO;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Repository("competDAO")

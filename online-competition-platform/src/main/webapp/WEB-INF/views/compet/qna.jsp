@@ -33,7 +33,7 @@
  <c:forEach var="qna" items="${qnaList}" varStatus="articleNum">
     <tr align="center">
 	<td width="5%">${qna.compet_qna_id}</td>
-	<td width="10%">${article.compet_id }</td>
+	<td width="10%">${qna.compet_id }</td>
 	<td align='left'  width="35%">
       <span style="padding-right:30px"></span>
   <c:choose>
