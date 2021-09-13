@@ -25,6 +25,7 @@ public class CompetControllerImpl implements CompetController {
 	@Autowired
 	private CompetDAO competDAO;
 	
+//	대회안내페이지
 	@Override
 	@RequestMapping(value="/compet/competInfo", method = RequestMethod.GET)
 	public ModelAndView CompetInfo(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
