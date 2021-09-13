@@ -6,16 +6,19 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
+@Service("competService")
 public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
 
+//	대회안내
 	@Override
 	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
 		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
