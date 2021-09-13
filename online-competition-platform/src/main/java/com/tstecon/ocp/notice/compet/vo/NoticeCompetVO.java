@@ -2,6 +2,9 @@ package com.tstecon.ocp.notice.compet.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("NoticeCompetVO")
 public class NoticeCompetVO {
 	private int compet_notice_id;
 	private int compet_id;

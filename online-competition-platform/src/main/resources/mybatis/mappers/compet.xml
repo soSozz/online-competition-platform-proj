@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace = "mappers.compet"> <!-- 리절트맵 정의 -->
-	<resultMap id = "competResult" type = "competVO"> 
+	<resultMap id = "CompetResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
 		<result property = "compet_limit" column = "compet_limit" />
@@ -16,7 +16,7 @@
 		<result property = "compet_terminated" column = "compet_terminated" />
 	</resultMap>
 	
-	<resultMap id = "competFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
+	<resultMap id = "CompetFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
         <result property = "compet_file_id" column = "compet_file_id" />
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "compet_file_type" column = "compet_file_type" />
@@ -24,7 +24,7 @@
 	</resultMap>
 	
 
-    <resultMap id="qnaResult" type="CompetVO"> <!-- Compet_qna의 resultMap -->
+    <resultMap id="QnaResult" type="competVO"> <!-- Compet_qna의 resultMap -->
         <result property="compet_qna_id" column="compet_qna_id" />
         <result property="mem_id" column="mem_id" />
         <result property="compet_id" column="compet_id" />
@@ -38,7 +38,7 @@
  
 	
 	
-	<select id = "selectCompetPoster" resultMap = "competFileResult" parameterType = "String">
+	<select id = "selectCompetPoster" resultMap = "CompetFileResult" parameterType = "String">
 		<![CDATA[		
 			select compet_file_type, compet_file_name
 			from compet_file
@@ -46,7 +46,7 @@
 		]]>
 	</select>
 	
-	<select id = "selectCompetInfo" resultMap = "competResult" parameterType = "String">
+	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "String">
 		<![CDATA[
 			select compet_text
 			from compet
