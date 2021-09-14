@@ -12,7 +12,7 @@ import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
-@Repository("competDAO")
+@Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO{
 
 	@Autowired
@@ -33,7 +33,7 @@ public class CompetDAOImpl implements CompetDAO{
 	
 	@Override
 	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
-		CompetFileVO competFile = sqlSession.selectOne("mapper.notice.compet.selectSmallPoster",compet_id);
+		CompetFileVO competFile = sqlSession.selectOne("mappers.notice.compet.selectSmallPoster",compet_id);
 		return competFile;
 	}
 //문의 게시판 내용	

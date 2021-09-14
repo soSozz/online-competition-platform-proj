@@ -47,7 +47,7 @@
 		]]>
 	</select>
 	
-	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "String">
+	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
 		<![CDATA[
 			select compet_text
 			from compet

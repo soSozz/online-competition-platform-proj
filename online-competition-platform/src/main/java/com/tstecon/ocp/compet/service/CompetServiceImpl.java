@@ -14,7 +14,7 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
-@Service("competService")
+@Service("CompetService")
 public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
@@ -22,13 +22,13 @@ public class CompetServiceImpl implements CompetService{
 //	대회안내
 	@Override
 	public Map<String, List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException {
-		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
+		Map<String,List<CompetVO>>competInfo=new HashMap<String,List<CompetVO>>();
 		List<CompetVO> competList=competDAO.selectCompetPoster(compet_id);
-		CompetMap.put("poster",competList);
+		competInfo.put("poster",competList);
 		competList=competDAO.selectCompetInfo(compet_id);
-		CompetMap.put("info",competList);
+		competInfo.put("info",competList);
 
-		return CompetMap;
+		return competInfo;
 	}
 
 //문의 게시판
