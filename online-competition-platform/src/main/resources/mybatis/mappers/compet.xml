@@ -61,23 +61,17 @@
 	
 
 	<select id="selectAllQnaList" resultMap="qnaResult">
-  <![CDATA[
-     SELECT  compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
-     from  compet_qna
+  	<![CDATA[
+     SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
+     FROM compet_qna
      START WITH parent_id=0
-     CONNECT BY PRIOR compet_qna_id=parent_id
-     ORDER SIBLINGS BY compet_qna_id DESC                                  
-  ]]>
+     CONNECT BY PRIOR  compet_qna_id=parent_id
+     ORDER SIBLINGS BY compet_qna_id ASC
+                               
+   ]]>
 </select>
 
-<!-- 	<select id="selectAllQnaList" resultMap="qnaResult">
-  <![CDATA[
-     SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title,
-  
-  
-  ]]>
 
-</select> -->
 
 	
 </mapper>
