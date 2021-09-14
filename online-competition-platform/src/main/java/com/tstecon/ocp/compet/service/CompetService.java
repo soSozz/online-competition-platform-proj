@@ -14,14 +14,8 @@ import com.tstecon.ocp.qna.vo.CompetQnaVO;
 @Service
 public interface CompetService {
 //	대회 안내
-<<<<<<< HEAD
 	public Map<String,List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException;
 	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException;
-=======
-	public Map<String,List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException;
 //문의 	
 	public List<CompetQnaVO>qnalistArticles() throws Exception;
-	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException;
-
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 }

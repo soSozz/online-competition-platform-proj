@@ -12,11 +12,7 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.dao.NoticeCompetDAO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
-<<<<<<< HEAD
 @Service("NoticeCompetService")
-=======
-@Service("noticeCompetService")
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 public class NoticeCompetServiceImpl implements NoticeCompetService{
 	@Autowired
 	private NoticeCompetDAO noticeCompetDAO;

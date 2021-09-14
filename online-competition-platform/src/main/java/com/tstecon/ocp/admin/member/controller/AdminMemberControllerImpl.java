@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.tstecon.ocp.admin.member.controller;
 
 import java.util.List;
@@ -72,10 +71,8 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
 		}
 		return viewName;
-	}
-
 }
-=======
+}
 //package com.tstecon.ocp.admin.member.controller;
 //
 //import java.util.List;
@@ -157,4 +154,3 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 //	}
 //
 //}
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git

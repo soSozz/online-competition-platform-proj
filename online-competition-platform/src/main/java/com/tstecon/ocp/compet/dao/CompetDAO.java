@@ -15,16 +15,10 @@ public interface CompetDAO {
 //	대회안내 포스터
 	public List<CompetVO> selectCompetPoster(int compet_id) throws DataAccessException;
 //	대회안내 내용
-<<<<<<< HEAD
 	public List<CompetVO> selectCompetInfo(int Compet_id) throws DataAccessException;
+	
 	public CompetFileVO selectCompetSmallPoster(int Compet_id) throws DataAccessException;
-=======
-	public List<CompetVO> selectCompetInfo(String Compet_id) throws DataAccessException;
 
 // 문의 게시판 내용
 	public List selectAllQnaList() throws DataAccessException;
-
-	public CompetFileVO selectCompetSmallPoster(String Compet_id) throws DataAccessException;
-
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 }
