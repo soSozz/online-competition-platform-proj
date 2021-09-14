@@ -3,9 +3,9 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
-    <tiles-definitions>
+<tiles-definitions>
 	<definition name="/compet/competInfo" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 대회안내페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competInfo.jsp" />
 	</definition>
-	</tiles-definitions>
+</tiles-definitions>

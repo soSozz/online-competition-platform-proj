@@ -3,7 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
+
 <mapper namespace = "mapper.compet"> <!-- 리절트맵 정의 -->
+
+
+
 	<resultMap id = "competResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
@@ -24,7 +28,11 @@
 	</resultMap>
 	
 
-    <resultMap id="qnaResult" type="CompetVO"> <!-- Compet_qna의 resultMap -->
+
+    <resultMap id="qnaResult" type="competQnaVO"> <!-- Compet_qna의 resultMap -->
+
+
+
         <result property="compet_qna_id" column="compet_qna_id" />
         <result property="mem_id" column="mem_id" />
         <result property="compet_id" column="compet_id" />
@@ -38,7 +46,7 @@
  
 	
 	
-	<select id = "selectCompetPoster" resultMap = "competFileResult" parameterType = "int">
+	<select id = "selectCompetPoster" resultMap = "competFileResult" parameterType = "String">
 		<![CDATA[		
 			select compet_file_type, compet_file_name
 			from compet_file
@@ -46,7 +54,7 @@
 		]]>
 	</select>
 	
-	<select id = "selectCompetInfo" resultMap = "competResult" parameterType = "int">
+	<select id = "selectCompetInfo" resultMap = "competResult" parameterType = "String">
 		<![CDATA[
 			select compet_text
 			from compet
@@ -54,13 +62,25 @@
 		]]>
 	</select>
 	
+
 	<select id="selectAllQnaList" resultMap="qnaResult">
+  <![CDATA[
+     SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
+     from  compet_qna
+     START WITH = parent_id=0
+     CONNECT BY PRIOR compet_qna_id=parent_id
+     ORDER SIBLINGS BY compet_qna_id DESC                                  
+  ]]>
+</select>
+
+<!-- 	<select id="selectAllQnaList" resultMap="qnaResult">
   <![CDATA[
      SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title,
   
   
   ]]>
 
-</select>
+</select> -->
+
 	
 </mapper>
