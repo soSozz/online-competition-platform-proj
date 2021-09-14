@@ -14,21 +14,23 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
-@Service("competService")
+@Service("CompetService")
 public class CompetServiceImpl implements CompetService{
 	@Autowired
 	private CompetDAO competDAO;
 
 //	대회안내
 	@Override
-	public Map<String, List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException {
-		Map<String,List<CompetVO>> CompetMap=new HashMap<String,List<CompetVO>>();
-		List<CompetVO> competList=competDAO.selectCompetPoster("poster");
-		CompetMap.put("poster",competList);
-		competList=competDAO.selectCompetInfo("info");
-		CompetMap.put("info",competList);
+	public Map<String, List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException {
+		Map<String,List<CompetVO>>competInfo=new HashMap<String,List<CompetVO>>();
+		List<CompetVO> competList=competDAO.selectCompet_id(compet_id);
+		competInfo.put("compet_id",competList);
+		competList=competDAO.selectCompetPoster(compet_id);
+		competInfo.put("poster",competList);
+		competList=competDAO.selectCompetInfo(compet_id);
+		competInfo.put("info",competList);
 
-		return CompetMap;
+		return competInfo;
 	}
 
 //문의 게시판
@@ -40,7 +42,7 @@ public class CompetServiceImpl implements CompetService{
 	
 //대회 공지사항: 작은 포스터 가져오기
 	@Override
-	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
+	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException{
 		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
 

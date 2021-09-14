@@ -4,13 +4,6 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 public abstract class BaseController {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\ocp\\file";
 
@@ -50,12 +43,12 @@ public abstract class BaseController {
 		}
 	}
 
-	@RequestMapping(value = "/*.do", method = { RequestMethod.POST, RequestMethod.GET })
-	protected ModelAndView viewForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		return mav;
-	}
+//	@RequestMapping(value = "/*Form.do", method = { RequestMethod.POST, RequestMethod.GET })
+//	protected ModelAndView viewForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = (String) request.getAttribute("viewName");
+//		ModelAndView mav = new ModelAndView(viewName);
+//		return mav;
+//	}
 
 	protected String calcSearchPeriod(String fixedSearchPeriod) {
 		String beginDate = null;

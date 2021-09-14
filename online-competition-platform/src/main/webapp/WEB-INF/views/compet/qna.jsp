@@ -36,15 +36,20 @@
     <tr align="center">
 	<td width="5%">${qna.compet_qna_id}</td>
 	<td width="25%">${qna.compet_qna_title }</td>
-	<td width="10%">${qna.mem_id }
-		<c:if test="${qna.mem_id ==null }">
-		
-		</c:if>
-	</td>
+	 <td width="10%">
+	 <c:choose>
+	    <c:when test="${qna.mem_id !=null}">
+	     ${qna.mem_id }
+	    </c:when>
+	    <c:otherwise>
+	    관리자
+	    </c:otherwise> 
+	 </c:choose> 
+	 </td> 
 	<td width="10%">${qna.compet_qna_date }</td>
 	<td width="10%">${qna.compet_qna_view }</td>
 	   <span style="padding-right:30px"></span>
-	
+
   <!-- 답변형 -->
   <c:choose>
 	      <c:when test='${qna.level > 1 }'>  

@@ -17,7 +17,7 @@ import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.service.CompetService;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
-@Controller("competController")
+@Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
 	@Autowired
 	private CompetService competService;
@@ -28,13 +28,13 @@ public class CompetControllerImpl implements CompetController {
 //	대회안내페이지
 	@Override
 	@RequestMapping(value={"/compet/competInfo.do"}, method = {RequestMethod.GET})
-	public ModelAndView CompetInfo(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
 		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		Map<String,List<CompetVO>> competInfo = competService.CompetInfo(compet_id);
+		Map competInfo = competService.CompetInfo(compet_id);
 		mav.addObject("competInfo", competInfo);
 		return mav;
 	}
