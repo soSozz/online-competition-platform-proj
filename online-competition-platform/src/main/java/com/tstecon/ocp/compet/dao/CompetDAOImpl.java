@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-
-import com.tstecon.ocp.compet.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("competDAO")
 public class CompetDAOImpl implements CompetDAO{
@@ -40,7 +39,7 @@ public class CompetDAOImpl implements CompetDAO{
 //문의 게시판 내용	
 	@Override
 	public List selectAllQnaList() throws DataAccessException {
-		List<CompetQnaVO> qnaList = sqlSession.selectList("mapper.compet.selectAllQnaList");
+		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
 		return qnaList;
 	}
 	

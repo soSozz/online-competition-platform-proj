@@ -20,7 +20,7 @@
     <td>작성일</td>
   </tr>
 <c:choose>
- <c:when test="${qnaList==null ">
+ <c:when test="${qnaList==null} ">
 <tr  height="10">
       <td colspan="4">
          <p align="center">
@@ -36,7 +36,7 @@
 	<td width="10%">${qna.compet_id }</td>
 	<td align='left'  width="35%">
       <span style="padding-right:30px"></span>
-  <c:choose>
+  <%-- <c:choose>
 	      <c:when test='${qna.level > 1 }'>  
 	         <c:forEach begin="1" end="${qna.level }" step="1">
 	              <span style="padding-left:20px"></span>    
@@ -47,7 +47,7 @@
 	          <c:otherwise>
 	            <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
 	          </c:otherwise>
-           </c:choose>  
+           </c:choose>   --%>
         </td>
 	   <td  width="10%">${qna.compet_qna_date}</td> 
 	  </tr>
