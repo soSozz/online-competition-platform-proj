@@ -12,7 +12,11 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.dao.NoticeCompetDAO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
+<<<<<<< HEAD
+@Service("noticeCompetService")
+=======
 @Service("NoticeCompetService")
+>>>>>>> refs/heads/master
 public class NoticeCompetServiceImpl implements NoticeCompetService{
 	@Autowired
 	private NoticeCompetDAO noticeCompetDAO;

@@ -14,6 +14,7 @@ import com.tstecon.ocp.qna.vo.CompetQnaVO;
 @Service
 public interface CompetService {
 //	대회 안내
+
 	public Map<String,List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException;
 	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException;
 //문의 	

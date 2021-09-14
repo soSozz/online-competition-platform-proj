@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("NoticeCompetVO")
+@Component("noticeCompetVO")
 public class NoticeCompetVO {
 	private int compet_notice_id;
 	private int compet_id;
