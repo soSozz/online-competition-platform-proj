@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("competDAO")
 public class CompetDAOImpl implements CompetDAO{
@@ -35,5 +36,13 @@ public class CompetDAOImpl implements CompetDAO{
 		CompetFileVO competFile = sqlSession.selectOne("mapper.notice.compet.selectSmallPoster",compet_id);
 		return competFile;
 	}
+//문의 게시판 내용	
+	@Override
+	public List selectAllQnaList() throws DataAccessException {
+		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
+		return qnaList;
+	}
+	
+	
 
 }
