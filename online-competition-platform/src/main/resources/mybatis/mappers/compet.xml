@@ -38,8 +38,8 @@
    </resultMap>
  
 	
-	
-	<select id = "selectCompetPoster" resultMap = "CompetFileResult" parameterType = "String">
+	<!-- 대회 포스터 -->
+	<select id = "selectCompetPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
 			select compet_file_type, compet_file_name
 			from compet_file
@@ -47,6 +47,7 @@
 		]]>
 	</select>
 	
+	<!-- 대회 안내 정보 -->
 	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
 		<![CDATA[
 			select compet_text
@@ -55,7 +56,15 @@
 		]]>
 	</select>
 	
-
+	<!-- 대회 번호 표시 -->
+	<select id = "selectCompet_id" resultMap = "CompetResult" parameterType = "int">
+		<![CDATA[
+			select compet_id
+			from compet
+			where compet_id = #{compet_id}
+		]]>
+	</select>
+	
 	<select id="selectAllQnaList" resultMap="qnaResult">
   <![CDATA[
      SELECT  compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
