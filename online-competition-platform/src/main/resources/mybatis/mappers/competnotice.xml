@@ -16,7 +16,7 @@
 	
 
 	
-	<select id = "selectNoticeCompetList" resultMap = "noticeCompetResult" parameterType = "string">
+	<select id = "selectNoticeCompetList" resultMap = "noticeCompetResult" parameterType = "int">
 		<![CDATA[
 			select compet_notice_title, compet_notice_date,
 			compet_notice_view, compet_notice_text
