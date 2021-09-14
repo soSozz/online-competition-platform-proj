@@ -28,7 +28,7 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 	
 	@Override
 	@RequestMapping(value="/notice/compet/listCompetNotices.do", method=RequestMethod.GET)
-	public ModelAndView listCompetNotices(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String)request.getAttribute("viewName");
 		
 		//NoticeCompetService: 공지사항 리스트 가져오기

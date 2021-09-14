@@ -28,7 +28,7 @@ public class CompetControllerImpl implements CompetController {
 //	대회안내페이지
 	@Override
 	@RequestMapping(value={"/compet/competInfo.do"}, method = {RequestMethod.GET})
-	public ModelAndView CompetInfo(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
 		

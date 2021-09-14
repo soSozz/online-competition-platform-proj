@@ -18,7 +18,7 @@ public class NoticeCompetServiceImpl implements NoticeCompetService{
 	private NoticeCompetDAO noticeCompetDAO;
 	
 	@Override
-	public List<NoticeCompetVO> listCompetNotices(String compet_id) throws DataAccessException{
+	public List<NoticeCompetVO> listCompetNotices(int compet_id) throws DataAccessException{
 		List<NoticeCompetVO> listCompetNotices = noticeCompetDAO.selectNoticesCompetList(compet_id);
 		
 		

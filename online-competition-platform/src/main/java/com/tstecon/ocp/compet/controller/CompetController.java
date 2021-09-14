@@ -8,5 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface CompetController {
 //	대회안내 페이지
-	public ModelAndView CompetInfo(@RequestParam("compet_id") String compet_id,HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id,HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }

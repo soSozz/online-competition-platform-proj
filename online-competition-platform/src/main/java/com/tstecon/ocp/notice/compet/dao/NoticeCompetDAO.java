@@ -8,6 +8,6 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 public interface NoticeCompetDAO {
-	public List<NoticeCompetVO> selectNoticesCompetList(String compet_id) throws DataAccessException;
+	public List<NoticeCompetVO> selectNoticesCompetList(int compet_id) throws DataAccessException;
 }
 
