@@ -16,4 +16,9 @@
 <!--     <typeAlias type="com.bookshop01.mypage.vo.MyPageVO" alias="mypageVO" /> -->
     
   </typeAliases>
+  
+<!--   	<mappers>
+		<mapper resource = "mybatis/mappers/compet.xml" />
+	</mappers> -->
+	
 </configuration>

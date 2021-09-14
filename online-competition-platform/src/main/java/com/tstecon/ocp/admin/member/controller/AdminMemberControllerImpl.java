@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tstecon.ocp.admin.member.service.AdminMemberService;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.member.vo.MemberVO;
 
-@Controller("adminMemberController")
+@Controller("memberController")
 public class AdminMemberControllerImpl extends BaseController implements AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
@@ -31,16 +32,16 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		return mav;
 	}
 
-//	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
-//	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		// String viewName = getViewName(request);
-//		String viewName = (String) request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("result", result);
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
+	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
+	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// String viewName = getViewName(request);
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName(viewName);
+		return mav;
+	}
 
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

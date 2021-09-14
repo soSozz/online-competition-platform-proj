@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface NoticeCompetController {
-	public ModelAndView listCompetNotices(@RequestParam("compet_id") String compet_id, HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response);
 
 }
