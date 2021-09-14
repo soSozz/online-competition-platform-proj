@@ -18,7 +18,38 @@
 	
 	<select id = "selectAllMemberList" resultMap = "memberResult">
 		<![CDATA[	
-			
+			select * from member order by joinDate desc
 		]]>
 	</select>
+	
+	<select id="selectMem_id" resultType="String">
+	<![CDATA[
+	select name from member
+	where id = '20210820'			
+    ]]>
+	</select>
+	
+	<select id="selectMem_Pwd" resultType="int" >
+	  <![CDATA[ 
+	    select pwd from member 
+	    where id = '20210820'
+	 ]]>
+	 </select> 
+	
+	<select id="selectMemberById" resultType="memResult"  parameterType="String" >
+      <![CDATA[
+         select * from member
+         where
+         id=#{id}			
+      ]]>
+	 </select>
+	 <select id="selectMemberByPwd" resultMap="memResult"  parameterType="int" >
+      <![CDATA[
+         select * from member
+         where
+         pwd = #{pwd}			
+      ]]>
+    </select>
+    
+    
 </mapper>

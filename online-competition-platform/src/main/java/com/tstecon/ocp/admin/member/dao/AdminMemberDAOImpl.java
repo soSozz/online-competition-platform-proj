@@ -18,7 +18,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	@Override
 	public List selectAllMemberList() throws DataAccessException {
 		List<MemberVO> membersList = null;
-		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
+		membersList = sqlSession.selectList("mappers.admin_member.selectAllMemberList");
 		return membersList;
 	}
 

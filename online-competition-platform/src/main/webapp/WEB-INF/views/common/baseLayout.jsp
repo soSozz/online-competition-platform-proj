@@ -8,25 +8,22 @@
 <%
   request.setCharacterEncoding("utf-8");
 %>
-
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
 
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 
 </head>
 <body>
-	<div>
-		<div>
+	<div id="outer_wrap">
+		<div id="wrap">
 			<header>
 				   <tiles:insertAttribute name="header" />
 			</header>
 			<div class="clear"></div>
-			<aside>
-				 <tiles:insertAttribute name="side" />
-			</aside>
 			<article>
 			 	<tiles:insertAttribute name="body" />
 			</article>
@@ -35,16 +32,17 @@
         		<tiles:insertAttribute name="footer" />
         	</footer>
 		</div>
-    </div>        
-    	
-    <!--**********************************
+    </div>      
+    
+        <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="${contextPath }/resources/plugins/common/common.min.js"></script>
+    <script src="${contextPath }/resources/js/custom.min.js"></script>
+    <script src="${contextPath }/resources/js/settings.js"></script>
+    <script src="${contextPath }/resources/js/gleek.js"></script>
+    <script src="${contextPath }/resources/js/styleSwitcher.js"></script>
+    
+      	
 </body>      
-        
-        
+</html>
