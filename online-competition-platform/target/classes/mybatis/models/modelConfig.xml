@@ -6,13 +6,12 @@
   <typeAliases>
   		 <typeAlias type="com.tstecon.ocp.compet.vo.CompetVO" alias = "competVO" />
   		 <typeAlias type="com.tstecon.ocp.compet.vo.CompetFileVO" alias = "competFileVO"/>
-<<<<<<< HEAD
+
   		 <typeAlias type="com.tstecon.ocp.member.vo.MemberVO" alias="memberVO" />
   		 <typeAlias type="com.tstecon.ocp.notice.compet.vo.NoticeCompetVO" alias="noticeCompetVO" />
-=======
-		 <typeAlias type="com.tstecon.ocp.member.vo.MemberVO" alias="memberVO" />
+
 		 <typeAlias type="com.tstecon.ocp.qna.vo.CompetQnaVO" alias="competQnaVO" />
->>>>>>> refs/heads/master
+
 <!--     <typeAlias type="com.bookshop01.goods.vo.GoodsVO" alias="goodsVO" /> -->
 <!--     <typeAlias type="com.bookshop01.goods.vo.ImageFileVO" alias="imageFileVO" /> -->
     
