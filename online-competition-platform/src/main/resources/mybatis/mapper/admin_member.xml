@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "mapper.admin.member"> <!-- 리절트맵 정의 -->
+	<resultMap id = "competResult" type = "competVO"> <!-- Compet의 resultMap -->
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "categ_id" column = "categ_id" />
+		<result property = "compet_limit" column = "compet_limit" />
+		<result property = "compet_name" column = "compet_name" />
+		<result property = "compet_start" column = "compet_start" />
+		<result property = "compet_end" column = "compet_end" />
+		<result property = "compet_create" column = "compet_create" />
+		<result property = "compet_text" column = "compet_text" />
+		<result property = "compet_terminated" column = "compet_terminated" />
+	</resultMap>
+	
+	<select id = "selectAllMemberList" resultMap = "memberResult">
+		<![CDATA[	
+			select * from member order by joinDate desc
+		]]>
+	</select>
+	
+	<select id="selectMem_id" resultType="String">
+	<![CDATA[
+	select name from member
+	where id = '20210820'			
+    ]]>
+	</select>
+	
+	<select id="selectMem_Pwd" resultType="int" >
+	  <![CDATA[ 
+	    select pwd from member 
+	    where id = '20210820'
+	 ]]>
+	 </select> 
+	
+	<select id="selectMemberById" resultType="memResult"  parameterType="String" >
+      <![CDATA[
+         select * from member
+         where
+         id=#{id}			
+      ]]>
+	 </select>
+	 <select id="selectMemberByPwd" resultMap="memResult"  parameterType="int" >
+      <![CDATA[
+         select * from member
+         where
+         pwd = #{pwd}			
+      ]]>
+    </select>
+    
+    
+</mapper>
