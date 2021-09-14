@@ -29,11 +29,11 @@
     </div>
     <div class="col-lg-12">
       <ul class="nav nav-tabs mb-3 justify-content-lg-center">
-		<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home1">대회안내</a></li>
+		<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="${contextPath}/compet/competInfo.do?compet_id=${competInfo.compet_id[0].compet_id}">대회안내</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile1">공지사항</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#contact1">컨텐츠 게시판</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message1">제출</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message1">문의</a></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="/compet/qna.do">문의</a></li>
 	</ul>
     </div>
     <div class="col-lg-12">
