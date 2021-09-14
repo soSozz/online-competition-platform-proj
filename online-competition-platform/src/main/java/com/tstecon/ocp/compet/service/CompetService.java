@@ -14,5 +14,5 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 public interface CompetService {
 //	대회 안내
 	public Map<String,List<CompetVO>> CompetInfo(String compet_id) throws DataAccessException;
-	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException;
+	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException;
 }

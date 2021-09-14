@@ -46,6 +46,14 @@
 		]]>
 	</select>
 	
+	<select id = "selectCompetSmallPoster" resultMap = "competFileResult" parameterType = "string">
+		<![CDATA[		
+			select compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_type="small_img"
+		]]>
+	</select>
+	
 	<select id = "selectCompetInfo" resultMap = "competResult" parameterType = "int">
 		<![CDATA[
 			select compet_text

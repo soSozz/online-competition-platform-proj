@@ -32,7 +32,7 @@ public class CompetServiceImpl implements CompetService{
 	
 	//대회 공지사항: 작은 포스터 가져오기
 	@Override
-	public CompetFileVO CompetSmallPoster(String compet_id) throws DataAccessException{
+	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException{
 		CompetFileVO CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
 	}

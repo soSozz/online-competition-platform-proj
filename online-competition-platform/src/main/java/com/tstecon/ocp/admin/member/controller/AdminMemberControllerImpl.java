@@ -20,7 +20,7 @@ import com.tstecon.ocp.member.vo.MemberVO;
 import com.tstecon.ocp.admin.member.service.AdminMemberService;
 import com.tstecon.ocp.common.base.BaseController;
 
-@Controller("memberController")
+@Controller("adminMemberController")
 public class AdminMemberControllerImpl extends BaseController implements AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
@@ -36,7 +36,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		return mav;
 	}
 
-	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// String viewName = getViewName(request);

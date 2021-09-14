@@ -31,8 +31,8 @@ public class CompetDAOImpl implements CompetDAO{
 	}
 	
 	@Override
-	public CompetFileVO selectCompetSmallPoster(String compet_id) throws DataAccessException {
-		CompetFileVO competFile = sqlSession.selectOne("mapper.notice.compet.selectSmallPoster",compet_id);
+	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
+		CompetFileVO competFile = sqlSession.selectOne("mapper.compet.selectSmallPoster",compet_id);
 		return competFile;
 	}
 
