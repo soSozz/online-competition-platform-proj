@@ -47,8 +47,21 @@
 		]]>
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 대회 안내 정보 -->
 	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
+=======
+
+	<select id = "selectCompetSmallPoster" resultMap = "competFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_type="small_img"
+		]]>
+	</select>
+	
+	<select id = "selectCompetInfo" resultMap = "competResult" parameterType = "int">
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 		<![CDATA[
 			select compet_text
 			from compet

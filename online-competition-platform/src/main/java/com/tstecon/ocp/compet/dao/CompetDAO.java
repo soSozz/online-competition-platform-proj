@@ -23,4 +23,5 @@ public interface CompetDAO {
 
 // 문의 게시판 내용
 	public List selectAllQnaList() throws DataAccessException;
+
 }
