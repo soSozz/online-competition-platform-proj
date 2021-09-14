@@ -6,10 +6,9 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-
-import com.tstecon.ocp.compet.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 
 @Service

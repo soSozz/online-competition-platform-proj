@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 
-<mapper namespace = "mapper.compet"> <!-- 리절트맵 정의 -->
+<mapper namespace = "mappers.compet"> <!-- 리절트맵 정의 -->
 
 
 
@@ -30,9 +30,6 @@
 
 
     <resultMap id="qnaResult" type="competQnaVO"> <!-- Compet_qna의 resultMap -->
-
-
-
         <result property="compet_qna_id" column="compet_qna_id" />
         <result property="mem_id" column="mem_id" />
         <result property="compet_id" column="compet_id" />
@@ -65,9 +62,9 @@
 
 	<select id="selectAllQnaList" resultMap="qnaResult">
   <![CDATA[
-     SELECT  level, compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
+     SELECT  compet_qna_id, mem_id, compet_id, admin_id, compet_qna_title, compet_qna_date , compet_qna_view, parent_id, compet_qna_text
      from  compet_qna
-     START WITH = parent_id=0
+     START WITH parent_id=0
      CONNECT BY PRIOR compet_qna_id=parent_id
      ORDER SIBLINGS BY compet_qna_id DESC                                  
   ]]>

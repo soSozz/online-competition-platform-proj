@@ -9,10 +9,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
-import com.tstecon.ocp.compet.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("competService")
 public class CompetServiceImpl implements CompetService{
