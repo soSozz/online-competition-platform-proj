@@ -12,7 +12,7 @@
 	<!-- Section: CTA -->
 	<section class="">
 	  <p class="d-flex justify-content-center align-items-center">
-		<span class="me-3">TSTECON</span>
+		<span class="me-3 mr-3">TSTECON</span>
 		<button type="button" class="btn btn-outline-light btn-rounded">
 		  깃헙 코드 보기
 		</button>
