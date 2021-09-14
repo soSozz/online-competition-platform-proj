@@ -6,7 +6,7 @@
 
 <mapper namespace = "mappers.compet"> 
 	<!-- 리절트맵 정의 -->
-	<resultMap id = "competResult" type = "competVO"> 
+	<resultMap id = "CompetResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
 		<result property = "compet_limit" column = "compet_limit" />
