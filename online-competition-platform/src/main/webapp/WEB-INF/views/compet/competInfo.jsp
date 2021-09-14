@@ -33,7 +33,11 @@
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile1">공지사항</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#contact1">컨텐츠 게시판</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message1">제출</a></li>
+<<<<<<< HEAD
 		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="/compet/qna.do">문의</a></li>
+=======
+		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="${contextPath}/compet/qna.do">문의</a></li>
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	</ul>
     </div>
     <div class="col-lg-12">

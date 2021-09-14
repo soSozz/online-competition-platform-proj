@@ -2,7 +2,11 @@ package com.tstecon.ocp.qna.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("competQnaVO")
 public class CompetQnaVO {
+	private int level;
 	private int compet_qna_id;
 	private String mem_id;
 	private int compet_id;
@@ -67,6 +71,12 @@ public class CompetQnaVO {
 	}
 	public void setCompet_qna_text(String compet_qna_text) {
 		this.compet_qna_text = compet_qna_text;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	
