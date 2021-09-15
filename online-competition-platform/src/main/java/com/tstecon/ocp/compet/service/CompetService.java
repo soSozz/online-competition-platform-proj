@@ -19,4 +19,5 @@ public interface CompetService {
 	public CompetFileVO CompetSmallPoster(int compet_id) throws DataAccessException;
 //문의 	
 	public List<CompetQnaVO>qnalistArticles() throws Exception;
+//문의 글쓰기창
 }
