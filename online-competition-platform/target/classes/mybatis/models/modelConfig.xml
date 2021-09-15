@@ -12,7 +12,7 @@
 
 		 <typeAlias type="com.tstecon.ocp.qna.vo.CompetQnaVO" alias="competQnaVO" />
 		 <typeAlias type="com.tstecon.ocp.admin.stat.vo.AdminStatVO" alias="adminStatVO" />
-		 <typeAlias type="com.tstecon.ocp.admin.categ.vo.AdminCategVO" alias="adminCategVO" />
+		 <typeAlias type="com.tstecon.ocp.categ.vo.CategVO" alias="categVO" />
 <!--     <typeAlias type="com.bookshop01.goods.vo.GoodsVO" alias="goodsVO" /> -->
 <!--     <typeAlias type="com.bookshop01.goods.vo.ImageFileVO" alias="imageFileVO" /> -->
     

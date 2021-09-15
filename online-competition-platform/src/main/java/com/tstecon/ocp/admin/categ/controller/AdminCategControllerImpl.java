@@ -1,5 +1,5 @@
 package com.tstecon.ocp.admin.categ.controller;
 
-public class AdminCategControllerImpl {
+public class AdminCategControllerImpl implements AdminCategController{
 
 }

@@ -37,11 +37,13 @@
       <div class = "competInfo">${competInfo.info[0].compet_text}</div>
 	<div class = "competPoster"><img src = "c:/${competPoster.competBigPoster[0].compet_file_name}" width=100% /></div>
 	<div>${competPoster.competBigPoster[0].compet_file_name}</div>
+	<div>competfile1-big.jpg</div>
 	<div>${competPoster.competBigPoster[0].compet_file_type}</div>
 	<div>${competPoster.compet_id[0].compet_id}</div>
 	<div>${competPoster.competSmallPoster[0].compet_file_name}</div>
 	<div>${competPoster.competSmallPoster[0].compet_file_type}</div>
-	<div><img src="C:\competfile1-big.jpg"/></div>
+	<div><img src="D:/competfile1-big.jpg"/></div>
+	
     </div>
 </div>
 </div>
