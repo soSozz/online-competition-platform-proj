@@ -38,25 +38,26 @@
    </resultMap>
  
 	
-	<!-- 대회 포스터 -->
-	<select id = "selectCompetPoster" resultMap = "CompetFileResult" parameterType = "int">
+	<!-- 대회 큰 포스터 -->
+	<select id = "selectCompetBigPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
 			select compet_file_type, compet_file_name
 			from compet_file
-			where compet_id = #{compet_id}
+			where compet_id = #{compet_id} and compet_file_name like '%-big%'
 		]]>
 	</select>
 	
 
-	<!-- 대회 안내 정보 -->
+	<!-- 대회 작은 포스터 -->
 	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
-			select compet_file_name
+			select compet_file_name, compet_file_type
 			from compet_file
-			where compet_id = #{compet_id} and compet_file_type="small_img"
+			where compet_id = #{compet_id} and compet_file_name like '%-small%'
 		]]>
 	</select>
 	
+	<!-- 대회 안내 정보 표시 -->
 	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
 		<![CDATA[
 			select compet_text
@@ -70,6 +71,14 @@
 		<![CDATA[
 			select compet_id
 			from compet
+			where compet_id = #{compet_id}
+		]]>
+	</select>
+	
+	<select id = "selectCompet_id_file" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[
+			select compet_id
+			from compet_file
 			where compet_id = #{compet_id}
 		]]>
 	</select>

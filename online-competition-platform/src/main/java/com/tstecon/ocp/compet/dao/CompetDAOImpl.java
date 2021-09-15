@@ -19,9 +19,16 @@ public class CompetDAOImpl implements CompetDAO{
 	private SqlSession sqlSession;
 	
 //	대회안내 포스터
+	// 큰 포스터
 	@Override
-	public List<CompetVO> selectCompetPoster(int compet_id) throws DataAccessException {
-		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetPoster",compet_id);
+	public List<CompetFileVO> selectCompetBigPoster(int compet_id) throws DataAccessException {
+		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetBigPoster",compet_id);
+		return competList;
+	}
+	// 작은 포스터
+	@Override
+	public List<CompetFileVO> selectCompetSmallPoster(int compet_id) throws DataAccessException {
+		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetSmallPoster",compet_id);
 		return competList;
 	}
 //	대회안내 내용
@@ -36,19 +43,20 @@ public class CompetDAOImpl implements CompetDAO{
 		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompet_id",compet_id);
 		return competList;
 	}
-	
 	@Override
-	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
-
-		CompetFileVO competFile = sqlSession.selectOne("mappers.notice.compet.selectSmallPoster",compet_id);
-		return competFile;
+	public List<CompetFileVO> selectCompet_id_file(int compet_id) throws DataAccessException {
+		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompet_id_file",compet_id);
+		return competList;
 	}
+
 //문의 게시판 내용	
 	@Override
 	public List selectAllQnaList() throws DataAccessException {
 		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
 		return qnaList;
 	}
+	
+	
 	
 	
 

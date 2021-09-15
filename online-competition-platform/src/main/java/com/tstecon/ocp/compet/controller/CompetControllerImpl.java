@@ -34,8 +34,12 @@ public class CompetControllerImpl implements CompetController {
 		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		//대회 안내 키 밸류 추가
 		Map competInfo = competService.CompetInfo(compet_id);
 		mav.addObject("competInfo", competInfo);
+		//대회 포스터 키 밸류 추가
+		competInfo = competService.CompetPoster(compet_id);
+		mav.addObject("competPoster", competInfo);
 		return mav;
 	}
 //문의 페이지	

@@ -15,17 +15,14 @@
 <meta charset="UTF-8">
 <title>대회 안내</title>
 <style>
-	.poster>img {
-		height:500px;
-		width:800px;
-	}
+
 </style>
 </head>
 <body>
 <div class="container justify-content-lg-center">
   <div class="row">
     <div class="col-lg-12">
-      <div class = "poster"><a href = "${contextPath}/compet/competInfo.do?compet_id=${competInfo.compet_id[0].compet_id}"><img src = "${contextPath}/resources/images/imgs/1.jpg" width=100% height=150px/></a></div>
+      <div class = "poster"><a href = "${contextPath}/compet/competInfo.do?compet_id=${competInfo.compet_id[0].compet_id}"><img src = "C:/ocp/competfile/${competPoster.compet_id[0].compet_id}/${competPoster.competSmallPoster[0].compet_file_type}/${competPoster.competSmallPoster[0].compet_file_name}" width=100% height=150px/></a></div>
     </div>
     <div class="col-lg-12">
       <ul class="nav nav-tabs mb-3 justify-content-lg-center">
@@ -38,7 +35,12 @@
     </div>
     <div class="col-lg-12">
       <div class = "competInfo">${competInfo.info[0].compet_text}</div>
-	<div class = "competPoster"><img src = "<%-- ${contextPath}/${competInfo.poster[0].competFile_name} --%>${contextPath}/resources/images/imgs/1.jpg" width=100%></div>
+	<div class = "competPoster"><img src = "c:/${competPoster.competBigPoster[0].compet_file_name}" width=100%></div>
+	<div>${competPoster.competBigPoster[0].compet_file_name}</div>
+	<div>${competPoster.competBigPoster[0].compet_file_type}</div>
+	<div>${competPoster.compet_id[0].compet_id}</div>
+	<div>${competPoster.competSmallPoster[0].compet_file_name}</div>
+	<div>${competPoster.competSmallPoster[0].compet_file_type}</div>
     </div>
 </div>
 </div>
