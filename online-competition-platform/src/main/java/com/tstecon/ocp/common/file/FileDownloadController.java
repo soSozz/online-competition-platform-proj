@@ -15,10 +15,10 @@ public class FileDownloadController {
 	private static String CURR_IMAGE_REPO_PATH = "C:\\ocp";
 
 	@RequestMapping("/bannerFile_download")
-	protected void bannerFile_download(@RequestParam("banner_file_name") String banner_file_name, @RequestParam("banner_id") String banner_id,
+	protected void bannerFile_download(@RequestParam("banner_file_name") String banner_file_name, @RequestParam("banner_file_type") String banner_file_type, @RequestParam("banner_id") String banner_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\bannerfile\\" + banner_id + "\\" + banner_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\bannerfile\\" + banner_id + "\\"+ banner_file_type + "\\" + banner_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -36,10 +36,10 @@ public class FileDownloadController {
 	}
 	
 	@RequestMapping("/competFile_download")
-	protected void competFile_download(@RequestParam("compet_file_name") String compet_file_name, @RequestParam("compet_id") String compet_id,
+	protected void competFile_download(@RequestParam("compet_file_name") String compet_file_name, @RequestParam("compet_file_type") String compet_file_type, @RequestParam("compet_id") int compet_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\competfile\\" + compet_id + "\\" + compet_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\competfile\\" + compet_id + "\\" + compet_file_type + "\\" + compet_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -57,10 +57,10 @@ public class FileDownloadController {
 	}
 	
 	@RequestMapping("/competNotice_download")
-	protected void competNoticeFile_download(@RequestParam("compet_notice_file_name") String compet_notice_file_name, @RequestParam("compet_notice_id") String compet_notice_id,
+	protected void competNoticeFile_download(@RequestParam("compet_notice_file_name") String compet_notice_file_name, @RequestParam("compet_notice_file_type") String compet_notice_file_type, @RequestParam("compet_notice_id") int compet_notice_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\competnoticefile\\" + compet_notice_id + "\\" + compet_notice_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\competnoticefile\\" + compet_notice_id + "\\" + compet_notice_file_type + "\\" + compet_notice_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -78,10 +78,10 @@ public class FileDownloadController {
 	}
 	
 	@RequestMapping("/contentsFile_download")
-	protected void contentsFile_download(@RequestParam("contents_file_name") String contents_file_name, @RequestParam("contents_id") String contents_id,
+	protected void contentsFile_download(@RequestParam("contents_file_name") String contents_file_name, @RequestParam("contents_file_type") String contents_file_type, @RequestParam("contents_id") int contents_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\contentsfile\\" + contents_id + "\\" + contents_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\contentsfile\\" + contents_id + "\\" + contents_file_type + "\\" + contents_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -99,10 +99,10 @@ public class FileDownloadController {
 	}
 	
 	@RequestMapping("/mainNoticeFile_download")
-	protected void mainNoticeFile_download(@RequestParam("main_notice_file_name") String main_notice_file_name, @RequestParam("main_notice_id") String main_notice_id,
+	protected void mainNoticeFile_download(@RequestParam("main_notice_file_name") String main_notice_file_name, @RequestParam("main_notice_file_type") String main_notice_file_type, @RequestParam("main_notice_id") int main_notice_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\mainnoticefile\\" + main_notice_id + "\\" + main_notice_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\mainnoticefile\\" + main_notice_id + "\\" + main_notice_file_type + "\\" + main_notice_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -120,10 +120,10 @@ public class FileDownloadController {
 	}
 	
 	@RequestMapping("/memberFile_download")
-	protected void memberFile_download(@RequestParam("member_file_name") String member_file_name, @RequestParam("member_id") String member_id,
+	protected void memberFile_download(@RequestParam("member_file_name") String member_file_name,@RequestParam("member_file_type") String member_file_type, @RequestParam("member_id") String member_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\memberfile\\" + member_id + "\\" + member_file_name;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\memberfile\\" + member_id + "\\" + member_file_type + "\\" + member_file_name;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
