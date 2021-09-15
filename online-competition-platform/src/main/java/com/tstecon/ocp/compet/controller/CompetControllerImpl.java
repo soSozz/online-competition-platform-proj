@@ -24,7 +24,7 @@ import com.tstecon.ocp.qna.vo.CompetQnaVO;
 public class CompetControllerImpl implements CompetController {
 	@Autowired
 	private CompetService competService;
-	
+
 	@Autowired
 	private CompetDAO competDAO;
 	
@@ -33,28 +33,35 @@ public class CompetControllerImpl implements CompetController {
 	
 //	대회안내페이지
 	@Override
-	@RequestMapping(value={"/compet/competInfo.do"}, method = {RequestMethod.GET})
-	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = { "/compet/competInfo.do" }, method = { RequestMethod.GET })
+	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
-		
-		String viewName = (String)request.getAttribute("viewName");
+
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		// 대회 안내 키 밸류 추가
 		Map competInfo = competService.CompetInfo(compet_id);
 		mav.addObject("competInfo", competInfo);
+		// 대회 포스터 키 밸류 추가
+		competInfo = competService.CompetPoster(compet_id);
+		mav.addObject("competPoster", competInfo);
 		return mav;
 	}
+
 //문의 페이지	
 	@Override
-	@RequestMapping(value= "/compet/qna.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/compet/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String)request.getAttribute("viewName");
+		String viewName = (String) request.getAttribute("viewName");
 		List qnaList = competService.qnalistArticles();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("qnaList", qnaList);
 		return mav;
-		
+
 	}
+	
 //문의 페이지 로그인
 	@Override
 	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST )
@@ -68,7 +75,6 @@ public class CompetControllerImpl implements CompetController {
 		
 		return null;
 	}
-	
 	
 	
 
