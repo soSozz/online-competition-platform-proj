@@ -13,7 +13,7 @@
 		<result property = "compet_file_name" column = "compet_file_name" />
 	</resultMap>
 
-	<select id="selectCategName" resultMap="CategResult">
+	<select id="selectAllCateg" resultMap="CategResult">
   	<![CDATA[
                                
    ]]>
