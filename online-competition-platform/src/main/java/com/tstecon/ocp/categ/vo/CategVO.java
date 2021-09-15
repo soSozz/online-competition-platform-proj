@@ -1,5 +1,8 @@
 package com.tstecon.ocp.categ.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component("CategVO")
 public class CategVO {
 	private int categ_id;
 	private String categ_name;
