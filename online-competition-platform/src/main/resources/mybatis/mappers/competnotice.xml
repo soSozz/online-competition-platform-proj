@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "mappers.notice.compet"> <!-- 리절트맵 정의 -->
+	<resultMap id = "noticeCompetResult" type = "noticeCompetVO"> 
+		<result property = "compet_notice_id" column = "compet_notice_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "compet_notice_title" column = "compet_notice_title" />
+		<result property = "compet_notice_date" column = "compet_notice_date" />
+		<result property = "compet_notice_view" column = "compet_notice_view" />
+		<result property = "compet_notice_text" column = "compet_notice_text" />
+		
+	</resultMap>
+	
+
+	
+	<select id = "selectNoticeCompetList" resultMap = "noticeCompetResult" parameterType = "int">
+		<![CDATA[
+			select compet_notice_title, compet_notice_date,
+			compet_notice_view, compet_notice_text
+			from compet_notice
+			where compet_notice_id = #{compet_notice_id}
+		]]>
+	</select>
+	
+
+</mapper>
