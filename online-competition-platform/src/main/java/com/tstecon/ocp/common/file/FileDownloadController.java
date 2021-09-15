@@ -56,7 +56,7 @@ public class FileDownloadController {
 		out.close();
 	}
 	
-	@RequestMapping("/competNotice_download")
+	@RequestMapping("/competNoticeFile_download")
 	protected void competNoticeFile_download(@RequestParam("compet_notice_file_name") String compet_notice_file_name, @RequestParam("compet_notice_file_type") String compet_notice_file_type, @RequestParam("compet_notice_id") int compet_notice_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();

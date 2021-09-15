@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+<mapper namespace = "mappers.admin_categ"> 
+	<!-- 리절트맵 정의 -->
+	<resultMap id = "CategResult" type = "categVO"> <!-- CompetFile의 resultMap -->
+        <result property = "compet_file_id" column = "compet_file_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "compet_file_type" column = "compet_file_type" />
+		<result property = "compet_file_name" column = "compet_file_name" />
+	</resultMap>
+
+	<select id="selectCategName" resultMap="CategResult">
+  	<![CDATA[
+                               
+   ]]>
+</select>
+
+
+	
+</mapper>
