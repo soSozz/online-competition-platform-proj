@@ -58,10 +58,13 @@ public class CompetControllerImpl implements CompetController {
 //문의 페이지 로그인
 	@Override
 	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST )
-	public ModelAndView Compet_qna_login(@ModelAttribute("member")CompetQnaVO competqnaVO, RedirectAttributes rAttr,
+	public ModelAndView Compet_qna_login(@ModelAttribute("member")CompetQnaVO member, RedirectAttributes rAttr,
 			  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			  ModelAndView mav = new ModelAndView();
 			  competqnaVO = competService.login(member);
+			  if(competqnaVO != null ) {
+				  
+			  }
 		
 		return null;
 	}
