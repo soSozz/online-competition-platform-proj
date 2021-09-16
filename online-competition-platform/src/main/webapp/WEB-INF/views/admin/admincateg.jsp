@@ -47,7 +47,7 @@ request.setCharacterEncoding("UTF-8");
 			<div class="card border-primary">
 				<div class="card-header">
 					<span class="categ">알고리즘</span>
-					<button class="btn btn-primary float-right">추가하기</button>
+					<a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-primary float-right"><i class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">Primary card title</h5>
@@ -79,9 +79,6 @@ request.setCharacterEncoding("UTF-8");
 											</div>
 										</div>
 										<div class="col-sm-12 col-md-6">
-											<button type="button" class="btn btn-primary dropdown-toggle"
-												data-toggle="dropdown" aria-expanded="false">Dropdown
-												button</button>
 											<div id="DataTables_Table_0_filter" class="dataTables_filter">
 												<label>Search:<input type="search"
 													class="form-control form-control-sm" placeholder=""
@@ -97,36 +94,41 @@ request.setCharacterEncoding("UTF-8");
 												aria-describedby="DataTables_Table_0_info">
 												<thead>
 													<tr role="row">
-														<th class="sorting_asc" tabindex="0"
+														<th class="No" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-sort="ascending"
-															aria-label="Name: activate to sort column descending"
-															style="width: 145.531px;">Name</th>
-														<th class="sorting" tabindex="0"
+															aria-label="No"
+															style="width: 145.531px;">No.</th>
+														<th class="categ_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
-															aria-label="Position: activate to sort column ascending"
-															style="width: 236.656px;">Position</th>
-														<th class="sorting" tabindex="0"
+															aria-label="categ_name"
+															style="width: 236.656px;">카테고리</th>
+														<th class="compet_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
-															aria-label="Office: activate to sort column ascending"
-															style="width: 105.656px;">Office</th>
-														<th class="sorting" tabindex="0"
+															aria-label="compet_name"
+															style="width: 105.656px;">대회</th>
+														<th class="compet_start" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
-															aria-label="Age: activate to sort column ascending"
-															style="width: 46.6406px;">Age</th>
-														<th class="sorting" tabindex="0"
+															aria-label="compet_start"
+															style="width: 95.7188px;">시작일</th>
+														<th class="compet_end sorting" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
-															aria-label="Start date: activate to sort column ascending"
-															style="width: 95.7188px;">Start date</th>
-														<th class="sorting" tabindex="0"
+															aria-label="compet_end : activate to sort column ascending"
+															style="width: 79.8906px;">종료일</th>
+														<th class="compet_create" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
-															aria-label="Salary: activate to sort column ascending"
-															style="width: 79.8906px;">Salary</th>
+															aria-label="compet_create"
+															style="width: 79.8906px;">생성일자</th>
+														<th class="delete" tabindex="0"
+															aria-controls="DataTables_Table_0" rowspan="1"
+															colspan="1"
+															aria-label="delete"
+															style="width: 79.8906px;"></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -145,70 +147,6 @@ request.setCharacterEncoding("UTF-8");
 														<td>47</td>
 														<td>2009/10/09</td>
 														<td>$1,200,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Ashton Cox</td>
-														<td>Junior Technical Author</td>
-														<td>San Francisco</td>
-														<td>66</td>
-														<td>2009/01/12</td>
-														<td>$86,000</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Bradley Greer</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>41</td>
-														<td>2012/10/13</td>
-														<td>$132,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Brenden Wagner</td>
-														<td>Software Engineer</td>
-														<td>San Francisco</td>
-														<td>28</td>
-														<td>2011/06/07</td>
-														<td>$206,850</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Brielle Williamson</td>
-														<td>Integration Specialist</td>
-														<td>New York</td>
-														<td>61</td>
-														<td>2012/12/02</td>
-														<td>$372,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Bruno Nash</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>38</td>
-														<td>2011/05/03</td>
-														<td>$163,500</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Caesar Vance</td>
-														<td>Pre-Sales Support</td>
-														<td>New York</td>
-														<td>21</td>
-														<td>2011/12/12</td>
-														<td>$106,450</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Cara Stevens</td>
-														<td>Sales Assistant</td>
-														<td>New York</td>
-														<td>46</td>
-														<td>2011/12/06</td>
-														<td>$145,600</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Cedric Kelly</td>
-														<td>Senior Javascript Developer</td>
-														<td>Edinburgh</td>
-														<td>22</td>
-														<td>2012/03/29</td>
-														<td>$433,060</td>
 													</tr>
 												</tbody>
 											</table>
@@ -258,6 +196,40 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</div>
 	</div>
-
+	
+<div class="modal fade none-border" id="add-category" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title"><strong>Add a category</strong></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="control-label">Category Name</label>
+                                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="control-label">Choose Category Color</label>
+                                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                                    <option value="success">Success</option>
+                                                                    <option value="danger">Danger</option>
+                                                                    <option value="info">Info</option>
+                                                                    <option value="pink">Pink</option>
+                                                                    <option value="primary">Primary</option>
+                                                                    <option value="warning">Warning</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 </body>
 </html>
