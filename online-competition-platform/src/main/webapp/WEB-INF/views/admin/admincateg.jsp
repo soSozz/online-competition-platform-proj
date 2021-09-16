@@ -24,17 +24,33 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <link href="css/style.css" rel="stylesheet">
 <style>
+h3,h4{
+	font-weight:bold;
+}
 .categ {
 	font-size: 30px;
 	font-weight: bold;
+	color: black;
 }
-
-.categ_add {
+.competName{
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	text-align:center;
+}
+.competEdit{
+	background: orange;
+}
+.categ_btn {
 	
 }
 
 .container-fluid {
 	
+}
+.endCompet{
+	color: black;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -42,16 +58,18 @@ request.setCharacterEncoding("UTF-8");
 	<div class="container">
 		<h3>카테고리 및 대회</h3>
 		<hr />
-		<h5>진행 중인 대회</h5>
+		<h4>진행 중인 대회</h4>
 		<div class="col-lg-6">
 			<div class="card border-primary">
 				<div class="card-header">
-					<span class="categ">알고리즘</span>
-					<a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-primary float-right"><i class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
+					<span class="categ float-center">알고리즘</span>
+					<a href="#" data-toggle="modal" data-target="#add-category" class="categ_btn btn btn-primary float-right"><i class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Primary card title</h5>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div class="competEdit">
+					<span class="competName">AAA 경진대회</span>
+					<a href="#" class="btn btn-primary float-right">대회 종료</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -60,7 +78,7 @@ request.setCharacterEncoding("UTF-8");
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Data Table</h4>
+							<h4 class="endCompet">종료된 대회</h4>
 							<div class="table-responsive">
 								<div id="DataTables_Table_0_wrapper"
 									class="dataTables_wrapper container-fluid dt-bootstrap4">

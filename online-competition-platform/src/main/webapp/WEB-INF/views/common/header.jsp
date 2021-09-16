@@ -89,9 +89,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					</form>
 				</div>
 			</nav>
+				<hr style= "position:relative; bottom:15px;">
 		</div>
 	</div>
-	
+
 	<!-- 자바스크립트 -->
 	<script>
 		function login_submit(){
