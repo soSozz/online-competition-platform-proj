@@ -11,12 +11,10 @@
   		 <typeAlias type="com.tstecon.ocp.notice.compet.vo.NoticeCompetVO" alias="noticeCompetVO" />
 
 		 <typeAlias type="com.tstecon.ocp.qna.vo.CompetQnaVO" alias="competQnaVO" />
-<<<<<<< HEAD
+
 		 <typeAlias type="com.tstecon.ocp.admin.stat.vo.AdminStatVO" alias="adminStatVO" />
 		 <typeAlias type="com.tstecon.ocp.categ.vo.CategVO" alias="categVO" />
-=======
-         <typeAlias type="com.tstecon.ocp.admin.stat.vo.AdminStatVO" alias="adminStatVO" />
->>>>>>> refs/heads/devl
+
 <!--     <typeAlias type="com.bookshop01.goods.vo.GoodsVO" alias="goodsVO" /> -->
 <!--     <typeAlias type="com.bookshop01.goods.vo.ImageFileVO" alias="imageFileVO" /> -->
     

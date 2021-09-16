@@ -95,13 +95,12 @@
        ]]>
 </select>
 
-<<<<<<< HEAD
 	<select id="selectAllCompet" resultMap="CompetResult">
   	<![CDATA[
                                
    	]]>
 	</select>
-=======
+	
 <!-- 문의 게시판 새 글 DB추가 -->
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
@@ -117,8 +116,5 @@
 </select>
 
 
-
-
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	
 </mapper>
