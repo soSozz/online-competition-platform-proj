@@ -37,8 +37,7 @@ public class CompetServiceImpl implements CompetService{
 		Map<String,List<CompetFileVO>>competInfo=new HashMap<String,List<CompetFileVO>>();
 		List<CompetFileVO> competList=competDAO.selectCompetBigPoster(compet_id);
 		competInfo.put("competBigPoster",competList);
-		competList=competDAO.selectCompetSmallPoster(compet_id);
-		competInfo.put("competSmallPoster",competList);
+		
 		competList=competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id",competList);
 		return competInfo;
@@ -53,12 +52,9 @@ public class CompetServiceImpl implements CompetService{
 	}
 	
 //대회 공지사항: 작은 포스터 가져오기
-	@Override
-	public List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException{
-		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
-		return CompetSmallPoster;
 
-	}
+
+	
 
 
 }
