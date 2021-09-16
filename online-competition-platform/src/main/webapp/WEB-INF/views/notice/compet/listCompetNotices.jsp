@@ -1,8 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false" %> <%@ taglib
-uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<% request.setCharacterEncoding("utf-8"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>   
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +21,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <link href="css/style.css" rel="stylesheet">
 
 </head>
-
 
 <body>
 
@@ -66,6 +70,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
             <div class="container-fluid">
                 <div class="row">
+                <div class="col-lg-12">
+      <div class = "poster"><a href = "${contextPath}/compet/listCompetNotices.do?compet_id=${smallPoster.compet_id[0].compet_id}"><img src = "${contextPath}/resources/images/imgs/10.jpg" width=100% height=150px/></a></div>
+                  </div>
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -74,29 +81,28 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
                                             <tr>
-                                                <th>글 제목</th>
+                                                <th>글 번호</th>
                                                 <th>제목</th>
-                                                <th>작성자</th>
+                                                <th>작성자</th>
                                                 <th>작성일</th>
-                                                <th>조회수</th>
+                                                <th>조회수</th>
                                                 
                                             </tr>
                                         </thead>
-                                    <c:when test="${noticeCompetList !=null }" >
-         <c:forEach  var="noticeCompet" items="${noticeCompetList }" varStatus="noticeCompetNum" >
-     <tr align="center">
-	<td width="5%">${noticeCompetNum.count}</td>
-	<td width="10%">${compet_notice_id }</td>
-	<td align='left'  width="35%">
-	  <span style="padding-right:30px"></span>
-	  <c:otherwise>
-	            <a class='cls1' href="${contextPath}/notice/compet/listCompetNotices.do?competNoticeNO=${noticeCompetNum.noticeCompetNO}">${noticeCompet.title }</a>
-	          </c:otherwise>
-	          </td>
-	          </tr>
-	          </c:forEach>
-	          </c:when>
-	        
+                                        <tbody>
+ <c:when test="${noticeCompetList !=null }">
+ <c:forEach var="compet_Notice" items="${noticeCompetList}" varStatus="noticeNum">
+    <tr align="center">
+	<td width="5%">${compet_Notice.compet_notice_id}</td>
+	<td width="25%">${compet_Notice.compet_notice_title }</td>
+	<td width="5%">${compet_Notice.admin_id}</td>
+	<td width="5%">${compet_Notice.compet_notice_date}</td>
+	<td width="5%">${compet_Notice.compet_notice_view}</td>
+	  </tr>
+	 </c:forEach>
+	 </c:when>
+	
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

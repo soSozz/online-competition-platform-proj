@@ -9,8 +9,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/compet/competInfo.jsp" />
 	</definition>
 	<definition name="/compet/qna" extends="baseLayout">
-		<put-attribute name="title" value="트스테콘 대회문의페이지" />
+		<put-attribute name="title" value="트스테콘 문의페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/qna.jsp" />
+	</definition>
+	<definition name="/compet/qnaForm" extends="baseLayout">
+		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
+		<put-attribute name="body" value="/WEB-INF/views/compet/qnaForm.jsp" />
 	</definition>
 </tiles-definitions>
 
