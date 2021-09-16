@@ -11,18 +11,20 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
-
+    <script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+    <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+    <script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+    <script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
 <script src="${contextPath}/resources/plugins/common/common.min.js"></script>
 <script src="${contextPath}/resources/js/custom.min.js"></script>
 <script src="${contextPath}/resources/js/settings.js"></script>
 <script src="${contextPath}/resources/js/gleek.js"></script>
 <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
-<link href="css/style.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <style>
 h3,h4{
 	font-weight:bold;
@@ -40,6 +42,7 @@ h3,h4{
 }
 .competEdit{
 	background: orange;
+	height: 35px;
 }
 .categ_btn {
 	
@@ -56,7 +59,8 @@ h3,h4{
 </head>
 <body>
 	<div class="container">
-		<h3>카테고리 및 대회</h3>
+		<span style="font-size: 25px; font-weight:bold; color:black;">카테고리 및 대회</span>
+		<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
 		<hr />
 		<h4>진행 중인 대회</h4>
 		<div class="col-lg-6">
@@ -68,7 +72,7 @@ h3,h4{
 				<div class="card-body">
 					<div class="competEdit">
 					<span class="competName">AAA 경진대회</span>
-					<a href="#" class="btn btn-primary float-right">대회 종료</a>
+					<a href="#" class="btn btn-primary float-right" style="height:35px;">대회 종료</a>
 					</div>
 				</div>
 			</div>
@@ -157,6 +161,7 @@ h3,h4{
 														<td>33</td>
 														<td>2008/11/28</td>
 														<td>$162,700</td>
+														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="sorting_1">Angelica Ramos</td>
@@ -165,6 +170,7 @@ h3,h4{
 														<td>47</td>
 														<td>2009/10/09</td>
 														<td>$1,200,000</td>
+														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
 													</tr>
 												</tbody>
 											</table>
