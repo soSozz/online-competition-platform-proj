@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.tstecon.ocp.compet.vo.CompetFileVO;
+import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 @Repository("noticeCompetDAO")
@@ -19,6 +21,13 @@ public class NoticeCompetDAOImpl implements NoticeCompetDAO{
 	public List<NoticeCompetVO> selectNoticesCompetList(int compet_id) throws DataAccessException {
 		List<NoticeCompetVO> NoticescompetList = (ArrayList)sqlSession.selectList("mappers.notice.compet.selectNoticesCompetList",compet_id);
 		return NoticescompetList;
+	}
+	
+//	대회 포스터 클릭
+	@Override
+	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
+		CompetFileVO CompetSmallPoster = sqlSession.selectOne("mappers.notice.compet.selectCompetSmallPoster",compet_id);
+		return CompetSmallPoster;
 	}
 	
 }

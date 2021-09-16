@@ -19,8 +19,7 @@ public interface CompetDAO {
 //	대회 포스터 클릭
 	public List<CompetVO> selectCompet_id(int Compet_id) throws DataAccessException;
 	
-	public CompetFileVO selectCompetSmallPoster(int Compet_id) throws DataAccessException;
-
+	
 // 문의 게시판 내용
 	public List selectAllQnaList() throws DataAccessException;
 
