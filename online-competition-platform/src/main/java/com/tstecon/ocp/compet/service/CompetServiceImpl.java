@@ -37,7 +37,8 @@ public class CompetServiceImpl implements CompetService{
 		Map<String,List<CompetFileVO>>competInfo=new HashMap<String,List<CompetFileVO>>();
 		List<CompetFileVO> competList=competDAO.selectCompetBigPoster(compet_id);
 		competInfo.put("competBigPoster",competList);
-		
+		competList=competDAO.selectCompetSmallPoster(compet_id);
+		competInfo.put("competSmallPoster",competList);
 		competList=competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id",competList);
 		return competInfo;
@@ -50,8 +51,12 @@ public class CompetServiceImpl implements CompetService{
 		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
 		return qnaList;
 	}
-	
-//대회 공지사항: 작은 포스터 가져오기
+
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	
