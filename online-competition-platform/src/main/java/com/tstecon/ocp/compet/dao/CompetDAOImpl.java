@@ -38,6 +38,7 @@ public class CompetDAOImpl implements CompetDAO{
 		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetInfo",compet_id);
 		return competList;
 	}
+
 //	대회 포스터 클릭
 	@Override
 	public List<CompetVO> selectCompet_id(int compet_id) throws DataAccessException {
@@ -45,10 +46,18 @@ public class CompetDAOImpl implements CompetDAO{
 		return competList;
 	}
 	@Override
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	public List<CompetFileVO> selectCompet_id_file(int compet_id) throws DataAccessException {
 		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompet_id_file",compet_id);
 		return competList;
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	}
 
 //문의 게시판 내용	

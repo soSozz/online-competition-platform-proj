@@ -35,7 +35,9 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 		//CompetService: 작은포스터 가져오기
 		
 		List<NoticeCompetVO> noticeCompetList = NoticeCompetService.listCompetNotices(compet_id);
-		List<CompetFileVO> smallPoster = CompetService.CompetSmallPoster(compet_id);
+
+		CompetFileVO smallPoster = NoticeCompetService.CompetSmallPoster(compet_id);
+
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("noticeCompetList", noticeCompetList);
