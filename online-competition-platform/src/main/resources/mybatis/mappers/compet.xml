@@ -47,7 +47,7 @@
 		]]>
 	</select>
 	
-	<!-- 대회 큰 포스터 -->
+	<!-- 대회 작은 포스터 -->
 	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
 			select compet_file_type, compet_file_name
