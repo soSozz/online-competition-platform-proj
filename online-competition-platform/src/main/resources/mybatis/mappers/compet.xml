@@ -94,6 +94,10 @@
    ]]>
 </select>
 
-
+	<select id="selectAllCompet" resultMap="CompetResult">
+  	<![CDATA[
+                               
+   	]]>
+	</select>
 	
 </mapper>
