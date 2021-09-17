@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
@@ -62,6 +63,12 @@ public class CompetDAOImpl implements CompetDAO{
 	public int insertNewArticle(Map articleMap) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
+		List<CompetVO> competNameList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetName",i);
+		return competNameList;
 	}
 
 

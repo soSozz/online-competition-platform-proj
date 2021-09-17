@@ -19,19 +19,11 @@ public class AdminCategServiceImpl implements AdminCategService{
 	private AdminCategDAO adminCategDAO;
 	
 	@Override
-	public Map<String, List<CategVO>> Categlist() throws DataAccessException {
-		Map<String,List<CategVO>>categList=new HashMap<String,List<CategVO>>();
-		List<CategVO> categ = adminCategDAO.selectCategList();
-		categList.put("categlist", categ);
+	public List<CategVO> CategAllList() throws DataAccessException {
+//		Map<String,List<CategVO>>categList=new HashMap<String,List<CategVO>>();
+		List<CategVO> categList = adminCategDAO.selectCategAllList();
+//		categList.put("categList", categ);
 		return categList;
-	}
-
-	@Override
-	public Map<String, List<CompetVO>> Competlist() throws DataAccessException {
-		Map<String,List<CompetVO>>competList=new HashMap<String,List<CompetVO>>();
-		List<CompetVO> categ = adminCategDAO.selectCompetList();
-		competList.put("categlist", categ);
-		return competList;
 	}
 
 

@@ -95,11 +95,12 @@
        ]]>
 </select>
 
-<!-- 대회 데이터 가져오기 -->
-	<select id="selectAllCompet" resultMap="CompetResult">
+<!--  -->
+	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
-		select *
+		select compet_name
 		from compet
+		where compet.categ_id = #{categ_id}
    	]]>
 	</select>
 	

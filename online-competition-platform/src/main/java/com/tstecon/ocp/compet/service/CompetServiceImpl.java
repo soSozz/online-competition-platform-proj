@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
@@ -58,6 +59,12 @@ public class CompetServiceImpl implements CompetService{
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<CompetVO> competListById(int i) throws Exception {
+		List<CompetVO> competListByName = competDAO.selectCompetId(i);
+		return competListByName;
 	}
 	
 

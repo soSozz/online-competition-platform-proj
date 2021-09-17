@@ -9,7 +9,7 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 public interface AdminCategDAO {
 
-	public List<CategVO> selectCategList() throws DataAccessException;
+	public List<CategVO> selectCategAllList() throws DataAccessException;
 
 	public List<CompetVO> selectCompetList() throws DataAccessException;
 

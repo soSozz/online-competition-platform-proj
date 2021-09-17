@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
@@ -25,4 +25,7 @@ public interface CompetService {
 	public List<CompetQnaVO>qnalistArticles() throws Exception;
 //문의 글쓰기창
 	 public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception;
+
+	 //대회 이름 리스트 가져오기
+	 public List<CompetVO> competListById(int i) throws Exception;
 }

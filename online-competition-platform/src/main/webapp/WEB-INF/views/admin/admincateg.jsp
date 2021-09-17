@@ -40,7 +40,7 @@ h3,h4{
 	color: black;
 	text-align:center;
 }
-.competEdit{
+.competList{
 	background: orange;
 	height: 35px;
 }
@@ -62,20 +62,23 @@ h3,h4{
 		<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
 		<hr />
 		<h4>진행 중인 대회</h4>
+		<c:forEach var = "categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="card border-primary">
 				<div class="card-header">
-					<span class="categ float-center">알고리즘</span>
+					<span class="categ float-center">${categ.key}</span>
 					<a href="#" data-toggle="modal" data-target="#add-category" class="categ_btn btn btn-primary float-right"><i class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
 				</div>
 				<div class="card-body">
-					<div class="competEdit">
-					<span class="competName">AAA 경진대회</span>
-					<a href="#" class="btn btn-primary float-right" style="height:35px;">대회 종료</a>
+					<div class="competList">
+						<c:forEach var="compet" items="${categ.value}">
+							<div class="competName">${compet.compet_name}<a href="#" class="btn btn-primary float-right" style="height:35px;">대회 종료</a></div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
+		</c:forEach>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
