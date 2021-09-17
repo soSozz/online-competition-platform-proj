@@ -14,10 +14,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 로그인 ID, PASSWORD가 회원 정보 테이블과 일치하는지 확인
+	// 濡쒓렇�씤 ID, PASSWORD媛� �쉶�썝 �젙蹂� �뀒�씠釉붽낵 �씪移섑븯�뒗吏� �솗�씤
 	@Override
 	public MemberVO login(Map loginMap) throws DataAccessException {
-		MemberVO member = (MemberVO) sqlSession.selectOne("mapper.member.login", loginMap);
+		MemberVO member = (MemberVO) sqlSession.selectOne("mappers.member.login", loginMap);
 		return member;
 	}
 

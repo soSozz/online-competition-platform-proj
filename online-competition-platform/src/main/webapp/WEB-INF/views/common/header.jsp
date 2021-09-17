@@ -97,28 +97,28 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 	<script>
 		function login_submit(){
 			//input 태그에 입력된 아이디와 비밀번호 값 가져오기
-			const id = document.getElementById("id");
-			const pwd = document.getElementById("pwd");
+			const id = document.getElementById("id").value;
+			const pwd = document.getElementById("pwd").value;
 			
-			//form 태그 하나, input 태그 두 개 만들기
-			const formObj = document.createElement("form");
-		    const i_id = document.createElement("input");
-		    const i_pwd = document.createElement("input");
+			console.log(id);
+			console.log(pwd);
+			
+			const xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === xhr.DONE && xhr.status === 200){
+					console.log(xhr.responseText);
+				}
+			};
+			
+			xhr.open('POST', '${contextPath}/member/login.do', true);
+			xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+			xhr.send(JSON.stringify({
+				"id":id,
+				"pwd":pwd
+			}))
+			
+			
 
-		    //각 input 태그에 name, value 속성 부여하기
-		    i_id.name = "id";
-		    i_id.value = id;
-		    i_pwd.name = "pwd";
-		    i_pwd.value = pwd;
-		    
-		    //form 태그 안에 두 개의 input 태그 넣고, form 태그를 body 태그 안에 넣기
-		    formObj.appendChild(i_id);
-		    formObj.appendChild(i_pwd);
-		    document.body.appendChild(formObj);
-
-		    formObj.method="post";
-		    formObj.action="${contextPath}/member/login.do";
-		    formObj.submit()
 		}
 	</script>
     

@@ -4,34 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace = "mappers.admin_member">
-	<resultMap id = "MemberResult" type = "memberVO">
-		<result property = "mem_id" column = "mem_id" />
-		<result property = "mem_pwd" column = "mem_pwd" />
-		<result property = "mem_name" column = "mem_name" />
-		<result property = "mem_nickname" column = "mem_nickname" />
-		<result property = "mem_stu_id" column = "mem_stu_id" />
-		<result property = "mem_dept" column = "mem_dept" />
-		<result property = "mem_major" column = "mem_major" />
-		<result property = "mem_grade" column = "mem_grade" />
-		<result property = "mem_tel1" column = "mem_tel1" />
-		<result property = "mem_tel2" column = "mem_tel2" />
-		<result property = "mem_tel3" column = "mem_tel3" />
-		<result property = "mem_phone1" column = "mem_phone1" />
-		<result property = "mem_phone2" column = "mem_phone2" />
-		<result property = "mem_email1" column = "mem_email1" />
-		<result property = "mem_email2" column = "mem_email2" />
-		<result property = "mem_new_addr" column = "mem_new_addr" />
-		<result property = "mem_old_addr" column = "mem_old_addr" />
-		<result property = "mem_detail_addr" column = "mem_detail_addr" />
-		<result property = "mem_zipcode" column = "mem_zipcode" />
-		<result property = "mem_contents_alert" column = "mem_contents_alert" />
-		<result property = "mem_push_alert" column = "mem_push_alert" />
-	</resultMap>
+
 	
-	<select id = "selectAllMemberList" resultMap = "MemberResult" parameterType = "String">
-		<![CDATA[	
+<!-- 	<select id = "selectAllMemberList" resultMap = "MemberResult" parameterType = "String"> -->
+<!-- 		<![CDATA[	 -->
 			
-		]]>
-	</select>
+<!-- 		]]> -->
+<!-- 	</select> -->
 
 </mapper>
