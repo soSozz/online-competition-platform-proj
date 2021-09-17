@@ -6,6 +6,6 @@
     <tiles-definitions>
 	<definition name="/notice/compet/listCompetNotices" extends="baseLayout">
 		<put-attribute name="title" value="대회 공지사항" />
-		<put-attribute name="body" value="/WEB-INF/views/notice/compet/competnotice/listCompetNotices.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/notice/compet/listCompetNotices.jsp" />
 	</definition>
 	</tiles-definitions>
