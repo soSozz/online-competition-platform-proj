@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
-import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("CompetService")
@@ -55,11 +54,22 @@ public class CompetServiceImpl implements CompetService{
 		return qnaList;
 	}
 
+<<<<<<< HEAD
+
 	@Override
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+=======
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+>>>>>>> refs/heads/master
 
 
 	
