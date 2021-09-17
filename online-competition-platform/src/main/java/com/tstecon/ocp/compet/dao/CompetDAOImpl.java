@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
+
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
-=======
 import com.tstecon.ocp.categ.vo.CategVO;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
@@ -56,20 +54,6 @@ public class CompetDAOImpl implements CompetDAO{
 		return competList;
 	}
 
-<<<<<<< HEAD
-
-=======
-//문의 게시판 내용	
-	@Override
-	public List selectAllQnaList() throws DataAccessException {
-		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
-		return qnaList;
-	}
-	@Override
-	public int insertNewArticle(Map articleMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
@@ -80,7 +64,7 @@ public class CompetDAOImpl implements CompetDAO{
 
 	
 	
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 	
 	
 	

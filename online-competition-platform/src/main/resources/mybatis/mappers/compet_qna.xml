@@ -47,14 +47,14 @@
 
  <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
 	<![CDATA[
-		select * from t_member	
+		select * from compet_qna	
 		where id=#{id} and pwd=#{pwd}		
 	]]>
   </select>
   
   <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
     <![CDATA[
-      SELECT * from t_member
+      SELECT * from compet_qna
       where compet_qna_id = #{articleNO}		
     ]]>
   </select>

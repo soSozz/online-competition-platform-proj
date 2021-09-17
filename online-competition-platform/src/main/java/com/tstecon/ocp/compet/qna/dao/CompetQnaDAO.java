@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
+import com.tstecon.ocp.compet.vo.CompetVO;
 
 
 
@@ -18,4 +19,5 @@ public interface CompetQnaDAO {
 	public int insertNewArticle(Map articleMap) throws DataAccessException;
 	public CompetQnaVO quaLogin(CompetQnaVO competqnaVO) throws DataAccessException;
 	public CompetQnaVO selectQnaArticle(int articleNO) throws DataAccessException;
+	
 }

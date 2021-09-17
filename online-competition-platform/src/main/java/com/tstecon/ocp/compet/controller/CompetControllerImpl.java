@@ -20,11 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.service.CompetService;
-<<<<<<< HEAD
 import com.tstecon.ocp.compet.vo.CompetVO;
-=======
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 
 @Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
@@ -57,27 +54,6 @@ public class CompetControllerImpl implements CompetController {
 	}
 
 
-<<<<<<< HEAD
-	
-
-	
-=======
-	}
-
-//문의 페이지 로그인
-	@Override
-	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST)
-	public ModelAndView Compet_qna_login(@ModelAttribute("member") CompetQnaVO member, RedirectAttributes rAttr,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		competqnaVO = competService.login(member);
-		if (competqnaVO != null) {
-
-		}
-
-		return null;
-	}
-
 	@Override
 	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -87,16 +63,7 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-	@Override
-	public ModelAndView Compet_qna_logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
 
-	@Override
-	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
-		return null;
-	}
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 
 }

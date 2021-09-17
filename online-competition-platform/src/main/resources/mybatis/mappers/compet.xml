@@ -72,21 +72,7 @@
 			where compet_id = #{compet_id}
 		]]>
 	</select>
-<<<<<<< HEAD
-=======
 	
-	<select id="selectAllQnaList" resultMap="qnaResult">
-  	    <![CDATA[
-     SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
-     FROM compet_qna
-     START WITH parent_id=0
-     CONNECT BY PRIOR  compet_qna_id=parent_id
-     ORDER SIBLINGS BY compet_qna_id ASC
-                               
-       ]]>
-</select>
-
-<!--  -->
 	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
 		select compet_name
@@ -94,22 +80,8 @@
 		where compet.categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
 	</select>
-	
-<!-- 문의 게시판 새 글 DB추가 -->
-<insert id="insertNewQna" parameterType="java.util.Map">
-    <![CDATA[
-       INSERT into compet_qna(compet_qna_id,  compet_qna_title, compet_qna_text, mem_id)
-       VALUES(#{compet_qna_id},#{compet_qna_title}, #{compet_qna_text}, #{mem_id}) 
-    ]]>
-</insert>
 
-<select id="selectNewQna" resultType="int">
-     <![CDATA[
-        SELECT nvl(max(compet_qna_id, 0) + 1 from compet_qna
-     ]]>
-</select>
 
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 	
 </mapper>
