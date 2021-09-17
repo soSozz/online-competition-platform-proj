@@ -46,6 +46,15 @@
 			where compet_id = #{compet_id} and compet_file_name like '%-big%'
 		]]>
 	</select>
+	
+	<!-- 대회 작은 포스터 -->
+	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_type, compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_name like '%-small%'
+		]]>
+	</select>
 
 	
 	<!-- 대회 안내 정보 표시 -->
@@ -86,9 +95,11 @@
        ]]>
 </select>
 
+<!-- 대회 데이터 가져오기 -->
 	<select id="selectAllCompet" resultMap="CompetResult">
   	<![CDATA[
-                               
+		select *
+		from compet
    	]]>
 	</select>
 	

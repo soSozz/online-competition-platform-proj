@@ -7,15 +7,14 @@
 <mapper namespace = "mappers.admin_categ"> 
 	<!-- 리절트맵 정의 -->
 	<resultMap id = "CategResult" type = "categVO"> <!-- CompetFile의 resultMap -->
-        <result property = "compet_file_id" column = "compet_file_id" />
-		<result property = "compet_id" column = "compet_id" />
-		<result property = "compet_file_type" column = "compet_file_type" />
-		<result property = "compet_file_name" column = "compet_file_name" />
+        <result property = "categ_id" column = "categ_id" />
+		<result property = "categ_name" column = "categ_name" />
 	</resultMap>
-
+<!-- 카테고리 데이터 가져오기 -->
 	<select id="selectAllCateg" resultMap="CategResult">
   	<![CDATA[
-                               
+				select *
+				from category
    	]]>
 	</select>
 

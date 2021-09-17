@@ -34,9 +34,13 @@ public class CompetServiceImpl implements CompetService{
 	@Override
 	public Map<String, List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException {
 		Map<String,List<CompetFileVO>>competInfo=new HashMap<String,List<CompetFileVO>>();
+		// 큰 포스터 가져오기
 		List<CompetFileVO> competList=competDAO.selectCompetBigPoster(compet_id);
 		competInfo.put("competBigPoster",competList);
-		
+		// 작은 포스터 가져오기
+		competList=competDAO.selectCompetSmallPoster(compet_id);
+		competInfo.put("competSmallPoster",competList);
+		// 대회 아이디 가져오기
 		competList=competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id",competList);
 		return competInfo;
@@ -50,6 +54,7 @@ public class CompetServiceImpl implements CompetService{
 		return qnaList;
 	}
 
+<<<<<<< HEAD
 
 	@Override
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
@@ -58,6 +63,13 @@ public class CompetServiceImpl implements CompetService{
 	}
 	
 
+=======
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+>>>>>>> refs/heads/master
 
 
 	
