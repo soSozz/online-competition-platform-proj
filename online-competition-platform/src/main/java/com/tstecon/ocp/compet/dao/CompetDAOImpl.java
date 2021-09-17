@@ -26,7 +26,10 @@ public class CompetDAOImpl implements CompetDAO{
 		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetBigPoster",compet_id);
 		return competList;
 	}
-	
+	public List<CompetFileVO> selectCompetSmallPoster(int compet_id) throws DataAccessException {
+		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetSmallPoster",compet_id);
+		return competList;
+	}
 	
 //	대회안내 내용
 	@Override
@@ -58,6 +61,9 @@ public class CompetDAOImpl implements CompetDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	
 	
 	
 	

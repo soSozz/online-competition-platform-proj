@@ -7,16 +7,30 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-
 <!DOCTYPE html>
 <html>
-<head>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- 차트 링크 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+     <script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+    <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+    <script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+    <script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
+<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+<script src="${contextPath}/resources/js/custom.min.js"></script>
+<script src="${contextPath}/resources/js/settings.js"></script>
+<script src="${contextPath}/resources/js/gleek.js"></script>
+<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
-
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <style>
 h3,h4{
 	font-weight:bold;
@@ -49,24 +63,124 @@ h3,h4{
 }
 </style>
 </head>
+
 <body>
-	<div class="container">
-		<span style="font-size: 25px; font-weight:bold; color:black;">대회 공지사항</span>
-		<div class="col-lg-12">
-      <ul class="nav nav-tabs mb-3 justify-content-lg-center">
-		<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a></li>
-		<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}">공지사항</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#contact1">컨텐츠 게시판</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message1">제출</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="${contextPath}/compet/qna.do">문의</a></li>
-	</ul>
-    </div>
+    <div class="container">
+        <div class="row my-3">
+            <div class="col">
+    <span style="font-size: 25px; font-weight:bold; color:black;">카테고리별 통계</span>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-body"> <canvas id="chDonut1"></canvas> </div>
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-body"> <canvas id="chDonut2"></canvas> </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-body"> <canvas id="chDonut3"></canvas> </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+    <script>
+        var colors = ['red', 'skyblue', 'yellowgreen', '#c3e6cb', '#dc3545', '#6c757d'];
+        var donutOptions = {
+            cutoutPercentage: 30,
+            legend: {
+                position: 'bottom',
+                padding: 5,
+                labels: {
+                    pointStyle: 'circle',
+                    usePointStyle: true
+                }
+            }
+        };
+        
+        
+        var VOList = ${AdminStatVOList}
+        var ctgList = []
+        var contentsList = []
+        var viewList = []
+        var likeList = []
+        for (var i=0; i<VOList.length; i++){
+        	ctgList.add(VOList[i].ctgName)
+        	contentsList.add(VOList[i].cnt)
+        	viewList.add(VOList[i].viw)
+        	likeList.add(VOList[i].like)
+        }
+        
+
+     
+        var chDonutData1 = {
+            labels: ctgList
+            datasets: [{
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: contentsList
+            }]
+        };
+        var chDonut1 = document.getElementById("chDonut1");
+        if (chDonut1) {
+            new Chart(chDonut1, {
+                type: 'pie',
+                data: chDonutData1,
+                options: donutOptions
+            });
+        }
+
+        var chDonutData2 = {
+            labels: ctgList
+            datasets: [{
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: viewList
+            }]
+        };
+        var chDonut2 = document.getElementById("chDonut2");
+        if (chDonut2) {
+            new Chart(chDonut2, {
+                type: 'pie',
+                data: chDonutData2,
+                options: donutOptions
+            });
+        }
+      
+        var chDonutData3 = {
+            labels: ctgList
+            datasets: [{
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: likeList
+            }]
+        };
+        var chDonut3 = document.getElementById("chDonut3");
+        if (chDonut3) {
+            new Chart(chDonut3, {
+                type: 'pie',
+                data: chDonutData3,
+                options: donutOptions
+            });
+        }
+
+    </script>
+    <div class="container">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="endCompet">공지사항</h4>
+							<h4 class="endCompet">전체조회</h4>
 							<div class="table-responsive">
 								<div id="DataTables_Table_0_wrapper"
 									class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -104,17 +218,27 @@ h3,h4{
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-sort="ascending"
 															aria-label="No"
-															style="width: 145.531px;">No.</th>
+															style="width: 95.7188px;">No.</th>
 														<th class="categ_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
 															aria-label="categ_name"
-															style="width: 236.656px;">제목</th>
-														<th class="compet_name" tabindex="0"
+															style="width: 145.531px;">카테고리</th>
+														<th class="copet_name" tabindex="0"
+															aria-controls="DataTables_Table_0" rowspan="1"
+															colspan="1"
+															aria-label="copet_name"
+															style="width: 145.531px;">대회</th>
+														<th class="copet_name" tabindex="0"
+															aria-controls="DataTables_Table_0" rowspan="1"
+															colspan="1"
+															aria-label="cotents_name"
+															style="width: 236.656px;">컨텐츠</th>
+														<th class="cotents_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
 															aria-label="compet_name"
-															style="width: 105.656px;">작성자</th>
+															style="width: 105.656px;">닉네임</th>
 														<th class="compet_start" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
@@ -125,6 +249,16 @@ h3,h4{
 															colspan="1"
 															aria-label="compet_end : activate to sort column ascending"
 															style="width: 79.8906px;">조회수</th>
+														<th class="compet_end sorting" tabindex="0"
+															aria-controls="DataTables_Table_0" rowspan="1"
+															colspan="1"
+															aria-label="compet_end : activate to sort column ascending"
+															style="width: 79.8906px;">좋아요</th>
+														<th class="compet_end sorting" tabindex="0"
+															aria-controls="DataTables_Table_0" rowspan="1"
+															colspan="1"
+															aria-label="compet_end : activate to sort column ascending"
+															style="width: 79.8906px;">댓글</th>
 														
 													</tr>
 												</thead>
@@ -192,4 +326,5 @@ h3,h4{
 	</div>
 
 </body>
+
 </html>
