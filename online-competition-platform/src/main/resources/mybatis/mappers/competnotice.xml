@@ -13,15 +13,30 @@
 		<result property = "compet_notice_text" column = "compet_notice_text" />
 		
 	</resultMap>
+	<resultMap id = "CompetFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
+        <result property = "compet_file_id" column = "compet_file_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "compet_file_type" column = "compet_file_type" />
+		<result property = "compet_file_name" column = "compet_file_name" />
+	</resultMap>
 	
 
 	
-	<select id = "selectNoticeCompetList" resultMap = "noticeCompetResult" parameterType = "int">
-		<![CDATA[
+	<select id = "selectNoticesCompetList" resultMap = "noticeCompetResult" parameterType = "int">
+	<![CDATA[
 			select compet_notice_title, compet_notice_date,
 			compet_notice_view, compet_notice_text
 			from compet_notice
-			where compet_notice_id = #{compet_notice_id}
+			where compet_notice_id = #{compet_id}
+	]]>
+	</select>
+	
+	<!-- 대회 안내 정보 -->
+	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_name like '%-small%'
 		]]>
 	</select>
 	

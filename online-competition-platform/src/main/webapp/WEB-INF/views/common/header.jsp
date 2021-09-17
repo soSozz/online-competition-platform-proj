@@ -12,7 +12,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			<nav class="navbar navbar-expand-lg navbar-light  ">
 				<div class="container-fluid">
 					<div class="header__logo">
-						<a href="#"><img class="logo__icon" src="${contextPath }/resources/ocp/img/icon.png" alt="brand logo"></a>
+						<a href="${contextPath }/main/main.do"><img class="logo__icon" src="${contextPath }/resources/ocp/img/icon.png" alt="brand logo"></a>
 					</div>
 					<button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon btn-sm"></span>
@@ -20,7 +20,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					<class class="collapse navbar-collapse " id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto ml-3 ">
 							<li class="nav-item">
-								<a class="nav-link fw-bold" style="font: small-caps bold 20px/1 sans-serif;" href="#">대회</a>
+								<a class="nav-link fw-bold" style="font: small-caps bold 20px/1 sans-serif;" href="${contextPath }/compet/competList.do">대회</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link fw-bold" style="font: small-caps bold 20px/1 sans-serif;" href="#">공지사항</a>
@@ -89,9 +89,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					</form>
 				</div>
 			</nav>
+				<hr style= "position:relative; bottom:15px;">
 		</div>
 	</div>
-	
+
 	<!-- 자바스크립트 -->
 	<script>
 		function login_submit(){

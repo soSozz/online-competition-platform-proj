@@ -1,5 +1,6 @@
 package com.tstecon.ocp.admin.categ.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,15 +19,11 @@ public class AdminCategServiceImpl implements AdminCategService{
 	private AdminCategDAO adminCategDAO;
 	
 	@Override
-	public Map<String, List<CategVO>> Categlist() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, List<CompetVO>> Competlist() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CategVO> CategAllList() throws DataAccessException {
+//		Map<String,List<CategVO>>categList=new HashMap<String,List<CategVO>>();
+		List<CategVO> categList = adminCategDAO.selectCategAllList();
+//		categList.put("categList", categ);
+		return categList;
 	}
 
 

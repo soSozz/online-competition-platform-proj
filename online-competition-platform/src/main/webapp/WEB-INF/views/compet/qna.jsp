@@ -89,8 +89,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             
                                         "
                                     >
+<<<<<<< HEAD
                                   <a href = "${contextPath}/compet/qnaForm.do"><p class="cls2">글쓰기</p></a>
                                     </div>                               
+=======
+                                        <button type="button" class="btn btn-outline-secondary">글쓰기</button>
+                                    </div>
+                                </div>
+                                
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
                             </div>
                         </div>
                     </div>

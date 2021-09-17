@@ -8,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+<<<<<<< HEAD
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
+=======
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService{
@@ -35,24 +40,49 @@ public class CompetServiceImpl implements CompetService{
 	@Override
 	public Map<String, List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException {
 		Map<String,List<CompetFileVO>>competInfo=new HashMap<String,List<CompetFileVO>>();
+		// 큰 포스터 가져오기
 		List<CompetFileVO> competList=competDAO.selectCompetBigPoster(compet_id);
 		competInfo.put("competBigPoster",competList);
+		// 작은 포스터 가져오기
 		competList=competDAO.selectCompetSmallPoster(compet_id);
 		competInfo.put("competSmallPoster",competList);
+		// 대회 아이디 가져오기
 		competList=competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id",competList);
 		return competInfo;
 	}
 
 
+<<<<<<< HEAD
 	
 //대회 공지사항: 작은 포스터 가져오기
 	@Override
 	public List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException{
 		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
-
+=======
+//문의 게시판
+	@Override
+	public List<CompetQnaVO> qnalistArticles() throws Exception {
+		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
+		return qnaList;
 	}
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CompetVO> competListById(int i) throws Exception {
+		List<CompetVO> competListByName = competDAO.selectCompetId(i);
+		return competListByName;
+	}
+	
+
+	
 
 
 }
