@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.tstecon.ocp.compet.qna.dao.CompetQnaDAO;
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 
@@ -41,5 +42,9 @@ public class CompetQnaServiceImpl implements CompetQnaService{
 		return competQnaDAO.insertNewArticle(articleMap);		
 	}
 	
+	public CompetQnaVO viewArticle(int articleNO) throws Exception{
+		CompetQnaVO articleVO = competQnaDAO.selectQnaArticle(articleNO);
+		return articleVO;
+	}
 
 }

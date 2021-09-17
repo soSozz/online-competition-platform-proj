@@ -56,11 +56,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                                     <span style="padding-left: 25px"></span>
                                                                 </c:forEach>
                                                                 <span style="font-size: 12px">[답변]</span>
-                                                                <a class="cls1" href="#">${qna.compet_qna_title}</a>
+                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title}</a>
                                                             </c:when>
 
                                                             <c:otherwise>
-                                                                <a class="cls1" href="#">${qna.compet_qna_title }</a>
+                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title }</a>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </td>

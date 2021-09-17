@@ -44,5 +44,9 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 	private int selectNewArticleNO() throws DataAccessException {
 		return sqlSession.selectOne("mappers.competQna.selectNewQnaNO");
 	}
+	
+	public CompetQnaVO selectQnaArticle(int articleNO) throws DataAccessException{
+		return sqlSession.selectOne("mapper.board.selectQnaArticle", articleNO);
+	}
 
 }

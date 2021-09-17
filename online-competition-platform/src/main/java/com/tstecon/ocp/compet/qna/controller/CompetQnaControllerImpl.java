@@ -159,4 +159,21 @@ public  class CompetQnaControllerImpl implements CompetQnaController {
 	
 	}	
 
+	
+//문의 상세창 보기
+	@RequestMapping(value="/compet/viewArticle.do" ,method = RequestMethod.GET)
+	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
+	        HttpServletRequest request, HttpServletResponse response) throws Exception{
+	        String viewName = (String)request.getAttribute("viewName");
+	        competqnaVO = competQnaService.viewArticle(articleNO);
+	        ModelAndView mav = new ModelAndView();
+	        mav.setViewName(viewName);
+	        mav.addObject("article",competqnaVO);		
+		    return mav;
+	}
+	
+	
+	
+	
+	
 }

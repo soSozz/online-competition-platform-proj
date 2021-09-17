@@ -51,5 +51,12 @@
 		where id=#{id} and pwd=#{pwd}		
 	]]>
   </select>
+  
+  <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from t_member
+      where compet_qna_id = #{articleNO}		
+    ]]>
+  </select>
 
 </mapper>

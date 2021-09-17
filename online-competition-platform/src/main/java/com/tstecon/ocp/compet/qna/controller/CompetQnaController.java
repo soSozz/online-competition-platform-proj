@@ -23,6 +23,12 @@ public ModelAndView Compet_qna_login(@ModelAttribute("member")CompetQnaVO compet
 public ModelAndView  Compet_qna_logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 //문의 글쓰기 추가
 public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception;
+//문의 상세창 보기
+public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
+        HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }
+
+
 
 
