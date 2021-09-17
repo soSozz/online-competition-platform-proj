@@ -57,7 +57,6 @@ h3,h4{
 }
 </style>
 </head>
-<body>
 	<div class="container">
 		<span style="font-size: 25px; font-weight:bold; color:black;">카테고리 및 대회</span>
 		<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
@@ -255,5 +254,4 @@ h3,h4{
                                             </div>
                                         </div>
                                     </div>
-</body>
 </html>
