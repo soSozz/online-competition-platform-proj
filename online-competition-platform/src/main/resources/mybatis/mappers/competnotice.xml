@@ -23,6 +23,22 @@
 
 	
 	<select id = "selectNoticesCompetList" resultMap = "noticeCompetResult" parameterType = "int">
+<<<<<<< HEAD
+
+			select compet_notice_title, compet_notice_date,
+			compet_notice_view, compet_notice_text
+			from compet_notice
+			where compet_notice_id = #{compet_id}
+
+	</select>
+	
+	<!-- 대회 안내 정보 -->
+	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_name like '%-small%'
+=======
 		<![CDATA[
 			select compet_notice_title, compet_notice_date,
 			compet_notice_view, compet_notice_text
@@ -37,6 +53,7 @@
 			select compet_file_name
 			from compet_file
 			where compet_id = #{compet_id} and compet_file_type="small_img"
+>>>>>>> refs/heads/master
 		]]>
 	</select>
 	
