@@ -47,15 +47,15 @@
 		]]>
 	</select>
 	
-
 	<!-- 대회 작은 포스터 -->
 	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
-			select compet_file_name, compet_file_type
+			select compet_file_type, compet_file_name
 			from compet_file
 			where compet_id = #{compet_id} and compet_file_name like '%-small%'
 		]]>
 	</select>
+
 	
 	<!-- 대회 안내 정보 표시 -->
 	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
@@ -95,6 +95,14 @@
        ]]>
 </select>
 
+<!-- 대회 데이터 가져오기 -->
+	<select id="selectAllCompet" resultMap="CompetResult">
+  	<![CDATA[
+		select *
+		from compet
+   	]]>
+	</select>
+	
 <!-- 문의 게시판 새 글 DB추가 -->
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
@@ -108,8 +116,6 @@
         SELECT nvl(max(compet_qna_id, 0) + 1 from compet_qna
      ]]>
 </select>
-
-
 
 
 	

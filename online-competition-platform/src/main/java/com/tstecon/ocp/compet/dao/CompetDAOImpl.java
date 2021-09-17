@@ -2,6 +2,7 @@ package com.tstecon.ocp.compet.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,15 @@ public class CompetDAOImpl implements CompetDAO{
 		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetBigPoster",compet_id);
 		return competList;
 	}
-	// 작은 포스터
-	@Override
-	public List<CompetFileVO> selectCompetSmallPoster(int compet_id) throws DataAccessException {
-		List<CompetFileVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetSmallPoster",compet_id);
-		return competList;
-	}
+	
+	
 //	대회안내 내용
 	@Override
 	public List<CompetVO> selectCompetInfo(int compet_id) throws DataAccessException {
 		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetInfo",compet_id);
 		return competList;
 	}
+
 //	대회 포스터 클릭
 	@Override
 	public List<CompetVO> selectCompet_id(int compet_id) throws DataAccessException {
@@ -54,6 +52,11 @@ public class CompetDAOImpl implements CompetDAO{
 	public List selectAllQnaList() throws DataAccessException {
 		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
 		return qnaList;
+	}
+	@Override
+	public int insertNewArticle(Map articleMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
