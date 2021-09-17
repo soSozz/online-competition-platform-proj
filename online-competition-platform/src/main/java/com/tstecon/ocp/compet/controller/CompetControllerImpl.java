@@ -18,8 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
+import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.service.CompetService;
+<<<<<<< HEAD
+import com.tstecon.ocp.compet.vo.CompetVO;
+=======
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 @Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
@@ -51,16 +56,12 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-//문의 페이지	
-	@Override
-	@RequestMapping(value = "/compet/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		List qnaList = competService.qnalistArticles();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("qnaList", qnaList);
-		return mav;
 
+<<<<<<< HEAD
+	
+
+	
+=======
 	}
 
 //문의 페이지 로그인
@@ -96,5 +97,6 @@ public class CompetControllerImpl implements CompetController {
 			throws Exception {
 		return null;
 	}
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 }

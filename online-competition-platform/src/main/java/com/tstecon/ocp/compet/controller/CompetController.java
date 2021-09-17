@@ -10,10 +10,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
+import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 
 public interface CompetController {
 //	대회안내 페이지
+<<<<<<< HEAD
+public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id,HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+
+
+
+}
+=======
 	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
 
@@ -33,3 +40,4 @@ public interface CompetController {
 	// 대회목록 페이지
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git

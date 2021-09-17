@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
+import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
-import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.compet.vo.CompetVO;<<<<<<<HEAD
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;=======
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("CompetService")
@@ -46,6 +49,12 @@ public class CompetServiceImpl implements CompetService {
 		return competInfo;
 	}
 
+//대회 공지사항: 작은 포스터 가져오기
+	@Override
+	public List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException{
+		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
+		return CompetSmallPoster;
+		
 //문의 게시판
 	@Override
 	public List<CompetQnaVO> qnalistArticles() throws Exception {
@@ -57,6 +66,12 @@ public class CompetServiceImpl implements CompetService {
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<CompetVO> competListById(int i) throws Exception {
+		List<CompetVO> competListByName = competDAO.selectCompetId(i);
+		return competListByName;
 	}
 
 }

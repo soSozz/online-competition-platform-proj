@@ -1,4 +1,4 @@
-package com.tstecon.ocp.qna.vo;
+package com.tstecon.ocp.compet.qna.vo;
 
 import java.sql.Date;
 

@@ -17,7 +17,7 @@ public class AdminCategDAOImpl implements AdminCategDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<CategVO> selectCategList() {
+	public List<CategVO> selectCategAllList() {
 		List<CategVO> categList = (ArrayList)sqlSession.selectList("mappers.admin_categ.selectAllCateg");
 		return categList;
 	}

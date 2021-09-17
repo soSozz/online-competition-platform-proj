@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+<<<<<<<HEAD
+import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;=======
+import com.tstecon.ocp.categ.vo.CategVO;>>>>>>>branch'master'of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {
@@ -26,6 +28,13 @@ public class CompetDAOImpl implements CompetDAO {
 		List<CompetFileVO> competList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetBigPoster",
 				compet_id);
 		return competList;
+	}
+
+	@Override
+	public List<CompetFileVO> selectCompetSmallPoster(int compet_id) throws DataAccessException {
+		List<CompetFileVO> competList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetSmallPoster",
+				compet_id);
+		return null;
 	}
 
 //	대회안내 내용
@@ -63,8 +72,9 @@ public class CompetDAOImpl implements CompetDAO {
 	}
 
 	@Override
-	public List<CompetFileVO> selectCompetSmallPoster(int compet_id) throws DataAccessException {
-		return null;
+	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
+		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetName", i);
+		return competNameList;
 	}
 
 }
