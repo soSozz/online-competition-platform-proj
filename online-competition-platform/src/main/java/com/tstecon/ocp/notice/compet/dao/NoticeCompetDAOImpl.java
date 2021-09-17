@@ -19,12 +19,7 @@ public class NoticeCompetDAOImpl implements NoticeCompetDAO{
 	
 	@Override
 	public List<NoticeCompetVO> selectNoticesCompetList(int compet_id) throws DataAccessException {
-<<<<<<< HEAD
-        List<NoticeCompetVO> NoticescompetList = sqlSession.selectList("mappers.notice.compet.selectNoticesCompetList",compet_id);
-=======
-
 		List<NoticeCompetVO> NoticescompetList = (ArrayList)sqlSession.selectList("mappers.notice.compet.selectNoticesCompetList",compet_id);
->>>>>>> refs/heads/master
 		return NoticescompetList;
 
 

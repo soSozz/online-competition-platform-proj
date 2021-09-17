@@ -17,17 +17,10 @@ public interface CompetService {
 //	대회 안내
 
 	public Map<String,List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException;
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/heads/master
+
 	public Map<String,List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException;
 
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> refs/heads/master
 //문의 	
 	public List<CompetQnaVO>qnalistArticles() throws Exception;
 //문의 글쓰기창
