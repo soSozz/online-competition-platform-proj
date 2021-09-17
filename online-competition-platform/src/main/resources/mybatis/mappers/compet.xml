@@ -100,7 +100,7 @@
   	<![CDATA[
 		select compet_name
 		from compet
-		where compet.categ_id = #{categ_id}
+		where compet.categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
 	</select>
 	

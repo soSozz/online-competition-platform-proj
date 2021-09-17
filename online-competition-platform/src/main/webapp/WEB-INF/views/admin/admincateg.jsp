@@ -70,11 +70,11 @@ h3,h4{
 					<a href="#" data-toggle="modal" data-target="#add-category" class="categ_btn btn btn-primary float-right"><i class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
 				</div>
 				<div class="card-body">
+					<c:forEach var="compet" items="${categ.value}">
 					<div class="competList">
-						<c:forEach var="compet" items="${categ.value}">
 							<div class="competName">${compet.compet_name}<a href="#" class="btn btn-primary float-right" style="height:35px;">대회 종료</a></div>
-						</c:forEach>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
