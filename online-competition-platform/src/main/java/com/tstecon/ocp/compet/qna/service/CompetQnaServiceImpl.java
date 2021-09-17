@@ -1,6 +1,8 @@
 package com.tstecon.ocp.compet.qna.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,21 @@ public class CompetQnaServiceImpl implements CompetQnaService{
 		List<CompetQnaVO> qnaList = competQnaDAO.selectAllQnaList();
 		return qnaList;
 	}
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception{
+		 return competQnaDAO.quaLogin(competqnaVO);
+	}
+	@Override
+	 public int addNewArticle(Map articleMap) throws Exception{
+        Iterator<String> keys = articleMap.keySet().iterator();
+        
+        System.out.println("serviceÀÇ map");
+          while( keys.hasNext() ){
+            String key = keys.next();
+            System.out.println( String.format("Å° : %s, °ª : %s", key, articleMap.get(key)) );
+        }
+		return competQnaDAO.insertNewArticle(articleMap);		
+	}
 	
-
 
 }

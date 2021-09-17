@@ -31,18 +31,25 @@
        ]]>
 </select>
 
-<!-- 문의 게시판 새 글 DB추가 -->
+<!-- 문의 게시판 새 글 DB추가 -->  <!--values #{mem_id} 추가 -->
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
-       INSERT into compet_qna(compet_qna_id,  compet_qna_title, compet_qna_text, mem_id)
-       VALUES(#{compet_qna_id},#{compet_qna_title}, #{compet_qna_text}, #{mem_id}) 
+       INSERT into compet_qna(compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id) 
+       VALUES(#{articleNO},#{title}, #{content}, '20210907', 0, 1)
     ]]>
 </insert>
 
- <select id="selectNewQna" resultType="int">
+ <select id="selectNewQnaNO" resultType="int">
      <![CDATA[
-        SELECT nvl(max(compet_qna_id, 0) + 1 from compet_qna
+        SELECT nvl(max(compet_qna_id), 0) + 1 from compet_qna
      ]]>
 </select>
+
+ <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
+	<![CDATA[
+		select * from t_member	
+		where id=#{id} and pwd=#{pwd}		
+	]]>
+  </select>
 
 </mapper>

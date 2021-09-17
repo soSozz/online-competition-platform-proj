@@ -12,6 +12,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <meta charset="UTF-8" />
         <title>Insert title here</title>
     </head>
+    <script>
+	
+</script>
     <body>
         <!-- row -->
 
@@ -77,21 +80,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                         </c:otherwise>
                                     </c:choose>
                                 </table>
-                                <!-- 문의 게시판 하단 -->
-                                <div class="qna_bottom">
+                                <!-- 문의 게시판 하단 -->                               
                                     <div
                                         class="qna_write"
                                         style="
                                             float: right;
-                                            margin: 10px;
-                                            position: relative;
-                                            right: 70px;
-                                            bottom: 60px;
+                                            margin:10px;
+                                            
                                         "
                                     >
-                                        <button type="button" class="btn btn-outline-secondary">글쓰기</button>
-                                    </div>
-                                </div>
+                                  <a href = "${contextPath}/compet/qnaForm.do"><p class="cls2">글쓰기</p></a>
+                                    </div>                               
                             </div>
                         </div>
                     </div>
