@@ -5,11 +5,10 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-<<<<<<< HEAD
+
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
-=======
+
 import com.tstecon.ocp.categ.vo.CategVO;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
@@ -29,14 +28,11 @@ public interface CompetDAO {
 
 	
 
-<<<<<<< HEAD
 
-=======
 // 문의 게시판 내용
 	public List selectAllQnaList() throws DataAccessException;
 	
 	public int insertNewArticle(Map articleMap) throws DataAccessException;
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException;
 

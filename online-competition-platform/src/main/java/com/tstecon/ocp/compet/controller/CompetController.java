@@ -14,15 +14,7 @@ import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 
 public interface CompetController {
 //	대회안내 페이지
-<<<<<<< HEAD
 public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id,HttpServletRequest request, HttpServletResponse reponse) throws Exception;
-
-
-
-}
-=======
-	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
-			HttpServletResponse reponse) throws Exception;
 
 //문의 페이지
 	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -40,4 +32,3 @@ public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id,HttpServ
 	// 대회목록 페이지
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git

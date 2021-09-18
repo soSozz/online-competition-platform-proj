@@ -72,8 +72,6 @@
 			where compet_id = #{compet_id}
 		]]>
 	</select>
-<<<<<<< HEAD
-=======
 	
 	<select id="selectAllQnaList" resultMap="qnaResult">
   	    <![CDATA[
@@ -84,7 +82,7 @@
      ORDER SIBLINGS BY compet_qna_id ASC
                                
        ]]>
-</select>
+	</select>
 
 <!--  -->
 	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
@@ -108,8 +106,6 @@
         SELECT nvl(max(compet_qna_id, 0) + 1 from compet_qna
      ]]>
 </select>
-
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 	
 </mapper>

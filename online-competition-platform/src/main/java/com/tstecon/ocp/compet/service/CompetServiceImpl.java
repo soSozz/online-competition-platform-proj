@@ -12,9 +12,8 @@ import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
-import com.tstecon.ocp.compet.vo.CompetVO;<<<<<<<HEAD
-import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;=======
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
+import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService {
@@ -54,7 +53,7 @@ public class CompetServiceImpl implements CompetService {
 	public List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException{
 		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
-		
+	}
 //문의 게시판
 	@Override
 	public List<CompetQnaVO> qnalistArticles() throws Exception {
