@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+<mapper namespace = "mappers.compet"> 
+	<!-- 리절트맵 정의 -->
+	<resultMap id = "CompetResult" type = "competVO"> 
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "categ_id" column = "categ_id" />
+		<result property = "compet_limit" column = "compet_limit" />
+		<result property = "compet_name" column = "compet_name" />
+		<result property = "compet_start" column = "compet_start" />
+		<result property = "compet_end" column = "compet_end" />
+		<result property = "compet_create" column = "compet_create" />
+		<result property = "compet_text" column = "compet_text" />
+		<result property = "compet_terminated" column = "compet_terminated" />
+	</resultMap>
+	
+	<resultMap id = "CompetFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
+        <result property = "compet_file_id" column = "compet_file_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "compet_file_type" column = "compet_file_type" />
+		<result property = "compet_file_name" column = "compet_file_name" />
+	</resultMap>
+
+  
+	
+	<!-- 대회 큰 포스터 -->
+	<select id = "selectCompetBigPoster" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_type, compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_name like '%-big%'
+		]]>
+	</select>
+	
+	<!-- 대회 작은 포스터 -->
+	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[		
+			select compet_file_type, compet_file_name
+			from compet_file
+			where compet_id = #{compet_id} and compet_file_name like '%-small%'
+		]]>
+	</select>
+
+	
+	<!-- 대회 안내 정보 표시 -->
+	<select id = "selectCompetInfo" resultMap = "CompetResult" parameterType = "int">
+		<![CDATA[
+			select compet_text
+			from compet
+			where compet_id = #{compet_id}
+		]]>
+	</select>
+	
+	<!-- 대회 번호 표시 -->
+	<select id = "selectCompet_id" resultMap = "CompetResult" parameterType = "int">
+		<![CDATA[
+			select compet_id
+			from compet
+			where compet_id = #{compet_id}
+		]]>
+	</select>
+	
+
+	<select id = "selectCompet_id_file" resultMap = "CompetFileResult" parameterType = "int">
+		<![CDATA[
+			select compet_id
+			from compet_file
+			where compet_id = #{compet_id}
+		]]>
+	</select>
+<<<<<<< HEAD
+=======
+	
+	<select id="selectAllQnaList" resultMap="qnaResult">
+  	    <![CDATA[
+     SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
+     FROM compet_qna
+     START WITH parent_id=0
+     CONNECT BY PRIOR  compet_qna_id=parent_id
+     ORDER SIBLINGS BY compet_qna_id ASC
+                               
+       ]]>
+</select>
+
+<!--  -->
+	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+		select compet_name
+		from compet
+		where compet.categ_id = #{categ_id} and compet_terminated = 'N'
+   	]]>
+	</select>
+	
+<!-- 문의 게시판 새 글 DB추가 -->
+<insert id="insertNewQna" parameterType="java.util.Map">
+    <![CDATA[
+       INSERT into compet_qna(compet_qna_id,  compet_qna_title, compet_qna_text, mem_id)
+       VALUES(#{compet_qna_id},#{compet_qna_title}, #{compet_qna_text}, #{mem_id}) 
+    ]]>
+</insert>
+
+<select id="selectNewQna" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_qna_id, 0) + 1 from compet_qna
+     ]]>
+</select>
+
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
+	
+</mapper>

@@ -3,11 +3,26 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	<definition name="baseLayout"
-		template="/WEB-INF/views/common/layout.jsp">
-		<put-attribute name="title" value="레이아웃 페이지" />
+	<definition name="mainLayout"
+		template="/WEB-INF/views/common/mainLayout.jsp">
+		<put-attribute name="title" value="메인페이지 레이아웃" />
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/baseLayout.jsp">
+		<put-attribute name="title" value="메인페이지 레이아웃" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	<definition name="adminLayout"
+		template="/WEB-INF/views/common/adminLayout.jsp">
+		<put-attribute name="title" value="admin 레이아웃" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/common/adminside.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
