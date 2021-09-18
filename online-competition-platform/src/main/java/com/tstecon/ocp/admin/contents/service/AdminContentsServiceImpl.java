@@ -1,5 +1,8 @@
 package com.tstecon.ocp.admin.contents.service;
 
-public class AdminContentsServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service("AdminContentsService")
+public class AdminContentsServiceImpl implements AdminContentsService{
 
 }

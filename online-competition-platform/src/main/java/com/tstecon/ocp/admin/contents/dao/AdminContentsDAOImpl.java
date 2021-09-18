@@ -1,5 +1,8 @@
 package com.tstecon.ocp.admin.contents.dao;
 
-public class AdminContentsDAOImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository("AdminContentsDAO")
+public class AdminContentsDAOImpl implements AdminContentsDAO{
 
 }
