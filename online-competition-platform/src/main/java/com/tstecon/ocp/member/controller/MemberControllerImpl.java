@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.tstecon.ocp.common.base.BaseController;
@@ -55,12 +57,20 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	@Override
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn", false);
-		session.removeAttribute("memberInfo");
-		mav.setViewName("redirect:/main/main.do");
-		return mav;
+		session.removeAttribute("loginStatus");
+		session.removeAttribute("loginInfo");
+
+		String message = "<script>";
+		message += " alert('로그아웃 되었습니다.');";
+		message += " location.href='" + request.getContextPath() + "/main/main.do';";
+		message += ("</script>");
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		ResponseEntity resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 }

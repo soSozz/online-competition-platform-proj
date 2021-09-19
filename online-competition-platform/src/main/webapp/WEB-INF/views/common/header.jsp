@@ -36,18 +36,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					  <c:when test="${loginStatus == 'member'}">
 						<div class="alert"><a href="#"><i class="far fa-bell fa-lg" style="color:#57CC99; "></i></a></div>
 						<div class="login">
-							<button type="button" class="btn btn-light btn-sm">Logout</button>
+							<a href="${contextPath }/member/logout.do"><button type="button" class="btn btn-light btn-sm">Logout</button></a>
 						</div>
 						<div class="mypage">
-							<button type="button" class="btn btn-light btn-sm">Mypage</button>
+							<a href="#"><button type="button" class="btn btn-light btn-sm">Mypage</button></a>
 						</div>
 					  </c:when>
 					  <c:when test="${loginStatus == 'admin'}">
 						<div class="login">
-							<button type="button" class="btn btn-light btn-sm">Logout</button>
+							<a href="${contextPath }/member/logout.do"><button type="button" class="btn btn-light btn-sm">Logout</button></a>
 						</div>
 						<div class="mypage">
-							<button type="button" class="btn btn-light btn-sm">관리</button>
+							<a href="#"><button type="button" class="btn btn-light btn-sm">관리</button></a>
 						</div>
 					  </c:when>
 					  <c:otherwise>
