@@ -28,11 +28,28 @@
 		<result property = "mem_push_alert" column = "mem_push_alert" />
 	</resultMap>
 
-	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	<resultMap id = "AdminResult" type = "adminVO">
+
+
+
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "mem_pwd" column = "mem_pwd" />
+		<result property = "mem_name" column = "mem_name" />
+	</resultMap>
+
+	<select id="selectMemberByLogin" resultType="memberVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
 			select * from member 
 			 where mem_id=#{id}
 			 and mem_pwd=#{pwd}			
+		]]>
+	</select>
+
+	<select id="selectAdminByLogin" resultType="adminVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from admin
+			 where admin_id=#{id}
+			 and admin_pwd=#{pwd}			
 		]]>
 	</select>
 

@@ -1,6 +1,5 @@
 package com.tstecon.ocp.compet.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
-import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.service.CompetService;
-import com.tstecon.ocp.compet.vo.CompetVO;
-
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
@@ -52,7 +49,6 @@ public class CompetControllerImpl implements CompetController {
 		mav.addObject("competPoster", competInfo);
 		return mav;
 	}
-
 
 //문의 페이지 로그인
 	@Override

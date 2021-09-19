@@ -33,7 +33,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 					
 					<!-- 회원, 관리자, 비회원에 맞게 ui 제공 -->	
 				   <c:choose>
-					  <c:when test="회원 로그인 확인하는 조건문 작성하기">
+					  <c:when test="${loginStatus == 'member'}">
 						<div class="alert"><a href="#"><i class="far fa-bell fa-lg" style="color:#57CC99; "></i></a></div>
 						<div class="login">
 							<button type="button" class="btn btn-light btn-sm">Logout</button>
@@ -42,8 +42,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 							<button type="button" class="btn btn-light btn-sm">Mypage</button>
 						</div>
 					  </c:when>
-					  <c:when test="관리자 로그인 확인하는 조건문 작성하기">
-
+					  <c:when test="${loginStatus == 'admin'}">
+						<div class="login">
+							<button type="button" class="btn btn-light btn-sm">Logout</button>
+						</div>
+						<div class="mypage">
+							<button type="button" class="btn btn-light btn-sm">관리</button>
+						</div>
 					  </c:when>
 					  <c:otherwise>
 					  <div class="bootstrap-modal">
@@ -100,25 +105,30 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			const id = document.getElementById("id").value;
 			const pwd = document.getElementById("pwd").value;
 			
-			console.log(id);
-			console.log(pwd);
-			
+			//ajax 요청 객체 생성
 			const xhr = new XMLHttpRequest();
+			
+			//서버에게 비동기 응답을 받았을 때 발생하는 이벤트 함수 정의
 			xhr.onreadystatechange = function(){
-				if(xhr.readyState === xhr.DONE && xhr.status === 200){
-					console.log(xhr.responseText);
+				if(xhr.readyState === xhr.DONE && xhr.status === 200){ //정상 응답 시
+					if (xhr.responseText === 'true') { //로그인 되었으면 메인페이지로 이동
+						location.href = '${contextPath}/main/main.do';
+					} else { // 로그인에 실패했으면 알림창 이후 초기화
+						alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+						document.getElementById("id").value = '';
+						document.getElementById("pwd").value = '';
+					}
 				}
 			};
 			
+			//요청 방식과 요청 url 설정
+			//true: 비동기 설정
 			xhr.open('POST', '${contextPath}/member/login.do', true);
-			xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+			//서버에 요청 보내기
 			xhr.send(JSON.stringify({
 				"id":id,
 				"pwd":pwd
 			}))
-			
-			
-
 		}
 	</script>
     

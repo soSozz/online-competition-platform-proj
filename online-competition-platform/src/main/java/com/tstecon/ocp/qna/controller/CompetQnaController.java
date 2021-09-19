@@ -1,4 +1,4 @@
-package com.tstecon.ocp.compet.controller;
+package com.tstecon.ocp.qna.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
-public interface CompetController {
-//	대회안내 페이지
-	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
-			HttpServletResponse reponse) throws Exception;
+public interface CompetQnaController {
 
 //문의 페이지
 	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -30,6 +27,8 @@ public interface CompetController {
 	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
-	// 대회목록 페이지
-	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+//문의 상세창 보기
+	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
 }

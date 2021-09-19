@@ -1,6 +1,5 @@
-package com.tstecon.ocp.compet.qna.dao;
+package com.tstecon.ocp.qna.dao;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("CompetQnaDAO")
 public class CompetQnaDAOImpl implements CompetQnaDAO {
@@ -33,19 +32,18 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 		return vo;
 	}
 
-	
-	  public int insertNewArticle(Map articleMap) throws DataAccessException{ 
-		  int articleNO = selectNewArticleNO(); 
-		  articleMap.put("articleNO", articleNO);    
-	      sqlSession.insert("mappers.competQna.insertNewQna",articleMap);
-	      return articleNO; 
-	    }
-	 
+	public int insertNewArticle(Map articleMap) throws DataAccessException {
+		int articleNO = selectNewArticleNO();
+		articleMap.put("articleNO", articleNO);
+		sqlSession.insert("mappers.competQna.insertNewQna", articleMap);
+		return articleNO;
+	}
+
 	private int selectNewArticleNO() throws DataAccessException {
 		return sqlSession.selectOne("mappers.competQna.selectNewQnaNO");
 	}
-	
-	public CompetQnaVO selectQnaArticle(int articleNO) throws DataAccessException{
+
+	public CompetQnaVO selectQnaArticle(int articleNO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.board.selectQnaArticle", articleNO);
 	}
 

@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
-import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {

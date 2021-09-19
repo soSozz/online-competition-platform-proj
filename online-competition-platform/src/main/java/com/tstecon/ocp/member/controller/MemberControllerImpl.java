@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.member.service.MemberService;
+import com.tstecon.ocp.member.vo.AdminVO;
 import com.tstecon.ocp.member.vo.MemberVO;
 
 @Controller("memberController")
@@ -26,22 +27,28 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
+	@Autowired
+	private AdminVO adminVO;
 
 	@Override
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST, headers = { "Accept=application/json",
-			"Content-Type=application/json" })
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody String login, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Map<String, String> loginMap = new Gson().fromJson(login, Map.class);
 
-		memberVO = memberService.login(loginMap);
-		if (memberVO != null && memberVO.getMem_id() != null) { // 로그인 성공했으면 세션에 저장
-			HttpSession session = request.getSession();
-			session = request.getSession();
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo", memberVO);
+		memberVO = memberService.loginByMember(loginMap);
+		adminVO = memberService.loginByAdmin(loginMap);
+
+		HttpSession session = request.getSession();
+		if (memberVO != null) { // member로 로그인 성공 시
+			session.setAttribute("loginStatus", "member");
+			session.setAttribute("loginInfo", memberVO);
 			return "true";
-		} else {
+		} else if (adminVO != null) { // admin으로 로그인 성공 시
+			session.setAttribute("loginStatus", "admin");
+			session.setAttribute("loginInfo", adminVO);
+			return "true";
+		} else { // 로그인 실패 시
 			return "false";
 		}
 	}
