@@ -70,5 +70,11 @@ public class CompetServiceImpl implements CompetService {
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
 		return null;
 	}
+	// 대회 이름 가져오기
+	@Override
+	public List<CompetVO> CompetName() throws DataAccessException {
+		List<CompetVO> competName = competDAO.selectCompetName();
+		return competName;
+	}
 
 }

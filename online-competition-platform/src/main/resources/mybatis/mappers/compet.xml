@@ -74,7 +74,7 @@
 	</select>
 	
 <!--  -->
-	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
+	<select id="selectCompetNames" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
 		select compet_name
 		from compet
@@ -82,4 +82,10 @@
    	]]>
 	</select>
 	
+	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+		select compet_name
+		from compet
+   	]]>
+	</select>
 </mapper>

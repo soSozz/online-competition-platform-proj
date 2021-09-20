@@ -31,4 +31,6 @@ public interface CompetDAO {
 
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException;
 
+	public List<CompetVO> selectCompetName() throws DataAccessException;
+
 }

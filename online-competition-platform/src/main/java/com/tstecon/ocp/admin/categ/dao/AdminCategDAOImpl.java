@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.tstecon.ocp.categ.vo.CategVO;
@@ -26,6 +27,12 @@ public class AdminCategDAOImpl implements AdminCategDAO{
 	public List<CompetVO> selectCompetList() {
 		List<CompetVO> competList = (ArrayList)sqlSession.selectList("mappers.compet.selectAllCompet");
 		return competList;
+	}
+
+	@Override
+	public List<CategVO> selectCategName() throws DataAccessException {
+		List<CategVO> categName = (ArrayList)sqlSession.selectList("mappers.admin_categ.selectCategName");
+		return categName;
 	}
 
 }
