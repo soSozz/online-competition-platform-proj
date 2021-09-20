@@ -11,7 +11,8 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 
 	@Override
 	public ModelAndView adminContents(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		// TODO Auto-generated method stub
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		return null;
 	}
 
