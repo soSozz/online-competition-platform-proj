@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.tstecon.ocp.member.vo.AdminVO;
 import com.tstecon.ocp.member.vo.MemberVO;
 
 @Repository("memberDAO")
@@ -14,11 +15,16 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 濡쒓렇�씤 ID, PASSWORD媛� �쉶�썝 �젙蹂� �뀒�씠釉붽낵 �씪移섑븯�뒗吏� �솗�씤
+	// 회원 아이디로 로그인
 	@Override
-	public MemberVO login(Map loginMap) throws DataAccessException {
-		MemberVO member = (MemberVO) sqlSession.selectOne("mappers.member.login", loginMap);
-		return member;
+	public MemberVO selectMemberByLogin(Map loginMap) throws DataAccessException {
+		return (MemberVO) sqlSession.selectOne("mappers.member.selectMemberByLogin", loginMap);
+	}
+
+	// 관리자 아이디로 로그인
+	@Override
+	public AdminVO selectAdminByLogin(Map loginMap) throws DataAccessException {
+		return (AdminVO) sqlSession.selectOne("mappers.member.selectAdminByLogin", loginMap);
 	}
 
 	@Override
