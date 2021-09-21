@@ -59,15 +59,6 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value = { "/admin/adminApprContents.do" }, method = { RequestMethod.GET })
-	public ModelAndView adminApprContents(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		List<ContentsVO> apprContentsList = adminContentsService.ApprContentsList();
-		mav.addObject("apprContentsList", apprContentsList);
-		return mav;
-	}
 	
 	@Override
 	@RequestMapping(value = { "/admin/adminContentsView.do" }, method = { RequestMethod.GET })
@@ -78,14 +69,17 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		mav.addObject("apprContentsList", apprContentsList);
 		return mav;
 	}
-
+	
 	@Override
+	@RequestMapping(value = { "/admin/adminApprContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView adminContentsAppr(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
+		List<ContentsVO> apprContentsList = adminContentsService.ApprContentsList();
+		mav.addObject("apprContentsList", apprContentsList);
 		return mav;
 	}
+
 
 	@Override
 	public ModelAndView adminContentsReject(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
