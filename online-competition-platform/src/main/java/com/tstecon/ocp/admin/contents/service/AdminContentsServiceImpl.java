@@ -17,7 +17,13 @@ public class AdminContentsServiceImpl implements AdminContentsService{
 	@Override
 	public List<ContentsVO> ContentsList() {
 		List<ContentsVO> contentsList = adminContentsDAO.selectContentsName(); 
-		return null;
+		return contentsList;
+	}
+
+	@Override
+	public List<ContentsVO> ApprContentsList() {
+		List<ContentsVO> contentsList = adminContentsDAO.selectApprContentsList();
+		return contentsList;
 	}
 
 }
