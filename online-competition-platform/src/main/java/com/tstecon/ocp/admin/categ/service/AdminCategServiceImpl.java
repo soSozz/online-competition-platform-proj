@@ -26,5 +26,11 @@ public class AdminCategServiceImpl implements AdminCategService{
 		return categList;
 	}
 
+	@Override
+	public List<CategVO> CategName() throws DataAccessException {
+		List<CategVO> categName = adminCategDAO.selectCategName();
+		return categName;
+	}
+
 
 }

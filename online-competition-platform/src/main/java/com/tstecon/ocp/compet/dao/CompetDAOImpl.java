@@ -71,8 +71,15 @@ public class CompetDAOImpl implements CompetDAO {
 
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
-		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetName", i);
+		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);
 		return competNameList;
+	}
+	
+	// 대회 이름 가져오기
+	@Override
+	public List<CompetVO> selectCompetName() throws DataAccessException {
+		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetName");
+		return competName;
 	}
 
 }

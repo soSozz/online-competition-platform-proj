@@ -13,4 +13,5 @@ public interface AdminCategDAO {
 
 	public List<CompetVO> selectCompetList() throws DataAccessException;
 
+	public List<CategVO> selectCategName() throws DataAccessException;
 }

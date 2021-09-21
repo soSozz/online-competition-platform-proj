@@ -28,4 +28,6 @@ public interface CompetService {
 	public List<CompetVO> competListById(int i) throws Exception;
 
 	List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException;
+
+	public List<CompetVO> CompetName() throws DataAccessException;
 }
