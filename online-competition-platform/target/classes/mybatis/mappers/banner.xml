@@ -5,14 +5,14 @@
 
 <mapper namespace = "mappers.banner">
 
-    <resultMap id="bannerFileResult" type="bannerFileVO"> <!-- Compet_qna의 resultMap -->
+    <resultMap id="bannerFileResult" type="bannerFileVO">
         <result property="banner_file_id" column="banner_file_id" />
         <result property="banner_id" column="banner_id" />
         <result property="banner_file_name" column="banner_file_name" />
         <result property="banner_file_type" column="banner_file_type" />
    </resultMap>
 
-	<select id="selectAllBannerFiles" resultMap="bannerFileVO">
+	<select id="selectAllBannerFiles" resultMap="bannerFileResult">
 	    <![CDATA[
 			select * from banner_file 
 		]]>
