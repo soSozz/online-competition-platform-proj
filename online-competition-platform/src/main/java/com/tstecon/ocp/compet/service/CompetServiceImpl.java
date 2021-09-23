@@ -77,6 +77,12 @@ public class CompetServiceImpl implements CompetService {
 
 	}
 
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
