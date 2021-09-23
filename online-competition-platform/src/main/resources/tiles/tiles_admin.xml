@@ -13,6 +13,7 @@
 		<put-attribute name="title" value="트스테콘 컨텐츠 관리" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminContents.jsp" />
 	</definition>
+	
 	<definition name="/admin/stat/adminStat" extends="baseLayout">
 		<put-attribute name="title" value="통계" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminstat.jsp" />

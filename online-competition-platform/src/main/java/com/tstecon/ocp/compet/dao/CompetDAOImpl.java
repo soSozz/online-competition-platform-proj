@@ -55,7 +55,7 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
-
+	//카테고리 아이디를 통해 대회 이름 가져오기
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);
@@ -69,6 +69,7 @@ public class CompetDAOImpl implements CompetDAO {
 		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetName");
 		return competName;
 	}
+	
 	// 카테고리 명을 통해 대회 이름 가져오기
 	@Override
 	public List<CompetVO> selectCompetNameByName(String i) throws DataAccessException {
