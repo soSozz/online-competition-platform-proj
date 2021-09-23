@@ -81,22 +81,14 @@ public class CompetServiceImpl implements CompetService {
 		return competName;
 
 	}
-
+	
+	// 대회 추가하기
 	@Override
-<<<<<<< HEAD
 	public int addCompet() throws DataAccessException {
 		int competVO = competDAO.insertCompet();
 		return competVO;
 	}
-=======
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-
-
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 	
 
