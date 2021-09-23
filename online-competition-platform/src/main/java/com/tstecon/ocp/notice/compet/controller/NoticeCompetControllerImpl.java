@@ -29,13 +29,16 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 	@Override
 	@RequestMapping(value="/notice/compet/listCompetNotices.do", method=RequestMethod.GET)
 	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String)request.getAttribute("viewName");
 		
+		String viewName = (String)request.getAttribute("viewName");
+
 		//NoticeCompetService: 공지사항 리스트 가져오기
 		//CompetService: 작은포스터 가져오기
 		
 		List<NoticeCompetVO> noticeCompetList = NoticeCompetService.listCompetNotices(compet_id);
-		CompetFileVO smallPoster = CompetService.CompetSmallPoster(compet_id);
+
+		CompetFileVO smallPoster = NoticeCompetService.CompetSmallPoster(compet_id);
+
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("noticeCompetList", noticeCompetList);

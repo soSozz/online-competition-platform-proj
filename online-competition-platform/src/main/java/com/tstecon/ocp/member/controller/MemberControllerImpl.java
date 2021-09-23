@@ -7,14 +7,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.member.service.MemberService;
+import com.tstecon.ocp.member.vo.AdminVO;
 import com.tstecon.ocp.member.vo.MemberVO;
 
 @Controller("memberController")
@@ -24,40 +29,48 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
-
-	// 아이디를 입력했을 때 회원목록과 일치하면 로그인하고, 아니면 안내문구와 함께 다시 로그인화면으로 돌아가기
+	@Autowired
+	private AdminVO adminVO;
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
+	public @ResponseBody String login(@RequestBody String login, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		memberVO = memberService.login(loginMap);
+		Map<String, String> loginMap = new Gson().fromJson(login, Map.class);
 
-		if (memberVO != null && memberVO.getId() != null) {
-			HttpSession session = request.getSession();
-			session = request.getSession();
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo", memberVO);
+		memberVO = memberService.loginByMember(loginMap);
+		adminVO = memberService.loginByAdmin(loginMap);
 
-		} else {
-			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
-			mav.addObject("message", message);
-			mav.setViewName("/member/loginForm");
+		HttpSession session = request.getSession();
+		if (memberVO != null) { // member�� �α��� ���� ��
+			session.setAttribute("loginStatus", "member");
+			session.setAttribute("loginInfo", memberVO);
+			return "true";
+		} else if (adminVO != null) { // admin���� �α��� ���� ��
+			session.setAttribute("loginStatus", "admin");
+			session.setAttribute("loginInfo", adminVO);
+			return "true";
+		} else { // �α��� ���� ��
+			return "false";
 		}
-		return mav;
 	}
-
-	// 로그아웃했을 때 메인화면으로 돌아가기
 
 	@Override
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn", false);
-		session.removeAttribute("memberInfo");
-		mav.setViewName("redirect:/main/main.do");
-		return mav;
+		session.removeAttribute("loginStatus");
+		session.removeAttribute("loginInfo");
+
+		String message = "<script>";
+		message += " alert('�α׾ƿ� �Ǿ����ϴ�.');";
+		message += " location.href='" + request.getContextPath() + "/main/main.do';";
+		message += ("</script>");
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		ResponseEntity resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 }

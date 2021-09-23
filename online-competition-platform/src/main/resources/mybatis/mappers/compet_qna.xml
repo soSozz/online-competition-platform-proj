@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+<mapper namespace = "mappers.competQna"> 
+	
+    <resultMap id="qnaResult" type="competQnaVO"> <!-- Compet_qna의 resultMap -->
+        <result property="compet_qna_id" column="compet_qna_id" />
+        <result property="mem_id" column="mem_id" />
+        <result property="compet_id" column="compet_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="compet_qna_title" column="compet_qna_title" />
+        <result property="compet_qna_date" column="compet_qna_date" />
+        <result property="compet_qna_view" column="compet_qna_view" />
+        <result property="parent_id" column="parent_id" />
+        <result property="compet_qna_text" column="compet_qna_text" />
+   </resultMap>
+ 
+	
+<!-- 문의 게시판 리스트 -->
+	<select id="selectAllQnaList" resultMap="qnaResult">
+  	    <![CDATA[
+     SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
+     FROM compet_qna
+     START WITH parent_id=0
+     CONNECT BY PRIOR  compet_qna_id=parent_id
+     ORDER SIBLINGS BY compet_qna_id ASC
+                               
+       ]]>
+</select>
+
+<!-- 문의 게시판 새 글 DB추가 -->  <!--values #{mem_id} 추가 -->
+<insert id="insertNewQna" parameterType="java.util.Map">
+    <![CDATA[
+       INSERT into compet_qna(compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id) 
+       VALUES(#{articleNO},#{title}, #{content}, '20210907', 0, 1)
+    ]]>
+</insert>
+
+ <select id="selectNewQnaNO" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_qna_id), 0) + 1 from compet_qna
+     ]]>
+</select>
+
+ <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
+	<![CDATA[
+		select * from t_member	
+		where id=#{id} and pwd=#{pwd}		
+	]]>
+  </select>
+  
+  <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from t_member
+      where compet_qna_id = #{articleNO}		
+    ]]>
+  </select>
+
+</mapper>

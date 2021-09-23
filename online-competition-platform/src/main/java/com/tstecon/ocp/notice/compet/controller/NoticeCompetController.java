@@ -8,5 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface NoticeCompetController {
 	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response);
-
+    
 }
