@@ -6,33 +6,35 @@
 <mapper namespace = "mappers.admin.stat"> <!-- 리절트맵 정의 -->
 	<resultMap id = "adminStatResult" type = "adminStatVO"> 
 		<result property = "ctg_name" column = "ctg_name" />
-		<result property = "cut" column = "cut" />
+		<result property = "cnt" column = "cnt" />
 		<result property = "viw" column = "viw" />
+		<result property = "like" column = "like" />
 	</resultMap>
 	
+
 
 	
 	<select id = "selectAdminStatContentsList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cut from category, contents, compet
+			select category.categ_name, count(*) cnt from category, contents, compet
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and contents.contents_state='승인'
-            group by category.categ_name; 
+            group by category.categ_name
 		]]>
 	</select>
 	
-	<select id = "selectAdminStatlikesList" resultMap = "adminStatResult" parameterType = "int">
+	<select id = "selectAdminStatLikesList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cut from category, contents, compet, likes
+			select category.categ_name, count(*) cnt from category, contents, compet, likes
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and likes.contents_id = contents.contents_id and contents.contents_state='승인'
-            group by category.categ_name; 
+            group by category.categ_name
 		]]>
 	</select>
 	
 	<select id = "selectAdminStatCmtList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cut from category, contents, compet, cmt
+			select category.categ_name, count(*) cnt from category, contents, compet, cmt
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and cmt.contents_id = contents.contents_id and contents.contents_state='승인'
-            group by category.categ_name;
+            group by category.categ_name
 		]]>
 	</select>
 	
@@ -40,9 +42,7 @@
 		<![CDATA[
 			select category.categ_name,sum(contents_view) viw from category, contents, compet
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id
-            group by category.categ_name;
+            group by category.categ_name
 		]]>
 	</select>
-	
-
 </mapper>
