@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 public interface CompetController {
 //	대회안내 페이지

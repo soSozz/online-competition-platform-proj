@@ -55,8 +55,24 @@
   <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
     <![CDATA[
       SELECT * from compet_qna
-      where compet_qna_id = #{articleNO}		
+      where compet_qna_id = #{articleNO}
     ]]>
   </select>
+  
+  <update id="updateArticle" parameterType="java.util.Map">
+   update compet_qna
+   set compet_qna_title =  #{title}, compet_qna_text = #{content}
+   where compet_qna_id = #{articleNO}
+   </update>
+   
+   <delete id="deleteArticle"  parameterType="int">
+    <![CDATA[
+      delete from compet_qna
+      where compet_qna_id in (
+         SELECT compet_qna_id FROM  compet_qna
+         START WITH compet_qna_id = #{articleNO}
+         CONNECT BY PRIOR  compet_qna_id = parent_id )
+    ]]>      
+  </delete>
 
 </mapper>

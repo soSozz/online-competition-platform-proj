@@ -1,6 +1,5 @@
 package com.tstecon.ocp.compet.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
-import com.tstecon.ocp.compet.qna.vo.CompetQnaVO;
 import com.tstecon.ocp.compet.service.CompetService;
-import com.tstecon.ocp.compet.vo.CompetVO;
+
 
 
 @Controller("CompetController")
@@ -31,8 +29,7 @@ public class CompetControllerImpl implements CompetController {
 	@Autowired
 	private CompetDAO competDAO;
 
-	@Autowired
-	private CompetQnaVO competqnaVO;
+
 
 //	대회안내페이지
 	@Override
@@ -54,6 +51,7 @@ public class CompetControllerImpl implements CompetController {
 	}
 
 
+
 	@Override
 	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -62,8 +60,6 @@ public class CompetControllerImpl implements CompetController {
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
-
-
 
 
 }
