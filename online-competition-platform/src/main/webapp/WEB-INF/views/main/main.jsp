@@ -15,15 +15,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=${bannerFileList[0].banner_id }&banner_file_name=${bannerFileList[0].banner_file_name }&banner_file_type=${bannerFileList[0].banner_file_type}" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=2&banner_file_name=banner2.jpg&banner_file_type=img" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=3&banner_file_name=banner3.jpg&banner_file_type=img" alt="Third slide">
-                    </div>
+                	<c:forEach var="item" items="${bannerFileList }" varStatus="cnt">
+                		<c:choose>
+							<c:when test="${cnt.count == 1}">
+								<div class="carousel-item active">
+							</c:when>
+							<c:otherwise>
+                    			<div class="carousel-item">
+							</c:otherwise>
+                		</c:choose>
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=${item.banner_id }&banner_file_name=${item.banner_file_name }&banner_file_type=${item.banner_file_type}" alt="${cnt.count}">
+                    	</div>
+                	</c:forEach>
                 </div>
             </div>
         </div>
