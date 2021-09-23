@@ -82,6 +82,12 @@ public class CompetServiceImpl implements CompetService {
 
 	}
 
+	@Override
+	public int addCompet() throws DataAccessException {
+		int competVO = competDAO.insertCompet();
+		return competVO;
+	}
+
 	
 
 

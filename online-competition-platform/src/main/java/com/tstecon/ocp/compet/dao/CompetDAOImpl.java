@@ -82,5 +82,11 @@ public class CompetDAOImpl implements CompetDAO {
 		return competName;
 	}
 
+	@Override
+	public int insertCompet() throws DataAccessException {
+		int addCompet = sqlSession.insert("mappers.compet.insertCompet");
+		return addCompet;
+	}
+
 
 }

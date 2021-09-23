@@ -107,4 +107,8 @@
 		where categ_id = #{categ_id}
    	]]>
 	</select>
+	
+	<insert id="insertCompet">
+	
+	</insert>
 </mapper>

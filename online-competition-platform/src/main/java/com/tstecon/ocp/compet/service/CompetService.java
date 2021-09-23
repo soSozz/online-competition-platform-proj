@@ -32,4 +32,8 @@ public interface CompetService {
 	List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException;
 
 	public List<CompetVO> CompetName() throws DataAccessException;
+
+
+	// admin 대회 추가하기
+	public int addCompet() throws DataAccessException;
 }

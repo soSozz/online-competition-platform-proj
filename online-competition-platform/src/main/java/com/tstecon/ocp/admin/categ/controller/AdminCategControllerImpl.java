@@ -30,6 +30,7 @@ public class AdminCategControllerImpl implements AdminCategController{
 	@Autowired
 	private AdminCategDAO adminCategDAO;
 	
+	
 	//관리자 카테고리 기본 페이지 컨트롤러
 	@Override
 	@RequestMapping(value = { "/admin/admincateg.do" }, method = { RequestMethod.GET })
@@ -86,7 +87,7 @@ public class AdminCategControllerImpl implements AdminCategController{
 	@RequestMapping(value = { "/admin/addCompet.do" }, method = { RequestMethod.GET })
 	public ModelAndView addCompet(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
+		competService.addCompet();
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}
