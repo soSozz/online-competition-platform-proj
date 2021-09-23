@@ -36,7 +36,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <!-- start card -->
         <div class="card">
             <div class="card-body">
-                <h2 class="mb-lg-3"><strong>알고리즘</strong></h2>
+            	<div class="mb-lg-3">
+					<span id="compet_title" class="mb-lg-3 bold">알고리즘</span>
+					<a href="#" class="float-right"><span>더보기</span></a>
+				</div>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-12">
                         <div class="row">
