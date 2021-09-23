@@ -53,22 +53,17 @@ public class CompetDAOImpl implements CompetDAO{
 		return competList;
 	}
 
-//문의 게시판 내용	
-	@Override
-	public List selectAllQnaList() throws DataAccessException {
-		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
-		return qnaList;
-	}
-	@Override
-	public int insertNewArticle(Map articleMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList)sqlSession.selectList("mappers.compet.selectCompetName",i);
 		return competNameList;
+	}
+
+	@Override
+	public List<CompetQnaVO> selectAllQnaList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
