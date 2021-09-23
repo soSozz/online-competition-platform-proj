@@ -30,8 +30,9 @@
 	
 	<select id = "selectAllMemberList" resultMap = "MemberResult" parameterType = "String">
 		<![CDATA[	
-			
+			select * from member
 		]]>
 	</select>
+
 
 </mapper>

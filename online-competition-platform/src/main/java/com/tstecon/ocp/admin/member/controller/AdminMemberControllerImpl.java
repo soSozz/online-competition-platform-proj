@@ -16,7 +16,7 @@ import com.tstecon.ocp.admin.member.service.AdminMemberService;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.member.vo.MemberVO;
 
-@Controller("memberController")
+@Controller("adminMemberController")
 public class AdminMemberControllerImpl extends BaseController implements AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;

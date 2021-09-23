@@ -23,7 +23,7 @@ public class MemberVO {
 	private String mem_email1;
 	private String mem_email2;
 	private String mem_new_addr;
-	private String mem_ole_addr;
+	private String mem_old_addr;
 	private String mem_detail_addr;
 	private int mem_zipcode;
 	private String mem_contents_alert;
@@ -132,11 +132,11 @@ public class MemberVO {
 	public void setMem_new_addr(String mem_new_addr) {
 		this.mem_new_addr = mem_new_addr;
 	}
-	public String getMem_ole_addr() {
-		return mem_ole_addr;
+	public String getMem_old_addr() {
+		return mem_old_addr;
 	}
-	public void setMem_ole_addr(String mem_ole_addr) {
-		this.mem_ole_addr = mem_ole_addr;
+	public void setMem_old_addr(String mem_ole_addr) {
+		this.mem_old_addr = mem_ole_addr;
 	}
 	public String getMem_detail_addr() {
 		return mem_detail_addr;

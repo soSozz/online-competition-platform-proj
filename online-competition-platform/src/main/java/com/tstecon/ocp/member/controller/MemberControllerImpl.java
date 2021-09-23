@@ -25,7 +25,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@Autowired
 	private MemberVO memberVO;
 
-	// 아이디를 입력했을 때 회원목록과 일치하면 로그인하고, 아니면 안내문구와 함께 다시 로그인화면으로 돌아가기
+	// �븘�씠�뵒瑜� �엯�젰�뻽�쓣 �븣 �쉶�썝紐⑸줉怨� �씪移섑븯硫� 濡쒓렇�씤�븯怨�, �븘�땲硫� �븞�궡臾멸뎄�� �븿猿� �떎�떆 濡쒓렇�씤�솕硫댁쑝濡� �룎�븘媛�湲�
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -34,21 +34,21 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.login(loginMap);
 
-		if (memberVO != null && memberVO.getId() != null) {
+		if (memberVO != null && memberVO.getMem_id() != null) {
 			HttpSession session = request.getSession();
 			session = request.getSession();
 			session.setAttribute("isLogOn", true);
 			session.setAttribute("memberInfo", memberVO);
 
 		} else {
-			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
+			String message = "�븘�씠�뵒�굹  鍮꾨�踰덊샇媛� ��由쎈땲�떎. �떎�떆 濡쒓렇�씤�빐二쇱꽭�슂";
 			mav.addObject("message", message);
 			mav.setViewName("/member/loginForm");
 		}
 		return mav;
 	}
 
-	// 로그아웃했을 때 메인화면으로 돌아가기
+	// 濡쒓렇�븘�썐�뻽�쓣 �븣 硫붿씤�솕硫댁쑝濡� �룎�븘媛�湲�
 
 	@Override
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
