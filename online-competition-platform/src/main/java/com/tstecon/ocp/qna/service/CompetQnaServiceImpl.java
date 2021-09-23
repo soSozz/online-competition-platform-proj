@@ -51,7 +51,7 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		}
 	//문의 글 삭제		
 		public void removeArticle(int articleNO) throws Exception{
-			
+			competQnaDAO.deleteArticle(articleNO);
 		}
 
 }

@@ -50,10 +50,10 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 	public void updateArticle(Map articleMap) throws DataAccessException{
 		System.out.println( "수정 데이터1 :" + articleMap );
 		sqlSession.update("mappers.competQna.updateArticle", articleMap);
-		System.out.println( "수정 데이터2 :" + articleMap );
+		
 	}
 	public void deleteArticle(int articleNO) throws DataAccessException{
-		
+		sqlSession.delete("mapper.board.deleteArticle", articleNO);
 	}
 
 }
