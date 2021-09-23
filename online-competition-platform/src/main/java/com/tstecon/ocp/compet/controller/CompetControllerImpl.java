@@ -1,6 +1,5 @@
 package com.tstecon.ocp.compet.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,18 +50,6 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-//문의 페이지	
-	@Override
-	@RequestMapping(value = "/compet/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		List qnaList = competService.qnalistArticles();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("qnaList", qnaList);
-		return mav;
-
-	}
-
 //문의 페이지 로그인
 	@Override
 	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST)
@@ -94,6 +81,12 @@ public class CompetControllerImpl implements CompetController {
 	@Override
 	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
+		return null;
+	}
+
+	@Override
+	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

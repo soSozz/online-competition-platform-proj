@@ -30,6 +30,7 @@ public class AdminCategControllerImpl implements AdminCategController{
 	@Autowired
 	private AdminCategDAO adminCategDAO;
 	
+	//관리자 카테고리 기본 페이지 컨트롤러
 	@Override
 	@RequestMapping(value = { "/admin/admincateg.do" }, method = { RequestMethod.GET })
 	public ModelAndView adminCateg(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
@@ -61,5 +62,14 @@ public class AdminCategControllerImpl implements AdminCategController{
 		mav.addObject("competInCateg", aa);
 		return mav;
 	}
+	
+	//관리자 카테고리 편집 페이지 컨트롤러 -->> 나중에 학원에서 고치기
+	@Override
+	public ModelAndView addCategForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return null;
+	}
 
+	
 }
