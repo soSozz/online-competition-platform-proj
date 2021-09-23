@@ -15,15 +15,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/1/img/banner1.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/2/img/banner2.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/3/img/banner3.jpg" alt="Third slide">
-                    </div>
+                	<c:forEach var="item" items="${bannerFileList }" varStatus="cnt">
+                		<c:choose>
+							<c:when test="${cnt.count == 1}">
+								<div class="carousel-item active">
+							</c:when>
+							<c:otherwise>
+                    			<div class="carousel-item">
+							</c:otherwise>
+                		</c:choose>
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=${item.banner_id }&banner_file_name=${item.banner_file_name }&banner_file_type=${item.banner_file_type}" alt="${cnt.count}">
+                    	</div>
+                	</c:forEach>
                 </div>
             </div>
         </div>
@@ -33,7 +36,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <!-- start card -->
         <div class="card">
             <div class="card-body">
-                <h2 class="mb-lg-3"><strong>알고리즘</strong></h2>
+            	<div class="mb-lg-3">
+					<span id="compet_title" class="mb-lg-3 bold">알고리즘</span>
+					<a href="#" class="float-right"><span>더보기</span></a>
+				</div>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-12">
                         <div class="row">
