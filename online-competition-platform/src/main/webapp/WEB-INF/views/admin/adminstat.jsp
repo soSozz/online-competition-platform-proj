@@ -108,26 +108,23 @@ h3,h4{
         };
         
         
-        var VOList = ${AdminStatVOList}
-        var ctgList = []
-        var contentsList = []
-        var viewList = []
-        var likeList = []
+        var VOList = ${adminContentsList}
+        var ctgNames = []
+        var Numcontents = []
         for (var i=0; i<VOList.length; i++){
-        	ctgList.add(VOList[i].ctgName)
-        	contentsList.add(VOList[i].cnt)
-        	viewList.add(VOList[i].viw)
-        	likeList.add(VOList[i].like)
+        	ctgNames.add(VOList[i].ctgName)
+        	Numcontents.add(VOList[i].viw)
+        
         }
         
 
      
         var chDonutData1 = {
-            labels: ctgList
+            labels: ctgNames
             datasets: [{
                 backgroundColor: colors.slice(0, 3),
                 borderWidth: 0,
-                data: contentsList
+                data: Numcontents
             }]
         };
         var chDonut1 = document.getElementById("chDonut1");
@@ -139,7 +136,7 @@ h3,h4{
             });
         }
 
-        var chDonutData2 = {
+        /* var chDonutData2 = {
             labels: ctgList
             datasets: [{
                 backgroundColor: colors.slice(0, 3),
@@ -171,7 +168,7 @@ h3,h4{
                 data: chDonutData3,
                 options: donutOptions
             });
-        }
+        } */
 
     </script>
     <div class="container">
