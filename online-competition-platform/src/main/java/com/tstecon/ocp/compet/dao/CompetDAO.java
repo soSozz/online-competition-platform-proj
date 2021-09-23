@@ -24,13 +24,10 @@ public interface CompetDAO {
 
 	public List<CompetFileVO> selectCompet_id_file(int compet_id) throws DataAccessException;
 
-// 문의 게시판 내용
-	public List selectAllQnaList() throws DataAccessException;
-
-	public int insertNewArticle(Map articleMap) throws DataAccessException;
-
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException;
 
 	public List<CompetVO> selectCompetName() throws DataAccessException;
+
+	public List<CompetVO> selectCompetNameByName(String i) throws DataAccessException;
 
 }

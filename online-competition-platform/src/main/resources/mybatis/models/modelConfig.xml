@@ -19,6 +19,7 @@
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerVO" alias="bannerVO" />
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerFileVO" alias="bannerFileVO" />
 
+		 <typeAlias type="com.tstecon.ocp.contents.vo.ContentsVO" alias="contentsVO" />
 <!--     <typeAlias type="com.bookshop01.goods.vo.GoodsVO" alias="goodsVO" /> -->
 <!--     <typeAlias type="com.bookshop01.goods.vo.ImageFileVO" alias="imageFileVO" /> -->
     

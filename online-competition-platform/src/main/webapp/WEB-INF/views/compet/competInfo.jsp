@@ -2,7 +2,20 @@
     pageEncoding="UTF-8" 
     isELIgnored="false"  %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+ <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+ <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+ <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+<script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+<script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
+<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+<script src="${contextPath}/resources/js/custom.min.js"></script>
+<script src="${contextPath}/resources/js/settings.js"></script>
+<script src="${contextPath}/resources/js/gleek.js"></script>
+<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
+
+
 <c:set var="competSmallFileType" value="${competPoster.competSmallPoster[0].compet_file_type}" />
 <c:set var="competSmallFileName" value="${competPoster.competSmallPoster[0].compet_file_name}" />
 <c:set var="competBigFileType" value="${competPoster.competBigPoster[0].compet_file_type}" />

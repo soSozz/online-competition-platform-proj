@@ -73,7 +73,7 @@
 		]]>
 	</select>
 	
-<!--  -->
+<!-- 종료되지 않은 대회 -->
 	<select id="selectCompetNames" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
 		select compet_name
@@ -82,10 +82,20 @@
    	]]>
 	</select>
 	
-	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
+	<!-- 대회이름 가져오기 -->
+	<select id="selectCompetName" resultMap="CompetResult">
   	<![CDATA[
 		select compet_name
 		from compet
+   	]]>
+	</select>
+	
+	<!-- 카테고리명을 통해 대회명 가져오기 -->
+	<select id="selectCompetNameByName" resultMap="CompetResult" parameterType = "String">
+  	<![CDATA[
+		select compet_name
+		from compet
+		where categ_name = #{categ_name}
    	]]>
 	</select>
 </mapper>

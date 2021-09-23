@@ -25,6 +25,7 @@ request.setCharacterEncoding("UTF-8");
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/font.css" rel="stylesheet">
 <style>
 h3,h4{
 	font-weight:bold;

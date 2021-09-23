@@ -8,7 +8,7 @@ import com.tstecon.ocp.contents.vo.ContentsVO;
 
 public interface AdminContentsDAO {
 
-	public List<ContentsVO> selectContentsName()throws DataAccessException;
+	public List<ContentsVO> selectContentsList()throws DataAccessException;
 
 	public List<ContentsVO> selectApprContentsList()throws DataAccessException;
 

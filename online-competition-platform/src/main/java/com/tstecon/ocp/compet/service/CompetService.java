@@ -18,14 +18,10 @@ public interface CompetService {
 
 	public Map<String, List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException;
 
-//문의 	
-	public List<CompetQnaVO> qnalistArticles() throws Exception;
-
-//문의 글쓰기창
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception;
-
-	// 대회 이름 리스트 가져오기
+	// 카테고리 아이디를 통해 대회 이름 리스트 가져오기
 	public List<CompetVO> competListById(int i) throws Exception;
+	// 카테고리명을 통해 대회 이름 가져오기
+	public List<CompetVO> competListByName(String i) throws Exception;
 
 	List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException;
 

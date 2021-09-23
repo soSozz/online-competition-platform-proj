@@ -8,4 +8,9 @@
 		<put-attribute name="title" value="트스테콘 카테고리 관리" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/admincateg.jsp" />
 	</definition>
+	
+	<definition name="/admin/adminContents" extends="adminLayout">
+		<put-attribute name="title" value="트스테콘 컨텐츠 관리" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminContents.jsp" />
+	</definition>
 </tiles-definitions>

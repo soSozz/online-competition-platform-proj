@@ -52,13 +52,6 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
 	}
-
-//문의 게시판
-	@Override
-	public List<CompetQnaVO> qnalistArticles() throws Exception {
-		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
-		return qnaList;
-	}
 	
 	// 대회 리스트 아이디통해 이름 알아내기
 	@Override
@@ -66,16 +59,20 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
 		return competListByName;
 	}
-
+	// 카테고리 이름을 통해 대회 이름 출력하기
 	@Override
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		return null;
+	public List<CompetVO> competListByName(String i) throws Exception {
+		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
+		return competNameByName;
 	}
+	
 	// 대회 이름 가져오기
 	@Override
 	public List<CompetVO> CompetName() throws DataAccessException {
 		List<CompetVO> competName = competDAO.selectCompetName();
 		return competName;
 	}
+
+
 
 }
