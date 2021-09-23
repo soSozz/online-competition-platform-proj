@@ -1,6 +1,5 @@
 package com.tstecon.ocp.compet.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.service.CompetService;
-import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Controller("CompetController")
@@ -29,10 +27,10 @@ public class CompetControllerImpl implements CompetController {
 
 	@Autowired
 	private CompetDAO competDAO;
-	
+
 	@Autowired
-    private CompetQnaVO competqnaVO;
-	
+	private CompetQnaVO competqnaVO;
+
 //	대회안내페이지
 	@Override
 	@RequestMapping(value = { "/compet/competInfo.do" }, method = { RequestMethod.GET })
@@ -52,45 +50,44 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-//문의 페이지	
-	@Override
-	@RequestMapping(value = "/compet/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		List qnaList = competService.qnalistArticles();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("qnaList", qnaList);
-		return mav;
-
-	}
-	
 //문의 페이지 로그인
 	@Override
-	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST )
-	public ModelAndView Compet_qna_login(@ModelAttribute("member")CompetQnaVO member, RedirectAttributes rAttr,
-			  HttpServletRequest request, HttpServletResponse response) throws Exception{
-			  ModelAndView mav = new ModelAndView();
-			  competqnaVO = competService.login(member);
-			  if(competqnaVO != null ) {
-				  
-			  }
-		
+	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST)
+	public ModelAndView Compet_qna_login(@ModelAttribute("member") CompetQnaVO member, RedirectAttributes rAttr,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		competqnaVO = competService.login(member);
+		if (competqnaVO != null) {
+
+		}
+
 		return null;
 	}
 
 	@Override
+	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)
+	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		// service: 데이터 가져오기
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+
+	@Override
 	public ModelAndView Compet_qna_logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
+		return null;
+	}
+
+	@Override
+	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

@@ -10,8 +10,6 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 public interface AdminCategService {
 
-	public Map<String,List<CategVO>> Categlist() throws DataAccessException;
-
-	public Map<String,List<CompetVO>> Competlist() throws DataAccessException;
-
+	public List<CategVO> CategAllList() throws DataAccessException;
+	public List<CategVO> CategName() throws DataAccessException;
 }

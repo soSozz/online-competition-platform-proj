@@ -45,6 +45,4 @@
             group by category.categ_name
 		]]>
 	</select>
-	
-
 </mapper>
