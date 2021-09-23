@@ -45,7 +45,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
+                                    <img class="img-fluid" src="${contextPath }/thumbnails.do?compet_file_name=삼성전자 알고리즘 대회-big.jpg&compet_file_type=img&compet_id=1" alt="" />
                                     <div class="card-body">
                                         <h5 class="card-title">최단경로 찾기</h5>
                                         <p class="card-text text-truncate">
@@ -60,7 +60,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                             <!-- End Col -->
                             <div class="col-lg-4">
                                 <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
+                                    <img class="img-fluid" src="${contextPath }/thumbnails.do?compet_file_name=중학생 알고리즘 경진대회-big.jpg&compet_file_type=img&compet_id=2" alt="" />
                                     <div class="card-body">
                                         <h5 class="card-title">버블탐색</h5>
                                         <p class="card-text text-truncate">
