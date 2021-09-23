@@ -16,13 +16,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/1/img/banner1.jpg" alt="First slide">
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=${bannerFileList[0].banner_id }&banner_file_name=${bannerFileList[0].banner_file_name }&banner_file_type=${bannerFileList[0].banner_file_type}" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/2/img/banner2.jpg" alt="Second slide">
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=2&banner_file_name=banner2.jpg&banner_file_type=img" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/3/img/banner3.jpg" alt="Third slide">
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=3&banner_file_name=banner3.jpg&banner_file_type=img" alt="Third slide">
                     </div>
                 </div>
             </div>
