@@ -59,6 +59,7 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
 		return qnaList;
 	}
+
 	
 	// 대회 리스트 아이디통해 이름 알아내기
 	@Override
@@ -67,15 +68,25 @@ public class CompetServiceImpl implements CompetService {
 		return competListByName;
 	}
 
-	@Override
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		return null;
-	}
-	// 대회 이름 가져오기
+
+
 	@Override
 	public List<CompetVO> CompetName() throws DataAccessException {
 		List<CompetVO> competName = competDAO.selectCompetName();
 		return competName;
+
 	}
+
+	@Override
+	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	
+
 
 }
