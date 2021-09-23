@@ -28,6 +28,7 @@
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
 	</beans:bean>
 	<context:component-scan base-package="com.tstecon.ocp" />
+	<mvc:annotation-driven />
 
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -48,6 +49,11 @@
 			<beans:property name="prefix" value="/WEB-INF/views/" />
 			<beans:property name="suffix" value=".jsp" />
 		</beans:bean>
+
+
+
+
+	<annotation-driven />
 
 
 
