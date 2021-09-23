@@ -10,4 +10,10 @@ public interface AdminCategController {
 	public ModelAndView adminCateg(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
 	public ModelAndView addCategForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	
+	public ModelAndView addCompet(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	
+	public ModelAndView competFinish(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	
+	public ModelAndView competDelete(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }

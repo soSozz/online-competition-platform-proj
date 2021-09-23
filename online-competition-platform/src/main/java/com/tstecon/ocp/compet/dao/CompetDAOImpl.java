@@ -55,13 +55,18 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
-	//카테고리 아이디를 통해 대회 이름 가져오기
+	//카테고리 아이디를 통해 진행중인 대회 리스트 가져오기
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);
 		return competNameList;
 	}
-
+	//카테고리 아이디를 통해 종료된 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> selectFinishCompet(int i) throws DataAccessException {
+		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectFinishCompet", i);
+		return competNameList;
+	}
 	
 	// 대회 이름 가져오기
 	@Override
@@ -70,11 +75,12 @@ public class CompetDAOImpl implements CompetDAO {
 		return competName;
 	}
 	
-	// 카테고리 명을 통해 대회 이름 가져오기
+	// 카테고리 아이디을 통해 대회 이름 가져오기
 	@Override
-	public List<CompetVO> selectCompetNameByName(String i) throws DataAccessException {
+	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException {
 		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName");
 		return competName;
 	}
+
 
 }

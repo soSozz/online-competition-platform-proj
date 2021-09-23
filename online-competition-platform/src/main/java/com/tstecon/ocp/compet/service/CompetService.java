@@ -23,8 +23,11 @@ public interface CompetService {
 
 	// 카테고리 아이디를 통해 대회 이름 리스트 가져오기
 	public List<CompetVO> competListById(int i) throws Exception;
+	// 종료된 대회 가져오기
+	public List<CompetVO> finishCompetList(int i) throws Exception;
+	
 	// 카테고리명을 통해 대회 이름 가져오기
-	public List<CompetVO> competListByName(String i) throws Exception;
+	public List<CompetVO> competListByName(int i) throws Exception;
 
 	List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException;
 

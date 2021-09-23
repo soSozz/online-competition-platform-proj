@@ -40,7 +40,7 @@
 <div class="container justify-content-lg-center">
   <div class="row">
     <div class="col-lg-12">
-      <div class = "poster"><a href = "${contextPath}/compet/competInfo.do?compet_id=${compet_id}"><img src="${contextPath}/competFile_download.do?compet_id=${compet_id}&compet_file_name=${competSmallFileName}&compet_file_type=${competSmallFileType}" width=100% height= 150px /></a></div>
+      <div class = "poster"><a href = "${contextPath}/compet/competInfo.do?compet_id=${compet_id}"><img src="${contextPath}/competFile_download.do?compet_id=${compet_id}&compet_file_name=${competSmallFileName}&compet_file_type=${competSmallFileType}" width=100% height= 200px /></a></div>
     </div>
     <div class="col-lg-12">
       <ul class="nav nav-tabs mb-3 justify-content-lg-center">

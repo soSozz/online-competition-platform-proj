@@ -59,10 +59,17 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
 		return competListByName;
 	}
+	
+	//종료된 대회 가져오기
+	@Override
+	public List<CompetVO> finishCompetList(int i) throws Exception {
+		List<CompetVO> competListFinish = competDAO.selectFinishCompet(i);
+		return competListFinish;
+	}
 
 	// 카테고리 이름을 통해 대회 이름 출력하기
 	@Override
-	public List<CompetVO> competListByName(String i) throws Exception {
+	public List<CompetVO> competListByName(int i) throws Exception {
 		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
 		return competNameByName;
 	}
@@ -74,6 +81,8 @@ public class CompetServiceImpl implements CompetService {
 		return competName;
 
 	}
+
+	
 
 
 }

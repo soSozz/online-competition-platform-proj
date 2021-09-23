@@ -38,12 +38,12 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		ModelAndView mav = new ModelAndView(viewName);
 		Map<String, List<ContentsVO>> map = new HashMap<String, List<ContentsVO>>();
 		Map<String, List<CompetVO>> competNames = new HashMap<String, List<CompetVO>>();
-		List<CategVO> categNames = adminCategService.categName();
+		List<CategVO> categList = adminCategService.CategAllList();
 		List<ContentsVO> contentsList = adminContentsService.contentsList();
 		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
 		
-		for (CategVO i : categNames) {
-			List<CompetVO> competList =  competService.competListByName(i.getCateg_name());
+		for (CategVO i : categList) {
+			List<CompetVO> competList = competService.competListByName(i.getCateg_id());
 			// ... = competService.competListByCategId(i.categ_id);
 			competNames.put(i.getCateg_name(), competList);
 			//aa.put(i.categ_name, competList);

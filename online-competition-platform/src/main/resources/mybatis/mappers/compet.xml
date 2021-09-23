@@ -78,7 +78,16 @@
   	<![CDATA[
 		select compet_name
 		from compet
-		where compet.categ_id = #{categ_id} and compet_terminated = 'N'
+		where categ_id = #{categ_id} and compet_terminated = 'N'
+   	]]>
+	</select>
+	
+	<!-- 종료된 대회 -->
+	<select id="selectFinishCompet" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+		select *
+		from compet
+		where compet.categ_id = #{categ_id} and compet_terminated = 'Y'
    	]]>
 	</select>
 	
@@ -91,11 +100,11 @@
 	</select>
 	
 	<!-- 카테고리명을 통해 대회명 가져오기 -->
-	<select id="selectCompetNameByName" resultMap="CompetResult" parameterType = "String">
+	<select id="selectCompetNameByName" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
 		select compet_name
 		from compet
-		where categ_name = #{categ_name}
+		where categ_id = #{categ_id}
    	]]>
 	</select>
 </mapper>
