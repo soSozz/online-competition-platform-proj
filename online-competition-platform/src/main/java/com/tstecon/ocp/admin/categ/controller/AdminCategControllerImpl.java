@@ -194,7 +194,7 @@ public class AdminCategControllerImpl implements AdminCategController{
 	@RequestMapping(value = { "/admin/competFinish.do" }, method = { RequestMethod.GET })
 	public ModelAndView competFinish(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-
+		
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}
