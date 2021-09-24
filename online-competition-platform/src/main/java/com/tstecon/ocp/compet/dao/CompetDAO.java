@@ -45,6 +45,8 @@ public interface CompetDAO {
 
 	public int selectAddCompetId() throws DataAccessException;
 
+	public void updateCompetTerminated(String compet_name) throws DataAccessException;
+
 
 
 }

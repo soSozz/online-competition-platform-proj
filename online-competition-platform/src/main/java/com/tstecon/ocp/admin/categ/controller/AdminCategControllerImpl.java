@@ -192,9 +192,9 @@ public class AdminCategControllerImpl implements AdminCategController{
 	// 대회 종료
 	@Override
 	@RequestMapping(value = { "/admin/competFinish.do" }, method = { RequestMethod.GET })
-	public ModelAndView competFinish(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView competFinish(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
+		competService.competFinish(compet_name);
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}

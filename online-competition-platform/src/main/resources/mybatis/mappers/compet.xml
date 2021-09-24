@@ -153,4 +153,12 @@
 		
    	]]>
 	</insert>
+	
+	<update id="updateCompetTerminated" parameterType="String">
+	<![CDATA[
+		update compet 
+		set compet_terminated = 'Y'
+		where compet_name = #{compet_name}
+	]]>
+	</update>
 </mapper>

@@ -110,11 +110,15 @@ public class CompetDAOImpl implements CompetDAO {
 		return addCompetFile;
 	}
 	
-	
 	@Override
 	public int selectAddCompetId() throws DataAccessException {
 		int competId = sqlSession.selectOne("mappers.compet.selectNewCompetId");
 		return competId;
+	}
+
+	@Override
+	public void updateCompetTerminated(String compet_name) throws DataAccessException {
+		sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
 	}
 
 	

@@ -74,6 +74,7 @@ h3, h4 {
 	<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
 	<hr />
 	<h4>진행 중인 대회</h4>
+	<form action="/admin/competFinish.do">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="card border-primary">
@@ -86,9 +87,9 @@ h3, h4 {
 				<div class="card-body">
 					<c:forEach var="compet" items="${categ.value}">
 						<div class="competList">
-							<div class="competName">${compet.compet_name}<a href="#"
-									class="btn btn-primary float-right" style="height: 35px;">대회
-									종료</a>
+							<div class="compet_name"><input type="text" name="compet_name" value="${compet.compet_name}" readonly />
+							<input type="submit"
+									class="btn btn-primary float-right" style="height: 35px;" value="대회 종료" />
 							</div>
 						</div>
 					</c:forEach>
@@ -96,6 +97,7 @@ h3, h4 {
 			</div>
 		</div>
 	</c:forEach>
+	</form>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -255,7 +257,7 @@ h3, h4 {
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
-				<form>
+				<form action="/ocp/admin/addCompet.do">
 					<div class="row">
 							<label id="categ-label" class="control-label"></label> 
 							<input
@@ -299,7 +301,7 @@ h3, h4 {
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default waves-effect"
 					data-dismiss="modal">닫기</button>
-				<button type="button" onclick="location='/ocp/admin/addCompet.do'"
+				<input type="submit" 
 					class="btn btn-danger waves-effect waves-light save-category"
 					data-dismiss="modal">추가하기</button>
 			</div>

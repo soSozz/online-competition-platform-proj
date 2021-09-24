@@ -104,4 +104,10 @@ public class CompetServiceImpl implements CompetService {
 		return addCompetId;
 	}
 
+	@Override
+	public void competFinish(String compet_name) throws DataAccessException {
+		competDAO.updateCompetTerminated(compet_name);
+		
+	}
+
 }
