@@ -110,4 +110,10 @@ public class CompetServiceImpl implements CompetService {
 		
 	}
 
+	@Override
+	public void competDelete(String compet_name) throws DataAccessException {
+		competDAO.deleteCompet(compet_name);
+		
+	}
+
 }

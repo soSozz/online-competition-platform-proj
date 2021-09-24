@@ -47,6 +47,8 @@ public interface CompetDAO {
 
 	public void updateCompetTerminated(String compet_name) throws DataAccessException;
 
+	public void deleteCompet(String compet_name) throws DataAccessException;
+
 
 
 }

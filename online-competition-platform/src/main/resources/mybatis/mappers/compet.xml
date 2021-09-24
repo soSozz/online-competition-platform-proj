@@ -161,4 +161,12 @@
 		where compet_name = #{compet_name}
 	]]>
 	</update>
+	
+	<delete id="deleteCompet" parameterType = "String">
+	<![CDATA[
+		delete 
+		from compet
+		where compet_name = #{compet_name}
+	]]>
+	</delete>
 </mapper>

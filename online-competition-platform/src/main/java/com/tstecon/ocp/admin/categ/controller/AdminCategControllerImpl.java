@@ -202,9 +202,9 @@ public class AdminCategControllerImpl implements AdminCategController{
 	// 종료된 대회 삭제
 	@Override
 	@RequestMapping(value = { "/admin/competDelete.do" }, method = { RequestMethod.GET })
-	public ModelAndView competDelete(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView competDelete(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-
+		competService.competDelete(compet_name);
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}

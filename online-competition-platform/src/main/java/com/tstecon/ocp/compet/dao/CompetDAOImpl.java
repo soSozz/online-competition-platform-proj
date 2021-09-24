@@ -121,6 +121,12 @@ public class CompetDAOImpl implements CompetDAO {
 		sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
 	}
 
+	@Override
+	public void deleteCompet(String compet_name) throws DataAccessException {
+		sqlSession.delete("mappers.compet.deleteCompet",compet_name);
+		
+	}
+
 	
 
 }

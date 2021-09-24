@@ -132,6 +132,7 @@ h3, h4 {
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
+									<form action="/admin/competDelete.do">
 										<table class="table table-striped table-bordered dataTable"
 											id="DataTables_Table_0" role="grid"
 											aria-describedby="DataTables_Table_0_info">
@@ -169,17 +170,18 @@ h3, h4 {
 													<tr role="row" class="even">
 														<td>${status.count + stat}</td>
 														<td><span class="float-center">${categ.key}</span></td>
-														<td>${compet.compet_name}</td>
+														<td><input type="text" name="compet_name" value="${compet.compet_name}" readonly /></td>
 														<td>${compet.compet_start}</td>
 														<td>${compet.compet_end}</td>
 														<td>${compet.compet_create}</td>
-														<td><button class="deletebtn btn btn-primary float-center">삭제하기</button></td>
+														<td><input class="deletebtn btn btn-primary float-center" type="submit" value="삭제하기"/></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
 														</c:if>
 														</c:forEach>
 												</c:forEach>
+											
 												<!-- <tr role="row" class="odd">
 														<td class="sorting_1">Airi Satou</td>
 														<td>Accountant</td>
@@ -200,6 +202,7 @@ h3, h4 {
 													</tr> -->
 											</tbody>
 										</table>
+										</form>
 									</div>
 								</div>
 								<div class="row">

@@ -23,5 +23,5 @@ public interface AdminCategController {
 	
 	public ModelAndView competFinish(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
-	public ModelAndView competDelete(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView competDelete(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }
