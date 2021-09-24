@@ -15,4 +15,6 @@ public interface AdminStatDAO {
 	public List<AdminStatVO> selectAdminStatCmtList() throws DataAccessException;
 	
 	public List<AdminStatVO> selectAdminStatViewList() throws DataAccessException;
+	
+	public List<AdminStatVO> selectAdminStatAllList() throws DataAccessException;
 }
