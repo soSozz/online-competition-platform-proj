@@ -166,7 +166,7 @@ public class FileDownloadController {
 		File image = new File(filePath);
 
 		if (image.exists()) {
-			Thumbnails.of(image).size(400, 400).outputFormat("jpg").toOutputStream(out);
+			Thumbnails.of(image).scale(1.0).outputFormat("jpg").toOutputStream(out);
 		}
 	}
 

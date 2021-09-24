@@ -4,11 +4,11 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 	<definition name="/main/main" extends="mainLayout">
-		<put-attribute name="title" value="트스테콘 메인페이지" />
+		<put-attribute name="title" value="트스테콘" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
 	<definition name="/" extends="mainLayout">
-		<put-attribute name="title" value="트스테콘 메인페이지" />
+		<put-attribute name="title" value="트스테콘" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
 </tiles-definitions>
