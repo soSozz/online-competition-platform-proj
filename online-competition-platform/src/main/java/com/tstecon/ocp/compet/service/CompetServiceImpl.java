@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService {
@@ -52,15 +51,20 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
 	}
-	
+
 	// 대회 리스트 아이디통해 이름 알아내기
 	@Override
 	public List<CompetVO> competListById(int i) throws Exception {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
 		return competListByName;
 	}
-	
-	//종료된 대회 가져오기
+
+	@Override
+	public List<CompetVO> competListByCategIdToThree(int i) throws Exception {
+		return competDAO.selectCompetsByCategIdToThree(i);
+	}
+
+	// 종료된 대회 가져오기
 	@Override
 	public List<CompetVO> finishCompetList(int i) throws Exception {
 		List<CompetVO> competListFinish = competDAO.selectFinishCompet(i);
@@ -73,7 +77,7 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
 		return competNameByName;
 	}
-	
+
 	// 대회 이름 가져오기
 	@Override
 	public List<CompetVO> CompetName() throws DataAccessException {
@@ -81,16 +85,12 @@ public class CompetServiceImpl implements CompetService {
 		return competName;
 
 	}
-	
+
 	// 대회 추가하기
 	@Override
 	public int addCompet() throws DataAccessException {
 		int competVO = competDAO.insertCompet();
 		return competVO;
 	}
-
-
-	
-
 
 }
