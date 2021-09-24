@@ -16,6 +16,11 @@
 		<result property = "compet_create" column = "compet_create" />
 		<result property = "compet_text" column = "compet_text" />
 		<result property = "compet_terminated" column = "compet_terminated" />
+		
+		<!-- 파일 정보 추가 -->
+        <result property = "compet_file_id" column = "compet_file_id" />
+		<result property = "compet_file_type" column = "compet_file_type" />
+		<result property = "compet_file_name" column = "compet_file_name" />
 	</resultMap>
 	
 	<resultMap id = "CompetFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
@@ -82,6 +87,17 @@
    	]]>
 	</select>
 	
+<!-- 카테고리별로 진행 중인 대회 3개 가져오기-->
+	<select id="selectCompetsByCategIdToThree" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+  		select x.*
+  		from (select *
+  			  from compet natural join compet_file
+			  where categ_id = #{categ_id} and compet_terminated = 'N' and compet_file_name like '%-big%' order by compet_create desc) x
+		where rownum <= 3
+   	]]>
+	</select>
+
 	<!-- 종료된 대회 -->
 	<select id="selectFinishCompet" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
@@ -108,7 +124,49 @@
    	]]>
 	</select>
 	
-	<insert id="insertCompet">
-	
+	 <select id="selectNewCompetId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_id), 0) + 1 
+        from compet
+     ]]>
+	</select>
+
+	<insert id="insertCompet" parameterType = "java.util.Map">
+	<![CDATA[
+		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
+							 compet_create, compet_text, compet_terminated)
+		values (#{compet_id}, #{categ_id}, #{compet_name}, #{compet_start}, #{compet_end},
+			   sysdate, #{compet_text}, 'N')
+   	]]>
 	</insert>
+	
+	<select id="selectNewCompetFileId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_file_id), 0) + 1 
+        from compet_file
+     ]]>
+	</select>
+	
+	<insert id="insertCompetFile" parameterType = "int">
+	<![CDATA[
+		insert into compet_file (
+		
+   	]]>
+	</insert>
+	
+	<update id="updateCompetTerminated" parameterType="String">
+	<![CDATA[
+		update compet 
+		set compet_terminated = 'Y'
+		where compet_name = #{compet_name}
+	]]>
+	</update>
+	
+	<delete id="deleteCompet" parameterType = "String">
+	<![CDATA[
+		delete 
+		from compet
+		where compet_name = #{compet_name}
+	]]>
+	</delete>
 </mapper>

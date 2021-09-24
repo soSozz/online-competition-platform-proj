@@ -38,7 +38,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			HttpServletResponse response) throws Exception {
 		Map<String, String> loginMap = new Gson().fromJson(login, Map.class);
 
-
 		memberVO = memberService.loginByMember(loginMap);
 		adminVO = memberService.loginByAdmin(loginMap);
 
@@ -64,8 +63,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		session.removeAttribute("loginInfo");
 
 		String message = "<script>";
-		message += " alert('�α׾ƿ� �Ǿ����ϴ�.');";
-		message += " location.href='" + request.getContextPath() + "/main/main.do';";
+		message += "alert('로그아웃 되었습니다');";
+		message += "location.href='" + request.getContextPath() + "/main/main.do';";
 		message += ("</script>");
 
 		HttpHeaders responseHeaders = new HttpHeaders();
