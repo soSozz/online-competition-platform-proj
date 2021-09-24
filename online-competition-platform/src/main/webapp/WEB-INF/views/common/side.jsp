@@ -8,8 +8,8 @@
 <link href="${contextPath}/resources/css/sidebar.css" rel="stylesheet">
 
 <div class="card">
-        <div class="card-body">
-            <h3 class="mb-lg-2"><strong>최근 종료된 대회</strong></h3>
+        <div class="card-body p-2">
+            <h3 class="m-lg-2 text-center"><b>최근 종료된 대회</b></h3>
             <div class="bootstrap-carousel">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
@@ -222,20 +222,12 @@
                                             <td class="text-center">닉네임7</td>
                                             <td class="text-center">55</td>
                                         </tr>
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <!-- table end -->
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" data-slide="prev">
-                        <button type="button" class="btn mb-1 btn-rounded btn-success">prev</button>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" data-slide="next">
-                        <button type="button" class="btn mb-1 btn-rounded btn-success">next</button>
-                    </a>
                 </div>
             </div>
         </div>

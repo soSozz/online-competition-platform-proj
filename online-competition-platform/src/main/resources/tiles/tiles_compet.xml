@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 	<definition name="/compet/competInfo" extends="baseLayout">
-		<put-attribute name="title" value="트스테콘 대회안내페이지" />
+		<put-attribute name="title" value="대회안내페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competInfo.jsp" />
 	</definition>
 	<definition name="/compet/qna" extends="baseLayout">
