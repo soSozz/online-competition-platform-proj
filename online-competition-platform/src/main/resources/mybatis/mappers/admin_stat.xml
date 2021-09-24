@@ -54,9 +54,7 @@
             group by category.categ_name
 		]]>
 	</select>
-<<<<<<< HEAD
-	
-	<select id = "selectStatAllList" resultMap = "adminStatResult">
+<select id = "selectStatAllList" resultMap = "adminStatResult">
 
 select contents.contents_name, categ.categ_name, compet.compet_name, mem.mem_nickname, contents.contents_processing_date, contents.contents_view, likes1, cmt1
 from category categ, compet, contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
@@ -70,6 +68,5 @@ from category categ, compet, contents, member mem, (select contents.contents_id 
 where categ.categ_id = compet.categ_id and compet.compet_id = contents.compet_id and contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_id = contents_id3
 
 	</select>
-=======
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+
 </mapper>
