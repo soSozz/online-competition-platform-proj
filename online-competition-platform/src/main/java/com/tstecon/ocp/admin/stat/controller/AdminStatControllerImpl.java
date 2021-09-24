@@ -33,12 +33,14 @@ public class AdminStatControllerImpl implements AdminStatController {
 		List<AdminStatVO> adminLikesList = AdminStatService.adminLikesList();
 		List<AdminStatVO> adminCmtList = AdminStatService.adminCmtList();
 		List<AdminStatVO> adminViewList = AdminStatService.adminViewList();
+		List<AdminStatVO> adminAllList = AdminStatService.adminAllList();
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("adminContentsList", adminContentsList);
 		mav.addObject("adminLikesList", adminLikesList);
 		mav.addObject("adminViewList", adminViewList);
 		mav.addObject("adminCmtList", adminCmtList);
+		mav.addObject("adminAllList", adminAllList);
 		return mav;
     }
    
