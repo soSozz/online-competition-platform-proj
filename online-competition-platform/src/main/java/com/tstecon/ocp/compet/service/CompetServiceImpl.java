@@ -88,9 +88,20 @@ public class CompetServiceImpl implements CompetService {
 
 	// 대회 추가하기
 	@Override
-	public int addCompet() throws DataAccessException {
-		int competVO = competDAO.insertCompet();
-		return competVO;
+	public List<CompetFileVO> addCompet(Map<String, Object> competMap) throws DataAccessException {
+		int addCompet = competDAO.insertCompet(competMap);
+
+		int addCompetFile = competDAO.insertCompetFile(competMap);
+		// CompetMap에서 fileVO 두개 만들어서 반환
+		List<CompetFileVO> competFileNameList = null;
+
+		return competFileNameList;
+	}
+
+	@Override
+	public int addCompetId() throws DataAccessException {
+		int addCompetId = competDAO.selectAddCompetId();
+		return addCompetId;
 	}
 
 }

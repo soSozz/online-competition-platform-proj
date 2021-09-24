@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
@@ -34,5 +36,13 @@ public interface CompetService {
 	public List<CompetVO> CompetName() throws DataAccessException;
 
 	// admin 대회 추가하기
-	public int addCompet() throws DataAccessException;
+	public List<CompetFileVO> addCompet(Map<String,Object> competMap) throws DataAccessException;
+
+
+
+	public int addCompetId() throws DataAccessException;
+
+
+
+	
 }

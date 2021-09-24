@@ -25,6 +25,12 @@
    	]]>
 	</select>
 
-
+	<select id="selectCategIdByName" resultType="int" parameterType="String">
+	<![CDATA[
+	select categ_id
+	from category
+	where categ_name = #{categ_name}
+	]]>
+	</select>
 	
 </mapper>

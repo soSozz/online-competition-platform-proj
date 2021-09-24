@@ -12,4 +12,6 @@ public interface AdminCategService {
 
 	public List<CategVO> CategAllList() throws DataAccessException;
 	public List<CategVO> categName() throws DataAccessException;
+	public int addCompet(Map<String, Object> addCompetMap) throws DataAccessException;
+	
 }

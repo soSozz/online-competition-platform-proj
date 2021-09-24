@@ -124,7 +124,33 @@
    	]]>
 	</select>
 	
-	<insert id="insertCompet">
+	 <select id="selectNewCompetId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_id), 0) + 1 
+        from compet
+     ]]>
+	</select>
+
+	<insert id="insertCompet" parameterType = "java.util.Map">
+	<![CDATA[
+		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
+							 compet_create, compet_text, compet_terminated)
+		values (#{compet_id}, #{categ_id}, #{compet_name}, #{compet_start}, #{compet_end},
+			   sysdate, #{compet_text}, 'N')
+   	]]>
+	</insert>
 	
+	<select id="selectNewCompetFileId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_file_id), 0) + 1 
+        from compet_file
+     ]]>
+	</select>
+	
+	<insert id="insertCompetFile" parameterType = "int">
+	<![CDATA[
+		insert into compet_file (
+		
+   	]]>
 	</insert>
 </mapper>

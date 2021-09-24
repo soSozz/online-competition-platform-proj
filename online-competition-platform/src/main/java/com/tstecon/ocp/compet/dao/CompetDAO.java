@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
@@ -36,7 +37,14 @@ public interface CompetDAO {
 
 	// 카테고리 아이디를 통해 대회 이름만 출력
 	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException;
+	
+	// 대회 추가
+	public int insertCompet(Map<String,Object> competMap) throws DataAccessException;
+	// 대회 파일 추가
+	public int insertCompetFile(Map<String, Object> competMap) throws DataAccessException;
 
-	public int insertCompet() throws DataAccessException;
+	public int selectAddCompetId() throws DataAccessException;
+
+
 
 }
