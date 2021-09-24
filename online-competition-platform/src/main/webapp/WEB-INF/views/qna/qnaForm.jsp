@@ -34,7 +34,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           >
 
             <div class="form-group" >
-                <input type="text" class="form-control bg-transparent" value="20210907" readonly placeholder=" 작성자">
+                <input type="text" class="form-control bg-transparent" value="${loginInfo.mem_id}" readonly placeholder=" 작성자">
             </div>
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" name="title" placeholder=" 글제목">

@@ -142,12 +142,16 @@
 </div>
 <hr style="position:relative; bottom:15px;">
 
+<!-- 로그인 성공 시 태그 값에 있는 요청 url로 이동 -->
+<input id="redirect" type="text" value="${contextPath}/main/main.do" hidden/>
+
 <!-- 자바스크립트 -->
 <script>
 	function login_submit() {
 		//input 태그에 입력된 아이디와 비밀번호 값 가져오기
 		const id = document.getElementById("id").value;
 		const pwd = document.getElementById("pwd").value;
+		const url = document.getElementById("redirect").value;
 
 		//ajax 요청 객체 생성
 		const xhr = new XMLHttpRequest();
@@ -156,7 +160,7 @@
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === xhr.DONE && xhr.status === 200) { //정상 응답 시
 				if (xhr.responseText === 'true') { //로그인 되었으면 메인페이지로 이동
-					location.href = '${contextPath}/main/main.do';
+					location.href = url;
 				} else { // 로그인에 실패했으면 알림창 이후 초기화
 					alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
 					document.getElementById("id").value = '';

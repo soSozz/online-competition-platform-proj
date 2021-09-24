@@ -54,12 +54,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" class="btn btn-outline-secondary"  onClick="backToList(articleForm)">취소</button>           
              </div>
              <!-- 수정하기 버튼  -->  
-             <div id="tr_btn">
+            <c:if test="${loginInfo.id == mem_id }">
+              <div id="tr_btn">
             <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
-            <button  class="btn btn-outline-secondary" onClick="fn_remove_article(event,${contextPath}/qna/removeArticle.do', ${article.compet_qna_id})">삭제하기</button>
-            <button type="submit" class="btn btn-outline-secondary">답글쓰기</button>
+            <button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
+           </c:if>
+           <c:if test="${loginInfo.id == mem_id }">
+            <button type="submit" class="btn btn-outline-secondary" onClick="fn_reply_form('${contextPath}/qna/replyForm.do', ${article.compet_qna_id})">답글쓰기</button>
+           </c:if>
             <button type="button" class="btn btn-outline-secondary" onClick="backToList(this.form)">목록보기</button>
-           </div>
+             </div>
+           
            
            </div>         
         </form>
@@ -86,21 +91,34 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 			 obj.submit();
 		 }
 	  
-	  function fn_remove_article(event,url,articleNO){
+	  function fn_remove_article(articleNO){
 		     event.preventDefault();
 			 var form = document.createElement("form");
 			 form.setAttribute("method", "post");
-			 form.setAttribute("action", url);
+			 form.setAttribute("action", "${contextPath}/qna/removeArticle.do");
 		     var articleNOInput = document.createElement("input");
 		     articleNOInput.setAttribute("type","hidden");
 		     articleNOInput.setAttribute("name","articleNO");
-		     articleNOInput.setAttribute("value", compet_qna_id);
-			 
+		     articleNOInput.setAttribute("value", articleNO);
+			 /* form.action = "${contextPath}/compet/removeArticle.do"; */
 		     form.appendChild(articleNOInput);
 		     document.body.appendChild(form);
-		     form.submit();
-		 
+		     form.submit()	 
 		 }
+	  function fn_reply_form(url, parentNO){
+			 var form = document.createElement("form");
+			 form.setAttribute("method", "post");
+			 form.setAttribute("action", url);
+		     var parentNOInput = document.createElement("input");
+		     parentNOInput.setAttribute("type","hidden");
+		     parentNOInput.setAttribute("name","parentNO");
+		     parentNOInput.setAttribute("value", parentNO);
+			 
+		     form.appendChild(parentNOInput);
+		     document.body.appendChild(form);
+			 form.submit();
+		 }
+		 
 </script>
 </body>
 </html>

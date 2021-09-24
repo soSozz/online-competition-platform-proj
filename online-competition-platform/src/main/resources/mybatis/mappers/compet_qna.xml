@@ -35,7 +35,7 @@
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
        INSERT into compet_qna(compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id) 
-       VALUES(#{articleNO},#{title}, #{content}, '20210907', 0, 1)
+       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, 0, #{compet_id})
     ]]>
 </insert>
 

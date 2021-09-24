@@ -22,10 +22,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <script src="${contextPath}/resources/js/gleek.js"></script>
       <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
 
-    
-
    </head>
+ 
     <body>
+    
         <!-- row -->
 
         <div class="container-fluid">
@@ -98,12 +98,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             margin:10px;
                                             
                                         "
-                                    >
-
-                                  <a href = "${contextPath}/qna/qnaForm.do"><p class="cls2">글쓰기</p></a>
+                                    >                        
+                                    <button type="button" class="btn btn-outline-secondary"  onClick="fn_articleForm('${loginStatus}')">글쓰기</button>                                                                       
                                     </div>                               
 
-                                        <button type="button" class="btn btn-outline-secondary">글쓰기</button>
+                                      
                                     </div>
                                 </div>
                                 
@@ -113,8 +112,21 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     </div>
                 </div>
         
-        <!-- #/ container -->
+    <script>
+    window.onload = () => {
+    	document.getElementById("redirect").value = "${contextPath}/qna/qna.do";
+    }
     
-        
+	function fn_articleForm(loginStatus){
+		
+	  if (loginStatus == "member" || loginStatus == "admin"){
+	    location.href= "${contextPath}/qna/qnaForm.do";
+	  } else {
+	    alert("로그인 후 글쓰기가 가능합니다.");
+	  }
+	}
+</script>        
+
+    
     </body>
 </html>

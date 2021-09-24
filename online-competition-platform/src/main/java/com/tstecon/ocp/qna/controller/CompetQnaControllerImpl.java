@@ -61,21 +61,22 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", competqnaVO);
 			session.setAttribute("isLogOn", true);
+			System.out.println("isLogOn : " + true);
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");
 
 			if (action != null) {
 				mav.setViewName("redirect:" + action); // 뷰 이름
 			} else {
-				mav.setViewName("redirect:/member/listMembers.do");
+				mav.setViewName("redirect:/qna/qna.do");
 			}
 
 		} else {
-			rAttr.addAttribute("result", "loginFailed"); // loginFailed?
-			mav.setViewName("redirect:/member/loginForm.do"); // --------링크 변경-------
+			rAttr.addAttribute("result", "loginFailed");
+			mav.setViewName("redirect:/login.do"); 
 		}
 
-		return mav; // 그럼 return 하게 되면 loginForm 값을 받는 건가?
+		return mav; 
 	}
 
 //문의 페이지 로그아웃	
@@ -85,8 +86,9 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
+		System.out.println("isLogOn2 : " + true);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/main/main.do"); // ?
+		mav.setViewName("redirect:/main/main.do"); 
 		return mav;
 	}
 
@@ -119,13 +121,11 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 			articleMap.put(name, value);
 		}
 
-//	     HttpSession session = multipartRequest.getSession();
-//	     CompetQnaVO competqnaVO =(CompetQnaVO) session.getAttribute("member");
-//		  String mem_id =  competqnaVO.getMem_id();
-
-//		 String mem_id ="20210907";
-//	     articleMap.put("parentNO", 0);
-//	     articleMap.put("mem_id", mem_id);
+	     HttpSession session = multipartRequest.getSession();
+         CompetQnaVO competqnaVO =(CompetQnaVO) session.getAttribute("member");
+		 String mem_id =  competqnaVO.getMem_id();
+         articleMap.put("parentNO", 0);
+	     articleMap.put("mem_id", mem_id);
 
 		String message;
 		ResponseEntity resEnt = null;
@@ -220,7 +220,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		  }catch(Exception e) {
 			  message = "<script>";
 			  message += " alert('작업중 오류가 발생했습니다.다시 시도해 주세요.');";
-			  message += " location.href='"+request.getContextPath()+"/qna/qna.do';";
+//			  message += " location.href='"+request.getContextPath()+"/qna/qna.do';";
 			  message +=" </script>";
 			  resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			  e.printStackTrace();
