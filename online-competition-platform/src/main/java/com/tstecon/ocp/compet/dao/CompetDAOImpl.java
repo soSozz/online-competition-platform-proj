@@ -55,29 +55,18 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
-//문의 게시판 내용	
-	@Override
-	public List selectAllQnaList() throws DataAccessException {
-		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.compet.selectAllQnaList");
-		return qnaList;
-	}
-
-	@Override
-	public int insertNewArticle(Map articleMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	
-
+	//카테고리 아이디를 통해 진행중인 대회 리스트 가져오기
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);
 		return competNameList;
 	}
-
+	//카테고리 아이디를 통해 종료된 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> selectFinishCompet(int i) throws DataAccessException {
+		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectFinishCompet", i);
+		return competNameList;
+	}
 	
 	// 대회 이름 가져오기
 	@Override
@@ -85,5 +74,19 @@ public class CompetDAOImpl implements CompetDAO {
 		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetName");
 		return competName;
 	}
+	
+	// 카테고리 아이디을 통해 대회 이름 가져오기
+	@Override
+	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException {
+		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName");
+		return competName;
+	}
+
+	@Override
+	public int insertCompet() throws DataAccessException {
+		int addCompet = sqlSession.insert("mappers.compet.insertCompet");
+		return addCompet;
+	}
+
 
 }

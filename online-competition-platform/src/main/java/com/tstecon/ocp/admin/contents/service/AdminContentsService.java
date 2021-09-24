@@ -8,8 +8,8 @@ import com.tstecon.ocp.contents.vo.ContentsVO;
 
 public interface AdminContentsService {
 
-	public List<ContentsVO> ContentsList() throws DataAccessException;
+	public List<ContentsVO> contentsList() throws DataAccessException;
 
-	public List<ContentsVO> ApprContentsList() throws DataAccessException;
+	public List<ContentsVO> apprContentsList() throws DataAccessException;
 
 }

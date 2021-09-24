@@ -1,7 +1,12 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+encoding//src/main/java/com/tstecon/ocp/member/controller/MemberControllerImpl.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/member/listMembers.jsp=UTF-8
+=======
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/views/admin/adminstat.jsp=UTF-8
 =======
 encoding//src/main/java/com/tstecon/ocp/member/dao/MemberDAOImpl.java=UTF-8
+>>>>>>> refs/heads/master
 >>>>>>> refs/heads/master
 encoding//src/main/webapp/WEB-INF/views/common/header.jsp=UTF-8

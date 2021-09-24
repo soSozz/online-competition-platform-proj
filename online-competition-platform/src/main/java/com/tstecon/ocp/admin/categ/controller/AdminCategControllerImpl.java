@@ -30,6 +30,7 @@ public class AdminCategControllerImpl implements AdminCategController{
 	@Autowired
 	private AdminCategDAO adminCategDAO;
 	
+	
 	//관리자 카테고리 기본 페이지 컨트롤러
 	@Override
 	@RequestMapping(value = { "/admin/admincateg.do" }, method = { RequestMethod.GET })
@@ -48,11 +49,11 @@ public class AdminCategControllerImpl implements AdminCategController{
 		//aa.put("카테고리이름", competList);
 		
 		Map<String, List<CompetVO>> aa = new HashMap<String, List<CompetVO>>();
-		
+		Map<String, List<CompetVO>> bb = new HashMap<String, List<CompetVO>>();
 		List<CategVO> categList = adminCategService.CategAllList();
 		//List<CategVO> categList = ...
 		
-		
+		// 진행중인 대회 가져오기
 		for (CategVO i : categList) {
 			List<CompetVO> competList = competService.competListById(i.getCateg_id());
 			// ... = competService.competListByCategId(i.categ_id);
@@ -60,16 +61,58 @@ public class AdminCategControllerImpl implements AdminCategController{
 			//aa.put(i.categ_name, competList);
 		}
 		mav.addObject("competInCateg", aa);
+		
+		// 종료된 대회 가져오기
+		for (CategVO i : categList) {
+			List<CompetVO> competList = competService.finishCompetList(i.getCateg_id());
+			// ... = competService.competListByCategId(i.categ_id);
+			bb.put(i.getCateg_name(), competList);
+			//aa.put(i.categ_name, competList);
+		}
+		mav.addObject("finishCompet", bb);
 		return mav;
 	}
 	
 	//관리자 카테고리 편집 페이지 컨트롤러 -->> 나중에 학원에서 고치기
 	@Override
+	@RequestMapping(value = { "/admin/addCategForm.do" }, method = { RequestMethod.GET })
 	public ModelAndView addCategForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		return null;
+		return mav;
 	}
+	
+	//대회 추가
+	@Override
+	@RequestMapping(value = { "/admin/addCompet.do" }, method = { RequestMethod.GET })
+	public ModelAndView addCompet(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		competService.addCompet();
+		mav.setViewName("redirect:/admin/admincateg.do");
+		return mav;
+	}
+	
+	// 대회 종료
+	@Override
+	@RequestMapping(value = { "/admin/competFinish.do" }, method = { RequestMethod.GET })
+	public ModelAndView competFinish(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("redirect:/admin/admincateg.do");
+		return mav;
+	}
+	
+	// 종료된 대회 삭제
+	@Override
+	@RequestMapping(value = { "/admin/competDelete.do" }, method = { RequestMethod.GET })
+	public ModelAndView competDelete(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("redirect:/admin/admincateg.do");
+		return mav;
+	}
+	
+	
 
 	
 }

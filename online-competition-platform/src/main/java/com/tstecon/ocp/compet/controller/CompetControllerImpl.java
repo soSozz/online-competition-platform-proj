@@ -50,20 +50,6 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-//문의 페이지 로그인
-	@Override
-	@RequestMapping(value = "/compet/login.do", method = RequestMethod.POST)
-	public ModelAndView Compet_qna_login(@ModelAttribute("member") CompetQnaVO member, RedirectAttributes rAttr,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		competqnaVO = competService.login(member);
-		if (competqnaVO != null) {
-
-		}
-
-		return null;
-	}
-
 	@Override
 	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -73,21 +59,5 @@ public class CompetControllerImpl implements CompetController {
 		return mav;
 	}
 
-	@Override
-	public ModelAndView Compet_qna_logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
-
-	@Override
-	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
-		return null;
-	}
-
-	@Override
-	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

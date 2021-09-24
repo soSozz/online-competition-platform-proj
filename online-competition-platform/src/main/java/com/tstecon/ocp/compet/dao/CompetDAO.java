@@ -23,14 +23,16 @@ public interface CompetDAO {
 	public List<CompetVO> selectCompet_id(int compet_id) throws DataAccessException;
 
 	public List<CompetFileVO> selectCompet_id_file(int compet_id) throws DataAccessException;
-
-// 문의 게시판 내용
-	public List selectAllQnaList() throws DataAccessException;
-
-	public int insertNewArticle(Map articleMap) throws DataAccessException;
-
+	// 카테고리 아이디를 통해 진행중인 대회 리스트 출력
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException;
-
+	// 카테고리 아이디를 통해 종료된 대회 리스트 출력
+	public List<CompetVO> selectFinishCompet(int i) throws DataAccessException;
+	
 	public List<CompetVO> selectCompetName() throws DataAccessException;
+	
+	//카테고리 아이디를 통해 대회 이름만 출력
+	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException;
+
+	public int insertCompet() throws DataAccessException;
 
 }

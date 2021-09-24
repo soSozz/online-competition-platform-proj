@@ -38,19 +38,20 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			HttpServletResponse response) throws Exception {
 		Map<String, String> loginMap = new Gson().fromJson(login, Map.class);
 
+
 		memberVO = memberService.loginByMember(loginMap);
 		adminVO = memberService.loginByAdmin(loginMap);
 
 		HttpSession session = request.getSession();
-		if (memberVO != null) { // member·Î ·Î±×ÀÎ ¼º°ø ½Ã
+		if (memberVO != null) { // memberï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			session.setAttribute("loginStatus", "member");
 			session.setAttribute("loginInfo", memberVO);
 			return "true";
-		} else if (adminVO != null) { // adminÀ¸·Î ·Î±×ÀÎ ¼º°ø ½Ã
+		} else if (adminVO != null) { // adminï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			session.setAttribute("loginStatus", "admin");
 			session.setAttribute("loginInfo", adminVO);
 			return "true";
-		} else { // ·Î±×ÀÎ ½ÇÆÐ ½Ã
+		} else { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			return "false";
 		}
 	}
@@ -63,7 +64,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		session.removeAttribute("loginInfo");
 
 		String message = "<script>";
-		message += " alert('·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.');";
+		message += " alert('ï¿½Î±×¾Æ¿ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');";
 		message += " location.href='" + request.getContextPath() + "/main/main.do';";
 		message += ("</script>");
 

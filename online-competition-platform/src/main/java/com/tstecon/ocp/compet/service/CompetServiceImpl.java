@@ -52,14 +52,6 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetFileVO> CompetSmallPoster = competDAO.selectCompetSmallPoster(compet_id);
 		return CompetSmallPoster;
 	}
-
-//문의 게시판
-	@Override
-	public List<CompetQnaVO> qnalistArticles() throws Exception {
-		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
-		return qnaList;
-	}
-
 	
 	// 대회 리스트 아이디통해 이름 알아내기
 	@Override
@@ -67,15 +59,29 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
 		return competListByName;
 	}
+	
+	//종료된 대회 가져오기
+	@Override
+	public List<CompetVO> finishCompetList(int i) throws Exception {
+		List<CompetVO> competListFinish = competDAO.selectFinishCompet(i);
+		return competListFinish;
+	}
 
-
-
+	// 카테고리 이름을 통해 대회 이름 출력하기
+	@Override
+	public List<CompetVO> competListByName(int i) throws Exception {
+		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
+		return competNameByName;
+	}
+	
+	// 대회 이름 가져오기
 	@Override
 	public List<CompetVO> CompetName() throws DataAccessException {
 		List<CompetVO> competName = competDAO.selectCompetName();
 		return competName;
 
 	}
+<<<<<<< HEAD
 
 	@Override
 	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
@@ -84,6 +90,15 @@ public class CompetServiceImpl implements CompetService {
 	}
 
 
+=======
+	
+	// 대회 추가하기
+	@Override
+	public int addCompet() throws DataAccessException {
+		int competVO = competDAO.insertCompet();
+		return competVO;
+	}
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 
 
 	

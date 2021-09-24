@@ -15,13 +15,13 @@ public class AdminContentsServiceImpl implements AdminContentsService{
 	private AdminContentsDAO adminContentsDAO;
 	
 	@Override
-	public List<ContentsVO> ContentsList() {
-		List<ContentsVO> contentsList = adminContentsDAO.selectContentsName(); 
+	public List<ContentsVO> contentsList() {
+		List<ContentsVO> contentsList = adminContentsDAO.selectContentsList(); 
 		return contentsList;
 	}
 
 	@Override
-	public List<ContentsVO> ApprContentsList() {
+	public List<ContentsVO> apprContentsList() {
 		List<ContentsVO> contentsList = adminContentsDAO.selectApprContentsList();
 		return contentsList;
 	}

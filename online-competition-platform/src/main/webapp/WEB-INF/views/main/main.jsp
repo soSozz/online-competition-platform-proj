@@ -15,15 +15,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/1/img/banner1.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/2/img/banner2.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 h-100" src="${contextPath }/resources/images/ocp/bannerfile/3/img/banner3.jpg" alt="Third slide">
-                    </div>
+                	<c:forEach var="item" items="${bannerFileList }" varStatus="cnt">
+                		<c:choose>
+							<c:when test="${cnt.count == 1}">
+								<div class="carousel-item active">
+							</c:when>
+							<c:otherwise>
+                    			<div class="carousel-item">
+							</c:otherwise>
+                		</c:choose>
+                        <img class="d-block w-100 h-100" src="/ocp/bannerFile_download.do?banner_id=${item.banner_id }&banner_file_name=${item.banner_file_name }&banner_file_type=${item.banner_file_type}" alt="${cnt.count}">
+                    	</div>
+                	</c:forEach>
                 </div>
             </div>
         </div>
@@ -33,13 +36,16 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <!-- start card -->
         <div class="card">
             <div class="card-body">
-                <h2 class="mb-lg-3"><strong>알고리즘</strong></h2>
+            	<div class="mb-lg-3">
+					<span id="compet_title" class="mb-lg-3 bold">알고리즘</span>
+					<a href="#" class="float-right"><span>더보기</span></a>
+				</div>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
+                                    <img class="img-fluid" src="${contextPath }/thumbnails.do?compet_file_name=삼성전자 알고리즘 대회-big.jpg&compet_file_type=img&compet_id=1" alt="" />
                                     <div class="card-body">
                                         <h5 class="card-title">최단경로 찾기</h5>
                                         <p class="card-text text-truncate">
@@ -54,7 +60,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                             <!-- End Col -->
                             <div class="col-lg-4">
                                 <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
+                                    <img class="img-fluid" src="${contextPath }/thumbnails.do?compet_file_name=중학생 알고리즘 경진대회-big.jpg&compet_file_type=img&compet_id=2" alt="" />
                                     <div class="card-body">
                                         <h5 class="card-title">버블탐색</h5>
                                         <p class="card-text text-truncate">
