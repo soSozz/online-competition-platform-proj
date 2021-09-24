@@ -109,6 +109,11 @@
 	</select>
 	
 	<insert id="insertCompet">
-	
+	<![CDATA[
+		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
+							 compet_create, compet_text, compet_terminated)
+		value ()
+		
+   	]]>
 	</insert>
 </mapper>

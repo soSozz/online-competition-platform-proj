@@ -257,9 +257,22 @@ h3, h4 {
 			<div class="modal-body">
 				<form>
 					<div class="row">
-							<label class="control-label">대회명</label> <input
+							<label class="control-label">대회명</label> 
+							<input
 								class="form-control form-white" placeholder="Enter name"
-								type="text" name="category-name">
+								type="text" name="compet_name">
+							<label class="control-label">시작일</label> 
+							<input
+								class="form-control form-white" placeholder="Enter startDate"
+								type="text" name="compet_start">
+							<label class="control-label">종료일</label> 
+							<input
+								class="form-control form-white" placeholder="Enter endDate"
+								type="text" name="compet_end">
+							<label class="control-label">간단한 설명</label> 
+							<input
+								class="form-control form-white" placeholder="Enter text"
+								type="text" name="compet_text">
 					</div>
 				</form>
 			</div>
