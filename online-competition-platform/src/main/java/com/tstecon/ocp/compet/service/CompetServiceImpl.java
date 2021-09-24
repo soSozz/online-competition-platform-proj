@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
@@ -84,11 +86,10 @@ public class CompetServiceImpl implements CompetService {
 	
 	// 대회 추가하기
 	@Override
-	public int addCompet() throws DataAccessException {
-		int competVO = competDAO.insertCompet();
-		return competVO;
+	public int addCompet(Map<String,Object> addCompetMap) throws DataAccessException {
+		int addCompet = competDAO.insertCompet(addCompetMap);
+		return addCompet;
 	}
-
 
 	
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
@@ -81,10 +82,13 @@ public class CompetDAOImpl implements CompetDAO {
 		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName");
 		return competName;
 	}
-
+	
+	// 대회 추가하기
 	@Override
-	public int insertCompet() throws DataAccessException {
-		int addCompet = sqlSession.insert("mappers.compet.insertCompet");
+	public int insertCompet(Map<String,Object> addCompetMap) throws DataAccessException {
+		int competId = sqlSession.selectOne("mappers.compet.selectNewCompetId");
+		addCompetMap.put("compet_id", competId);
+		int addCompet = sqlSession.insert("mappers.compet.insertCompet", addCompetMap);
 		return addCompet;
 	}
 

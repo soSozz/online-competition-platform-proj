@@ -108,11 +108,19 @@
    	]]>
 	</select>
 	
-	<insert id="insertCompet">
+	 <select id="selectNewCompetId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_id), 0) + 1 
+        from compet
+     ]]>
+	</select>
+
+	<insert id="insertCompet" parameterType = "java.util.Map">
 	<![CDATA[
 		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
 							 compet_create, compet_text, compet_terminated)
-		value ()
+		values (#{compet_id}, #{categ_id}, #{compet_name}, #{compet_start}, #{compet_end},
+			   sysdate, #{compet_text}, 'N')
 		
    	]]>
 	</insert>

@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tstecon.ocp.admin.categ.dao.AdminCategDAO;
@@ -85,9 +87,12 @@ public class AdminCategControllerImpl implements AdminCategController{
 	//대회 추가
 	@Override
 	@RequestMapping(value = { "/admin/addCompet.do" }, method = { RequestMethod.GET })
-	public ModelAndView addCompet(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView addCompet(@RequestParam Map<String,Object> addCompetMap,
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		/* competService.addCompet(); */
+		int categ_id = adminCategService.addCompet(addCompetMap);
+		addCompetMap.put("categ_id", categ_id);
+		competService.addCompet(addCompetMap);
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}

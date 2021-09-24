@@ -2,6 +2,7 @@ package com.tstecon.ocp.admin.categ.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public class AdminCategDAOImpl implements AdminCategDAO {
 	public List<CategVO> selectCategName() throws DataAccessException {
 		List<CategVO> categName = (ArrayList) sqlSession.selectList("mappers.admin_categ.selectCategName");
 		return categName;
+	}
+
+	@Override
+	public int selectCategIdByName(Map<String, Object> addCompetMap) throws DataAccessException {
+		int categ_id = sqlSession.selectOne("mappers.admin_categ.selectCategIdByName", addCompetMap);
+		return categ_id;
 	}
 
 }

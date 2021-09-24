@@ -80,7 +80,7 @@ h3, h4 {
 				<div class="card-header">
 					<span class="categ float-center">${categ.key}</span> <a href="#"
 						data-toggle="modal" data-target="#add-category"
-						class="categ_btn btn btn-primary float-right"><i
+						class="categ_btn btn btn-primary float-right" onclick="fn_add_categ(event)"><i
 						class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
 				</div>
 				<div class="card-body">
@@ -254,25 +254,44 @@ h3, h4 {
 					<strong>대회 추가하기</strong>
 				</h4>
 			</div>
-			<div class="modal-body">
+			<div id="modal-body" class="modal-body">
 				<form>
 					<div class="row">
+							<label id="categ-label" class="control-label"></label> 
+							<input
+								id="categ-input"
+								class="form-control form-white"
+								type="text" name="categ_name">
 							<label class="control-label">대회명</label> 
 							<input
-								class="form-control form-white" placeholder="Enter name"
+								class="form-control form-white" placeholder="대회명을 입력해주세요."
 								type="text" name="compet_name">
-							<label class="control-label">시작일</label> 
+							<label class="control-label">시작일 ex) 0000-00-00</label> 
 							<input
-								class="form-control form-white" placeholder="Enter startDate"
+								class="form-control form-white" placeholder="대회 시작일을 입력해주세요."
 								type="text" name="compet_start">
-							<label class="control-label">종료일</label> 
+							<label class="control-label">종료일 ex) 0000-00-00</label> 
 							<input
-								class="form-control form-white" placeholder="Enter endDate"
+								class="form-control form-white" placeholder="대회 종료일을 입력해주세요."
 								type="text" name="compet_end">
 							<label class="control-label">간단한 설명</label> 
 							<input
-								class="form-control form-white" placeholder="Enter text"
+								class="form-control form-white" placeholder="대회 설명을 입력해주세요."
 								type="text" name="compet_text">
+							<div>
+							<label class="control-label">이미지 첨부(큰 포스터)</label>
+							<div>
+							<input 
+								class="competBigImg btn btn-primary" type="file" name="BigPoster"/>
+							</div>
+							</div>
+							<div>
+							<label class="control-label">이미지 첨부(작은 포스터)</label>
+							<div>
+							<input 
+								class="competSmallImg btn btn-primary" type="file" name="SmallPoster"/>
+							</div>
+							</div>
 					</div>
 				</form>
 			</div>
@@ -286,4 +305,15 @@ h3, h4 {
 		</div>
 	</div>
 </div>
+
+<script>
+	function fn_add_categ(e){
+		const categ = e.target.parentNode.querySelector("span").innerHTML
+		
+		const label = document.getElementById("categ-label");
+		label.innerHTML = '카테고리명';
+		const input = document.getElementById("categ-input");
+		input.value = categ;
+	}
+</script>
 </html>
