@@ -32,6 +32,7 @@ public class AdminCategServiceImpl implements AdminCategService {
 
 	@Override
 	public int addCompet(Map<String, Object> addCompetMap) throws DataAccessException {
+//		addCompetMap.put("categ_id", categ_id);
 		int addCompet = adminCategDAO.selectCategIdByName(addCompetMap);
 		return addCompet;
 		

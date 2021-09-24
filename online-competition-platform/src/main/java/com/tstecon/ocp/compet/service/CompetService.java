@@ -37,7 +37,11 @@ public interface CompetService {
 
 
 	// admin 대회 추가하기
-	public int addCompet(Map<String,Object> addCompetMap) throws DataAccessException;
+	public List<CompetFileVO> addCompet(Map<String,Object> competMap) throws DataAccessException;
+
+
+
+	public int addCompetId() throws DataAccessException;
 
 
 

@@ -35,6 +35,12 @@ public interface CompetDAO {
 	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException;
 	
 	// 대회 추가
-	public int insertCompet(Map<String,Object> addCompetMap) throws DataAccessException;
+	public int insertCompet(Map<String,Object> competMap) throws DataAccessException;
+	// 대회 파일 추가
+	public int insertCompetFile(Map<String, Object> competMap) throws DataAccessException;
+
+	public int selectAddCompetId() throws DataAccessException;
+
+
 
 }

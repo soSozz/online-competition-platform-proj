@@ -1,28 +1,42 @@
 package com.tstecon.ocp.admin.categ.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tstecon.ocp.admin.categ.dao.AdminCategDAO;
 import com.tstecon.ocp.admin.categ.service.AdminCategService;
 import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.service.CompetService;
+import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Controller("AdminCategController")
 public class AdminCategControllerImpl implements AdminCategController{
+	private static final String COMPET_IMAGE_REPO = "C:\\ocp\\competfile";
+	
 	@Autowired
 	private AdminCategService adminCategService;
 	
@@ -87,14 +101,92 @@ public class AdminCategControllerImpl implements AdminCategController{
 	//대회 추가
 	@Override
 	@RequestMapping(value = { "/admin/addCompet.do" }, method = { RequestMethod.GET })
-	public ModelAndView addCompet(@RequestParam Map<String,Object> addCompetMap,
-			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		int categ_id = adminCategService.addCompet(addCompetMap);
-		addCompetMap.put("categ_id", categ_id);
-		competService.addCompet(addCompetMap);
-		mav.setViewName("redirect:/admin/admincateg.do");
-		return mav;
+	public ResponseEntity addCompet(@RequestParam Map<String,Object> competMap,
+			MultipartHttpServletRequest multipartRequest, HttpServletResponse reponse) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		int categ_id = adminCategService.addCompet(addCompetMap);
+//		addCompetMap.put("categ_id", categ_id);
+//		competService.addCompet(addCompetMap);
+//		mav.setViewName("redirect:/admin/admincateg.do");
+//		return mav;
+		
+		multipartRequest.setCharacterEncoding("utf-8");
+		
+		int compet_id = competService.addCompetId();
+		int categ_id = adminCategService.addCompet(competMap);
+		competMap.put("compet_id", compet_id);
+		competMap.put("categ_id", categ_id);
+		
+		competService.addCompet(competMap);
+		
+		
+		
+		
+		
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement();
+			String value=multipartRequest.getParameter(name);
+			competMap.put(name,value);
+		}
+		
+		
+		List<String> fileList =upload(multipartRequest);
+		List<CompetFileVO> imageFileList = new ArrayList<CompetFileVO>();
+		
+		if(fileList!= null && fileList.size()!=0) {
+			for(String fileName : fileList) {
+				CompetFileVO competFileVO = new CompetFileVO();
+				competFileVO.setCompet_file_name(fileName);
+				imageFileList.add(competFileVO);
+			}
+			competMap.put("imageFileList", imageFileList);
+		}
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	    
+		try {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+				for(CompetFileVO competFileVO : imageFileList) {
+					imageFileName = competFileVO.getCompet_file_name();
+					File srcFile = new File(COMPET_IMAGE_REPO + "\\" + compet_id + "\\img\\temp\\" + imageFileName);
+					
+					File destDir = new File(COMPET_IMAGE_REPO + "\\" + compet_id+ "\\img\\" + imageFileName);
+					//destDir.mkdirs();
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+				}
+			}
+			    
+			message = "<script>";
+			message += " alert('새글을 추가했습니다.');";
+			message += " location.href='"+multipartRequest.getContextPath()+"/admin/admincateg.do'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		    
+			 
+		}catch(Exception e) {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+			  for(CompetFileVO competFileVO : imageFileList) {
+			  	imageFileName = competFileVO.getCompet_file_name();
+				File srcFile = new File(COMPET_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+			 	srcFile.delete();
+			  }
+			}
+
+			
+			message = " <script>";
+			message +=" alert('오류가 발생했습니다. 다시 시도해 주세요');');";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/admincateg.do'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		
+
+		return resEnt;
 	}
 	
 	// 대회 종료
@@ -117,7 +209,27 @@ public class AdminCategControllerImpl implements AdminCategController{
 		return mav;
 	}
 	
-	
+	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+//		CompetVO competVO = new CompetVO();
+//		int compet_id = competVO.getCompet_id();
+		List<String> fileList= new ArrayList<String>();
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while(fileNames.hasNext()){
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			String originalFileName=mFile.getOriginalFilename();
+			fileList.add(originalFileName);
+			File file = new File(COMPET_IMAGE_REPO + "\\" + compet_id + "\\img\\temp\\" + fileName);
+			if(mFile.getSize()!=0){ //File Null Check
+				if(!file.exists()){ //경로상에 파일이 존재하지 않을 경우
+					file.getParentFile().mkdirs();  //경로에 해당하는 디렉토리들을 생성
+					mFile.transferTo(new File(COMPET_IMAGE_REPO + "\\" + "competfile" + "\\"
+							+ /* compet_id + */"\\"+originalFileName)); //임시로 저장된 multipartFile을 실제 파일로 전송
+				}
+			}
+		}
+		return fileList;
+	}
 
 	
 }

@@ -7,13 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService {
@@ -86,9 +83,23 @@ public class CompetServiceImpl implements CompetService {
 	
 	// 대회 추가하기
 	@Override
-	public int addCompet(Map<String,Object> addCompetMap) throws DataAccessException {
-		int addCompet = competDAO.insertCompet(addCompetMap);
-		return addCompet;
+	public List<CompetFileVO> addCompet(Map<String,Object> competMap) throws DataAccessException {
+		int addCompet = competDAO.insertCompet(competMap);
+		
+		
+		
+		int addCompetFile = competDAO.insertCompetFile(competMap);
+		//CompetMap에서 fileVO 두개 만들어서 반환
+		List<CompetFileVO> competFileNameList = null;
+		
+		
+		return competFileNameList;
+	}
+
+	@Override
+	public int addCompetId() throws DataAccessException {
+		int addCompetId = competDAO.selectAddCompetId();
+		return addCompetId;
 	}
 
 	

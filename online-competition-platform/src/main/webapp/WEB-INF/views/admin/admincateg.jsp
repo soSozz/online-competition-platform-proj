@@ -275,9 +275,10 @@ h3, h4 {
 								class="form-control form-white" placeholder="대회 종료일을 입력해주세요."
 								type="text" name="compet_end">
 							<label class="control-label">간단한 설명</label> 
-							<input
+							<textarea
 								class="form-control form-white" placeholder="대회 설명을 입력해주세요."
 								type="text" name="compet_text">
+							</textarea>
 							<div>
 							<label class="control-label">이미지 첨부(큰 포스터)</label>
 							<div>
