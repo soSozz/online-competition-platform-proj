@@ -20,6 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FileUploadController {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\ocp";
+	@RequestMapping(value="/form")
+	public String form() {
+		return "uploadForm";
+	}
 	
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public ModelAndView upload(MultipartHttpServletRequest multipartRequest,
