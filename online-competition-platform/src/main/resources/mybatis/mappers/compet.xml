@@ -9,7 +9,6 @@
 	<resultMap id = "CompetResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
-		<result property = "compet_limit" column = "compet_limit" />
 		<result property = "compet_name" column = "compet_name" />
 		<result property = "compet_start" column = "compet_start" />
 		<result property = "compet_end" column = "compet_end" />
