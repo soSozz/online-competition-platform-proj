@@ -111,15 +111,14 @@ public class CompetServiceImpl implements CompetService {
 	}
 
 	@Override
-	public void competFinish(String compet_name) throws DataAccessException {
-		competDAO.updateCompetTerminated(compet_name);
-
+	public int competFinish(String compet_name) throws DataAccessException {
+		int updateCompet = competDAO.updateCompetTerminated(compet_name);
+		return updateCompet;
 	}
 
 	@Override
-	public void competDelete(String compet_name) throws DataAccessException {
-		competDAO.deleteCompet(compet_name);
-
+	public int competDelete(String compet_name) throws DataAccessException {
+		return competDAO.deleteCompet(compet_name);
 	}
 
 

@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.tstecon.ocp.admin.monitor.vo.AdminCmtVO;
+import com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO;
 
 @Repository("adminMonitorDAO")
 public class AdminMonitorDAOImpl implements AdminMonitorDAO{
@@ -31,6 +32,12 @@ public class AdminMonitorDAOImpl implements AdminMonitorDAO{
 	public List<AdminCmtVO> selectAdminCmtList() throws DataAccessException {
 		List<AdminCmtVO> adminCmtist = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminCmtList");
 		return adminCmtist;
+	}
+	
+	@Override
+	public List<AdminMonitorVO> selectAdminMoniterLikeList() throws DataAccessException {
+		List<AdminMonitorVO> adminLikeList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterLikeList");
+		return adminLikeList;
 	}
 	
 }
