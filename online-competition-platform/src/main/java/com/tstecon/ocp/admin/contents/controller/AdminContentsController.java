@@ -12,5 +12,5 @@ public interface AdminContentsController {
 	
 	public ModelAndView adminContentsAppr(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
-	public ModelAndView adminContentsReject(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView adminContentsRefusal(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }

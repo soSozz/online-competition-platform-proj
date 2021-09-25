@@ -20,6 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="https://img.icons8.com/metro/40/000000/share.png">
+
 </head>
 <body>
 	<div class="container-fluid" style="width:80%">

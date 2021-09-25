@@ -1,6 +1,7 @@
 package com.tstecon.ocp.admin.categ.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,9 +25,17 @@ public class AdminCategServiceImpl implements AdminCategService {
 	}
 
 	@Override
-	public List<CategVO> CategName() throws DataAccessException {
+	public List<CategVO> categName() throws DataAccessException {
 		List<CategVO> categName = adminCategDAO.selectCategName();
 		return categName;
+	}
+
+	@Override
+	public int addCompet(Map<String, Object> addCompetMap) throws DataAccessException {
+//		addCompetMap.put("categ_id", categ_id);
+		int addCompet = adminCategDAO.selectCategIdByName(addCompetMap);
+		return addCompet;
+		
 	}
 
 }

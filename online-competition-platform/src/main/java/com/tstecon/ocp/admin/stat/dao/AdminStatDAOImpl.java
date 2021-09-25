@@ -39,6 +39,12 @@ public class AdminStatDAOImpl implements AdminStatDAO{
 		List<AdminStatVO> AdminStatViewist = (ArrayList)sqlSession.selectList("mappers.admin.stat.selectAdminStatViewList");
 		return AdminStatViewist;
 	}
+	
+	@Override
+	public List<AdminStatVO> selectAdminStatAllList() throws DataAccessException {
+		List<AdminStatVO> AdminStatAllist = (ArrayList)sqlSession.selectList("mappers.admin.stat.selectStatAllList");
+		return AdminStatAllist;
+	}
 }
 
 

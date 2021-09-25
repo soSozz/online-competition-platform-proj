@@ -51,7 +51,6 @@ public class CompetControllerImpl implements CompetController {
 	}
 
 
-
 	@Override
 	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception {

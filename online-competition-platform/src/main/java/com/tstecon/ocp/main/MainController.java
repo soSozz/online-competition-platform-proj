@@ -42,7 +42,7 @@ public class MainController extends BaseController {
 		Map<String, List<CompetVO>> competsMap = new HashMap<String, List<CompetVO>>();
 
 		for (CategVO c : categList) {
-			List<CompetVO> competList = competService.competListById(c.getCateg_id());
+			List<CompetVO> competList = competService.competListByCategIdToThree(c.getCateg_id());
 			competsMap.put(c.getCateg_name(), competList);
 		}
 

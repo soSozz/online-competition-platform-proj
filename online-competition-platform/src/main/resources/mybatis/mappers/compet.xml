@@ -9,13 +9,17 @@
 	<resultMap id = "CompetResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
-		<result property = "compet_limit" column = "compet_limit" />
 		<result property = "compet_name" column = "compet_name" />
 		<result property = "compet_start" column = "compet_start" />
 		<result property = "compet_end" column = "compet_end" />
 		<result property = "compet_create" column = "compet_create" />
 		<result property = "compet_text" column = "compet_text" />
 		<result property = "compet_terminated" column = "compet_terminated" />
+		
+		<!-- 파일 정보 추가 -->
+        <result property = "compet_file_id" column = "compet_file_id" />
+		<result property = "compet_file_type" column = "compet_file_type" />
+		<result property = "compet_file_name" column = "compet_file_name" />
 	</resultMap>
 	
 	<resultMap id = "CompetFileResult" type = "competFileVO"> <!-- CompetFile의 resultMap -->
@@ -72,22 +76,103 @@
 			where compet_id = #{compet_id}
 		]]>
 	</select>
-
+	
+<!-- 종료되지 않은 대회 -->
 	<select id="selectCompetNames" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
 		select compet_name
 		from compet
-		where compet.categ_id = #{categ_id} and compet_terminated = 'N'
+		where categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
 	</select>
 
 
 	
-	<select id="selectCompetName" resultMap="CompetResult" parameterType = "int">
+<!-- 카테고리별로 진행 중인 대회 3개 가져오기-->
+	<select id="selectCompetsByCategIdToThree" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+  		select x.*
+  		from (select *
+  			  from compet natural join compet_file
+			  where categ_id = #{categ_id} and compet_terminated = 'N' and compet_file_name like '%-big%' order by compet_create desc) x
+		where rownum <= 3
+   	]]>
+	</select>
+
+	<!-- 종료된 대회 -->
+	<select id="selectFinishCompet" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+		select *
+		from compet
+		where compet.categ_id = #{categ_id} and compet_terminated = 'Y'
+   	]]>
+	</select>
+	
+	<!-- 대회이름 가져오기 -->
+	<select id="selectCompetName" resultMap="CompetResult">
   	<![CDATA[
 		select compet_name
 		from compet
    	]]>
 	</select>
+
+	
+	<!-- 카테고리명을 통해 대회명 가져오기 -->
+	<select id="selectCompetNameByName" resultMap="CompetResult" parameterType = "int">
+  	<![CDATA[
+		select compet_name
+		from compet
+		where categ_id = #{categ_id}
+   	]]>
+	</select>
+	
+	<!-- 대회 아이디 +1 -->
+	 <select id="selectNewCompetId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_id), 0) + 1 
+        from compet
+     ]]>
+	</select>
+	
+	<!-- 대회 추가 -->
+	<insert id="insertCompet" parameterType = "java.util.Map">
+	<![CDATA[
+		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
+							 compet_create, compet_text, compet_terminated)
+		values (#{compet_id}, #{categ_id}, #{compet_name}, #{compet_start}, #{compet_end},
+			   sysdate, #{compet_text}, 'N')
+   	]]>
+	</insert>
+	
+	<!-- 대회 파일 아이디 +1 -->
+	<select id="selectNewCompetFileId" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_file_id), 0) + 1 
+        from compet_file
+     ]]>
+	</select>
+	
+	<!-- 대회 파일 추가 -->
+	<insert id="insertCompetFile" parameterType = "competFileVO">
+	<![CDATA[
+		insert into compet_file (compet_file_id, compet_id, compet_file_type, compet_file_name)
+		values (#{compet_file_id}, #{compet_id}, #{compet_file_type}, #{compet_file_name})
+   	]]>
+	</insert>
+	
+	<update id="updateCompetTerminated" parameterType="String">
+	<![CDATA[
+		update compet 
+		set compet_terminated = 'Y'
+		where compet_name = #{compet_name}
+	]]>
+	</update>
+	
+	<delete id="deleteCompet" parameterType = "String">
+	<![CDATA[
+		delete from compet
+		where compet_name = #{compet_name}
+	]]>
+	</delete>
 
 </mapper>
