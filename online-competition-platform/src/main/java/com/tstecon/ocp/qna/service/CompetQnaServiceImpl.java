@@ -42,8 +42,7 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 	}
 //상세 페이지 보기
 	public CompetQnaVO viewArticle(int articleNO) throws Exception {
-		CompetQnaVO articleVO = competQnaDAO.selectQnaArticle(articleNO);
-		return articleVO;
+		return competQnaDAO.selectQnaArticle(articleNO);
 	}
 //문의 글 수정	
 		public void modArticle(Map articleMap) throws Exception{

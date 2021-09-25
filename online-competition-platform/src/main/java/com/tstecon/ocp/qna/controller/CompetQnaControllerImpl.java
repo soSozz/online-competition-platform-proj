@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tstecon.ocp.member.vo.MemberVO;
 import com.tstecon.ocp.qna.dao.CompetQnaDAO;
 import com.tstecon.ocp.qna.service.CompetQnaService;
 import com.tstecon.ocp.qna.vo.CompetQnaVO;
@@ -37,6 +38,9 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 
 	@Autowired
 	private CompetQnaVO competqnaVO;
+	
+	@Autowired
+	private MemberVO memberVO;
 
 //문의 페이지	
 	@Override
@@ -122,9 +126,9 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		}
 
 	     HttpSession session = multipartRequest.getSession();
-         CompetQnaVO competqnaVO =(CompetQnaVO) session.getAttribute("member");
-		 String mem_id =  competqnaVO.getMem_id();
-         articleMap.put("parentNO", 0);
+	      memberVO =(MemberVO) session.getAttribute("loginInfo");
+		 String mem_id =  memberVO.getMem_id();
+         articleMap.put("parent_id", 0);
 	     articleMap.put("mem_id", mem_id);
 
 		String message;

@@ -19,7 +19,7 @@
    </resultMap>
  
 	
-<!-- 문의 게시판 리스트 -->
+<!-- 문의 게시판 리스트 -->  <!-- where compet_id = #{compet_id} -->
 	<select id="selectAllQnaList" resultMap="qnaResult">
   	    <![CDATA[
      SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
@@ -34,8 +34,8 @@
 <!-- 문의 게시판 새 글 DB추가 -->  <!--values #{mem_id} 추가 -->
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
-       INSERT into compet_qna(compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id) 
-       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, 0, #{compet_id})
+       INSERT into compet_qna (compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id, compet_qna_date) 
+       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, #{parent_id}, 1, sysdate)
     ]]>
 </insert>
 

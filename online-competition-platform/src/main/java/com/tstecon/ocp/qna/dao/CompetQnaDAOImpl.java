@@ -35,6 +35,7 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 	public int insertNewArticle(Map articleMap) throws DataAccessException {
 		int articleNO = selectNewArticleNO();
 		articleMap.put("articleNO", articleNO);
+		System.out.println("articleNO :" + articleNO);
 		sqlSession.insert("mappers.competQna.insertNewQna", articleMap);
 		return articleNO;
 	}

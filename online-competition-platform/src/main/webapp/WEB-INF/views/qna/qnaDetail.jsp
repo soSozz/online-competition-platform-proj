@@ -54,12 +54,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" class="btn btn-outline-secondary"  onClick="backToList(articleForm)">취소</button>           
              </div>
              <!-- 수정하기 버튼  -->  
-            <c:if test="${loginInfo.id == mem_id }">
+            <c:if test="${loginInfo.mem_id == article.mem_id }">
               <div id="tr_btn">
             <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
             <button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
            </c:if>
-           <c:if test="${loginInfo.id == mem_id }">
+           <c:if test="${loginStatus == 'admin' }">
             <button type="submit" class="btn btn-outline-secondary" onClick="fn_reply_form('${contextPath}/qna/replyForm.do', ${article.compet_qna_id})">답글쓰기</button>
            </c:if>
             <button type="button" class="btn btn-outline-secondary" onClick="backToList(this.form)">목록보기</button>
