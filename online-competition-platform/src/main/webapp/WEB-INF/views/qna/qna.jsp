@@ -18,13 +18,23 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>Insert title here</title>
-    </head>
-    <script>
-	
-</script>
+       <meta charset="UTF-8" />
+       <title>Insert title here</title>
+      
+      <script src="${contextPath}/resources/plugins/tables/js/jquery.dataTables.min.js"></script>
+      <script src="${contextPath}/resources/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+      <script src="${contextPath}/resources/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+      <script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+      <script src="${contextPath}/resources/js/custom.min.js"></script>
+      <script src="${contextPath}/resources/js/settings.js"></script>
+      <script src="${contextPath}/resources/js/gleek.js"></script>
+      <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
+
+   </head>
+ 
     <body>
+    
         <!-- row -->
 
         <div class="container-fluid">
@@ -65,11 +75,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                                     <span style="padding-left: 25px"></span>
                                                                 </c:forEach>
                                                                 <span style="font-size: 12px">[답변]</span>
-                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title}</a>
+                                                                <a class="cls1" href="${contextPath}/qna/qnaDetail.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title}</a>
                                                             </c:when>
 
                                                             <c:otherwise>
-                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title }</a>
+                                                                <a class="cls1" href="${contextPath}/qna/qnaDetail.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title }</a>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </td>
@@ -97,19 +107,33 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             margin:10px;
                                             
                                         "
-                                    >
-                                  <a href = "${contextPath}/compet/qnaForm.do"><p class="cls2">글쓰기</p></a>
+
+                                    >                        
+                                    <button type="button" class="btn btn-outline-secondary"  onClick="fn_articleForm('${loginStatus}')">글쓰기</button>                                                                       
                                     </div>                               
-                                        <button type="button" class="btn btn-outline-secondary">글쓰기</button>
+
                                     </div>
-                                </div>
-                                
+                                </div>                               
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- #/ container -->
+        
+    <script>
+    window.onload = () => {
+    	document.getElementById("redirect").value = "${contextPath}/qna/qna.do";
+    }
+    
+	function fn_articleForm(loginStatus){
+		
+	  if (loginStatus == "member" || loginStatus == "admin"){
+	    location.href= "${contextPath}/qna/qnaForm.do";
+	  } else {
+	    alert("로그인 후 글쓰기가 가능합니다.");
+	  }
+	}
+</script>        
+
+    
     </body>
 </html>

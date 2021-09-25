@@ -19,7 +19,7 @@
    </resultMap>
  
 	
-<!-- 문의 게시판 리스트 -->
+<!-- 문의 게시판 리스트 -->  <!-- where compet_id = #{compet_id} -->
 	<select id="selectAllQnaList" resultMap="qnaResult">
   	    <![CDATA[
      SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
@@ -34,8 +34,8 @@
 <!-- 문의 게시판 새 글 DB추가 -->  <!--values #{mem_id} 추가 -->
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
-       INSERT into compet_qna(compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id) 
-       VALUES(#{articleNO},#{title}, #{content}, '20210907', 0, 1)
+       INSERT into compet_qna (compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id, compet_qna_date) 
+       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, #{parent_id}, 1, sysdate)
     ]]>
 </insert>
 
@@ -47,16 +47,32 @@
 
  <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
 	<![CDATA[
-		select * from t_member	
+		select * from compet_qna	
 		where id=#{id} and pwd=#{pwd}		
 	]]>
   </select>
   
   <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
     <![CDATA[
-      SELECT * from t_member
-      where compet_qna_id = #{articleNO}		
+      SELECT * from compet_qna
+      where compet_qna_id = #{articleNO}
     ]]>
   </select>
+  
+  <update id="updateArticle" parameterType="java.util.Map">
+   update compet_qna
+   set compet_qna_title =  #{title}, compet_qna_text = #{content}
+   where compet_qna_id = #{articleNO}
+   </update>
+   
+   <delete id="deleteArticle"  parameterType="int">
+    <![CDATA[
+      delete from compet_qna
+      where compet_qna_id in (
+         SELECT compet_qna_id FROM  compet_qna
+         START WITH compet_qna_id = #{articleNO}
+         CONNECT BY PRIOR  compet_qna_id = parent_id )
+    ]]>      
+  </delete>
 
 </mapper>

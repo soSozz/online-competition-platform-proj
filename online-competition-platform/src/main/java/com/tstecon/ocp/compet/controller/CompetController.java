@@ -16,7 +16,7 @@ public interface CompetController {
 //	대회안내 페이지
 	public ModelAndView CompetInfo(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
-
-	// 대회목록 페이지
+// 대회목록 페이지
 	public ModelAndView competList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
+
