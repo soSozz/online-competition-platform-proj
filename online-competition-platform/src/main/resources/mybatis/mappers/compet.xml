@@ -174,5 +174,11 @@
 		where compet_name = #{compet_name}
 	]]>
 	</delete>
+	
+	<select id="selectCompetListByTerminated" resultMap="CompetResult" parameterType="String" >
+     <![CDATA[
+        select * from compet where compet_terminated = #{terminated}
+     ]]>
+	</select>
 
 </mapper>
