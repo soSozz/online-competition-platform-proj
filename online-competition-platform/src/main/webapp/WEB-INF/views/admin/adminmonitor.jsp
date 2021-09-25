@@ -69,8 +69,12 @@ h3,h4{
 <div class="allbox">
     <div class="container">
         <div class="row my-3">
-    <span style="font-size: 25px; font-weight:bold; color:black;">싨</span>
+    <span style="font-size: 25px; font-weight:bold; color:black;">좋아요</span>
+     <div class="general-button">
+		 <button type="button" class="btn mb-1 btn-select">조회하기</button>
+	     </div>
         </div>
+        
 <div class="row">
                     <!-- single bar Chart -->
                     <div class="col-lg-12">
@@ -216,7 +220,7 @@ h3,h4{
 </div>
 </div>          
       
-<%-- <script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
 <script>
 <!-- single bar chart -->
     var ctx = document.getElementById("singelBarChart");
@@ -245,7 +249,34 @@ h3,h4{
             }
         }
     });
+    
+    var ctx = document.getElementById("singelBarChart1");
+    ctx.height = 150;
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [
+                {
+                    label: "좋아요 수"
+                    data: response
+                    borderColor: "rgba(117, 113, 249, 0.9)",
+                    borderWidth: "0",
+                    backgroundColor: "rgba(117, 113, 249, 0.5)"
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
-    </script> --%>
+    </script> 
 </body>
 </html>

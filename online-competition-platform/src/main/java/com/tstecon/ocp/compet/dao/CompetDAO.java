@@ -1,6 +1,7 @@
 package com.tstecon.ocp.compet.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 

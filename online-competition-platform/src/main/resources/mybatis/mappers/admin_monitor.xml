@@ -11,6 +11,8 @@
 		<result property = "cmt_date" column = "cmt_date" />
 		<result property = "contents_id" column = "contents_id" />
 		<result property = "cmt_text" column = "cmt_text" />
+		<result property = "cnt" column = "cnt" />
+		<result property = "likesdate" column = "likesdate" />
 	</resultMap>
 	<resultMap id = "adminCmtResult" type = "adminCmtVO"> 
 		<result property = "contents_name" column = "contents_name" />
@@ -22,18 +24,18 @@
 	
 
 	
-	<select id = "selectAdminMoniterLikesMap" resultMap = "adminMonitorResult" parameterType="java.util.HashMap">
+	<select id = "selectAdminMoniterLikeList" resultMap = "adminMonitorResult">
 		<![CDATA[
-			select to_char(likes_date, 'yyyy-mm-dd') as 날짜, nvl(count(*), 0) as 데이터
+			select to_char(likes_date, 'yyyy-mm-dd') as likesdate, nvl(count(*), 0) as cnt
                from likes
                group by to_char(likes_date, 'yyyy-mm-dd')
                order by to_char(likes_date, 'yyyy-mm-dd')
 		]]>
 	</select>
 	
-	<select id = "selectAdminMoniterCmtMap" resultMap = "adminMonitorResult" parameterType="java.util.HashMap">
+	<select id = "selectAdminMoniterCmtList" resultMap = "adminMonitorResult">
 		<![CDATA[
-			select to_char(cmt_date, 'yyyy-mm-dd') as 날짜, nvl(count(*), 0) as 데이터
+			select to_char(cmt_date, 'yyyy-mm-dd'), nvl(count(*), 0)
                from cmt
                WHERE cmt_date BETWEEN TO_DATE(#{}, 'YYYY-MM-DD') 
                               AND TO_DATE(#{}, 'YYYY-MM-DD')  
