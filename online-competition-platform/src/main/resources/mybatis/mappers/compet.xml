@@ -85,6 +85,8 @@
 		where categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
 	</select>
+
+
 	
 <!-- 카테고리별로 진행 중인 대회 3개 가져오기-->
 	<select id="selectCompetsByCategIdToThree" resultMap="CompetResult" parameterType = "int">
@@ -113,6 +115,7 @@
 		from compet
    	]]>
 	</select>
+
 	
 	<!-- 카테고리명을 통해 대회명 가져오기 -->
 	<select id="selectCompetNameByName" resultMap="CompetResult" parameterType = "int">
@@ -171,4 +174,5 @@
 		where compet_name = #{compet_name}
 	]]>
 	</delete>
+
 </mapper>

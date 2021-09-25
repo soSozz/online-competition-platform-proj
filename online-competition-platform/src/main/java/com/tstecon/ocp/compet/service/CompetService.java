@@ -6,16 +6,16 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Service
 public interface CompetService {
 //	대회 안내
-
-	public Map<String, List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException;
-
-	public Map<String, List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException;
+	public Map<String,List<CompetVO>> CompetInfo(int compet_id) throws DataAccessException;
+	public Map<String,List<CompetFileVO>> CompetPoster(int compet_id) throws DataAccessException;
+	// 대회 이름 리스트 가져오기
 
 	// 카테고리 아이디를 통해 대회 리스트 가져오기
 	public List<CompetVO> competListById(int i) throws Exception;
@@ -43,3 +43,4 @@ public interface CompetService {
 	public int competDelete(String compet_name) throws DataAccessException;
 
 }
+

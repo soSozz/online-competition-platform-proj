@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
+
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {
 
@@ -54,7 +55,7 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
-	// 카테고리 아이디를 통해 진행중인 대회 리스트 가져오기
+
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);

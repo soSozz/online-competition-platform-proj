@@ -18,7 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.service.CompetService;
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
+
+
 
 @Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
@@ -28,8 +29,7 @@ public class CompetControllerImpl implements CompetController {
 	@Autowired
 	private CompetDAO competDAO;
 
-	@Autowired
-	private CompetQnaVO competqnaVO;
+
 
 //	대회안내페이지
 	@Override
@@ -49,6 +49,7 @@ public class CompetControllerImpl implements CompetController {
 		mav.addObject("competPoster", competInfo);
 		return mav;
 	}
+
 
 	@Override
 	@RequestMapping(value = "/compet/competList.do", method = RequestMethod.GET)

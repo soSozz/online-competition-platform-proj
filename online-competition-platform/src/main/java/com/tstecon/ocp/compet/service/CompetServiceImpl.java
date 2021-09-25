@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
+
+
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService {
@@ -43,7 +46,9 @@ public class CompetServiceImpl implements CompetService {
 		competList = competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id", competList);
 		return competInfo;
-	}
+
+	}	
+	
 
 //대회 공지사항: 작은 포스터 가져오기
 	@Override
@@ -52,12 +57,16 @@ public class CompetServiceImpl implements CompetService {
 		return CompetSmallPoster;
 	}
 
+	// 대회 리스트 아이디통해 이름 알아내기
+
 	// 진행중인 대회 가져오기
+
 	@Override
 	public List<CompetVO> competListById(int i) throws Exception {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
 		return competListByName;
 	}
+
 
 	@Override
 	public List<CompetVO> competListByCategIdToThree(int i) throws Exception {
@@ -77,6 +86,7 @@ public class CompetServiceImpl implements CompetService {
 		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
 		return competNameByName;
 	}
+
 
 	// 대회 이름 가져오기
 	@Override
@@ -110,5 +120,6 @@ public class CompetServiceImpl implements CompetService {
 	public int competDelete(String compet_name) throws DataAccessException {
 		return competDAO.deleteCompet(compet_name);
 	}
+
 
 }
