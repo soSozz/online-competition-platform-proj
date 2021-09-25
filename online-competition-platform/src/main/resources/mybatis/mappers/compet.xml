@@ -123,13 +123,15 @@
    	]]>
 	</select>
 	
+	<!-- 대회 아이디 +1 -->
 	 <select id="selectNewCompetId" resultType="int">
      <![CDATA[
         SELECT nvl(max(compet_id), 0) + 1 
         from compet
      ]]>
 	</select>
-
+	
+	<!-- 대회 추가 -->
 	<insert id="insertCompet" parameterType = "java.util.Map">
 	<![CDATA[
 		insert into compet (compet_id, categ_id, compet_name, compet_start, compet_end,
@@ -139,6 +141,7 @@
    	]]>
 	</insert>
 	
+	<!-- 대회 파일 아이디 +1 -->
 	<select id="selectNewCompetFileId" resultType="int">
      <![CDATA[
         SELECT nvl(max(compet_file_id), 0) + 1 
@@ -146,6 +149,7 @@
      ]]>
 	</select>
 	
+	<!-- 대회 파일 추가 -->
 	<insert id="insertCompetFile" parameterType = "competFileVO">
 	<![CDATA[
 		insert into compet_file (compet_file_id, compet_id, compet_file_type, compet_file_name)
@@ -163,8 +167,7 @@
 	
 	<delete id="deleteCompet" parameterType = "String">
 	<![CDATA[
-		delete 
-		from compet
+		delete from compet
 		where compet_name = #{compet_name}
 	]]>
 	</delete>

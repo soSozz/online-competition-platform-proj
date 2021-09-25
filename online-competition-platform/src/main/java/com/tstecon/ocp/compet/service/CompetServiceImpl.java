@@ -52,7 +52,7 @@ public class CompetServiceImpl implements CompetService {
 		return CompetSmallPoster;
 	}
 
-	// 대회 리스트 아이디통해 이름 알아내기
+	// 진행중인 대회 가져오기
 	@Override
 	public List<CompetVO> competListById(int i) throws Exception {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
@@ -92,7 +92,8 @@ public class CompetServiceImpl implements CompetService {
 		int addCompet = competDAO.insertCompet(competMap);
 		int addCompetFile = competDAO.insertCompetFile(competMap);
 	}
-
+	
+	// 대회 아이디 가져오기
 	@Override
 	public int addCompetId() throws DataAccessException {
 		int addCompetId = competDAO.selectAddCompetId();
