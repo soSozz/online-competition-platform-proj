@@ -87,7 +87,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                     <td width="10%">
                                                         <c:choose>
                                                             <c:when test="${qna.mem_id !=null}">
-                                                                ${qna.mem_id }
+                                                                ${qna.mem_id } 
                                                             </c:when>
                                                             <c:otherwise> 관리자 </c:otherwise>
                                                         </c:choose>

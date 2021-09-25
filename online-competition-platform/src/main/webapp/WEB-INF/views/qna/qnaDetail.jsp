@@ -39,9 +39,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>   
            
             <div style=" position: relative; bottom: 65px;">
-               <div class="form-group"  >
+               
+              <%--  <div class="form-group"  >
                 <input type="text" class="form-control bg-transparent" name="mem_id" value="${article.mem_id }" readonly placeholder=" 작성자">
+            </div> --%>
+            
+            <div class="form-group"  >
+                <input type="text" class="form-control bg-transparent" name="mem_id" value="${article.admin_id }" readonly placeholder=" 작성자">
             </div>
+            
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" name="title"  id="i_title"  value="${article.compet_qna_title }" readonly placeholder=" 글제목">
             </div>
@@ -54,11 +60,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" class="btn btn-outline-secondary"  onClick="backToList(articleForm)">취소</button>           
              </div>
              <!-- 수정하기 버튼  -->  
-            <c:if test="${loginInfo.mem_id == article.mem_id }">
+             <%-- <c:choose>
+                  <c:when test="${loginInfo != null}"></c:when>
+                  <c:when test="${loginStatus == 'member' || loginStatus == 'admin'}"></c:when>
+                  <c:when  test="${loginInfo.mem_id == article.mem_id || loginInfo.admin_id == article.admin_id }"></c:when>    
+                    
+             </c:choose> --%>         
+             
+
+            <c:if test="${loginInfo.mem_id == article.mem_id || loginInfo.admin_id == article.admin_id }">
               <div id="tr_btn">
             <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
             <button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
            </c:if>
+           
            <c:if test="${loginStatus == 'admin' }">
             <button type="submit" class="btn btn-outline-secondary" onClick="fn_reply_form('${contextPath}/qna/replyForm.do', ${article.compet_qna_id})">답글쓰기</button>
            </c:if>
