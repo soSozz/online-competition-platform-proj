@@ -10,7 +10,7 @@ import com.tstecon.ocp.qna.vo.CompetQnaVO;
 public interface CompetQnaDAO {
 
 // 문의 게시판 내용
-	public List selectAllQnaList() throws DataAccessException;
+	public List selectAllQnaList(int compet_id) throws DataAccessException;
 
 	public int insertNewArticle(Map articleMap) throws DataAccessException;
 
