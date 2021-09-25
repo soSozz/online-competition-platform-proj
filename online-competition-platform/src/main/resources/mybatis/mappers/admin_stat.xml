@@ -5,16 +5,25 @@
 	
 <mapper namespace = "mappers.admin.stat"> <!-- 리절트맵 정의 -->
 	<resultMap id = "adminStatResult" type = "adminStatVO"> 
-		<result property = "ctg_name" column = "ctg_name" />
+		<result property = "ctg_name" column = "categ_name" />
 		<result property = "cnt" column = "cnt" />
 		<result property = "viw" column = "viw" />
-		<result property = "like" column = "like" />
+		<result property = "like" column = "likes" />
+		<result property = "cmt" column = "cmt" />
+		<result property = "compet_name" column = "compet_name" />
+		<result property = "contents_name" column = "contents_id" />
+		<result property = "mem_nickname" column = "member_nickname" />
+		<result property = "contents_processing_date" column = "contents_processing_date" />
+		<result property = "contents_view" column = "contents_view" />
+		<result property = "cmt1" column = "cmt1" />
+		<result property = "likes1" column = "likes1" />
+		
 	</resultMap>
-	
-
 
 	
-	<select id = "selectAdminStatContentsList" resultMap = "adminStatResult" parameterType = "int">
+
+	
+	<select id = "selectAdminStatContentsList" resultMap = "adminStatResult">
 		<![CDATA[
 			select category.categ_name, count(*) cnt from category, contents, compet
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and contents.contents_state='승인'
@@ -24,7 +33,7 @@
 	
 	<select id = "selectAdminStatLikesList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cnt from category, contents, compet, likes
+			select category.categ_name, count(*) likes from category, contents, compet, likes
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and likes.contents_id = contents.contents_id and contents.contents_state='승인'
             group by category.categ_name
 		]]>
@@ -32,7 +41,7 @@
 	
 	<select id = "selectAdminStatCmtList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cnt from category, contents, compet, cmt
+			select category.categ_name, count(*) cmt from category, contents, compet, cmt
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and cmt.contents_id = contents.contents_id and contents.contents_state='승인'
             group by category.categ_name
 		]]>
@@ -45,4 +54,19 @@
             group by category.categ_name
 		]]>
 	</select>
+<select id = "selectStatAllList" resultMap = "adminStatResult">
+
+select contents.contents_name, categ.categ_name, compet.compet_name, mem.mem_nickname, contents.contents_processing_date, contents.contents_view, likes1, cmt1
+from category categ, compet, contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
+                                                    from likes, contents
+                                                    where likes.contents_id = contents.contents_id
+                                                    group by contents.contents_id) likes_table,
+                                                    (select contents.contents_id contents_id3, count(*)cmt1
+                                                    from cmt, contents
+                                                    where cmt.contents_id = contents.contents_id
+                                                    group by contents.contents_id) cmt_table
+where categ.categ_id = compet.categ_id and compet.compet_id = contents.compet_id and contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_id = contents_id3
+
+	</select>
+
 </mapper>

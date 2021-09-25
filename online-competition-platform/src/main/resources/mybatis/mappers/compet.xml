@@ -9,7 +9,6 @@
 	<resultMap id = "CompetResult" type = "competVO"> 
 		<result property = "compet_id" column = "compet_id" />
 		<result property = "categ_id" column = "categ_id" />
-		<result property = "compet_limit" column = "compet_limit" />
 		<result property = "compet_name" column = "compet_name" />
 		<result property = "compet_start" column = "compet_start" />
 		<result property = "compet_end" column = "compet_end" />
@@ -147,10 +146,26 @@
      ]]>
 	</select>
 	
-	<insert id="insertCompetFile" parameterType = "int">
+	<insert id="insertCompetFile" parameterType = "competFileVO">
 	<![CDATA[
-		insert into compet_file (
-		
+		insert into compet_file (compet_file_id, compet_id, compet_file_type, compet_file_name)
+		values (#{compet_file_id}, #{compet_id}, #{compet_file_type}, #{compet_file_name})
    	]]>
 	</insert>
+	
+	<update id="updateCompetTerminated" parameterType="String">
+	<![CDATA[
+		update compet 
+		set compet_terminated = 'Y'
+		where compet_name = #{compet_name}
+	]]>
+	</update>
+	
+	<delete id="deleteCompet" parameterType = "String">
+	<![CDATA[
+		delete 
+		from compet
+		where compet_name = #{compet_name}
+	]]>
+	</delete>
 </mapper>

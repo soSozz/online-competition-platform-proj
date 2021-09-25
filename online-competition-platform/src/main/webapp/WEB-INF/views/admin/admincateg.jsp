@@ -74,6 +74,7 @@ h3, h4 {
 	<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
 	<hr />
 	<h4>진행 중인 대회</h4>
+	<form action="/admin/competFinish.do">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="card border-primary">
@@ -86,9 +87,9 @@ h3, h4 {
 				<div class="card-body">
 					<c:forEach var="compet" items="${categ.value}">
 						<div class="competList">
-							<div class="competName">${compet.compet_name}<a href="#"
-									class="btn btn-primary float-right" style="height: 35px;">대회
-									종료</a>
+							<div class="compet_name"><input type="text" name="compet_name" value="${compet.compet_name}" readonly />
+							<input type="submit"
+									class="btn btn-primary float-right" style="height: 35px;" value="대회 종료" />
 							</div>
 						</div>
 					</c:forEach>
@@ -96,6 +97,7 @@ h3, h4 {
 			</div>
 		</div>
 	</c:forEach>
+	</form>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -130,6 +132,7 @@ h3, h4 {
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
+									<form action="/admin/competDelete.do">
 										<table class="table table-striped table-bordered dataTable"
 											id="DataTables_Table_0" role="grid"
 											aria-describedby="DataTables_Table_0_info">
@@ -167,17 +170,18 @@ h3, h4 {
 													<tr role="row" class="even">
 														<td>${status.count + stat}</td>
 														<td><span class="float-center">${categ.key}</span></td>
-														<td>${compet.compet_name}</td>
+														<td><input type="text" name="compet_name" value="${compet.compet_name}" readonly /></td>
 														<td>${compet.compet_start}</td>
 														<td>${compet.compet_end}</td>
 														<td>${compet.compet_create}</td>
-														<td><button class="deletebtn btn btn-primary float-center">삭제하기</button></td>
+														<td><input class="deletebtn btn btn-primary float-center" type="submit" value="삭제하기"/></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
 														</c:if>
 														</c:forEach>
 												</c:forEach>
+											
 												<!-- <tr role="row" class="odd">
 														<td class="sorting_1">Airi Satou</td>
 														<td>Accountant</td>
@@ -198,6 +202,7 @@ h3, h4 {
 													</tr> -->
 											</tbody>
 										</table>
+										</form>
 									</div>
 								</div>
 								<div class="row">
@@ -255,7 +260,7 @@ h3, h4 {
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
-				<form>
+				<form action="${contextPath }/admin/addCompet.do" method="post" enctype="multipart/form-data">
 					<div class="row">
 							<label id="categ-label" class="control-label"></label> 
 							<input
@@ -294,14 +299,14 @@ h3, h4 {
 							</div>
 							</div>
 					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default waves-effect"
+							data-dismiss="modal">닫기</button>
+						<button type="submit" 
+							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
+					</div>
 				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default waves-effect"
-					data-dismiss="modal">닫기</button>
-				<button type="button" onclick="location='/ocp/admin/addCompet.do'"
-					class="btn btn-danger waves-effect waves-light save-category"
-					data-dismiss="modal">추가하기</button>
 			</div>
 		</div>
 	</div>

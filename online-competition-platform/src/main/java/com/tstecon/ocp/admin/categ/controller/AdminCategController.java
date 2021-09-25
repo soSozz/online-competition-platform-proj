@@ -21,7 +21,7 @@ public interface AdminCategController {
 	
 	public ResponseEntity addCompet(@RequestParam Map<String,Object> addCompetMap,MultipartHttpServletRequest multipartRequest, HttpServletResponse reponse) throws Exception;
 	
-	public ModelAndView competFinish(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView competFinish(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
-	public ModelAndView competDelete(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView competDelete(@RequestParam("compet_name")String compet_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }

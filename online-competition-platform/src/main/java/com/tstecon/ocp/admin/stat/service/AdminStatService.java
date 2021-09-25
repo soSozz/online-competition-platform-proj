@@ -12,4 +12,5 @@ public interface AdminStatService {
 	public List<AdminStatVO> adminLikesList() throws DataAccessException;
 	public List<AdminStatVO> adminCmtList() throws DataAccessException;
 	public List<AdminStatVO> adminViewList() throws DataAccessException;
+	public List<AdminStatVO> adminAllList() throws DataAccessException;
 }
