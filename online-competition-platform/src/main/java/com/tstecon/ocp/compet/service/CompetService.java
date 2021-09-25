@@ -26,7 +26,7 @@ public interface CompetService {
 	// 종료된 대회 가져오기
 	public List<CompetVO> finishCompetList(int i) throws Exception;
 
-	// 카테고리명을 통해 대회 이름 가져오기
+	// 카테고리 아이디를 통해 대회 이름 가져오기
 	public List<CompetVO> competListByName(int i) throws Exception;
 
 	List<CompetFileVO> CompetSmallPoster(int compet_id) throws DataAccessException;
@@ -35,12 +35,18 @@ public interface CompetService {
 
 	// admin 대회 추가하기
 	public void addCompet(Map<String, Object> competMap) throws DataAccessException;
-
+	
+	// 대회 추가 시 대회 아이디 값 증가
 	public int addCompetId() throws DataAccessException;
-
+	
+	//대회 종료하기
 	public int competFinish(String compet_name) throws DataAccessException;
-
+	
+	// 종료된 대회 삭제하기
 	public int competDelete(String compet_name) throws DataAccessException;
+	
+	// 카테고리 아이디를 통해 대회 리스트 가져오기
+	public List<CompetVO> competListByCategId(int categ_id) throws DataAccessException;
 
 }
 

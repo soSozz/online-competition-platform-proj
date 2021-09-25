@@ -117,15 +117,24 @@ public class CompetDAOImpl implements CompetDAO {
 		return competId;
 	}
 
+	//대회 종료하기
 	@Override
 	public int updateCompetTerminated(String compet_name) throws DataAccessException {
 		int updateCompet = sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
 		return updateCompet;
 	}
-
+	
+	// 종료된 대회 삭제하기
 	@Override
 	public int deleteCompet(String compet_name) throws DataAccessException {
 		return sqlSession.delete("mappers.compet.deleteCompet", compet_name);
+	}
+	
+	// 카테고리 아이디를 통해 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> selectCompetListByCategId(int categ_id) throws DataAccessException {
+		List<CompetVO> competList = sqlSession.selectList("mappers.compet.selectCompetListByCategId", categ_id);
+		return competList;
 	}
 
 }

@@ -174,5 +174,13 @@
 		where compet_name = #{compet_name}
 	]]>
 	</delete>
+	
+	<select id="selectCompetListByCategId" parameterType="int">
+	<![CDATA[
+		select *
+		from compet
+		where categ_id = #{categ_id}
+	]]>
+	</select>
 
 </mapper>

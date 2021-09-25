@@ -109,16 +109,25 @@ public class CompetServiceImpl implements CompetService {
 		int addCompetId = competDAO.selectAddCompetId();
 		return addCompetId;
 	}
-
+	
+	//대회 종료하기
 	@Override
 	public int competFinish(String compet_name) throws DataAccessException {
 		int updateCompet = competDAO.updateCompetTerminated(compet_name);
 		return updateCompet;
 	}
 
+	//종료된 대회 삭제하기
 	@Override
 	public int competDelete(String compet_name) throws DataAccessException {
 		return competDAO.deleteCompet(compet_name);
+	}
+	
+	// 카테고리 아이디를 통해 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> competListByCategId(int categ_id) throws DataAccessException {
+		List<CompetVO> competList = competDAO.selectCompetListByCategId(categ_id);
+		return competList;
 	}
 
 
