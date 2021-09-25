@@ -37,9 +37,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			<div class="row justify-content-lg-center">
 				<div class="card">
 					<div class="card-body">
-						<div class="mb-lg-3">
-							<span id="compet_title" class="mb-lg-3 bold">${categ.key }</span>
-							<a href="#" class="float-right"><span>더보기</span></a>
+						<div class="mb-lg-3 d-flex align-items-center">
+							<i class="mr-2 fas fa-flag" style="font-size:3em; color: black;"></i>
+							<span id="compet_title" class="bold">${categ.key }</span>
+							<a href="#" class="ml-auto"><span>더보기</span></a>
 						</div>
 						<div class="row justify-content-lg-center">
 							<div class="col-lg-12">
@@ -56,7 +57,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 													</p>
 												</div>
 												<div class="card-footer">
-													<a href="#" class="card-link float-right"><small>자세히 보기</small></a>
+													<a href="${contextPath }/compet/competInfo.do?compet_id=${compet.compet_id}" class="card-link float-right"><small>자세히 보기</small></a>
 												</div>
 											</div>
 										</div>

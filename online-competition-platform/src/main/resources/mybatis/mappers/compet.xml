@@ -92,7 +92,7 @@
   		select x.*
   		from (select *
   			  from compet natural join compet_file
-			  where categ_id = #{categ_id} and compet_terminated = 'N' and compet_file_name like '%-big%' order by compet_create desc) x
+			  where categ_id = #{categ_id} and compet_terminated = 'N' and compet_file_name like '%-big%' order by compet_create asc) x
 		where rownum <= 3
    	]]>
 	</select>
