@@ -37,6 +37,7 @@ public class AdminMonitorVO {
 	public void setCmt_id(int cmt_id) {
 		this.cmt_id = cmt_id;
 	}
+<<<<<<< HEAD
 	public Date getLikesdate() {
 		return likesdate;
 	}
@@ -52,6 +53,11 @@ public class AdminMonitorVO {
 
 	
 	
+=======
+
+	
+	
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	
 	
 }

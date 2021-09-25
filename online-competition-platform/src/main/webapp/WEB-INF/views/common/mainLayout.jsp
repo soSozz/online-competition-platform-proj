@@ -35,10 +35,10 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-lg-9">
+			<div class="col-lg-10">
 				<tiles:insertAttribute name="body" />
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 				<tiles:insertAttribute name="side" />
 			</div>
 		</div>

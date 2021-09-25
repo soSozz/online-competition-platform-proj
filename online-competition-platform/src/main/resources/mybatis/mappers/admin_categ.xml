@@ -25,7 +25,7 @@
    	]]>
 	</select>
 
-	<select id="selectCategIdByName" resultType="int" parameterType="String">
+	<select id="selectCategIdByName" resultType="int" parameterType="java.util.Map">
 	<![CDATA[
 	select categ_id
 	from category

@@ -46,42 +46,51 @@
 
 		<div class="col-lg-5">
 			<div class="row align-items-center">
-				<div class="col-lg-6 my-auto">
-					<form class="d-flex">
-						<input class="form-control me-2 mr-2 btn-sm rounded-pill " type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success btn-sm " type="submit">Search</button>
+				<div class="col-lg-6">
+					<form class="d-flex justify-content-between align-items-center">
+						<div class="mr-2" style="font-size: 2em; color: green;">
+							<i class="fas fa-search"></i>
+						</div>
+						<input class="mr-2 form-control btn-sm rounded-pill " type="search"
+							placeholder="검색어를 입력해주세요" aria-label="Search">
+						<button class="btn btn-outline-success btn-sm " type="submit">검색</button>
 					</form>
 				</div>
 				<div class="col-lg-6">
 					<c:choose>
 						<c:when test="${loginStatus == 'member'}">
-							<div class="row justify-content-center">
-								<p>${loginInfo.mem_nickname} 님 안녕하세요!</p>
+							<div class="mb-lg-2 row justify-content-center align-items-center ">
+								<div class="mr-lg-1">
+									<i class="fas fa-user" style="font-size: 2em; color: black;"></i>
+								</div>
+								<div><span class="bold">${loginInfo.mem_nickname}</span> 님 안녕하세요!</div>
 							</div>
-							<div class="row justify-content-center">
-								<div class="mr-lg-2"><a href="#"><i class="far fa-bell fa-lg"
-											style="color:#57CC99; "></i></a>
+							<div class="row justify-content-center align-items-center">
+								<div class="mr-lg-2"><a href="#"><i class="fas fa-bell"
+											style="color:#57CC99; font-size: 2em;"></i></a>
 								</div>
 								<div>
 									<a href="${contextPath }/member/logout.do"><button type="button"
-											class="btn btn-light btn-sm">Logout</button></a>
+											class="btn btn-light btn-sm">로그아웃</button></a>
 								</div>
 								<div>
 									<a href="#"><button type="button"
-											class="btn btn-light btn-sm">Mypage</button></a>
+											class="btn btn-light btn-sm">마이페이지</button></a>
 								</div>
 							</div>
 						</c:when>
 						<c:when test="${loginStatus == 'admin'}">
 
-							<div class="row justify-content-center">
-								<p>${loginInfo.admin_name} 님 안녕하세요!</p>
+							<div class="mb-lg-2 row justify-content-center align-items-center ">
+								<div class="mr-lg-1">
+									<i class="fas fa-user-cog" style="font-size: 2em; color: black;"></i>
+								</div>
+								<div><span class="bold">${loginInfo.admin_name}</span> 님 안녕하세요!</div>
 							</div>
 							<div class="row justify-content-center">
 								<div>
 									<a href="${contextPath }/member/logout.do"><button type="button"
-											class="btn btn-light btn-sm">Logout</button></a>
+											class="btn btn-light btn-sm">로그아웃</button></a>
 								</div>
 								<div>
 									<a href="#"><button type="button"
@@ -93,8 +102,8 @@
 							<div class="bootstrap-modal">
 								<!-- Sign Out-->
 								<div class="login row justify-content-center">
-									<button type="button" class="btn btn-light btn-sm"
-										data-toggle="modal" data-target="#ModalCenter">Login</button>
+									<button type="button" class="btn btn-light btn-lg"
+										data-toggle="modal" data-target="#ModalCenter">로그인</button>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="ModalCenter">
@@ -142,12 +151,16 @@
 </div>
 <hr style="position:relative; bottom:15px;">
 
+<!-- 로그인 성공 시 태그 값에 있는 요청 url로 이동 -->
+<input id="redirect" type="text" value="${contextPath}/main/main.do" hidden/>
+
 <!-- 자바스크립트 -->
 <script>
 	function login_submit() {
 		//input 태그에 입력된 아이디와 비밀번호 값 가져오기
 		const id = document.getElementById("id").value;
 		const pwd = document.getElementById("pwd").value;
+		const url = document.getElementById("redirect").value;
 
 		//ajax 요청 객체 생성
 		const xhr = new XMLHttpRequest();
@@ -156,7 +169,7 @@
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === xhr.DONE && xhr.status === 200) { //정상 응답 시
 				if (xhr.responseText === 'true') { //로그인 되었으면 메인페이지로 이동
-					location.href = '${contextPath}/main/main.do';
+					location.href = url;
 				} else { // 로그인에 실패했으면 알림창 이후 초기화
 					alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
 					document.getElementById("id").value = '';

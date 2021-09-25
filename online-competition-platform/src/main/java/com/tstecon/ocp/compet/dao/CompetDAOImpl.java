@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
+
 
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {
@@ -55,7 +55,7 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
-	// 카테고리 아이디를 통해 진행중인 대회 리스트 가져오기
+
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
 		List<CompetVO> competNameList = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNames", i);
@@ -88,29 +88,29 @@ public class CompetDAOImpl implements CompetDAO {
 		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName");
 		return competName;
 	}
-	
+
 	// 대회 추가하기
 	@Override
-	public int insertCompet(Map<String,Object> competMap) throws DataAccessException {
+	public int insertCompet(Map<String, Object> competMap) throws DataAccessException {
 		int addCompet = sqlSession.insert("mappers.compet.insertCompet", competMap);
 		return addCompet;
 	}
+
 	// 대회 파일 추가
 	@Override
 	public int insertCompetFile(Map<String, Object> competMap) throws DataAccessException {
-		List<CompetFileVO> imageFileList = (ArrayList)competMap.get("imageFileList");
-		int articleNO = (Integer)competMap.get("compet_id");
+		List<CompetFileVO> imageFileList = (ArrayList) competMap.get("imageFileList");
+		int articleNO = (Integer) competMap.get("compet_id");
 		int addCompetFile = 0;
-		for(CompetFileVO competFileVO : imageFileList) {
-			int imageFileNO = sqlSession.selectOne("selectNewCompetFileId");
-			competFileVO.setCompet_file_id(++imageFileNO);
-			competFileVO.setCompet_id(articleNO);
-			addCompetFile = sqlSession.insert("mappers.compet.insertCompetFile", imageFileList);
+		for (CompetFileVO competFileVO : imageFileList) {
+			int imageFileNO = sqlSession.selectOne("mappers.compet.selectNewCompetFileId");
+			competFileVO.setCompet_file_id(imageFileNO);
+			addCompetFile = sqlSession.insert("mappers.compet.insertCompetFile", competFileVO);
 		}
-		
+
 		return addCompetFile;
 	}
-	
+
 	@Override
 	public int selectAddCompetId() throws DataAccessException {
 		int competId = sqlSession.selectOne("mappers.compet.selectNewCompetId");
@@ -118,16 +118,14 @@ public class CompetDAOImpl implements CompetDAO {
 	}
 
 	@Override
-	public void updateCompetTerminated(String compet_name) throws DataAccessException {
-		sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
+	public int updateCompetTerminated(String compet_name) throws DataAccessException {
+		int updateCompet = sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
+		return updateCompet;
 	}
 
 	@Override
-	public void deleteCompet(String compet_name) throws DataAccessException {
-		sqlSession.delete("mappers.compet.deleteCompet",compet_name);
-		
+	public int deleteCompet(String compet_name) throws DataAccessException {
+		return sqlSession.delete("mappers.compet.deleteCompet", compet_name);
 	}
-
-	
 
 }
