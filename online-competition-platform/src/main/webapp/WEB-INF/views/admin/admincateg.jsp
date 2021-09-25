@@ -174,7 +174,7 @@ h3, h4 {
 														<td class="compet_start">${compet.compet_start}</td>
 														<td class="compet_end">${compet.compet_end}</td>
 														<td class="compet_create">${compet.compet_create}</td>
-														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center">삭제하기</button></td>
+														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center" onclick="fn_delete_compet(event)">삭제하기</button></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
