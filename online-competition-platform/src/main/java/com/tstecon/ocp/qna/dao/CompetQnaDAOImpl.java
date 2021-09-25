@@ -21,8 +21,8 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 
 //문의 게시판 내용	
 	@Override
-	public List selectAllQnaList() throws DataAccessException {
-		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.competQna.selectAllQnaList");
+	public List selectAllQnaList(int compet_id) throws DataAccessException {
+		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.competQna.selectAllQnaList", compet_id);
 		return qnaList;
 	}
 // 문의 로그인

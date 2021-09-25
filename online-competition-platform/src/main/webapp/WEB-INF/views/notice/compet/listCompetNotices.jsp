@@ -59,7 +59,7 @@ h3,h4{
 		<li class="nav-item"><a class="nav-link" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}">공지사항</a></li>
 		<li class="nav-item"><a class="nav-link" href="#contact1">컨텐츠 게시판</a></li>
 		<li class="nav-item"><a class="nav-link" href="#message1">제출</a></li>
-		<li class="nav-item"><a class="nav-link" href="${contextPath}/compet/qna.do">문의</a></li>
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a></li>
 	</ul>
     </div>
 		<div class="container-fluid">

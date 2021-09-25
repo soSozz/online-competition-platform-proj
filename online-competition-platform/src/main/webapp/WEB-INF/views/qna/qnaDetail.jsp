@@ -60,12 +60,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" class="btn btn-outline-secondary"  onClick="backToList(articleForm)">취소</button>           
              </div>
              <!-- 수정하기 버튼  -->  
-             <%-- <c:choose>
-                  <c:when test="${loginInfo != null}"></c:when>
-                  <c:when test="${loginStatus == 'member' || loginStatus == 'admin'}"></c:when>
-                  <c:when  test="${loginInfo.mem_id == article.mem_id || loginInfo.admin_id == article.admin_id }"></c:when>    
+             <c:choose>
+                  <c:when test="${loginInfo != null}">
+                     <c:when test="${loginStatus == 'member'}"></c:when>
+                  </c:when>
+                  
+                  <c:when  test="${loginInfo.mem_id == article.mem_id }"></c:when>    
                     
-             </c:choose> --%>         
+             </c:choose> -        
              
 
             <c:if test="${loginInfo.mem_id == article.mem_id || loginInfo.admin_id == article.admin_id }">

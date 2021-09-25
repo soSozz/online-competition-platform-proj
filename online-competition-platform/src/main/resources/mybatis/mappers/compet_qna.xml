@@ -19,11 +19,12 @@
    </resultMap>
  
 	
-<!-- 문의 게시판 리스트 -->  <!-- where compet_id = #{compet_id} -->
-	<select id="selectAllQnaList" resultMap="qnaResult">
+<!-- 문의 게시판 리스트 --> 
+	<select id="selectAllQnaList" resultMap="qnaResult" parameterType="int">
   	    <![CDATA[
      SELECT level, compet_qna_id, mem_id, compet_qna_title, compet_qna_date, parent_id, compet_qna_text, compet_qna_view, compet_id, admin_id
      FROM compet_qna
+     WHERE compet_id = #{compet_id} 
      START WITH parent_id=0
      CONNECT BY PRIOR  compet_qna_id=parent_id
      ORDER SIBLINGS BY compet_qna_id ASC

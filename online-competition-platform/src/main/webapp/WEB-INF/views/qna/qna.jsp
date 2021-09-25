@@ -30,10 +30,23 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <script src="${contextPath}/resources/js/settings.js"></script>
       <script src="${contextPath}/resources/js/gleek.js"></script>
       <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
+      
+      <c:set var="compet_id" value="${qnaList[0].compet_id}" />
 
    </head>
  
     <body>
+    
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs mb-3 justify-content-lg-center">
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a></li>
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}">공지사항</a></li>
+		<li class="nav-item"><a class="nav-link" href="#contact1">컨텐츠 게시판</a></li>
+		<li class="nav-item"><a class="nav-link" href="#message1">제출</a></li>
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a></li>
+		
+	</ul>
+    </div>
     
         <!-- row -->
 

@@ -45,9 +45,9 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 //문의 페이지	
 	@Override
 	@RequestMapping(value = "/qna/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView Compet_qna_list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView Compet_qna_list(@RequestParam("compet_id") int compet_id,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		List qnaList = competQnaService.qnalistArticles();
+		List qnaList = competQnaService.qnalistArticles(compet_id);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("qnaList", qnaList);
 		return mav;
@@ -154,6 +154,15 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		return resEnt;
 
 	}
+	
+	//문의 답변 글 쓰기 추가	  
+	  public ResponseEntity replyAddNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+				throws Exception{
+		  return null;
+				}
+		
+	
+	
 
 //문의 상세창 보기
 	@RequestMapping(value = "/qna/qnaDetail.do", method = RequestMethod.GET)
@@ -231,6 +240,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		  }
 		  return resEnt;
 		}
-	
+
+
 
 }
