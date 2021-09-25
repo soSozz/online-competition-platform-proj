@@ -48,4 +48,12 @@ public class AdminStatServiceImpl implements AdminStatService {
 		return adminViewList;
 }
 	
+	@Override
+	public List<AdminStatVO> adminAllList() throws DataAccessException{
+		List<AdminStatVO> adminAllList = adminStatDAO.selectAdminStatAllList();
+		
+		
+		return adminAllList;
+}
+	
 }

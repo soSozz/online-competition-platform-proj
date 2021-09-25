@@ -260,7 +260,7 @@ h3, h4 {
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
-				<form action="/ocp/admin/addCompet.do">
+				<form action="${contextPath }/admin/addCompet.do" method="post" enctype="multipart/form-data">
 					<div class="row">
 							<label id="categ-label" class="control-label"></label> 
 							<input
@@ -299,14 +299,14 @@ h3, h4 {
 							</div>
 							</div>
 					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default waves-effect"
+							data-dismiss="modal">닫기</button>
+						<button type="submit" 
+							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
+					</div>
 				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default waves-effect"
-					data-dismiss="modal">닫기</button>
-				<input type="submit" 
-					class="btn btn-danger waves-effect waves-light save-category"
-					data-dismiss="modal">추가하기</button>
 			</div>
 		</div>
 	</div>
