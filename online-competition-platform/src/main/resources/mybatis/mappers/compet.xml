@@ -160,7 +160,7 @@
 	<update id="updateCompetTerminated" parameterType="String">
 	<![CDATA[
 		update compet 
-		set compet_terminated = 'Y'
+		set COMPET_TERMINATED = 'Y'
 		where compet_name = #{compet_name}
 	]]>
 	</update>

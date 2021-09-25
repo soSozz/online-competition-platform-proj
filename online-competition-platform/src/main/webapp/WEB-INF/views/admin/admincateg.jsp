@@ -74,7 +74,6 @@ h3, h4 {
 	<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
 	<hr />
 	<h4>진행 중인 대회</h4>
-	<form action="/admin/competFinish.do">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="card border-primary">
@@ -87,9 +86,9 @@ h3, h4 {
 				<div class="card-body">
 					<c:forEach var="compet" items="${categ.value}">
 						<div class="competList">
-							<div class="compet_name"><input type="text" name="compet_name" value="${compet.compet_name}" readonly />
-							<input type="submit"
-									class="btn btn-primary float-right" style="height: 35px;" value="대회 종료" />
+							<div class="compet_name"><span>${compet.compet_name}</span>
+							<button class="btn btn-primary float-right" style="height: 35px;"
+									onclick="fn_finish_compet(event)">대회 종료</button>
 							</div>
 						</div>
 					</c:forEach>
@@ -132,7 +131,7 @@ h3, h4 {
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
-									<form action="/admin/competDelete.do">
+									<form action="/ocp/admin/competDelete.do">
 										<table class="table table-striped table-bordered dataTable"
 											id="DataTables_Table_0" role="grid"
 											aria-describedby="DataTables_Table_0_info">
@@ -141,26 +140,26 @@ h3, h4 {
 													<th class="No" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 														aria-sort="ascending" aria-label="No"
-														style="width: 79.8906px;">No.</th>
+														style="width: 55.8906px;">No.</th>
 													<th class="categ_name" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="categ_name" style="width: 105.656px;">카테고리</th>
+														aria-label="categ_name" style="width: 80.656px;">카테고리</th>
 													<th class="compet_name" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_name" style="width: 105.656px;">대회</th>
+														aria-label="compet_name" style="width: 200.656px;">대회</th>
 													<th class="compet_start" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_start" style="width: 95.7188px;">시작일</th>
+														aria-label="compet_start" style="width: 90.7188px;">시작일</th>
 													<th class="compet_end sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 														aria-label="compet_end : activate to sort column ascending"
-														style="width: 95.7188px;">종료일</th>
+														style="width: 90.7188px;">종료일</th>
 													<th class="compet_create" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_create" style="width: 95.7188px;">생성일자</th>
+														aria-label="compet_create" style="width: 90.7188px;">생성일자</th>
 													<th class="delete" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="delete" style="width: 79.8906px;"></th>
+														aria-label="delete" style="width: 70.8906px;"></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -168,13 +167,14 @@ h3, h4 {
 												<c:forEach var="categ" items="${finishCompet}">
 													<c:forEach var="compet" items="${categ.value}" varStatus="status">
 													<tr role="row" class="even">
-														<td>${status.count + stat}</td>
-														<td><span class="float-center">${categ.key}</span></td>
-														<td><input type="text" name="compet_name" value="${compet.compet_name}" readonly /></td>
-														<td>${compet.compet_start}</td>
-														<td>${compet.compet_end}</td>
-														<td>${compet.compet_create}</td>
-														<td><input class="deletebtn btn btn-primary float-center" type="submit" value="삭제하기"/></td>
+														<td class="NO">${status.count + stat}</td>
+														<td class="categ_name"><span class="float-center">${categ.key}</span></td>
+														<td class="compet_name"><input type= "hidden"name="compet_name" value="${compet.compet_name}" readonly />
+															${compet.compet_name}</td>
+														<td class="compet_start">${compet.compet_start}</td>
+														<td class="compet_end">${compet.compet_end}</td>
+														<td class="compet_create">${compet.compet_create}</td>
+														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center">삭제하기</button></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
@@ -320,6 +320,18 @@ h3, h4 {
 		label.innerHTML = '카테고리명';
 		const input = document.getElementById("categ-input");
 		input.value = categ;
+	}
+	
+	function fn_finish_compet(e){
+		const compet_name = e.target.parentNode.querySelector("span").innerHTML
+		
+		location.href = "/ocp/admin/competFinish.do?compet_name=" + compet_name
+	}
+	
+	function fn_delete_compet(e){
+		const compet_name = e.target.parentNode.querySelector("span").innerHTML
+		
+		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name
 	}
 </script>
 </html>

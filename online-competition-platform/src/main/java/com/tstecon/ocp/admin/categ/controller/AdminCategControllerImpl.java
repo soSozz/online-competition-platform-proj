@@ -169,7 +169,8 @@ public class AdminCategControllerImpl implements AdminCategController {
 	public ModelAndView competFinish(@RequestParam("compet_name") String compet_name, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		competService.competFinish(compet_name);
+
+		int res = competService.competFinish(compet_name);
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}

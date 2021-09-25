@@ -117,14 +117,14 @@ public class CompetDAOImpl implements CompetDAO {
 	}
 
 	@Override
-	public void updateCompetTerminated(String compet_name) throws DataAccessException {
-		sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
+	public int updateCompetTerminated(String compet_name) throws DataAccessException {
+		int updateCompet = sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
+		return updateCompet;
 	}
 
 	@Override
-	public void deleteCompet(String compet_name) throws DataAccessException {
-		sqlSession.delete("mappers.compet.deleteCompet", compet_name);
-
+	public int deleteCompet(String compet_name) throws DataAccessException {
+		return sqlSession.delete("mappers.compet.deleteCompet", compet_name);
 	}
 
 }

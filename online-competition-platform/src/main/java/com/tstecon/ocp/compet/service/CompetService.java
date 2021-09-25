@@ -38,8 +38,8 @@ public interface CompetService {
 
 	public int addCompetId() throws DataAccessException;
 
-	public void competFinish(String compet_name) throws DataAccessException;
+	public int competFinish(String compet_name) throws DataAccessException;
 
-	public void competDelete(String compet_name) throws DataAccessException;
+	public int competDelete(String compet_name) throws DataAccessException;
 
 }

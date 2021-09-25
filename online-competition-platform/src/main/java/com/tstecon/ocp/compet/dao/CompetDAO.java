@@ -46,8 +46,8 @@ public interface CompetDAO {
 
 	public int selectAddCompetId() throws DataAccessException;
 
-	public void updateCompetTerminated(String compet_name) throws DataAccessException;
+	public int updateCompetTerminated(String compet_name) throws DataAccessException;
 
-	public void deleteCompet(String compet_name) throws DataAccessException;
+	public int deleteCompet(String compet_name) throws DataAccessException;
 
 }
