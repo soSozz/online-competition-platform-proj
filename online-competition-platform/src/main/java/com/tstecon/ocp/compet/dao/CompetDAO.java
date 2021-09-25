@@ -51,4 +51,6 @@ public interface CompetDAO {
 
 	public int deleteCompet(String compet_name) throws DataAccessException;
 
+	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException;
+
 }
