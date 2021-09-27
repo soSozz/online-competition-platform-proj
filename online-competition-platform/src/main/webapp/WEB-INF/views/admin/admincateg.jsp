@@ -80,6 +80,7 @@ h3, h4 {
 	data-toggle="modal" data-target="#add-categ">카테고리 추가</a>
 	<hr />
 	<h4>진행 중인 대회</h4>
+	<div class="row">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="categList card border-primary">
@@ -107,6 +108,7 @@ h3, h4 {
 			</div>
 		</div>
 	</c:forEach>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
