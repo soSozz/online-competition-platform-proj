@@ -17,36 +17,36 @@ import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.notice.compet.service.NoticeCompetService;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
-
 @Controller("NoticeCompetController")
 public class NoticeCompetControllerImpl implements NoticeCompetController {
-	
+
 	@Autowired
 	private NoticeCompetService NoticeCompetService;
 	@Autowired
 	private CompetService CompetService;
-	
-	@Override
-	@RequestMapping(value="/notice/compet/listCompetNotices.do", method=RequestMethod.GET)
-	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) {
-		
-		String viewName = (String)request.getAttribute("viewName");
 
-		//NoticeCompetService: 공지사항 리스트 가져오기
-		//CompetService: 작은포스터 가져오기
-		
+	@Override
+	@RequestMapping(value = "/notice/compet/listCompetNotices.do", method = RequestMethod.GET)
+	public ModelAndView listCompetNotices(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		String viewName = (String) request.getAttribute("viewName");
+
+		// NoticeCompetService: 공지사항 리스트 가져오기
+		// CompetService: 작은포스터 가져오기
+
 		List<NoticeCompetVO> noticeCompetList = NoticeCompetService.listCompetNotices(compet_id);
 
 		CompetFileVO smallPoster = NoticeCompetService.CompetSmallPoster(compet_id);
 
-		
 		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("compet_id", compet_id);
 		mav.addObject("noticeCompetList", noticeCompetList);
 		mav.addObject("smallPoster", smallPoster);
 		return mav;
 	}
 }
-	
+
 //	@Override
 //	@RequestMapping(value="/member/listMembers.do", method = RequestMethod.GET)
 //	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {

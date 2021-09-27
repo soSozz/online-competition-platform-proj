@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -21,6 +22,8 @@ import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.compet.service.CompetService;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.sidebar.service.SidebarService;
+import com.tstecon.ocp.sidebar.vo.SidebarVO;
 
 @Controller("mainController")
 @EnableAspectJAutoProxy
@@ -31,6 +34,8 @@ public class MainController extends BaseController {
 	private CategService categService;
 	@Autowired
 	private CompetService competService;
+	@Autowired
+	private SidebarService sidebarService;
 
 	@RequestMapping(value = { "/main/main.do" }, method = { RequestMethod.GET })
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -42,13 +47,17 @@ public class MainController extends BaseController {
 		Map<String, List<CompetVO>> competsMap = new HashMap<String, List<CompetVO>>();
 
 		for (CategVO c : categList) {
-			List<CompetVO> competList = competService.competListById(c.getCateg_id());
+			List<CompetVO> competList = competService.competListByCategIdToThree(c.getCateg_id());
 			competsMap.put(c.getCateg_name(), competList);
 		}
 
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("bannerFileList", bannerFileList);
 		mav.addObject("competsMap", competsMap);
+
+		Map<String, List<SidebarVO>> sidebarMap = sidebarService.listRankings();
+		HttpSession session = request.getSession();
+		session.setAttribute("sidebarMap", sidebarMap);
 
 		return mav;
 	}

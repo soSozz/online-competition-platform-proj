@@ -8,234 +8,59 @@
 <link href="${contextPath}/resources/css/sidebar.css" rel="stylesheet">
 
 <div class="card">
-        <div class="card-body">
-            <h3 class="mb-lg-2"><strong>최근 종료된 대회</strong></h3>
+        <div class="card-body p-2">
+        	<div class="row justify-content-center align-items-center">
+				<div class="mr-lg-2"><i class="fas fa-calendar-check" style="color: black; font-size: 2em"></i></div>
+				<div><h4 class="bold m-0">최근 종료된 대회</h4></div>
+            </div>
             <div class="bootstrap-carousel">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <!-- table start -->
-                        <div class="carousel-item active">
-                            <div class="card-title">
-                                <h4>대회1</h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">순위</th>
-                                            <th class="text-center">닉네임</th>
-                                            <th class="text-center">좋아요</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">1</span></th>
-                                            <td class="text-center">치킨치킨</td>
-                                            <td class="text-center">100</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">2</span></th>
-                                            <td class="text-center">푸른하루</td>
-                                            <td class="text-center">95</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">3</span></th>
-                                            <td class="text-center">실력자</td>
-                                            <td class="text-center">90</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">4</th>
-                                            <td class="text-center">닉네임1</td>
-                                            <td class="text-center">85</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">5</th>
-                                            <td class="text-center">닉네임2</td>
-                                            <td class="text-center">80</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">6</th>
-                                            <td class="text-center">닉네임3</td>
-                                            <td class="text-center">75</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">7</th>
-                                            <td class="text-center">닉네임4</td>
-                                            <td class="text-center">70</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">8</th>
-                                            <td class="text-center">닉네임5</td>
-                                            <td class="text-center">65</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">9</th>
-                                            <td class="text-center">닉네임6</td>
-                                            <td class="text-center">60</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">10</th>
-                                            <td class="text-center">닉네임7</td>
-                                            <td class="text-center">55</td>
-                                        </tr>
+                    	<c:forEach var="competMap" items="${sidebarMap }" varStatus="num">
+							<!-- table start -->
+							<c:choose>
+								<c:when test="${num.count == 1}">
+									<div class="carousel-item active">
+								</c:when>
+								<c:otherwise>
+									<div class="carousel-item">
+								</c:otherwise>
+							</c:choose>
 
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- table end -->
-                        <!-- table start -->
-                        <div class="carousel-item">
-                            <div class="card-title">
-                                <h4>대회2</h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">순위</th>
-                                            <th class="text-center">닉네임</th>
-                                            <th class="text-center">좋아요</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">1</span></th>
-                                            <td class="text-center">치킨치킨</td>
-                                            <td class="text-center">100</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">2</span></th>
-                                            <td class="text-center">푸른하루</td>
-                                            <td class="text-center">95</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">3</span></th>
-                                            <td class="text-center">실력자</td>
-                                            <td class="text-center">90</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">4</th>
-                                            <td class="text-center">닉네임1</td>
-                                            <td class="text-center">85</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">5</th>
-                                            <td class="text-center">닉네임2</td>
-                                            <td class="text-center">80</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">6</th>
-                                            <td class="text-center">닉네임3</td>
-                                            <td class="text-center">75</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">7</th>
-                                            <td class="text-center">닉네임4</td>
-                                            <td class="text-center">70</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">8</th>
-                                            <td class="text-center">닉네임5</td>
-                                            <td class="text-center">65</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">9</th>
-                                            <td class="text-center">닉네임6</td>
-                                            <td class="text-center">60</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">10</th>
-                                            <td class="text-center">닉네임7</td>
-                                            <td class="text-center">55</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- table end -->
-                        <!-- table start -->
-                        <div class="carousel-item">
-                            <div class="card-title">
-                                <h4>대회3</h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">순위</th>
-                                            <th class="text-center">닉네임</th>
-                                            <th class="text-center">좋아요</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">1</span></th>
-                                            <td class="text-center">치킨치킨</td>
-                                            <td class="text-center">100</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">2</span></th>
-                                            <td class="text-center">푸른하루</td>
-                                            <td class="text-center">95</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center"><span class="badge badge-success px-2">3</span></th>
-                                            <td class="text-center">실력자</td>
-                                            <td class="text-center">90</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">4</th>
-                                            <td class="text-center">닉네임1</td>
-                                            <td class="text-center">85</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">5</th>
-                                            <td class="text-center">닉네임2</td>
-                                            <td class="text-center">80</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">6</th>
-                                            <td class="text-center">닉네임3</td>
-                                            <td class="text-center">75</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">7</th>
-                                            <td class="text-center">닉네임4</td>
-                                            <td class="text-center">70</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">8</th>
-                                            <td class="text-center">닉네임5</td>
-                                            <td class="text-center">65</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">9</th>
-                                            <td class="text-center">닉네임6</td>
-                                            <td class="text-center">60</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">10</th>
-                                            <td class="text-center">닉네임7</td>
-                                            <td class="text-center">55</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- table end -->
+								<div class="card-title">
+									<p class="m-lg-3 text-center leader-board-title">${competMap.key }</p>
+								</div>
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="text-center">순위</th>
+												<th class="text-center">닉네임</th>
+												<th class="text-center">좋아요</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="ranker" items="${competMap.value}" varStatus="num">
+												<tr>
+													<c:choose>
+														<c:when test="${num.count <= 3}">
+															<th class="text-center"><p class="m-1"><i class="fas fa-crown"></i></p><span>${num.count }</span></th>
+														</c:when>
+														<c:otherwise>
+															<th class="text-center">${num.count }</th>
+														</c:otherwise>
+													</c:choose>
+													<td class="text-center">${ranker.mem_nickname}</td>
+													<td class="text-center">${ranker.cnt }</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- table end -->
+						</c:forEach>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" data-slide="prev">
-                        <button type="button" class="btn mb-1 btn-rounded btn-success">prev</button>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" data-slide="next">
-                        <button type="button" class="btn mb-1 btn-rounded btn-success">next</button>
-                    </a>
                 </div>
             </div>
         </div>

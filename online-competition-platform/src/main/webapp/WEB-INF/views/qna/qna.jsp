@@ -2,20 +2,52 @@
 prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet" />
-
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+ <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+<script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+<script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
+<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+<script src="${contextPath}/resources/js/custom.min.js"></script>
+<script src="${contextPath}/resources/js/settings.js"></script>
+<script src="${contextPath}/resources/js/gleek.js"></script>
+<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
 <%request.setCharacterEncoding("UTF-8");%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>Insert title here</title>
-    </head>
-    <script>
-	
-</script>
+       <meta charset="UTF-8" />
+       <title>Insert title here</title>
+      
+      <script src="${contextPath}/resources/plugins/tables/js/jquery.dataTables.min.js"></script>
+      <script src="${contextPath}/resources/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+      <script src="${contextPath}/resources/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+      <script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+      <script src="${contextPath}/resources/js/custom.min.js"></script>
+      <script src="${contextPath}/resources/js/settings.js"></script>
+      <script src="${contextPath}/resources/js/gleek.js"></script>
+      <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
+      
+      <c:set var="compet_id" value="${qnaList[0].compet_id}" />
+
+   </head>
+ 
     <body>
+    
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs mb-3 justify-content-lg-center">
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a></li>
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}">공지사항</a></li>
+		<li class="nav-item"><a class="nav-link" href="#contact1">컨텐츠 게시판</a></li>
+		<li class="nav-item"><a class="nav-link" href="#message1">제출</a></li>
+		<li class="nav-item"><a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a></li>
+		
+	</ul>
+    </div>
+    
         <!-- row -->
 
         <div class="container-fluid">
@@ -56,11 +88,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                                     <span style="padding-left: 25px"></span>
                                                                 </c:forEach>
                                                                 <span style="font-size: 12px">[답변]</span>
-                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title}</a>
+                                                                <a class="cls1" href="${contextPath}/qna/qnaDetail.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title}</a>
                                                             </c:when>
 
                                                             <c:otherwise>
-                                                                <a class="cls1" href="${contextPath}/compet/qnaDetailForm.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title }</a>
+                                                                <a class="cls1" href="${contextPath}/qna/qnaDetail.do?articleNO=${qna.compet_qna_id}">${qna.compet_qna_title }</a>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </td>
@@ -68,7 +100,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                     <td width="10%">
                                                         <c:choose>
                                                             <c:when test="${qna.mem_id !=null}">
-                                                                ${qna.mem_id }
+                                                                ${qna.mem_id } 
                                                             </c:when>
                                                             <c:otherwise> 관리자 </c:otherwise>
                                                         </c:choose>
@@ -88,22 +120,33 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             margin:10px;
                                             
                                         "
-                                    >
-<<<<<<< HEAD
-                                  <a href = "${contextPath}/compet/qnaForm.do"><p class="cls2">글쓰기</p></a>
+
+                                    >                        
+                                    <button type="button" class="btn btn-outline-secondary"  onClick="fn_articleForm('${loginStatus}')">글쓰기</button>                                                                       
                                     </div>                               
-=======
-                                        <button type="button" class="btn btn-outline-secondary">글쓰기</button>
+
                                     </div>
-                                </div>
-                                
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
+                                </div>                               
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- #/ container -->
+        
+    <script>
+    window.onload = () => {
+    	document.getElementById("redirect").value = "${contextPath}/qna/qna.do";
+    }
+    
+	function fn_articleForm(loginStatus){
+		
+	  if (loginStatus == "member" || loginStatus == "admin"){
+	    location.href= "${contextPath}/qna/qnaForm.do";
+	  } else {
+	    alert("로그인 후 글쓰기가 가능합니다.");
+	  }
+	}
+</script>        
+
+    
     </body>
 </html>

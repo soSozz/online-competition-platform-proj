@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
 public class FileDownloadController {
 	private static String CURR_IMAGE_REPO_PATH = "C:\\ocp";
@@ -152,19 +154,20 @@ public class FileDownloadController {
 		out.close();
 	}
 
-	// 썸네일 필요할 때 라이브러리 임포트해서 사용
-//	@RequestMapping("/thumbnails.do")
-//	protected void thumbnails(@RequestParam("fileName") String fileName, @RequestParam("goods_id") String goods_id,
-//			HttpServletResponse response) throws Exception {
-//		OutputStream out = response.getOutputStream();
-//		String filePath = CURR_IMAGE_REPO_PATH + "\\" + goods_id + "\\" + fileName;
-//		File image = new File(filePath);
-//
-//		if (image.exists()) {
-//			Thumbnails.of(image).size(121, 154).outputFormat("png").toOutputStream(out);
-//		}
-//		byte[] buffer = new byte[1024 * 8];
-//		out.write(buffer);
-//		out.close();
-//	}
+	// 대회 큰 포스터를 썸네일로 만들어서 메인페이지에 활용
+	@RequestMapping("/thumbnails.do")
+	protected void thumbnails(@RequestParam("compet_file_name") String compet_file_name,
+			@RequestParam("compet_file_type") String compet_file_type, @RequestParam("compet_id") int compet_id,
+			HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		String filePath = CURR_IMAGE_REPO_PATH + "\\competfile\\" + compet_id + "\\" + compet_file_type + "\\"
+				+ compet_file_name;
+
+		File image = new File(filePath);
+
+		if (image.exists()) {
+			Thumbnails.of(image).scale(1.0).outputFormat("jpg").toOutputStream(out);
+		}
+	}
+
 }

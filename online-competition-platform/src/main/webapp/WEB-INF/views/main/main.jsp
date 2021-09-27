@@ -6,7 +6,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="${contextPath}/resources/css/main.css" rel="stylesheet">
 
     <div id="carousel" class="row justify-content-lg-center my-lg-3">
-        <div class="col-lg-12">
+        <div class="col-lg-10">
         <div class="bootstrap-carousel">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -32,122 +32,42 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </div>
         </div>
     </div>
-    <div class="row justify-content-lg-center">
-        <!-- start card -->
-        <div class="card">
-            <div class="card-body">
-                <h2 class="mb-lg-3"><strong>알고리즘</strong></h2>
-                <div class="row justify-content-lg-center">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">최단경로 찾기</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.09.10. ~ 2021.10.10.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">버블탐색</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.05.13. ~ 2021.06.08.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">하노이의 탑</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.11.13. ~ 2021.12.25.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end card -->
-        <!-- start card -->
-        <div class="card">
-            <div class="card-body">
-                <h2 class="mb-lg-3"><strong>빅데이터</strong></h2>
-                <div class="row justify-content-lg-center">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">AI대회</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.08.10. ~ 2021.10.01.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">교통 데이터 시각화 대회</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.07.05. ~ 2021.08.03.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <img class="img-fluid" src="https://via.placeholder.com/400x400.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">인공지능 모델 경진 대회</h5>
-                                        <p class="card-text text-truncate">
-                                            2021.07.05. ~ 2021.08.03.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link float-right"><small>자세히 보기</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-		<!-- end card -->
-	</div>
-	<!-- end row -->
+    	<c:forEach var="categ" items="${competsMap}">
+			<!-- start card --> 
+			<div class="row justify-content-lg-center">
+				<div class="card">
+					<div class="card-body">
+						<div class="mb-lg-3 d-flex align-items-center">
+							<i class="mr-2 fas fa-flag-checkered" style="font-size:3em; color: black;"></i>
+							<span id="compet_title" class="bold">${categ.key }</span>
+							<a href="#" class="ml-auto"><span>더보기</span></a>
+						</div>
+						<div class="row justify-content-lg-center">
+							<div class="col-lg-12">
+								<div class="row">
+									<c:forEach var="compet" items="${categ.value }">
+										<!-- Start Col -->
+										<div class="col-lg-4">
+											<div class="card">
+												<img src="${contextPath }/thumbnails.do?compet_file_name=${compet.compet_file_name}&compet_file_type=${compet.compet_file_type }&compet_id=${compet.compet_id}" alt="" />
+												<div class="card-body">
+													<h5 class="card-title">${compet.compet_name }</h5>
+													<p class="card-text text-truncate">
+														${compet.compet_start } ~ ${compet.compet_end}
+													</p>
+												</div>
+												<div class="card-footer">
+													<a href="${contextPath }/compet/competInfo.do?compet_id=${compet.compet_id}" class="card-link float-right"><small>자세히 보기</small></a>
+												</div>
+											</div>
+										</div>
+									<!-- End Col -->
+									</c:forEach>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end card --> 
+       	</c:forEach> 
