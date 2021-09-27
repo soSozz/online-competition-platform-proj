@@ -46,10 +46,15 @@ public interface CompetDAO {
 	public int insertCompetFile(Map<String, Object> competMap) throws DataAccessException;
 
 	public int selectAddCompetId() throws DataAccessException;
-
+	
+	// 대회 종료
 	public int updateCompetTerminated(String compet_name) throws DataAccessException;
-
+	
+	// 종료된 대회 삭제
 	public int deleteCompet(String compet_name) throws DataAccessException;
+	
+	//카테고리 아이디를 통해 대회 리스트 가져오기
+	public List<CompetVO> selectCompetListByCategId(int categ_id) throws DataAccessException;
 
 	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException;
 

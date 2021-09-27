@@ -37,5 +37,17 @@ public class AdminCategServiceImpl implements AdminCategService {
 		return addCompet;
 		
 	}
+	//카테고리 삭제
+	@Override
+	public void deleteCateg(String categ_name) throws DataAccessException {
+		adminCategDAO.deleteCategByName(categ_name);
+		
+	}
+	//카테고리 이름을 통해 아이디 가져오기
+	@Override
+	public int CategIdByName(String categ_name) throws DataAccessException {
+		int categ_id = adminCategDAO.selectcategIdByName(categ_name);
+		return 0;
+	}
 
 }
