@@ -19,8 +19,8 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 
 //문의 게시판
 	@Override
-	public List<CompetQnaVO> qnalistArticles() throws Exception {
-		List<CompetQnaVO> qnaList = competQnaDAO.selectAllQnaList();
+	public List<CompetQnaVO> qnalistArticles(int compet_id) throws Exception {
+		List<CompetQnaVO> qnaList = competQnaDAO.selectAllQnaList(compet_id);
 		return qnaList;
 	}
 //로그인

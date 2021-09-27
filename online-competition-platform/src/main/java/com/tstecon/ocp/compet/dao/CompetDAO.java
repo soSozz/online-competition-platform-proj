@@ -56,4 +56,6 @@ public interface CompetDAO {
 	//카테고리 아이디를 통해 대회 리스트 가져오기
 	public List<CompetVO> selectCompetListByCategId(int categ_id) throws DataAccessException;
 
+	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException;
+
 }

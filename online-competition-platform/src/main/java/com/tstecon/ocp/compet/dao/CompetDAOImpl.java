@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
-
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {
 
@@ -54,7 +53,6 @@ public class CompetDAOImpl implements CompetDAO {
 				compet_id);
 		return competList;
 	}
-
 
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
@@ -137,4 +135,8 @@ public class CompetDAOImpl implements CompetDAO {
 		return competList;
 	}
 
+	@Override
+	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectCompetListByTerminated", terminated);
+	}
 }
