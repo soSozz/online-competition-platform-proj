@@ -93,7 +93,7 @@
 											class="btn btn-light btn-sm">로그아웃</button></a>
 								</div>
 								<div>
-									<a href="#"><button type="button"
+									<a href="${contextPath }/admin/stat/adminStat.do"><button type="button"
 											class="btn btn-light btn-sm">관리</button></a>
 								</div>
 							</div>
