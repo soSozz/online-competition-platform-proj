@@ -37,7 +37,7 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		Map<String, List<ContentsVO>> map = new HashMap<String, List<ContentsVO>>();
-		Map<String, List<CompetVO>> competNames = new HashMap<String, List<CompetVO>>();
+		Map<String, List<CompetVO>> dropdown = new HashMap<String, List<CompetVO>>();
 		List<CategVO> categList = adminCategService.CategAllList();
 		List<ContentsVO> contentsList = adminContentsService.contentsList();
 		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
@@ -45,13 +45,13 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		for (CategVO i : categList) {
 			List<CompetVO> competList = competService.competListByName(i.getCateg_id());
 			// ... = competService.competListByCategId(i.categ_id);
-			competNames.put(i.getCateg_name(), competList);
+			dropdown.put(i.getCateg_name(), competList);
 			//aa.put(i.categ_name, competList);
 		}
 		map.put("contentsList", contentsList);
 		map.put("apprContentsList", apprContentsList);
 		
-		mav.addObject("dropdown", competNames);
+		mav.addObject("dropdown", dropdown);
 		mav.addObject("map",map);
 		return mav;
 	}

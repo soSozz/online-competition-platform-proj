@@ -29,12 +29,37 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
-
+<style>
+</style>
 </head>
 
 <body>
 	<div class="container">
-	<div class="dropDown"></div>
+		<div class="row">
+			<div class="col-sm-12 col-md-7"></div>
+			<div class="dropdown col-sm-12 col-md-2">
+				<button type="button" class="btn btn-primary dropdown-toggle"
+					data-toggle="dropdown" aria-expanded="false">카테고리</button>
+				<div class="dropdown-menu" x-placement="bottom-start"
+					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+					<c:forEach var="dropdown" items="${dropdown}">
+						<a class="dropdown-item" href="#">${dropdown.key}</a>
+					</c:forEach>
+				</div>
+
+			</div>
+			<div class="dropdown col-sm-12 col-md-3">
+				<button type="button" class="btn btn-primary dropdown-toggle"
+					data-toggle="dropdown" aria-expanded="false">대회</button>
+				<div class="dropdown-menu" x-placement="bottom-start"
+					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+					<a class="dropdown-item" href="#">Link 1</a> <a
+						class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item"
+						href="#">Link 3</a>
+				</div>
+			</div>
+		</div>
+		<br />
 		<h3>컨텐츠 조회</h3>
 		<hr />
 		<div class="container-fluid">
