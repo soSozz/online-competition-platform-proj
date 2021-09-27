@@ -344,7 +344,7 @@ function fn_delete_categ(e){
 	}
 	
 	function fn_delete_compet(e){
-		const compet_name = e.target.parentNode.parentNode.querySelector("span").innerHTML
+		const compet_name = e.target.parentNode.parentNode.querySelector(".compet_name").innerHTML
 		
 		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name
 	}
