@@ -28,7 +28,7 @@
 					<ul class="navbar-nav me-auto ml-3 ">
 						<li class="nav-item">
 							<a class="nav-link fw-bold bold"
-								href="${contextPath }/compet/competList.do">대회</a>
+								href="${contextPath }/compet/competList.do?categ_name=전체보기">대회</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link fw-bold bold"

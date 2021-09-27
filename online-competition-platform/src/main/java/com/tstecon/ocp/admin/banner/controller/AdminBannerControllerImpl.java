@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tstecon.ocp.admin.banner.service.AdminBannerService;
+import com.tstecon.ocp.banner.service.BannerService;
+
 @Controller("adminBannerController")
-public class AdminBannerControllerImpl implements AdminBannerController{
+public class AdminBannerControllerImpl implements AdminBannerController {
 	@Autowired
-	private AdminBannerService adminBannerService;
-	
+	private BannerService BannerService;
+
 	@Override
 	@RequestMapping(value = { "/admin/adminBanner.do" }, method = { RequestMethod.GET })
 	public ModelAndView adminBanner(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		String viewName = (String)request.getAttribute("viewName");
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		List bannerList = new ArrayList();
-		bannerList = adminBannerService.selectBannerName();
-		mav.addObject("bannerList",bannerList);
+		bannerList = BannerService.listBannerFiles();
+		mav.addObject("bannerList", bannerList);
 		return mav;
-		
+
 	}
 
 }
