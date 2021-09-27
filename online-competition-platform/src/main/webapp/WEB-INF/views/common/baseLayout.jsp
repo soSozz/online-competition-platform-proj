@@ -27,21 +27,27 @@
 
 </head>
 <body>
-	<div id="outer_wrap">
-		<div id="wrap">
-			<header>
-				   <tiles:insertAttribute name="header" />
-			</header>
-			<div class="clear"></div>
-			<article>
-			 	<tiles:insertAttribute name="body" />
-			</article>
-			<div class="clear"></div>
-			<footer>
-        		<tiles:insertAttribute name="footer" />
-        	</footer>
+	<div class="container-fluid" style="width:80%">
+	
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="header" />
+			</div>
 		</div>
-    </div>      
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="body" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="footer" />
+			</div>
+		</div>
+		
+	</div>
     
         <!--**********************************
         Scripts

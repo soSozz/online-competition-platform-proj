@@ -13,11 +13,7 @@
 
 <head>
     <meta charset="utf-8">
-    <style>
-        hr {
-            border-top: 3px solid gray;
-        }
-    </style>
+
 </head>
 
 <div class="container">
@@ -34,7 +30,7 @@
                     <div class="dropdown">
                         <button type="button" id="categ-btn" class="btn btn-success dropdown-toggle"
                             data-toggle="dropdown">
-                            <b>카테고리</b>
+                            <b>전체보기</b>
                         </button>
                         <div class="dropdown-menu" id="dropdown-menu">
                             <a class="dropdown-item" href="#">알고리즘</a>
