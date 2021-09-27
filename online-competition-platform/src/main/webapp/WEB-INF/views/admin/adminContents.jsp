@@ -29,6 +29,7 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+
 </head>
 
 <body>

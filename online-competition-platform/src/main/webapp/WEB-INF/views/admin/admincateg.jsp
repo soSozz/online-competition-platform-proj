@@ -363,7 +363,9 @@ h3, h4 {
 	}
 
 	function fn_add_categ(e){
+		console.log(window.location.pathname);
 		location.href = "/ocp/admin/addCateg.do"
+
 	}
 
 	function fn_add_compet(e){
