@@ -175,19 +175,18 @@
 	]]>
 	</delete>
 	
-<<<<<<< HEAD
 	<select id="selectCompetListByCategId" parameterType="int">
 	<![CDATA[
 		select *
 		from compet
 		where categ_id = #{categ_id}
 	]]>
-=======
+	</select>
+	
 	<select id="selectCompetListByTerminated" resultMap="CompetResult" parameterType="String" >
      <![CDATA[
         select * from compet where compet_terminated = #{terminated}
      ]]>
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	</select>
 
 </mapper>
