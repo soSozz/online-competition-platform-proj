@@ -53,5 +53,17 @@ public class AdminCategDAOImpl implements AdminCategDAO {
 		int categ_id = sqlSession.selectOne("mappers.admin_categ.selectCategIdByName",categ_name);
 		return categ_id;
 	}
+	// 카테고리 아이디 + 1
+	@Override
+	public int selectCategPlusId() throws DataAccessException {
+		int categ_id = sqlSession.selectOne("mappers.admin_categ.selectCategPlusId");
+		return categ_id;
+	}
+	//카테고리 추가
+	@Override
+	public void insertCateg(Map map) throws DataAccessException {
+		sqlSession.insert("mappers.admin_categ.insertCateg",map);
+		return;
+	}
 
 }

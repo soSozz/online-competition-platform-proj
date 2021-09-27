@@ -52,4 +52,18 @@
 	]]>
 	</select>
 	
+	<!-- 카테고리 아이디 + 1 -->
+	<select id="selectCategPlusId" resultType="int">
+	<![CDATA[
+				SELECT nvl(max(categ_id), 0) + 1 
+        		from category
+	]]>
+	</select>
+	
+	<insert id="insertCateg" parameterType="java.util.Map">
+	<![CDATA[
+				insert into category(categ_id,categ_name)
+				values (#{categ_id},#{categ_name})
+	]]>
+	</insert>
 </mapper>

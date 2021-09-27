@@ -84,12 +84,19 @@ public class AdminCategControllerImpl implements AdminCategController {
 		return mav;
 	}
 
-	// 관리자 카테고리 편집 페이지 컨트롤러 -->> 나중에 학원에서 고치기
+	// 관리자 카테고리 추가
 	@Override
-	@RequestMapping(value = { "/admin/addCategForm.do" }, method = { RequestMethod.GET })
-	public ModelAndView addCategForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	@RequestMapping(value = { "/admin/addCateg.do" }, method = { RequestMethod.GET })
+	public ModelAndView addCateg(@RequestParam("categ_name") String categ_name, 
+							HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		int categ_id = adminCategService.categPlusId();
+		Map map = new HashMap();
+		map.put("categ_name",categ_name);
+		map.put("categ_id", categ_id);
+		adminCategService.addCateg(map);
+		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}
 	
@@ -97,13 +104,15 @@ public class AdminCategControllerImpl implements AdminCategController {
 	@Override
 	@RequestMapping(value = { "/admin/deleteCateg.do" }, method = { RequestMethod.GET })
 	public ResponseEntity deleteCateg(@RequestParam("categ_name") String categ_name,
-			MultipartHttpServletRequest multipartRequest, HttpServletResponse reponse) throws Exception {
-		multipartRequest.setCharacterEncoding("utf-8");
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		
 		//카테고리 아이디 가져오기
 		int categ_id = adminCategService.CategIdByName(categ_name);
+
 		// 해당 카테고리 안에 있는 대회 리스트 가져오기
 		List<CompetVO> competList = competService.competListByCategId(categ_id);
+		
+		System.out.println(competList);
 		
 		String message;
 		ResponseEntity resEnt = null;
@@ -111,21 +120,23 @@ public class AdminCategControllerImpl implements AdminCategController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
 		// 해당 카테고리 안 대회리스트가 없을 경우
-		if(competList == null) {
+		if(competList.isEmpty()) {
 			//카테고리 삭제
 			adminCategService.deleteCateg(categ_name);
 
 			message = "<script>";
 			message += " alert('카테고리를 삭제했습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/admin/admincateg.do'; ";
+			message += " location.href='/ocp/admin/admincateg.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} 
 		// 해당 카테고리 안 대회리스트가 있을 경우
 		else {
+			
+			
 			message = "<script>";
 			message += " alert('해당 카테고리 안에 대회가 있습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/admin/admincateg.do'; ";
+			message += " location.href='/ocp/admin/admincateg.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
