@@ -5,15 +5,21 @@
 	
 	<mapper namespace = "mappers.admin_banner"> 
 	<!-- 리절트맵 정의 -->
-	<resultMap id = "BannerVO" type = "adminBannerVO"> <!-- CompetFile의 resultMap -->
-        <result property = "banner_id" column = "banner_id" />
-		<result property = "banner_File_Name" column = "banner_file_name" />
-		<result property = "banner_File_Type" column = "banner_file_type" />
+    <resultMap id="bannerFileResult" type="bannerFileVO">
+        <result property="banner_file_id" column="banner_file_id" />
+        <result property="banner_id" column="banner_id" />
+        <result property="banner_file_name" column="banner_file_name" />
+        <result property="banner_file_type" column="banner_file_type" />
+   </resultMap>
+	
+	<resultMap id = "CategResult" type = "categVO"> <!-- CompetFile의 resultMap -->
+        <result property = "categ_id" column = "categ_id" />
+		<result property = "categ_name" column = "categ_name" />
 	</resultMap>
 <!-- 카테고리 데이터 가져오기 -->
-	<select id="selectAllBannerList" resultMap="BannerVO">
+	<select id="selectAllBannerList" resultMap="BannerFileResult">
   	<![CDATA[
-				select banner_id,banner_file_name,banner_file_type from banner_file
+				select * from banner_file
    	]]>
 	</select>
 

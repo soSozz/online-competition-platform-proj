@@ -23,6 +23,8 @@
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerVO" alias="bannerVO" />
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerFileVO" alias="bannerFileVO" />
 
+		 
+
 		 <typeAlias type="com.tstecon.ocp.contents.vo.ContentsVO" alias="contentsVO" />
 		 <typeAlias type="com.tstecon.ocp.admin.monitor.vo.AdminCmtVO" alias="adminCmtVO" />
 		 <typeAlias type="com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO" alias="adminMonitorVO" />
