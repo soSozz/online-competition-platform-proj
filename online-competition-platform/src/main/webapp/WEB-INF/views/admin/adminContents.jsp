@@ -38,7 +38,7 @@ request.setCharacterEncoding("UTF-8");
 		<div class="row">
 			<div class="col-sm-12 col-md-7"></div>
 			<div class="dropdown col-sm-12 col-md-2">
-				<button type="button" class="btn btn-primary dropdown-toggle"
+				<button class="btn btn-primary dropdown-toggle"
 					data-toggle="dropdown" aria-expanded="false">카테고리</button>
 				<div class="dropdown-menu" x-placement="bottom-start"
 					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
@@ -49,7 +49,7 @@ request.setCharacterEncoding("UTF-8");
 
 			</div>
 			<div class="dropdown col-sm-12 col-md-3">
-				<button type="button" class="btn btn-primary dropdown-toggle"
+				<button class="btn btn-primary dropdown-toggle"
 					data-toggle="dropdown" aria-expanded="false">대회</button>
 				<div class="dropdown-menu" x-placement="bottom-start"
 					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
