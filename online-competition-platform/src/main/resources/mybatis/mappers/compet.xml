@@ -178,6 +178,7 @@
    	]]>
 	</insert>
 	
+	<!-- 진행 중인 대회 종료 -->
 	<update id="updateCompetTerminated" parameterType="String">
 	<![CDATA[
 		update compet 
@@ -186,6 +187,7 @@
 	]]>
 	</update>
 	
+	<!-- 종료된 대회 삭제하기 -->
 	<delete id="deleteCompet" parameterType = "String">
 	<![CDATA[
 		delete from compet
@@ -193,7 +195,7 @@
 	]]>
 	</delete>
 	
-	<select id="selectCompetListByCategId" parameterType="int">
+	<select id="selectCompetListByCategId" resultMap="CompetResult" parameterType="int">
 	<![CDATA[
 		select *
 		from compet

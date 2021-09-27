@@ -19,5 +19,9 @@ public interface AdminCategService {
 	public void deleteCateg(String categ_name) throws DataAccessException;
 	// 카테고리 이름을 통해 아이디 가져오기
 	public int CategIdByName(String categ_name) throws DataAccessException;
+	// 카테고리 아이디 + 1
+	public int categPlusId() throws DataAccessException;
+	//카테고리 추가
+	public void addCateg(Map map) throws DataAccessException;
 	
 }

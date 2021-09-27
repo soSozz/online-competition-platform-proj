@@ -17,9 +17,9 @@ public interface AdminCategController {
 	
 	public ModelAndView adminCateg(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
-	public ModelAndView addCategForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception;
+	public ModelAndView addCateg(@RequestParam("categ_name") String categ_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
-	public ResponseEntity deleteCateg(@RequestParam("categ_name") String categ_name, MultipartHttpServletRequest multipartRequest, HttpServletResponse reponse) throws Exception;
+	public ResponseEntity deleteCateg(@RequestParam("categ_name") String categ_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 	
 	public ResponseEntity addCompet(@RequestParam Map<String,Object> addCompetMap, MultipartHttpServletRequest multipartRequest, HttpServletResponse reponse) throws Exception;
 	

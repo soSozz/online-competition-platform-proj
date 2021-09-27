@@ -21,4 +21,8 @@ public interface AdminCategDAO {
 	public void deleteCategByName(String categ_name) throws DataAccessException;
 	//카테고리 이름을 통해 아이디 가져오기
 	public int selectcategIdByName(String categ_name) throws DataAccessException;
+	// 카테고리 아이디 + 1
+	public int selectCategPlusId() throws DataAccessException;
+	//카테고리 추가
+	public void insertCateg(Map map) throws DataAccessException;
 }

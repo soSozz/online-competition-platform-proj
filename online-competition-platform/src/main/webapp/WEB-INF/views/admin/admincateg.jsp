@@ -76,9 +76,11 @@ h3, h4 {
 <div class="container">
 	<span style="font-size: 25px; font-weight: bold; color: black;">카테고리
 		및 대회</span>
-	<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
+	<a href = "#" class="addCateg float-right btn btn-primary" 
+	data-toggle="modal" data-target="#add-categ">카테고리 추가</a>
 	<hr />
 	<h4>진행 중인 대회</h4>
+	<div class="row">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
 			<div class="categList card border-primary">
@@ -86,11 +88,12 @@ h3, h4 {
 					<span class="categ float-center">${categ.key}</span>
 						
 					<a href="#" data-toggle="modal" data-target="#add-compet"
-						class="categBtn btn btn-primary float-right" onclick="fn_add_categ(event)">
+						class="categBtn btn btn-primary float-right" onclick="fn_add_compet(event)">
 						<i class="ti-plus f-s-12 m-r-5"></i> 대회 추가</a>
 						
 					<a href="#" class="categBtn btn btn-primary float-right" onclick="fn_delete_categ(event)">
 						<i class="ti-minus f-s-12 m-r-5"></i> 카테고리 삭제</a>
+					
 				</div>
 				<div class="card-body">
 					<c:forEach var="compet" items="${categ.value}">
@@ -105,6 +108,7 @@ h3, h4 {
 			</div>
 		</div>
 	</c:forEach>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -182,7 +186,7 @@ h3, h4 {
 														<td class="compet_end">${compet.compet_end}</td>
 														<td class="compet_create">${compet.compet_create}</td>
 														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center"
-																			   onclick="fn_delete_compet">삭제하기</button></td>
+																			   onclick="fn_delete_compet(event)">삭제하기</button></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
@@ -259,13 +263,43 @@ h3, h4 {
 		</div>
 	</div>
 </div>
-<div class="modal fade none-border" id="add-compet"
+<div class="modal fade none-border" id="add-categ"
 	style="display: none;" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
 					<strong>대회 추가하기</strong>
+				</h4>
+			</div>
+			<div id="modal-body" class="modal-body">
+				<form action="${contextPath }/admin/addCateg.do" method="get">
+					<div class="row">
+							<label class="control-label">카테고리명</label> 
+							<input
+								class="form-control form-white" placeholder="카테고리명을 입력해주세요."
+								type="text" name="categ_name">
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default waves-effect"
+							data-dismiss="modal">닫기</button>
+						<button type="submit" 
+							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade none-border" id="add-compet"
+	style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<strong>카테고리 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
@@ -322,13 +356,19 @@ h3, h4 {
 </div>
 
 <script>
-function fn_delete_categ(e){
-	const categ = e.target.parentNode.querySelector("span").innerHTML
-	
-	location.href = "/ocp/admin/deleteCateg.do?categ_name=" + categ
-}
+	function fn_delete_categ(e){
+		const categ = e.target.parentNode.querySelector("span").innerHTML
+
+ 		location.href = "/ocp/admin/deleteCateg.do?categ_name=" + categ
+	}
 
 	function fn_add_categ(e){
+		console.log(window.location.pathname);
+		location.href = "/ocp/admin/addCateg.do"
+
+	}
+
+	function fn_add_compet(e){
 		const categ = e.target.parentNode.querySelector("span").innerHTML
 		
 		const label = document.getElementById("categ-label");
@@ -346,7 +386,7 @@ function fn_delete_categ(e){
 	function fn_delete_compet(e){
 		const compet_name = e.target.parentNode.parentNode.querySelector(".compet_name").innerHTML
 		
-		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name
+		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name 
 	}
 </script>
 </html>
