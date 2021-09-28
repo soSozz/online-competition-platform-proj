@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 import com.tstecon.ocp.banner.vo.BannerFileVO;
 
 @Repository("adminBannerDAO")
-public class AdminBannerDAOImpl implements AdminBannerDAO{
+public class AdminBannerDAOImpl{
 	@Autowired
 	private SqlSession ss;
 	
 	public List	selectBannerName() {
 		List<BannerFileVO> selectBannerName = new ArrayList();
-		selectBannerName = ss.selectList("mappers.admin_Banner.selectAllBannerList");
+		selectBannerName = ss.selectList("mappers.admin_banner.selectAllBannerList");
 		return selectBannerName;
 	}
 	
