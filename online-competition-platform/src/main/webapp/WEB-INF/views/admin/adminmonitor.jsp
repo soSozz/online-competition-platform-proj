@@ -22,7 +22,6 @@ request.setCharacterEncoding("UTF-8");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <style>
 h3,h4{
 	font-weight:bold;
@@ -71,22 +70,25 @@ h3,h4{
         <div class="row my-3">
     <span style="font-size: 25px; font-weight:bold; color:black;">좋아요</span>
      <div class="general-button">
-		 <button type="button" class="btn mb-1 btn-select">조회하기</button>
+		 <button type="button" id="view">조회하기</button>
+	     </div>
+	     <span style="font-size: 25px; font-weight:bold; color:black;">댓글</span>
+     <div class="general-button">
+		 <button type="button" id="cmtview">조회하기</button>
 	     </div>
         </div>
-        
-<div class="row">
+       <div class="row">
                     <!-- single bar Chart -->
-                    <div class="col-lg-12">
+                    <div class="col-lg-20">
                         <div class="card">
                         
                             <div class="card-body">
                             <div class="row">
-                            <div class="col-lg-3">
-                                <canvas id="singleBarChart" width="300" height="250"></canvas>
+                            <div class="col-lg-18">
+                                <canvas id="singleBarChart" width="1000px" height="300px"></canvas>
                             </div>
-                            <div class="col-lg-3">
-                                <canvas id="singleBarChart1" width="300" height="250"></canvas>
+                            <div class="col-lg-18">
+                                <canvas id="singleBarChart1" width="1000px" height="300px"></canvas>
                             </div>
                                
                             </div>
@@ -219,64 +221,108 @@ h3,h4{
 	</div>
 </div>
 </div>          
-      
-<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
 <script>
-<!-- single bar chart -->
-    var ctx = document.getElementById("singelBarChart");
-    ctx.height = 150;
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [
-                {
-                    label: 
-                    data: 
-                    borderColor: "rgba(117, 113, 249, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(117, 113, 249, 0.5)"
-                }
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+   var button = document.getElementById("view");
+    button.addEventListener("click", function(){
+        $.ajax({
+        	
+        	type : "GET",
+        	url : "/ocp/admin/monitor/selectLikegraph.do",
+        	success : function(data, textStatus) {
+        		var jsonInfo = JSON.parse(data);
+        		const responses = jsonInfo["responses"];
+        		
+        		const like_arr = []
+        		const date_arr = []
+        		for (response of responses){
+        			like_arr.push(response["Likes"]);
+        			date_arr.push(response["Date"]);
+        		}
+        		
+        		<!-- single bar chart -->
+        	    var ctx = document.getElementById("singleBarChart1").getContext('2d');
+        	    ctx.height = 20;
+        	    var myChart = new Chart(ctx, {
+        	        type: 'bar',
+        	        data: {
+        	            labels: date_arr,
+        	            datasets: [
+        	                {
+        	                    label: "좋아요 수",
+        	                    data: like_arr,
+        	                    borderColor: "rgba(117, 113, 249, 0.9)",
+        	                    borderWidth: "0",
+        	                    backgroundColor: "rgba(117, 113, 249, 0.5)"
+        	                }
+        	            ]
+        	        },
+        	        options: {
+        	            scales: {
+        	                yAxes: [{
+        	                    ticks: {
+        	                        beginAtZero: true
+        	                    }
+        	                }]
+        	            }
+        	        }
+        	    });
+        	}
+        });
+    })
     
-    var ctx = document.getElementById("singelBarChart1");
-    ctx.height = 150;
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [
-                {
-                    label: "좋아요 수"
-                    data: response
-                    borderColor: "rgba(117, 113, 249, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(117, 113, 249, 0.5)"
-                }
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+    
+     
+</script> 
+<script>
+var button = document.getElementById("cmtview");
+button.addEventListener("click", function(){
+    $.ajax({
+    	
+    	type : "GET",
+    	url : "/ocp/admin/monitor/selectCmtgraph.do",
+    	success : function(data, textStatus) {
+    		var jsonInfo = JSON.parse(data);
+    		const responses = jsonInfo["responses"];
+    		
+    		const cmt_arr = []
+    		const date1_arr = []
+    		for (response of responses){
+    			cmt_arr.push(response["Cmts"]);
+    			date1_arr.push(response["Date"]);
+    		}
+    		
+    		<!-- single bar chart -->
+    	    var ctx = document.getElementById("singleBarChart").getContext('2d');
+    	    ctx.height = 20;
+    	    var myChart = new Chart(ctx, {
+    	        type: 'bar',
+    	        data: {
+    	            labels: date1_arr,
+    	            datasets: [
+    	                {
+    	                    label: "댓글 수",
+    	                    data: cmt_arr,
+    	                    borderColor: "rgba(117, 113, 249, 0.9)",
+    	                    borderWidth: "0",
+    	                    backgroundColor: "rgba(117, 113, 249, 0.5)"
+    	                }
+    	            ]
+    	        },
+    	        options: {
+    	            scales: {
+    	                yAxes: [{
+    	                    ticks: {
+    	                        beginAtZero: true
+    	                    }
+    	                }]
+    	            }
+    	        }
+    	    });
+    	}
     });
+})
+</script>
+<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
 
-    </script> 
 </body>
 </html>
