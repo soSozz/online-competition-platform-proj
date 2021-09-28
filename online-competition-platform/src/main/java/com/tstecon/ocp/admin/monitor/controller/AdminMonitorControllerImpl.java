@@ -20,6 +20,8 @@ import com.tstecon.ocp.admin.monitor.service.AdminMonitorService;
 import com.tstecon.ocp.admin.monitor.vo.AdminCmtVO;
 import com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO;
 
+import net.sf.json.JSONObject;
+
 @Controller("AdminMonitorController")
 public class AdminMonitorControllerImpl implements AdminMonitorController {
 
@@ -42,22 +44,45 @@ public class AdminMonitorControllerImpl implements AdminMonitorController {
 		return mav;
     }
 	
-	@RequestMapping(value = "/admin/monitor/selectLikegraph.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/monitor/selectLikegraph.do", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
-	public List adminLikeList()throws Exception {
+	public String adminLikeList(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	  response.setContentType("text/html;charset=utf-8");
+	  response.setCharacterEncoding("utf-8");
 	  List<AdminMonitorVO> adminLikeList = AdminMonitorService.adminLikeList();
-	  ArrayList response = new ArrayList();
+	  ArrayList responses = new ArrayList();
 	  for(int i =0; i < adminLikeList.size(); i ++) {
 	    HashMap<String , Object> map = new HashMap<String, Object>();
 	    map.put("Date", adminLikeList.get(i).getLikesdate());
 	    map.put("Likes", adminLikeList.get(i).getCnt());
-	    response.add(map);
-	    System.out.println(map);
-	    System.out.println(response);
-	  }
-	  System.out.println(response);
-	  return response;
-
+	    responses.add(map);
+	  } 
+	  JSONObject jsonObject = new JSONObject();
+	  jsonObject.put("responses", responses);
+	  String jsonInfo = jsonObject.toString();
+	  System.out.println("json:" + jsonInfo);
+	  return jsonInfo;
 	}
+	
+	@RequestMapping(value = "/admin/monitor/selectCmtgraph.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public String adminCmtsList(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	  response.setContentType("text/html;charset=utf-8");
+	  response.setCharacterEncoding("utf-8");
+	  List<AdminMonitorVO> adminCmtsList = AdminMonitorService.adminCmtsList();
+	  ArrayList responses = new ArrayList();
+	  for(int i =0; i < adminCmtsList.size(); i ++) {
+	    HashMap<String , Object> map = new HashMap<String, Object>();
+	    map.put("Date", adminCmtsList.get(i).getCmtsdate());
+	    map.put("Cmts", adminCmtsList.get(i).getCmtcnt());
+	    responses.add(map);
+	  } 
+	  JSONObject jsonObject = new JSONObject();
+	  jsonObject.put("responses", responses);
+	  String jsonInfo = jsonObject.toString();
+	  System.out.println("json:" + jsonInfo);
+	  return jsonInfo;
+	}
+
 
 }

@@ -11,8 +11,10 @@ public class AdminMonitorVO {
 	private int likes_id;
 	private Date cmt_date;
 	private int cmt_id;
-	private Date likesdate;
+	private String likesdate;
 	private int cnt;
+	private String cmtsdate;
+	private int cmtcnt;
 	public Date getLikes_date() {
 		return likes_date;
 	}
@@ -38,10 +40,10 @@ public class AdminMonitorVO {
 		this.cmt_id = cmt_id;
 	}
 
-	public Date getLikesdate() {
+	public String getLikesdate() {
 		return likesdate;
 	}
-	public void setLikesdate(Date likesdate) {
+	public void setLikesdate(String likesdate) {
 		this.likesdate = likesdate;
 	}
 	public int getCnt() {
@@ -50,9 +52,23 @@ public class AdminMonitorVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	public String getCmtsdate() {
+		return cmtsdate;
+	}
+	public void setCmtsdate(String cmtsdate) {
+		this.cmtsdate = cmtsdate;
+	}
+	public int getCmtcnt() {
+		return cmtcnt;
+	}
+	public void setCmtcnt(int cmtcnt) {
+		this.cmtcnt = cmtcnt;
+	}
+	
 
 	
 	
+
 
 	
 	
