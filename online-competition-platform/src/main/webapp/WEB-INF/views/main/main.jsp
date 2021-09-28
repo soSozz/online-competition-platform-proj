@@ -38,7 +38,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 				<div class="card">
 					<div class="card-body">
 						<div class="mb-lg-3 d-flex align-items-center">
-							<i class="mr-2 fas fa-flag" style="font-size:3em; color: black;"></i>
+							<i class="mr-2 fas fa-flag-checkered" style="font-size:3em; color: black;"></i>
 							<span id="compet_title" class="bold">${categ.key }</span>
 							<a href="#" class="ml-auto"><span>더보기</span></a>
 						</div>

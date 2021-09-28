@@ -50,8 +50,9 @@ h3, h4 {
 }
 
 .competList {
-	background: orange;
+	/* background: orange; */
 	height: 35px;
+	margin: 1px;
 }
 
 .categ_btn {
@@ -66,22 +67,33 @@ h3, h4 {
 	color: black;
 	font-weight: bold;
 }
+
+.categBtn {
+	margin: 1px;
+}
 </style>
 </head>
 <div class="container">
 	<span style="font-size: 25px; font-weight: bold; color: black;">카테고리
 		및 대회</span>
-	<button class="categEdit float-right btn btn-primary">카테고리 편집</button>
+	<a href = "#" class="addCateg float-right btn btn-primary" 
+	data-toggle="modal" data-target="#add-categ">카테고리 추가</a>
 	<hr />
 	<h4>진행 중인 대회</h4>
+	<div class="row">
 	<c:forEach var="categ" items="${competInCateg}">
 		<div class="col-lg-6">
-			<div class="card border-primary">
+			<div class="categList card border-primary">
 				<div class="card-header">
-					<span class="categ float-center">${categ.key}</span> <a href="#"
-						data-toggle="modal" data-target="#add-category"
-						class="categ_btn btn btn-primary float-right" onclick="fn_add_categ(event)"><i
-						class="ti-plus f-s-12 m-r-5"></i> 추가하기</a>
+					<span class="categ float-center">${categ.key}</span>
+						
+					<a href="#" data-toggle="modal" data-target="#add-compet"
+						class="categBtn btn btn-primary float-right" onclick="fn_add_compet(event)">
+						<i class="ti-plus f-s-12 m-r-5"></i> 대회 추가</a>
+						
+					<a href="#" class="categBtn btn btn-primary float-right" onclick="fn_delete_categ(event)">
+						<i class="ti-minus f-s-12 m-r-5"></i> 카테고리 삭제</a>
+					
 				</div>
 				<div class="card-body">
 					<c:forEach var="compet" items="${categ.value}">
@@ -96,7 +108,7 @@ h3, h4 {
 			</div>
 		</div>
 	</c:forEach>
-	</form>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -131,7 +143,6 @@ h3, h4 {
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
-									<form action="/ocp/admin/competDelete.do">
 										<table class="table table-striped table-bordered dataTable"
 											id="DataTables_Table_0" role="grid"
 											aria-describedby="DataTables_Table_0_info">
@@ -169,12 +180,13 @@ h3, h4 {
 													<tr role="row" class="even">
 														<td class="NO">${status.count + stat}</td>
 														<td class="categ_name"><span class="float-center">${categ.key}</span></td>
-														<td class="compet_name"><input type= "hidden"name="compet_name" value="${compet.compet_name}" readonly />
+														<td class="compet_name">
 															${compet.compet_name}</td>
 														<td class="compet_start">${compet.compet_start}</td>
 														<td class="compet_end">${compet.compet_end}</td>
 														<td class="compet_create">${compet.compet_create}</td>
-														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center">삭제하기</button></td>
+														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center"
+																			   onclick="fn_delete_compet(event)">삭제하기</button></td>
 														</tr>
 														<c:if test="${status.last == true}" >
 														<c:set var="stat" value="${stat = status.count + stat}" />
@@ -241,42 +253,7 @@ h3, h4 {
 											</div>
 
 								</div>
-								<div class="row">
-									<div class="col-sm-12 col-md-5">
-										<div class="dataTables_info" id="DataTables_Table_0_info"
-											role="status" aria-live="polite">Showing 1 to 10 of 57
-											entries</div>
-									</div>
-									<div class="col-sm-12 col-md-7">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="DataTables_Table_0_paginate">
-											<ul class="pagination">
-												<li class="paginate_button page-item previous disabled"
-													id="DataTables_Table_0_previous"><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="0"
-													tabindex="0" class="page-link">Previous</a></li>
-												<li class="paginate_button page-item active"><a
-													href="#" aria-controls="DataTables_Table_0" data-dt-idx="1"
-													tabindex="0" class="page-link">1</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="2"
-													tabindex="0" class="page-link">2</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="3"
-													tabindex="0" class="page-link">3</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="4"
-													tabindex="0" class="page-link">4</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="5"
-													tabindex="0" class="page-link">5</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="DataTables_Table_0" data-dt-idx="6"
-													tabindex="0" class="page-link">Next</a></li>
-											</ul>
-
-										</div>
-									</div>
+								</div>
 								</div>
 							</div>
 						</div>
@@ -286,14 +263,43 @@ h3, h4 {
 		</div>
 	</div>
 </div>
-
-<div class="modal fade none-border" id="add-category"
+<div class="modal fade none-border" id="add-categ"
 	style="display: none;" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
 					<strong>대회 추가하기</strong>
+				</h4>
+			</div>
+			<div id="modal-body" class="modal-body">
+				<form action="${contextPath }/admin/addCateg.do" method="get">
+					<div class="row">
+							<label class="control-label">카테고리명</label> 
+							<input
+								class="form-control form-white" placeholder="카테고리명을 입력해주세요."
+								type="text" name="categ_name">
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default waves-effect"
+							data-dismiss="modal">닫기</button>
+						<button type="submit" 
+							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade none-border" id="add-compet"
+	style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<strong>카테고리 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
@@ -319,7 +325,7 @@ h3, h4 {
 							<label class="control-label">간단한 설명</label> 
 							<textarea
 								class="form-control form-white" placeholder="대회 설명을 입력해주세요."
-								type="text" name="compet_text">
+								name="compet_text">
 							</textarea>
 							<div>
 							<label class="control-label">이미지 첨부(큰 포스터)</label>
@@ -350,7 +356,19 @@ h3, h4 {
 </div>
 
 <script>
+	function fn_delete_categ(e){
+		const categ = e.target.parentNode.querySelector("span").innerHTML
+
+ 		location.href = "/ocp/admin/deleteCateg.do?categ_name=" + categ
+	}
+
 	function fn_add_categ(e){
+		console.log(window.location.pathname);
+		location.href = "/ocp/admin/addCateg.do"
+
+	}
+
+	function fn_add_compet(e){
 		const categ = e.target.parentNode.querySelector("span").innerHTML
 		
 		const label = document.getElementById("categ-label");
@@ -366,9 +384,9 @@ h3, h4 {
 	}
 	
 	function fn_delete_compet(e){
-		const compet_name = e.target.parentNode.querySelector("span").innerHTML
+		const compet_name = e.target.parentNode.parentNode.querySelector(".compet_name").innerHTML
 		
-		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name
+		location.href = "/ocp/admin/competDelete.do?compet_name=" + compet_name 
 	}
 </script>
 </html>

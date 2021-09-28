@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
 
-
 @Repository("CompetDAO")
 public class CompetDAOImpl implements CompetDAO {
 
@@ -54,7 +53,6 @@ public class CompetDAOImpl implements CompetDAO {
 				compet_id);
 		return competList;
 	}
-
 
 	@Override
 	public List<CompetVO> selectCompetId(int i) throws DataAccessException {
@@ -117,15 +115,38 @@ public class CompetDAOImpl implements CompetDAO {
 		return competId;
 	}
 
+	// 대회 종료하기
 	@Override
 	public int updateCompetTerminated(String compet_name) throws DataAccessException {
 		int updateCompet = sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
 		return updateCompet;
 	}
 
+	// 종료된 대회 삭제하기
 	@Override
 	public int deleteCompet(String compet_name) throws DataAccessException {
 		return sqlSession.delete("mappers.compet.deleteCompet", compet_name);
 	}
 
+	// 카테고리 아이디를 통해 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> selectCompetListByCategId(int categ_id) throws DataAccessException {
+		List<CompetVO> competList = sqlSession.selectList("mappers.compet.selectCompetListByCategId", categ_id);
+		return competList;
+	}
+
+	@Override
+	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectCompetListByTerminated", terminated);
+	}
+
+	@Override
+	public List<CompetVO> selectAllCompets() throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectAllCompets");
+	}
+
+	@Override
+	public List<CompetVO> selectCompetsByCategName(String categ_name) throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectCompetsByCategName", categ_name);
+	}
 }

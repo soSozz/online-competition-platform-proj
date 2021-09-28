@@ -39,6 +39,7 @@ public class AdminMonitorVO {
 	public void setCmt_id(int cmt_id) {
 		this.cmt_id = cmt_id;
 	}
+
 	public String getLikesdate() {
 		return likesdate;
 	}
@@ -67,6 +68,7 @@ public class AdminMonitorVO {
 
 	
 	
+
 
 	
 	
