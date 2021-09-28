@@ -23,6 +23,14 @@ public class AdminMonitorServiceImpl implements AdminMonitorService {
 		
 		return adminLikeList;
 }
+	
+	@Override
+	public List<AdminMonitorVO> adminCmtsList() throws DataAccessException{
+		List<AdminMonitorVO> adminCmtsList = adminMonitorDAO.selectAdminMoniterCmtList();
+		
+		
+		return adminCmtsList;
+}
 
 	@Override
 	public List<AdminCmtVO> adminCmtList() throws DataAccessException{

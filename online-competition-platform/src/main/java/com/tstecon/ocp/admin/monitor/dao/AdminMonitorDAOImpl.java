@@ -40,6 +40,12 @@ public class AdminMonitorDAOImpl implements AdminMonitorDAO{
 		return adminLikeList;
 	}
 	
+	@Override
+	public List<AdminMonitorVO> selectAdminMoniterCmtList() throws DataAccessException {
+		List<AdminMonitorVO> adminCmtList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterCmtList");
+		return adminCmtList;
+	}
+	
 }
 
 
