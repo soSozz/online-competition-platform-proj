@@ -22,7 +22,10 @@
 
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerVO" alias="bannerVO" />
 		 <typeAlias type="com.tstecon.ocp.banner.vo.BannerFileVO" alias="bannerFileVO" />
+<<<<<<< HEAD
 		
+=======
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 		 
 
 		 <typeAlias type="com.tstecon.ocp.contents.vo.ContentsVO" alias="contentsVO" />
