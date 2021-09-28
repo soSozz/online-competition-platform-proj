@@ -24,7 +24,7 @@ public class AdminContentsDAOImpl implements AdminContentsDAO{
 
 	@Override
 	public List<ContentsVO> selectApprContentsList() throws DataAccessException {
-		List<ContentsVO> contentsList = (ArrayList)sqlSession.selectList("mappers.contents.selectContentsName");
+		List<ContentsVO> contentsList = (ArrayList)sqlSession.selectList("mappers.contents.insertContentsName");
 		return contentsList;
 	}
 
