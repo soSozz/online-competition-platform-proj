@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.tstecon.ocp.compet.dao.CompetDAO;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.compet.vo.CompetVO;
-import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Service("CompetService")
 public class CompetServiceImpl implements CompetService {
@@ -44,6 +43,7 @@ public class CompetServiceImpl implements CompetService {
 		competList = competDAO.selectCompet_id_file(compet_id);
 		competInfo.put("compet_id", competList);
 		return competInfo;
+
 	}
 
 //대회 공지사항: 작은 포스터 가져오기
@@ -53,14 +53,10 @@ public class CompetServiceImpl implements CompetService {
 		return CompetSmallPoster;
 	}
 
-//문의 게시판
-	@Override
-	public List<CompetQnaVO> qnalistArticles() throws Exception {
-		List<CompetQnaVO> qnaList = competDAO.selectAllQnaList();
-		return qnaList;
-	}
-	
 	// 대회 리스트 아이디통해 이름 알아내기
+
+	// 진행중인 대회 가져오기
+
 	@Override
 	public List<CompetVO> competListById(int i) throws Exception {
 		List<CompetVO> competListByName = competDAO.selectCompetId(i);
@@ -68,14 +64,76 @@ public class CompetServiceImpl implements CompetService {
 	}
 
 	@Override
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		return null;
+	public List<CompetVO> competListByCategIdToThree(int i) throws Exception {
+		return competDAO.selectCompetsByCategIdToThree(i);
 	}
+
+	// 종료된 대회 가져오기
+	@Override
+	public List<CompetVO> finishCompetList(int i) throws Exception {
+		List<CompetVO> competListFinish = competDAO.selectFinishCompet(i);
+		return competListFinish;
+	}
+
+	// 카테고리 이름을 통해 대회 이름 출력하기
+	@Override
+	public List<CompetVO> competListByName(int i) throws Exception {
+		List<CompetVO> competNameByName = competDAO.selectCompetNameByName(i);
+		return competNameByName;
+	}
+
 	// 대회 이름 가져오기
 	@Override
 	public List<CompetVO> CompetName() throws DataAccessException {
 		List<CompetVO> competName = competDAO.selectCompetName();
 		return competName;
+
+	}
+
+	// 대회 추가하기
+	@Override
+	public void addCompet(Map<String, Object> competMap) throws DataAccessException {
+		int addCompet = competDAO.insertCompet(competMap);
+		int addCompetFile = competDAO.insertCompetFile(competMap);
+	}
+
+	// 대회 아이디 가져오기
+	@Override
+	public int addCompetId() throws DataAccessException {
+		int addCompetId = competDAO.selectAddCompetId();
+		return addCompetId;
+	}
+
+	// 대회 종료하기
+	@Override
+	public int competFinish(String compet_name) throws DataAccessException {
+		int updateCompet = competDAO.updateCompetTerminated(compet_name);
+		return updateCompet;
+	}
+
+	// 종료된 대회 삭제하기
+	@Override
+	public int competDelete(String compet_name) throws DataAccessException {
+		return competDAO.deleteCompet(compet_name);
+	}
+
+	// 카테고리 아이디를 통해 대회 리스트 가져오기
+	@Override
+	public List<CompetVO> competListByCategId(int categ_id) throws DataAccessException {
+		List<CompetVO> competList = competDAO.selectCompetListByCategId(categ_id);
+		return competList;
+	}
+
+	// 진행중인 대회 모두 가져오기
+	@Override
+	public List<CompetVO> competAllList() throws Exception {
+		return competDAO.selectAllCompets();
+	}
+
+	// 카테고리 이름에 해당하는, 진행중인 대회 가져오기
+	@Override
+	public List<CompetVO> competListByCategName(String categ_Name) throws Exception {
+		return competDAO.selectCompetsByCategName(categ_Name);
 	}
 
 }

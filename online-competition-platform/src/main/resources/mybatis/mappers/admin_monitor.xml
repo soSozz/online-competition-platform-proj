@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "mappers.admin.monitor"> <!-- 리절트맵 정의 -->
+	<resultMap id = "adminMonitorResult" type = "adminMonitorVO"> 
+		<result property = "likes_id" column = "likes_id" />
+		<result property = "likes_date" column = "likes_date" />
+		<result property = "cmt_id" column = "cmt_id" />
+		<result property = "cmt_date" column = "cmt_date" />
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "cmt_text" column = "cmt_text" />
+		<result property = "cnt" column = "cnt" />
+		<result property = "likesdate" column = "likesdate" />
+	</resultMap>
+	<resultMap id = "adminCmtResult" type = "adminCmtVO"> 
+		<result property = "contents_name" column = "contents_name" />
+		<result property = "cmt_text" column = "cmt_text" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "cmt_date" column = "cmt_date" />
+	</resultMap>
+
+	
+
+	
+	<select id = "selectAdminMoniterLikeList" resultMap = "adminMonitorResult">
+		<![CDATA[
+			select to_char(likes_date, 'yyyy-mm-dd') as likesdate, nvl(count(*), 0) as cnt
+               from likes
+               group by to_char(likes_date, 'yyyy-mm-dd')
+               order by to_char(likes_date, 'yyyy-mm-dd')
+		]]>
+	</select>
+	
+	<select id = "selectAdminMoniterCmtList" resultMap = "adminMonitorResult">
+		<![CDATA[
+			select to_char(cmt_date, 'yyyy-mm-dd') as cmtsdate, nvl(count(*), 0) as cmtcnt
+               from cmt
+               group by to_char(cmt_date, 'yyyy-mm-dd')
+               order by to_char(cmt_date, 'yyyy-mm-dd')
+		]]>
+	</select>
+	
+	<select id = "selectAdminCmtList" resultMap = "adminCmtResult">
+		<![CDATA[
+			select contents.contents_name, cmt.cmt_text, member.mem_id, cmt.cmt_date   
+            from cmt , contents, member
+            where contents.contents_id = cmt.contents_id and member.mem_id = contents.mem_id
+		]]>
+	</select>
+	
+
+</mapper>

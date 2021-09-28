@@ -10,6 +10,7 @@
         <result property = "categ_id" column = "categ_id" />
 		<result property = "categ_name" column = "categ_name" />
 	</resultMap>
+	
 <!-- 카테고리 데이터 가져오기 -->
 	<select id="selectAllCateg" resultMap="CategResult">
   	<![CDATA[
@@ -24,7 +25,45 @@
 				from category
    	]]>
 	</select>
-
-
 	
+	<!-- 맵을 통해 카테고리 아이디 가져오기 -->
+	<select id="selectCategIdByMap" resultType="int" parameterType="java.util.Map">
+	<![CDATA[
+	select categ_id
+	from category
+	where categ_name = #{categ_name}
+	]]>
+	</select>
+	
+	<!-- 카테고리 삭제 -->
+	<delete id="deleteCategByName" parameterType="String">
+	<![CDATA[
+				delete from category
+				where categ_name = #{categ_name}
+	]]>
+	</delete>
+	
+	<!-- 카테고리 이름을 통해 카테고리 아이디 가져오기 -->
+	<select id="selectCategIdByName" resultType="int" parameterType="String">
+	<![CDATA[
+				select categ_id
+				from category
+				where categ_name = #{categ_name}
+	]]>
+	</select>
+	
+	<!-- 카테고리 아이디 + 1 -->
+	<select id="selectCategPlusId" resultType="int">
+	<![CDATA[
+				SELECT nvl(max(categ_id), 0) + 1 
+        		from category
+	]]>
+	</select>
+	
+	<insert id="insertCateg" parameterType="java.util.Map">
+	<![CDATA[
+				insert into category(categ_id,categ_name)
+				values (#{categ_id},#{categ_name})
+	]]>
+	</insert>
 </mapper>

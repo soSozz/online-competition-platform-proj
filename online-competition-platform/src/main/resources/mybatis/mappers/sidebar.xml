@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+<mapper namespace = "mappers.sidebar"> 
+	
+    <resultMap id="sidebarResult" type="sidebarVO">
+        <result property="mem_nickname" column="mem_nickname" />
+        <result property="cnt" column="cnt" />
+   </resultMap>
+
+ <select id="selectRankListByCompetId" parameterType="int" resultMap="sidebarResult">
+     <![CDATA[
+     select y.*
+	  from (select member.mem_nickname, cnt
+      		from member, contents, (select contents.contents_id, count(*) cnt
+                              		from likes, contents, compet
+                              		where likes.contents_id = contents.contents_id and contents.compet_id = compet.compet_id and compet_terminated = 'Y' and compet.compet_id = #{compet_id}
+                              		group by contents.contents_id) x
+       where x.contents_id = contents.contents_id and contents.mem_id = member.mem_id
+       order by cnt desc) y
+	 where rownum <= 5
+     
+     ]]>
+</select>
+
+
+</mapper>

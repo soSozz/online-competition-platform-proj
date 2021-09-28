@@ -2,3 +2,32 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mappers.contents">
+	<resultMap id="ContentsResult" type="contentsVO">
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "contents_state" column = "contents_state" />
+		<result property = "contents_processing_date" column = "contents_processing_date" />
+		<result property = "contents_reject_reason" column = "contents_reject_reason" />
+		<result property = "contents_view" column = "contents_view" />
+		<result property = "contents_name" column = "contents_name" />
+	</resultMap>
+	
+	<select id="selectContentsList" resultMap="ContentsResult">
+  	<![CDATA[
+				select *
+				from contents
+				where contents_state = '제출완료'
+   	]]>
+	</select>
+	
+	<select id="selectApprContentsList" resultMap="ContentsResult">
+  	<![CDATA[
+				select *
+				from contents
+				where contents_state = '승인'
+   	]]>
+	</select>
+</mapper>

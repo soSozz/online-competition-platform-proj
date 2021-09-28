@@ -37,25 +37,24 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		Map<String, List<ContentsVO>> map = new HashMap<String, List<ContentsVO>>();
-		List<CategVO> categNames = adminCategService.CategName();
-		List<CompetVO> competNames = competService.CompetName();
-		List<ContentsVO> contentsList = adminContentsService.ContentsList();
+		Map<String, List<CompetVO>> dropdown = new HashMap<String, List<CompetVO>>();
+		List<CategVO> categList = adminCategService.CategAllList();
 		
-		for (CategVO i : categNames) {
-			List<ContentsVO> competList =  adminContentsService.ContentsList();
+		for (CategVO i : categList) {
+			List<CompetVO> competList = competService.competListByName(i.getCateg_id());
 			// ... = competService.competListByCategId(i.categ_id);
-			map.put(i.getCateg_name(), competList);
+			dropdown.put(i.getCateg_name(), competList);
 			//aa.put(i.categ_name, competList);
-			
-//			for (CategVO i : categList) {
-//				List<CompetVO> competList = competService.competListById(i.getCateg_id());
-//				// ... = competService.competListByCategId(i.categ_id);
-//				aa.put(i.getCateg_name(), competList);
-//				//aa.put(i.categ_name, competList);
-//			}
-//			mav.addObject("competInCateg", aa);
 		}
-		mav.addObject("competNames", map);
+		
+		List<ContentsVO> contentsList = adminContentsService.contentsList();
+		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
+
+		map.put("contentsList", contentsList);
+		map.put("apprContentsList", apprContentsList);
+		
+		mav.addObject("dropdown", dropdown);
+		mav.addObject("map",map);
 		return mav;
 	}
 
@@ -65,7 +64,7 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	public ModelAndView adminContentsView(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		List<ContentsVO> apprContentsList = adminContentsService.ApprContentsList();
+		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
 		mav.addObject("apprContentsList", apprContentsList);
 		return mav;
 	}
@@ -75,14 +74,14 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	public ModelAndView adminContentsAppr(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		List<ContentsVO> apprContentsList = adminContentsService.ApprContentsList();
+		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
 		mav.addObject("apprContentsList", apprContentsList);
 		return mav;
 	}
 
 
 	@Override
-	public ModelAndView adminContentsReject(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView adminContentsRefusal(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 

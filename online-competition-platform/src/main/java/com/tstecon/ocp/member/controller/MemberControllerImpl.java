@@ -42,15 +42,15 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		adminVO = memberService.loginByAdmin(loginMap);
 
 		HttpSession session = request.getSession();
-		if (memberVO != null) { // member·Î ·Î±×ÀÎ ¼º°ø ½Ã
+		if (memberVO != null) { // memberï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			session.setAttribute("loginStatus", "member");
 			session.setAttribute("loginInfo", memberVO);
 			return "true";
-		} else if (adminVO != null) { // adminÀ¸·Î ·Î±×ÀÎ ¼º°ø ½Ã
+		} else if (adminVO != null) { // adminï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			session.setAttribute("loginStatus", "admin");
 			session.setAttribute("loginInfo", adminVO);
 			return "true";
-		} else { // ·Î±×ÀÎ ½ÇÆĞ ½Ã
+		} else { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			return "false";
 		}
 	}
@@ -63,8 +63,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		session.removeAttribute("loginInfo");
 
 		String message = "<script>";
-		message += " alert('·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.');";
-		message += " location.href='" + request.getContextPath() + "/main/main.do';";
+		message += "alert('ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤');";
+		message += "location.href='" + request.getContextPath() + "/main/main.do';";
 		message += ("</script>");
 
 		HttpHeaders responseHeaders = new HttpHeaders();
