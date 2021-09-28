@@ -29,8 +29,11 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
-<style>
-</style>
+
+<%-- <c:forEach var="dropdown" items="${dropdown}" varStatus="competList">
+	<c:set var="1" value="${dropdown.value[0]}" />
+</c:forEach> --%>
+
 </head>
 
 <body>
@@ -49,18 +52,20 @@ request.setCharacterEncoding("UTF-8");
 
 			</div>
 			<div class="dropdown col-sm-12 col-md-3">
-				<button class="btn btn-primary dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">대회</button>
-				<div class="dropdown-menu" x-placement="bottom-start"
-					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
-					<a class="dropdown-item" href="#">Link 1</a> <a
-						class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item"
-						href="#">Link 3</a>
-				</div>
+				<select class="form-control" id="addressKindU" name="addressKindU"
+					onchange="fn_compet_change(this)">
+					<option>카테고리를 선택해주세요.</option>
+					<c:forEach var="dropdown" items="${dropdown}" varStatus="status">
+						<option value="${status.count}" >${dropdown.key}</option>
+					</c:forEach>
+				</select> 
+				<select class="form-control" id="competList" name="competList">
+					<option>대회를 선택해주세요.</option>
+				</select>
 			</div>
 		</div>
 		<br />
-		<h3>컨텐츠 조회</h3>
+		<h3>컨텐츠 조회 ${dropdown}</h3>
 		<hr />
 		<div class="container-fluid">
 			<div class="row">
@@ -301,5 +306,10 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 
+<script>
+	function fn_compet_change(e) {
+		if (e.value == )
+	}
+</script>
 </body>
 </html>
