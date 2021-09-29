@@ -17,14 +17,14 @@ public class AdminContentsDAOImpl implements AdminContentsDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<ContentsVO> selectContentsList() {
-		List<ContentsVO> contentsList = (ArrayList)sqlSession.selectList("mappers.contents.selectContentsList");
+	public List<ContentsVO> selectContentsList(int compet_id) throws DataAccessException {
+		List<ContentsVO> contentsList = (ArrayList)sqlSession.selectList("mappers.contents.selectContentsList", compet_id);
 		return contentsList;
 	}
 
 	@Override
-	public List<ContentsVO> selectApprContentsList() throws DataAccessException {
-		List<ContentsVO> apprContentsList = (ArrayList)sqlSession.selectList("mappers.contents.selectApprContentsList");
+	public List<ContentsVO> selectApprContentsList(int compet_id) throws DataAccessException {
+		List<ContentsVO> apprContentsList = (ArrayList)sqlSession.selectList("mappers.contents.selectApprContentsList", compet_id);
 		return apprContentsList;
 	}
 

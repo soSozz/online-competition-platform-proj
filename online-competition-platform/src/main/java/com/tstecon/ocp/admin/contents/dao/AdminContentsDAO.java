@@ -8,8 +8,8 @@ import com.tstecon.ocp.contents.vo.ContentsVO;
 
 public interface AdminContentsDAO {
 
-	public List<ContentsVO> selectContentsList()throws DataAccessException;
+	public List<ContentsVO> selectContentsList(int compet_id)throws DataAccessException;
 
-	public List<ContentsVO> selectApprContentsList()throws DataAccessException;
+	public List<ContentsVO> selectApprContentsList(int compet_id)throws DataAccessException;
 
 }

@@ -30,42 +30,28 @@ request.setCharacterEncoding("UTF-8");
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
 
-<%-- <c:forEach var="dropdown" items="${dropdown}" varStatus="competList">
-	<c:set var="1" value="${dropdown.value[0]}" />
-</c:forEach> --%>
-
 </head>
 
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-md-7"></div>
-			<div class="dropdown col-sm-12 col-md-2">
-				<button class="btn btn-primary dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">카테고리</button>
-				<div class="dropdown-menu" x-placement="bottom-start"
-					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
-					<c:forEach var="dropdown" items="${dropdown}">
-						<a class="dropdown-item" href="#">${dropdown.key}</a>
-					</c:forEach>
-				</div>
-
-			</div>
+			<div class="col-sm-12 col-md-6"></div>
 			<div class="dropdown col-sm-12 col-md-3">
-				<select class="form-control" id="addressKindU" name="addressKindU"
-					onchange="fn_compet_change(this)">
-					<option>카테고리를 선택해주세요.</option>
+			<select class="form-control" id="categDropdown" onchange="changeCompet(this.value)">
+					<option value="">카테고리를 선택해주세요.</option>
 					<c:forEach var="dropdown" items="${dropdown}" varStatus="status">
-						<option value="${status.count}" >${dropdown.key}</option>
+						<option id="categList" value="${status.count}">${dropdown.key}</option>
 					</c:forEach>
 				</select> 
-				<select class="form-control" id="competList" name="competList">
-					<option>대회를 선택해주세요.</option>
+			</div>
+			<div class="dropdown col-sm-12 col-md-3">
+				<select class="form-control" id="competLists" name="competList" onchange="changeList(this.value)">
+ 					<option value="">대회를 선택해주세요.</option>
 				</select>
 			</div>
 		</div>
-		<br />
-		<h3>컨텐츠 조회 ${dropdown}</h3>
+<br />
+		<h3>컨텐츠 조회</h3>
 		<hr />
 		<div class="container-fluid">
 			<div class="row">
@@ -124,19 +110,8 @@ request.setCharacterEncoding("UTF-8");
 															style="width: 95.7188px;">제출일</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-													</tr>
+												<tbody id="contentsList">
+													
 												</tbody>
 											</table>
 										</div>
@@ -244,19 +219,8 @@ request.setCharacterEncoding("UTF-8");
 															style="width: 95.7188px;">승인일</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-													</tr>
+												<tbody id="apprContentsList">
+													
 												</tbody>
 											</table>
 										</div>
@@ -305,11 +269,101 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</div>
 	</div>
+		
 
 <script>
-	function fn_compet_change(e) {
-		if (e.value == )
+function changeList(e) {
+	$("#competLists option:selected").prop("selected", false);
+	$("#competLists").val(e).prop("selected", true);
+	var compet_name = $("#competLists option:selected").text()
+	console.log(compet_name);
+	
+	var $contentsTable = $("tbody[id='contentsList']");
+	var $apprContentsTable = $("tbody[id='apprContentsList']");
+	$.ajax({
+		type : "POST",
+		url : "/ocp/admin/selectContentsList.do",
+		data : {"compet_name" : compet_name},
+		dataType : "json",
+		success : function(jsonInfo) {
+			const contentsList = jsonInfo["contentsList"];
+			const apprContentsList = jsonInfo["apprContentsList"];
+			
+			var contents_list = []
+			var apprContents_list = []
+			
+			for(response of contentsList){
+				contents_list.push(response["contents_name"]);
+				contents_list.push(response["mem_id"]);
+				contents_list.push(response["contents_processing_date"]);
+			}
+			
+			for(response of apprContents_list){
+				apprContents_list.push(response["contents_name"]);
+				apprContents_list.push(response["mem_id"]);
+				apprContents_list.push(response["contents_processing_date"]);
+			}
+
+			for(var i = 0; i < contents_list.length; i++){
+				$contentsTable.append("<tr role='row'><td class='NO'>"+ i + 
+									"</td><td class='contentsName'>" + contents_list[i].contents_name + 
+									"</td><td class = 'mem_id'>" + contents_list[i].mem_id + 
+									"</td><td class = 'contents_processing_date'" + contents_list[i].contents_processing_date + 
+									"</td></tr>")
+			}
+			
+			for(var i = 0; i < apprContents_list.length; i++){
+				$apprContents_list.append("<tr role='row'><td class='NO'>"+ i + 
+									"</td><td class='contentsName'>" + apprContents_list[i].contents_name + 
+									"</td><td class = 'mem_id'>" + apprContents_list[i].mem_id + 
+									"</td><td class = 'contents_processing_date'" + apprContents_list[i].contents_processing_date + 
+									"</td></tr>")
+			}
+		},
+		error: function(data, textStatus) {
+			alert("에러")
+		},
+		async : false
+	});
+}
+
+function changeCompet(e) {
+	$("#categDropdown option:selected").prop("selected", false);
+	$("#categDropdown").val(e).prop("selected", true);
+	var categ_name = $("#categDropdown option:selected").text()
+
+	var $target = $("select[name='competList']");
+	$target.empty();
+	if(e == ""){
+		$target.append("<option value=''>대회를 선택해주세요.</option>");
+		return;
 	}
+	$.ajax({
+		type : "POST",
+		url : "/ocp/admin/selectCompetList.do",
+		data : {"categ_name" : categ_name},
+		dataType : "json",
+
+		success : function(jsonInfo) {
+			const responses = jsonInfo["responses"];
+
+			var compet_list = []
+			for (response of responses){
+				compet_list.push(response["compet_name"]);
+			}
+			$target.append("<option value=''>대회를 선택해주세요.</option>");
+			for(var i =0; i < compet_list.length; i++){
+				$target.append("<option value="+ i +">"+ compet_list[i] +"</option>");
+			}
+		},
+		error: function(data, textStatus) {
+			alert("에러")
+		},
+		async : false
+	});
+	
+}
+
 </script>
 </body>
 </html>

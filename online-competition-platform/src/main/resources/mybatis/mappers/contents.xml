@@ -15,19 +15,23 @@
 		<result property = "contents_name" column = "contents_name" />
 	</resultMap>
 	
-	<select id="selectContentsList" resultMap="ContentsResult">
+	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
   	<![CDATA[
-				select *
+				select contents_id, mem_id, compet_id, contents_state, 
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date,
+					   contents_reject_reason, contents_view, contents_name
 				from contents
-				where contents_state = '제출완료'
+				where contents_state = '제출완료' and compet_id = #{compet_id}
    	]]>
 	</select>
 	
-	<select id="selectApprContentsList" resultMap="ContentsResult">
+	<select id="selectApprContentsList" resultMap="ContentsResult" parameterType="int">
   	<![CDATA[
-				select *
+				select contents_id, mem_id, compet_id, contents_state, 
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date,
+					   contents_reject_reason, contents_view, contents_name
 				from contents
-				where contents_state = '승인'
+				where contents_state = '승인' and compet_id = #{compet_id}
    	]]>
 	</select>
 </mapper>

@@ -63,4 +63,7 @@ public interface CompetDAO {
 
 	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException;
 
+	public int selectCompetIdByName(String compet_name) throws DataAccessException;
+
+
 }

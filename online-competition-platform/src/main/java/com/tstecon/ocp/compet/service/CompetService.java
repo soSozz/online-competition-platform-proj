@@ -54,4 +54,7 @@ public interface CompetService {
 	// 카테고리 아이디를 통해 대회 리스트 가져오기
 	public List<CompetVO> competListByCategId(int categ_id) throws DataAccessException;
 
+	public int competIdByCompetName(String compet_name) throws DataAccessException;
+	
+
 }
