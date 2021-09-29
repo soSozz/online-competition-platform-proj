@@ -25,7 +25,6 @@ public class AdminBannerControllerImpl implements AdminBannerController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
-		
 		List<BannerFileVO> bannerFileList = bannerService.listBannerFiles();
 		
 		mav.addObject("bannerFileList",bannerFileList);

@@ -47,6 +47,8 @@ public class CompetControllerImpl implements CompetController {
 		// 대회 포스터 키 밸류 추가
 		competInfo = competService.CompetPoster(compet_id);
 		mav.addObject("competPoster", competInfo);
+
+		mav.addObject("compet_id", compet_id);
 		return mav;
 	}
 
