@@ -110,70 +110,25 @@ h3, h4 {
 	</c:forEach>
 	</div>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="endCompet">종료된 대회</h4>
-						<div class="table-responsive">
-							<div id="DataTables_Table_0_wrapper"
-								class="dataTables_wrapper container-fluid dt-bootstrap4">
-								<div class="row">
-									<div class="col-sm-12 col-md-6">
-										<div class="dataTables_length" id="DataTables_Table_0_length">
-											<label>Show <select name="DataTables_Table_0_length"
-												aria-controls="DataTables_Table_0"
-												class="form-control form-control-sm">
-													<option value="10">10</option>
-													<option value="25">25</option>
-													<option value="50">50</option>
-													<option value="100">100</option>
-											</select>
-											</label>
-										</div>
-									</div>
-									<div class="col-sm-12 col-md-6">
-										<div id="DataTables_Table_0_filter" class="dataTables_filter">
-											<label>Search:<input type="search"
-												class="form-control form-control-sm" placeholder=""
-												aria-controls="DataTables_Table_0">
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<table class="table table-striped table-bordered dataTable"
-											id="DataTables_Table_0" role="grid"
-											aria-describedby="DataTables_Table_0_info">
-											<thead>
-												<tr role="row">
-													<th class="No" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-sort="ascending" aria-label="No"
-														style="width: 55.8906px;">No.</th>
-													<th class="categ_name" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="categ_name" style="width: 80.656px;">카테고리</th>
-													<th class="compet_name" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_name" style="width: 200.656px;">대회</th>
-													<th class="compet_start" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_start" style="width: 90.7188px;">시작일</th>
-													<th class="compet_end sorting" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_end : activate to sort column ascending"
-														style="width: 90.7188px;">종료일</th>
-													<th class="compet_create" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="compet_create" style="width: 90.7188px;">생성일자</th>
-													<th class="delete" tabindex="0"
-														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="delete" style="width: 70.8906px;"></th>
-												</tr>
-											</thead>
-											<tbody>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">종료된 대회</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th class="No">No.</th>
+                                                <th class="categ_name">카테고리</th>
+                                                <th class="compet_name">대회</th>
+                                                <th class="compet_start">시작일</th>
+                                                <th class="compet_end sorting">종료일</th>
+                                                <th class="compet_create">생성일자</th>
+                                                <th class="delete"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 												<c:set var="stat" value="0" />
 												<c:forEach var="categ" items="${finishCompet}">
 													<c:forEach var="compet" items="${categ.value}" varStatus="status">
@@ -213,55 +168,13 @@ h3, h4 {
 														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
 													</tr> -->
 											</tbody>
-										</table>
-										</form>
-									</div>
-
-									<div class="row">
-										 <div class="col-sm-12 col-md-5">
-											<div class="dataTables_info" id="DataTables_Table_0_info"
-												role="status" aria-live="polite">Showing 1 to 10 of 57
-												entries</div>
-										</div> 
-										<div class="col-sm-12 col-md-7">
-											<div class="dataTables_paginate paging_simple_numbers"
-												id="DataTables_Table_0_paginate">
-												<ul class="pagination">
-													<li class="paginate_button page-item previous disabled"
-														id="DataTables_Table_0_previous"><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="0"
-														tabindex="0" class="page-link">Previous</a></li>
-													<li class="paginate_button page-item active"><a
-														href="#" aria-controls="DataTables_Table_0"
-														data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="2"
-														tabindex="0" class="page-link">2</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="3"
-														tabindex="0" class="page-link">3</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="4"
-														tabindex="0" class="page-link">4</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="5"
-														tabindex="0" class="page-link">5</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="6"
-														tabindex="0" class="page-link">Next</a></li>
-												</ul>
-											</div>
-
-								</div>
-								</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
 <div class="modal fade none-border" id="add-categ"
 	style="display: none;" aria-hidden="true">
