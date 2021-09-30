@@ -31,10 +31,11 @@ public interface CompetQnaController {
 //문의 글 수정
 	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception;
 //문의  글 삭제	
-	public ResponseEntity  removeArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity  removeArticle(@RequestParam("articleNO") int articleNO, @RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 //문의 답변 글쓰기 추가
-		public ResponseEntity replyAddNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-				throws Exception;	
+	  public ResponseEntity replyAddNewArticle(MultipartHttpServletRequest
+	  multipartRequest, HttpServletResponse response) throws Exception;
+	 
 
 	
 	

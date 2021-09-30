@@ -19,5 +19,9 @@ public interface CompetQnaDAO {
 	public CompetQnaVO selectQnaArticle(int articleNO) throws DataAccessException;
 	
 	public void updateArticle(Map articleMap) throws DataAccessException;
+	
 	public void deleteArticle(int articleNO) throws DataAccessException;
+	
+	public int insertReplyNewArticle(Map articleMap) throws DataAccessException;
+	
 }

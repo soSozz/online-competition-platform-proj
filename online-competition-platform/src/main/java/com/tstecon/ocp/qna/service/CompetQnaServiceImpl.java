@@ -52,5 +52,8 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		public void removeArticle(int articleNO) throws Exception{
 			competQnaDAO.deleteArticle(articleNO);
 		}
-
+//문의 댓글쓰기 추가		
+		  public int replyAddNewArticle(Map articleMap) throws Exception{
+			  return competQnaDAO.insertReplyNewArticle(articleMap);
+		  }
 }

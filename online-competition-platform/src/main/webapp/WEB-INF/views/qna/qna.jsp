@@ -31,7 +31,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <script src="${contextPath}/resources/js/gleek.js"></script>
       <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
       
-      <c:set var="compet_id" value="${qnaList[0].compet_id}" />
+
 
    </head>
  
@@ -80,7 +80,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                         <c:otherwise>
                                             <c:forEach var="qna" items="${qnaList}" varStatus="articleNum">
                                                 <tr align="center">
-                                                    <td width="5%">${qna.compet_qna_id}</td>
+                                                    <td width="5%">${articleNum.count}</td>
                                                     <td width="25%" align="left" style="padding-left: 30px">
                                                         <c:choose>
                                                             <c:when test="${qna.level > 1 }">
@@ -134,13 +134,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         
     <script>
     window.onload = () => {
-    	document.getElementById("redirect").value = "${contextPath}/qna/qna.do";
+    	document.getElementById("redirect").value =  "${contextPath}/qna/qna.do?compet_id=${compet_id}";
     }
     
 	function fn_articleForm(loginStatus){
 		
 	  if (loginStatus == "member" || loginStatus == "admin"){
-	    location.href= "${contextPath}/qna/qnaForm.do";
+	    location.href= "${contextPath}/qna/qnaForm.do?compet_id=${compet_id}";
 	  } else {
 	    alert("로그인 후 글쓰기가 가능합니다.");
 	  }
