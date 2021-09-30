@@ -94,7 +94,7 @@ request.setCharacterEncoding("UTF-8");
 														<th class="No" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-sort="ascending" aria-label="No"
-															style="width: 145.531px;">No.</th>
+															style="width: 80.531px;">No.</th>
 														<th class="contents_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-label="contents_name"
@@ -102,12 +102,12 @@ request.setCharacterEncoding("UTF-8");
 														<th class="mem_nickname" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-label="mem_nickname"
-															style="width: 105.656px;">닉네임</th>
+															style="width: 105.656px;">아이디</th>
 														<th class="contents_processing_date" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
 															aria-label="contents_processing_date : activate to sort column ascending"
-															style="width: 95.7188px;">제출일</th>
+															style="width: 130.7188px;">제출일</th>
 													</tr>
 												</thead>
 												<tbody id="contentsList">
@@ -203,7 +203,7 @@ request.setCharacterEncoding("UTF-8");
 														<th class="No" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-sort="ascending" aria-label="No"
-															style="width: 145.531px;">No.</th>
+															style="width: 80.531px;">No.</th>
 														<th class="contents_name" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-label="contents_name"
@@ -211,12 +211,12 @@ request.setCharacterEncoding("UTF-8");
 														<th class="mem_nickname" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1" aria-label="mem_nickname"
-															style="width: 105.656px;">닉네임</th>
+															style="width: 105.656px;">아이디</th>
 														<th class="contents_processing_date" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1"
 															colspan="1"
 															aria-label="contents_processing_date : activate to sort column ascending"
-															style="width: 95.7188px;">승인일</th>
+															style="width: 130.7188px;">승인일</th>
 													</tr>
 												</thead>
 												<tbody id="apprContentsList">
@@ -276,10 +276,13 @@ function changeList(e) {
 	$("#competLists option:selected").prop("selected", false);
 	$("#competLists").val(e).prop("selected", true);
 	var compet_name = $("#competLists option:selected").text()
-	console.log(compet_name);
 	
 	var $contentsTable = $("tbody[id='contentsList']");
 	var $apprContentsTable = $("tbody[id='apprContentsList']");
+	
+	$contentsTable.empty();
+	$apprContentsTable.empty();
+	
 	$.ajax({
 		type : "POST",
 		url : "/ocp/admin/selectContentsList.do",
@@ -288,40 +291,25 @@ function changeList(e) {
 		success : function(jsonInfo) {
 			const contentsList = jsonInfo["contentsList"];
 			const apprContentsList = jsonInfo["apprContentsList"];
-			
-			var contents_list = []
-			var apprContents_list = []
-			
-			for(response of contentsList){
-				contents_list.push(response["contents_name"]);
-				contents_list.push(response["mem_id"]);
-				contents_list.push(response["contents_processing_date"]);
-			}
-			
-			for(response of apprContents_list){
-				apprContents_list.push(response["contents_name"]);
-				apprContents_list.push(response["mem_id"]);
-				apprContents_list.push(response["contents_processing_date"]);
-			}
 
-			for(var i = 0; i < contents_list.length; i++){
-				$contentsTable.append("<tr role='row'><td class='NO'>"+ i + 
-									"</td><td class='contentsName'>" + contents_list[i].contents_name + 
-									"</td><td class = 'mem_id'>" + contents_list[i].mem_id + 
-									"</td><td class = 'contents_processing_date'" + contents_list[i].contents_processing_date + 
+			for(var i = 0; i < contentsList.length; i++){
+				$contentsTable.append("<tr role='row'><td class='NO'>"+ (i + 1) +
+									"</td><td class='contentsName'>" + contentsList[i].contents_name + 
+									"</td><td class = 'mem_id'>" + contentsList[i].mem_id + 
+									"</td><td class = 'contents_processing_date'>" + contentsList[i].contents_processing_date + 
 									"</td></tr>")
 			}
 			
-			for(var i = 0; i < apprContents_list.length; i++){
-				$apprContents_list.append("<tr role='row'><td class='NO'>"+ i + 
-									"</td><td class='contentsName'>" + apprContents_list[i].contents_name + 
-									"</td><td class = 'mem_id'>" + apprContents_list[i].mem_id + 
-									"</td><td class = 'contents_processing_date'" + apprContents_list[i].contents_processing_date + 
+			for(var i = 0; i < apprContentsList.length; i++){
+				$apprContentsTable.append("<tr role='row'><td class='NO'>"+ (i + 1) + 
+									"</td><td class='contentsName'>" + apprContentsList[i].contents_name + 
+									"</td><td class = 'mem_id'>" + apprContentsList[i].mem_id + 
+									"</td><td class = 'contents_processing_date'>" + apprContentsList[i].contents_processing_date + 
 									"</td></tr>")
 			}
 		},
 		error: function(data, textStatus) {
-			alert("에러")
+			alert("컨텐츠가 없습니다.")
 		},
 		async : false
 	});
