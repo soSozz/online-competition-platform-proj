@@ -42,4 +42,5 @@
 				where contents_id = #{contents_id}
 	]]>
 	</update>
+	
 </mapper>

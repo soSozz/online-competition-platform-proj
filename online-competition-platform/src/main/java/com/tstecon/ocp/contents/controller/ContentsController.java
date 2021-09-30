@@ -11,5 +11,7 @@ public interface ContentsController {
 // 제출 페이지
 	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
-
+	
+	//컨텐츠 게시판
+	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 }

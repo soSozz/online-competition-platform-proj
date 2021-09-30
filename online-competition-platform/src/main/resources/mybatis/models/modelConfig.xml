@@ -29,6 +29,7 @@
 		 <typeAlias type="com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO" alias="adminMonitorVO" />
 
 		 <typeAlias type="com.tstecon.ocp.sidebar.vo.SidebarVO" alias="sidebarVO" />
+		 <typeAlias type="com.tstecon.ocp.contents.vo.ListContentsVO" alias="listContentsVO"/>
 <!--     <typeAlias type="com.bookshop01.goods.vo.GoodsVO" alias="goodsVO" /> -->
 <!--     <typeAlias type="com.bookshop01.goods.vo.ImageFileVO" alias="imageFileVO" /> -->
     
