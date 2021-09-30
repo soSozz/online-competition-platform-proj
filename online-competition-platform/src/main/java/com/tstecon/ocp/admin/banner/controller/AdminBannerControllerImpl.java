@@ -24,9 +24,11 @@ public class AdminBannerControllerImpl implements AdminBannerController {
 	public ModelAndView adminBanner(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		List<BannerFileVO> bannerFileList = bannerService.listBannerFiles();
 
-		mav.addObject("bannerFileList", bannerFileList);
+		List<BannerFileVO> bannerFileList = bannerService.listBannerFiles();
+		
+		mav.addObject("bannerFileList",bannerFileList);
+
 		return mav;
 
 	}

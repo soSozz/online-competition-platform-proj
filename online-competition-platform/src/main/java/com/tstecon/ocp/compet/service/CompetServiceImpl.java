@@ -136,4 +136,11 @@ public class CompetServiceImpl implements CompetService {
 		return competDAO.selectCompetsByCategName(categ_Name);
 	}
 
+	@Override
+	public int competIdByCompetName(String compet_name) throws DataAccessException {
+		int compet_id = competDAO.selectCompetIdByName(compet_name);
+		return compet_id;
+	}
+
+
 }
