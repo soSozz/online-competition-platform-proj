@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<c:set var="compet_id" value="${competInfo.compet_id[0].compet_id}" />
+<%-- <c:set var="compet_id" value="${competInfo.compet_id[0].compet_id}" /> --%>
 <c:set var="competSmallFileType" value="${competPoster.competSmallPoster[0].compet_file_type}" />
 <c:set var="competSmallFileName" value="${competPoster.competSmallPoster[0].compet_file_name}" />
 <%

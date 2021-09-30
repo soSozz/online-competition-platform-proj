@@ -106,7 +106,7 @@
 			const hrefArr = [
 				"${contextPath}/compet/competInfo.do?compet_id=${compet_id}",
 				"${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}",
-				"${contextPath }/contents/listContents.do?compet_id=${compet_id}",
+				"${contextPath}/contents/listContents.do?compet_id=${compet_id}",
 				"javascript:submitContents('${loginStatus}', '${loginInfo}');",
 				"${contextPath}/qna/qna.do?compet_id=${compet_id}"
 			];

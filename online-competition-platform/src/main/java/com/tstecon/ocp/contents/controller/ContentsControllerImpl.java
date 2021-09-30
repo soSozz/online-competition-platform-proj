@@ -39,6 +39,7 @@ public class ContentsControllerImpl implements ContentsController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
+		mav.addObject("compet_id", compet_id);
 		mav.addObject("listContents", contentsList);
 		return mav;
 	}
