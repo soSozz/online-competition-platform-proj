@@ -17,4 +17,11 @@ public interface ContentsController {
 // 컨텐츠 작성 시 삽입되는 이미지들을 DB와 스토리지에 저장
 	public @ResponseBody String upload(@RequestBody String jsonMap, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
+
+	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception;
+
+	// 컨텐츠 게시판
+	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception;
 }

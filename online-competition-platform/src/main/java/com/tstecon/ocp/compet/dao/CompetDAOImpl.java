@@ -149,4 +149,11 @@ public class CompetDAOImpl implements CompetDAO {
 	public List<CompetVO> selectCompetsByCategName(String categ_name) throws DataAccessException {
 		return sqlSession.selectList("mappers.compet.selectCompetsByCategName", categ_name);
 	}
+
+	@Override
+	public int selectCompetIdByName(String compet_name) throws DataAccessException {
+		int compet_id = sqlSession.selectOne("mappers.compet.selectCompetIdByName", compet_name);
+		return compet_id;
+	}
+
 }

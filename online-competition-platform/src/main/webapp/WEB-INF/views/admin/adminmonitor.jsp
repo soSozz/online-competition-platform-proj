@@ -68,14 +68,43 @@ h3,h4{
 <div class="allbox">
     <div class="container">
         <div class="row my-3">
-    <span style="font-size: 25px; font-weight:bold; color:black;">좋아요</span>
-     <div class="general-button">
-		 <button type="button" id="view">조회하기</button>
-	     </div>
-	     <span style="font-size: 25px; font-weight:bold; color:black;">댓글</span>
+        <span style="font-size: 25px; font-weight:bold; color:black;">댓글</span>
+         <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"></h4>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <div class="example">
+                                        
+                                            <input class="form-control input-daterange-datepicker" type="text" name="daterange" value="01/01/2015 - 01/31/2015">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
      <div class="general-button">
 		 <button type="button" id="cmtview">조회하기</button>
 	     </div>
+    <span style="font-size: 25px; font-weight:bold; color:black;">좋아요</span>
+     <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"></h4>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <div class="example">
+                                        
+                                            <input class="form-control input-daterange-datepicker" type="text" name="daterange" value="01/01/2015 - 01/31/2015">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+     <div class="general-button">
+		 <button type="button" id="view">조회하기</button>
+	     </div>
+	     
         </div>
        <div class="row">
                     <!-- single bar Chart -->
@@ -220,7 +249,56 @@ h3,h4{
 		
 	</div>
 </div>
-</div>          
+</div> 
+<script>
+var button = document.getElementById("cmtview");
+button.addEventListener("click", function(){
+    $.ajax({
+    	
+    	type : "GET",
+    	url : "/ocp/admin/monitor/selectCmtgraph.do",
+    	success : function(data, textStatus) {
+    		var jsonInfo = JSON.parse(data);
+    		const responses = jsonInfo["responses"];
+    		
+    		const cmt_arr = []
+    		const date1_arr = []
+    		for (response of responses){
+    			cmt_arr.push(response["Cmts"]);
+    			date1_arr.push(response["Date"]);
+    		}
+    		
+    		<!-- single bar chart -->
+    	    var ctx = document.getElementById("singleBarChart").getContext('2d');
+    	    ctx.height = 20;
+    	    var myChart = new Chart(ctx, {
+    	        type: 'bar',
+    	        data: {
+    	            labels: date1_arr,
+    	            datasets: [
+    	                {
+    	                    label: "댓글 수",
+    	                    data: cmt_arr,
+    	                    borderColor: "rgba(117, 113, 249, 0.9)",
+    	                    borderWidth: "0",
+    	                    backgroundColor: "rgba(117, 113, 249, 0.5)"
+    	                }
+    	            ]
+    	        },
+    	        options: {
+    	            scales: {
+    	                yAxes: [{
+    	                    ticks: {
+    	                        beginAtZero: true
+    	                    }
+    	                }]
+    	            }
+    	        }
+    	    });
+    	}
+    });
+})
+</script>         
 <script>
    var button = document.getElementById("view");
     button.addEventListener("click", function(){
@@ -273,56 +351,82 @@ h3,h4{
     
      
 </script> 
-<script>
-var button = document.getElementById("cmtview");
-button.addEventListener("click", function(){
-    $.ajax({
-    	
-    	type : "GET",
-    	url : "/ocp/admin/monitor/selectCmtgraph.do",
-    	success : function(data, textStatus) {
-    		var jsonInfo = JSON.parse(data);
-    		const responses = jsonInfo["responses"];
-    		
-    		const cmt_arr = []
-    		const date1_arr = []
-    		for (response of responses){
-    			cmt_arr.push(response["Cmts"]);
-    			date1_arr.push(response["Date"]);
-    		}
-    		
-    		<!-- single bar chart -->
-    	    var ctx = document.getElementById("singleBarChart").getContext('2d');
-    	    ctx.height = 20;
-    	    var myChart = new Chart(ctx, {
-    	        type: 'bar',
-    	        data: {
-    	            labels: date1_arr,
-    	            datasets: [
-    	                {
-    	                    label: "댓글 수",
-    	                    data: cmt_arr,
-    	                    borderColor: "rgba(117, 113, 249, 0.9)",
-    	                    borderWidth: "0",
-    	                    backgroundColor: "rgba(117, 113, 249, 0.5)"
-    	                }
-    	            ]
-    	        },
-    	        options: {
-    	            scales: {
-    	                yAxes: [{
-    	                    ticks: {
-    	                        beginAtZero: true
-    	                    }
-    	                }]
-    	            }
-    	        }
-    	    });
-    	}
-    });
-})
-</script>
-<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
 
+<script>
+   $(document).ready(function() {
+      setDateBox();
+   });
+
+   // select box 연도 , 월 표시
+   function setDateBox() {
+      var dt = new Date();
+      var com_year = dt.getFullYear();
+      var com_month = dt.getMonth() + 1;
+      var com_day = dt.getDate();
+
+      for (var y = com_year - 1; y <= com_year; y++) {
+         $("#start_day_year").append(
+               "<option value='" + y + "'>" + y + "</option>");
+         $("#end_day_year").append(
+               "<option value='" + y + "'>" + y + "</option>");
+      }
+
+      // 월 뿌려주기(1월부터 12월)
+
+      for (var i = 1; i <= 12; i++) {
+
+         $("#start_day_month").append(
+               "<option value='" + i + "'>" + i + "</option>")
+      }
+
+      if (com_month != 1) {
+         for (var i = 1; i <= com_month; i++) {
+            $("#end_day_month").append(
+                  "<option value='" + i + "'>" + i + "</option>");
+
+         }
+      } else {
+         for (var i = 1; i <= com_month; i++) {
+            $("#end_day_month").append(
+                  "<option value='" + i + "'>" + i + "</option>");
+            $("#end_day_month").append(
+                  "<option value='" + i + "'>" + i + "</option>");
+         }
+      }
+
+      $("#end_day_month").append(
+            "<option value='" + ""  + "'>" + "&nbsp;&nbsp;&nbsp;&nbsp;"
+                  + "</option>");
+
+      // 일 뿌려주기(1일부터 31일)
+      for (var i = 1; i <= 30; i++) {
+         $("#start_day_day").append(
+               "<option value='" + i + "'>" + i + "</option>");
+         $("#end_day_day").append(
+               "<option value='" + i + "'>" + i + "</option>");
+      }
+
+      end_year = com_year - 1
+
+      $("#start_day_year > option[value=" + end_year + "]").attr("selected",
+            "true");
+      $("#start_day_month > option[value=" + com_month + "]").attr(
+            "selected", "true");
+      $("#start_day_day > option[value=" + com_day + "]").attr("selected",
+            "true");
+
+      $("#end_day_year > option[value=" + com_year + "]").attr("selected",
+            "true");
+      $("#end_day_month > option[value=" + com_month + "]").attr(
+            "selected", "true");
+      $("#end_day_day > option[value=" + com_day + "]").attr("selected",
+            "true");
+
+   }
+</script>
+
+<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+<script src="${contextPath }/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+ <script src="${contextPath }/resources/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 </body>
 </html>

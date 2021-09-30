@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.listContents">
+	<resultMap id="listContentsResult" type="listContentsVO">
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "contents_state" column = "contents_state" />
+		<result property = "contents_processing_date" column = "contents_processing_date" />
+		<result property = "contents_reject_reason" column = "contents_reject_reason" />
+		<result property = "contents_view" column = "contents_view" />
+		<result property = "contents_name" column = "contents_name" />
+		<result property = "like" column = "like" />
+		<result property = "cmt" column = "cmt" />
+		<result property = "mem_nickname" column = "mem_nickname" />
+		<result property = "cmt1" column = "cmt1" />
+		<result property = "likes1" column = "likes1" />
+	</resultMap>
+	
+	<select id="selectListContents" resultMap="listContentsResult" parameterType="int">
+	<![CDATA[
+	select contents.contents_name, mem.mem_nickname, contents.contents_processing_date, contents.contents_view, likes1, cmt1
+from contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
+                                                    from likes, contents
+                                                    where likes.contents_id = contents.contents_id
+                                                    group by contents.contents_id) likes_table,
+                                                    (select contents.contents_id contents_id3, count(*)cmt1
+                                                    from cmt, contents
+                                                    where cmt.contents_id = contents.contents_id
+                                                    group by contents.contents_id) cmt_table
+where contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_id = contents_id3 and contents_state='승인' and contents.compet_id=#{compet_id}
+
+	]]>
+	</select>
+</mapper>

@@ -24,4 +24,5 @@ public interface AdminCategService {
 	//카테고리 추가
 	public void addCateg(Map map) throws DataAccessException;
 	
+	
 }

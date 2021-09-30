@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tstecon.ocp.banner.service.BannerService;
-
 import com.tstecon.ocp.banner.vo.BannerFileVO;
 
 @Controller("adminBannerController")
@@ -30,7 +29,6 @@ public class AdminBannerControllerImpl implements AdminBannerController {
 		
 		mav.addObject("bannerFileList",bannerFileList);
 
-		mav.addObject("bannerFileList", bannerFileList);
 		return mav;
 
 	}

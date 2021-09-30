@@ -80,7 +80,7 @@
 <!-- 종료되지 않은 대회 -->
 	<select id="selectCompetNames" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
-		select compet_name
+		select compet_name as compet_name
 		from compet
 		where categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
@@ -209,4 +209,11 @@
      ]]>
 	</select>
 
+	<select id="selectCompetIdByName" resultType = "int" parameterType="String">
+	<![CDATA[
+				select compet_id
+				from compet
+				where compet_name = #{compet_name}
+	]]>
+	</select>
 </mapper>

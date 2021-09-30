@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Base64;
 import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.tstecon.ocp.contents.service.ContentsService;
 import com.tstecon.ocp.contents.vo.ContentsFileVO;
+import com.tstecon.ocp.contents.service.ContentsService;
+import com.tstecon.ocp.contents.vo.ContentsVO;
+import com.tstecon.ocp.contents.vo.ListContentsVO;
 
 @Controller("contentsController")
 public class ContentsControllerImpl implements ContentsController {
@@ -33,7 +37,7 @@ public class ContentsControllerImpl implements ContentsController {
 	@Autowired
 	private ContentsFileVO contentsFileVO;
 
-//	@Override
+	@Override
 	@RequestMapping(value = { "/contents/contentsForm.do" }, method = { RequestMethod.GET })
 	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, @RequestParam("mem_id") int mem_id,
 			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
@@ -110,6 +114,17 @@ public class ContentsControllerImpl implements ContentsController {
 		}
 		in.close();
 		out.close();
+
+	@Override
+	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
+	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
+		mav.addObject("compet_id", compet_id);
+		mav.addObject("listContents", contentsList);
+		return mav;
 	}
 
 }
