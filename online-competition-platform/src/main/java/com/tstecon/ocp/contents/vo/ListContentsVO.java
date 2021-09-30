@@ -1,11 +1,13 @@
 package com.tstecon.ocp.contents.vo;
 
+import java.sql.Date;
+
 public class ListContentsVO {
 	private int contents_id;
 	private String mem_id;
 	private int compet_id;
 	private String contents_state;
-	private String contents_processing_date;
+	private Date contents_processing_date;
 	private String contents_reject_reason;
 	private int contents_view;
 	private String contents_name;
@@ -57,10 +59,10 @@ public class ListContentsVO {
 	public void setContents_state(String contents_state) {
 		this.contents_state = contents_state;
 	}
-	public String getContents_processing_date() {
+	public Date getContents_processing_date() {
 		return contents_processing_date;
 	}
-	public void setContents_processing_date(String contents_processing_date) {
+	public void setContents_processing_date(Date contents_processing_date) {
 		this.contents_processing_date = contents_processing_date;
 	}
 	public String getContents_reject_reason() {
