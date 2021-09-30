@@ -28,4 +28,10 @@ public class AdminContentsDAOImpl implements AdminContentsDAO{
 		return apprContentsList;
 	}
 
+	@Override
+	public void updateApprContents(int contents_id) throws DataAccessException {
+		sqlSession.update("mappers.contents.updateApprContents", contents_id);
+		return;
+	}
+
 }

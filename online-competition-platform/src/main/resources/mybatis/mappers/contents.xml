@@ -34,4 +34,12 @@
 				where contents_state = '승인' and compet_id = #{compet_id}
    	]]>
 	</select>
+	
+	<update id="updateApprContents" parameterType="int">
+	<![CDATA[
+				update contents
+				set contents_state = '승인', contents_processing_date = sysdate
+				where contents_id = #{contents_id}
+	]]>
+	</update>
 </mapper>

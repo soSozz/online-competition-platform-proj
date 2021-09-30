@@ -11,6 +11,8 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 <script
 	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
 <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -129,7 +130,7 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	
 	@Override
 	@RequestMapping(value = { "/admin/adminContentsView.do" }, method = { RequestMethod.GET })
-	public ModelAndView adminContentsView(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView adminContentsView(@RequestParam("contents_name") String contents_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 //		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
@@ -139,11 +140,11 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	
 	@Override
 	@RequestMapping(value = { "/admin/adminApprContents.do" }, method = { RequestMethod.GET })
-	public ModelAndView adminContentsAppr(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView adminContentsAppr(@RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-//		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
-//		mav.addObject("apprContentsList", apprContentsList);
+		adminContentsService.updateApprContents(contents_id);
+		mav.setViewName("redirect:/admin/adminContents.do");
 		return mav;
 	}
 

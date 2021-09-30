@@ -27,5 +27,11 @@ public class AdminContentsServiceImpl implements AdminContentsService{
 		return contentsList;
 	}
 
+	@Override
+	public void updateApprContents(int contents_id) throws DataAccessException {
+		adminContentsDAO.updateApprContents(contents_id);
+		return;
+	}
+
 
 }

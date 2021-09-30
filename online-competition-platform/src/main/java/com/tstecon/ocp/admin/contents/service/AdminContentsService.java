@@ -12,5 +12,7 @@ public interface AdminContentsService {
 
 	public List<ContentsVO> apprContentsList(int compet_id) throws DataAccessException;
 
+	public void updateApprContents(int contents_id) throws DataAccessException;
+
 
 }
