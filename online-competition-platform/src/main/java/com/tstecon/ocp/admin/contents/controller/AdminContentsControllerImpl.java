@@ -22,6 +22,7 @@ import com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO;
 import com.tstecon.ocp.categ.vo.CategVO;
 import com.tstecon.ocp.compet.service.CompetService;
 import com.tstecon.ocp.compet.vo.CompetVO;
+import com.tstecon.ocp.contents.vo.ContentsFileVO;
 import com.tstecon.ocp.contents.vo.ContentsVO;
 
 import net.sf.json.JSONObject;
@@ -104,6 +105,7 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	  ArrayList arrayContentsList = new ArrayList();
 	  for(int i =0; i < contentsList.size(); i++) {
 	    HashMap<String , Object> map = new HashMap<String, Object>();
+	    map.put("contents_id", contentsList.get(i).getContents_id());
 	    map.put("contents_name", contentsList.get(i).getContents_name());
 	    map.put("mem_id", contentsList.get(i).getMem_id());
 	    map.put("contents_processing_date", contentsList.get(i).getContents_processing_date());
@@ -128,32 +130,46 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 	  return jsonInfo;
 	}
 	
+	// ¡¶√‚«— ƒ¡≈Ÿ√˜ ¿⁄ºº»˜ ∫∏±‚
 	@Override
 	@RequestMapping(value = { "/admin/adminContentsView.do" }, method = { RequestMethod.GET })
-	public ModelAndView adminContentsView(@RequestParam("contents_name") String contents_name, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView adminContentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-//		List<ContentsVO> apprContentsList = adminContentsService.apprContentsList();
-//		mav.addObject("apprContentsList", apprContentsList);
+		
+		List<ContentsVO> contentsView = adminContentsService.selectContentsView(contents_id);
+		List<ContentsFileVO> contentsFileView = adminContentsService.selectContentsFileView(contents_id);
+		
+		mav.addObject("contentsView",contentsView);
+		mav.addObject("contentsFileView",contentsFileView);
 		return mav;
 	}
 	
+	// ¡¶√‚«— ƒ¡≈Ÿ√˜ Ω¬¿Œ
 	@Override
-	@RequestMapping(value = { "/admin/adminApprContents.do" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/admin/adminContentsAppr.do" }, method = { RequestMethod.GET })
 	public ModelAndView adminContentsAppr(@RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		adminContentsService.updateApprContents(contents_id);
+		
 		mav.setViewName("redirect:/admin/adminContents.do");
 		return mav;
 	}
 
-
+	// ¡¶√‚«— ƒ¡≈Ÿ√˜ ∞≈¿˝
 	@Override
-	public ModelAndView adminContentsRefusal(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	@RequestMapping(value = { "/admin/adminContentsRefusal.do" }, method = { RequestMethod.GET })
+	public ModelAndView adminContentsRefusal(@RequestParam("contents_id") int contents_id, @RequestParam("contents_reject_reason") String contents_reject_reason, 
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
+		Map map = new HashMap();
+		map.put("contents_id", contents_id);
+		map.put("contents_reject_reason", contents_reject_reason);
+		adminContentsService.updateRefusalContents(map);
+		
+		mav.setViewName("redirect:/admin/adminContents.do");
 		return mav;
 	}
 

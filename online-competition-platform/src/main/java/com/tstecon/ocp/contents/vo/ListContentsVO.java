@@ -2,18 +2,20 @@ package com.tstecon.ocp.contents.vo;
 
 import java.sql.Date;
 
-import org.springframework.stereotype.Component;
-
-@Component("ContentsVO")
-public class ContentsVO {
+public class ListContentsVO {
 	private int contents_id;
 	private String mem_id;
 	private int compet_id;
 	private String contents_state;
-	private String contents_processing_date;
+	private Date contents_processing_date;
 	private String contents_reject_reason;
 	private int contents_view;
 	private String contents_name;
+	private int like;
+	private int cmt;
+	private String mem_name;
+	private int cmt1;
+	private int likes1;
 	private String contents_text;
 	
 	public String getContents_text() {
@@ -21,6 +23,24 @@ public class ContentsVO {
 	}
 	public void setContents_text(String contents_text) {
 		this.contents_text = contents_text;
+	}
+	public int getCmt1() {
+		return cmt1;
+	}
+	public void setCmt1(int cmt1) {
+		this.cmt1 = cmt1;
+	}
+	public int getLikes1() {
+		return likes1;
+	}
+	public void setLikes1(int likes1) {
+		this.likes1 = likes1;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 	public int getContents_id() {
 		return contents_id;
@@ -46,10 +66,10 @@ public class ContentsVO {
 	public void setContents_state(String contents_state) {
 		this.contents_state = contents_state;
 	}
-	public String getContents_processing_date() {
+	public Date getContents_processing_date() {
 		return contents_processing_date;
 	}
-	public void setContents_processing_date(String contents_processing_date) {
+	public void setContents_processing_date(Date contents_processing_date) {
 		this.contents_processing_date = contents_processing_date;
 	}
 	public String getContents_reject_reason() {
@@ -69,5 +89,17 @@ public class ContentsVO {
 	}
 	public void setContents_name(String contents_name) {
 		this.contents_name = contents_name;
+	}
+	public int getLike() {
+		return like;
+	}
+	public void setLike(int like) {
+		this.like = like;
+	}
+	public int getCmt() {
+		return cmt;
+	}
+	public void setCmt(int cmt) {
+		this.cmt = cmt;
 	}
 }
