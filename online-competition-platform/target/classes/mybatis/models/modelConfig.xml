@@ -16,7 +16,7 @@
   		 <typeAlias type="com.tstecon.ocp.member.vo.AdminVO" alias="adminVO" />
   		 <typeAlias type="com.tstecon.ocp.notice.compet.vo.NoticeCompetVO" alias="noticeCompetVO" />
 		 <typeAlias type="com.tstecon.ocp.qna.vo.CompetQnaVO" alias="competQnaVO" />
-
+         <typeAlias type="com.tstecon.ocp.notice.compet.vo.CompetNoticeFileVO" alias="competNoticeFileVO" />
 		 <typeAlias type="com.tstecon.ocp.admin.stat.vo.AdminStatVO" alias="adminStatVO" />
 		 <typeAlias type="com.tstecon.ocp.categ.vo.CategVO" alias="categVO" />
 

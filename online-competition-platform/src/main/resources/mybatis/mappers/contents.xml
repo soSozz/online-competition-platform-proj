@@ -14,6 +14,8 @@
 		<result property = "contents_view" column = "contents_view" />
 		<result property = "contents_name" column = "contents_name" />
 		<result property = "contents_text" column = "contents_text" />
+<<<<<<< HEAD
+=======
 	</resultMap>
 	
 	<resultMap id="ContentsFileResult" type="contentsFileVO">
@@ -21,6 +23,7 @@
 		<result property = "contents_id" column = "contents_id" />
 		<result property = "contents_file_type" column = "contents_file_type" />
 		<result property = "contents_file_name" column = "contents_file_name" />
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	</resultMap>
 	
 	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
@@ -47,6 +50,13 @@
 		  <![CDATA[
 				SELECT nvl(max(contents_file_id), 0) + 1 
 				from contents_file
+		   ]]>
+	</select>
+
+	<select id="selectNewContentsId" resultType="int">
+		  <![CDATA[
+				SELECT nvl(max(contents_id), 0) + 1 
+				from contents
 		   ]]>
 	</select>
 
@@ -78,6 +88,21 @@
 				update contents
 				set contents_state = '승인', contents_processing_date = sysdate, contents_view=0
 				where contents_id = #{contents_id}
+	]]>
+	</update>
+
+	<insert id="insertNewContents" parameterType="contentsVO">
+		  <![CDATA[
+		  		insert into contents(contents_id, mem_id, compet_id, contents_state, contents_processing_date, contents_name, contents_text)
+		  		values(#{contents_id}, #{mem_id}, #{compet_id}, #{contents_state}, sysdate, #{contents_name}, #{contents_text})
+		   ]]>
+	</insert>
+
+	<update id="updateContentsFiles" parameterType="java.util.Map">
+	<![CDATA[
+				update contents_file
+				set contents_id = #{contents_id}
+				where contents_file_id = #{contents_file_id}
 	]]>
 	</update>
 	

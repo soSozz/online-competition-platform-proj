@@ -37,8 +37,12 @@
 		<![CDATA[
 			select to_char(cmt_date, 'yyyy-mm-dd') as cmtsdate, nvl(count(*), 0) as cmtcnt
                from cmt
+               
+               where cmt_date between #{start_date} and #{end_date}
+               
                group by to_char(cmt_date, 'yyyy-mm-dd')
                order by to_char(cmt_date, 'yyyy-mm-dd')
+               
 		]]>
 	</select>
 	
