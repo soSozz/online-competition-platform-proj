@@ -35,6 +35,24 @@
    	]]>
 	</select>
 	
+	<select id="selectNewContentsFileId" resultType="int">
+		  <![CDATA[
+				SELECT nvl(max(contents_file_id), 0) + 1 
+				from contents_file
+		   ]]>
+	</select>
+
+	<insert id="insertNewContentsFileWithOutContentsId" parameterType="contentsFileVO">
+		  <![CDATA[
+ 		  		insert into contents_file(contents_file_id, contents_file_type, contents_file_name) values(#{contents_file_id}, #{contents_file_type}, #{contents_file_name})
+ 		   ]]> 
+	</insert>
+
+	<insert id="insertNewContentsFile" parameterType="contentsFileVO">
+		  <![CDATA[
+		  		insert into contents_file values(#{contents_file_id}, #{contents_id}, #{contents_file_type}, #{contents_file_name})
+		   ]]>
+	</insert>
 	<update id="updateApprContents" parameterType="int">
 	<![CDATA[
 				update contents

@@ -22,6 +22,7 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Controller("CompetController")
 public class CompetControllerImpl implements CompetController {
+
 	@Autowired
 	private CompetService competService;
 

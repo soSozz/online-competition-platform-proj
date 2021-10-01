@@ -14,4 +14,5 @@ public interface CompetController {
 // 대회목록 페이지
 	public ModelAndView competList(@RequestParam("categ_name") String categ_name, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+
 }

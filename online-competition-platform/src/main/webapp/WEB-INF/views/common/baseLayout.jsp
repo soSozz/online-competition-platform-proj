@@ -106,8 +106,8 @@
 			const hrefArr = [
 				"${contextPath}/compet/competInfo.do?compet_id=${compet_id}",
 				"${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}",
-				"${contextPath}/contents/listContents.do?compet_id=${compet_id}",
-				"javascript:submitContents('${loginStatus}', '${loginInfo}');",
+				"${contextPath }/contents/listContents.do?compet_id=${compet_id}",
+				"javascript:submitContents('${loginStatus}');",
 				"${contextPath}/qna/qna.do?compet_id=${compet_id}"
 			];
 			const innerHTMLArr = ["대회안내", "공지사항", "컨텐츠 게시판", "제출", "문의"];
@@ -132,12 +132,10 @@
 	window.customElements.define("compet-detail", competDetail);
 </script>
 <script>
-	function submitContents(loginStatus, loginInfo) {
-		console.log(loginStatus)
-		console.log(loginInfo)
+	function submitContents(loginStatus) {
 		if (loginStatus != null && loginStatus != '') {
 			if (loginStatus === 'member') {
-				location.href = "${contextPath}/contents/contentsForm.do?compet_id=${compet_id}&mem_id=" + loginInfo.mem_id;
+				location.href = "${contextPath}/contents/contentsForm.do?compet_id=${compet_id}&mem_id=" + "${loginInfo.mem_id}";
 			} else {
 				alert("회원만 대회 참여가 가능합니다");
 			}
