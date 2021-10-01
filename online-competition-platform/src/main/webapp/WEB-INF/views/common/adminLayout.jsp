@@ -70,6 +70,11 @@
 <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
 <script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
 <script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
+
+<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+<script src="${contextPath }/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="${contextPath }/resources/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+ <script src="${contextPath }/resources/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 </body>      
         
         

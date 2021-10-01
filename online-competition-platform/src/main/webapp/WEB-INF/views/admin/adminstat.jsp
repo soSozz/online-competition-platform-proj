@@ -16,7 +16,24 @@ request.setCharacterEncoding("UTF-8");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- 차트 링크 -->
-
+<script
+	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+<script
+	src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script
+	src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
+<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
+<script src="${contextPath}/resources/js/custom.min.js"></script>
+<script src="${contextPath}/resources/js/settings.js"></script>
+<script src="${contextPath}/resources/js/gleek.js"></script>
+<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Insert title here</title>
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/font.css" rel="stylesheet">
    
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -98,109 +115,76 @@ h3,h4{
                 </div>
                 </div>
 
-    <div class="container">
+    <div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="endCompet">전체조회</h4>
+							<h4 class="card-title">전체조회</h4>
 							<div class="table-responsive">
-								<div id="DataTables_Table_0_wrapper"
-									class="dataTables_wrapper container-fluid dt-bootstrap4">
+								
+									
 									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<div class="dataTables_length" id="DataTables_Table_0_length">
-												<label>Show <select name="DataTables_Table_0_length"
-													aria-controls="DataTables_Table_0"
-													class="form-control form-control-sm">
-														<option value="10">10</option>
-														<option value="25">25</option>
-														<option value="50">50</option>
-														<option value="100">100</option>
-												</select> entries
-												</label>
-											</div>
-										</div>
 										
-										<div class="col-sm-12 col-md-6">
-											<div id="DataTables_Table_0_filter" class="dataTables_filter">
-											<div class="general-button">
-									            <button type="button" class="btn mb-2 btn-exel" id="node" onclick="downloadEXCEL()">엑셀출력</button>
-												<div class="general-button">
-									            <button type="button" class="btn mb-1 btn-select">조회하기</button>
-												<label>Search:<input type="search"
-													class="form-control form-control-sm" placeholder=""
-													aria-controls="DataTables_Table_0">
-												</label>
-											</div>
-									
-									</div>
-										</div>
-									
-									</div>
+										
 									<div class="row">
 										<div class="col-sm-12">
-											<table class="table table-striped table-bordered dataTable"
-												id="DataTables_Table_0" role="grid"
-												aria-describedby="DataTables_Table_0_info">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered zero-configuration">
 												<thead id="listhead">
 													<tr role="row">
 														<th class="No" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1" aria-sort="ascending"
-															aria-label="No"
+															
 															style="width: 95.7188px;">No.</th>
 														<th class="categ_name" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="categ_name"
+															
 															id="categ_name"
 															style="width: 145.531px;">카테고리</th>
 														<th class="compet_name" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="compet_name"
+														
 															id="compet_name"
 															style="width: 145.531px;">대회</th>
 														<th class="cotents_name" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="cotents_name"
+															
 															id="cotents_name"
 															style="width: 236.656px;">컨텐츠</th>
 														<th class="mem_nickname" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="mem_nickname"
+															
 															id="mem_nickname"
 															style="width: 105.656px;">닉네임</th>
 														<th class="contents_processing_date" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="contents_processing_date"
+															
 															id="contents_processing_date"
 															style="width: 95.7188px;">작성일</th>
 														<th class="contents_view" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="likes1 : activate to sort column ascending"
+															
 															id="contents_view"
 															style="width: 79.8906px;">조회수</th>
 														<th class="likes1" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="cmt1 : activate to sort column ascending"
+															
 															id="likes1"
 															style="width: 90px;">좋아요</th>
 														<th class="cmt1" tabindex="0"
-															aria-controls="DataTables_Table_0" rowspan="1"
-															colspan="1"
-															aria-label="cmt1 : activate to sort column ascending"
+															
 															id="cmt1"
 															style="width: 90px;">댓글</th>
 														
 													</tr>
 												</thead>
+												<div class="col-sm-12 col-md-6">
+											<div id="DataTables_Table_0_filter" class="dataTables_filter">
+											<div class="general-button">
+									            <button type="button" class="btn mb-2 btn-exel" id="node" onclick="downloadEXCEL()">엑셀출력</button>
+												<div class="general-button">
+									            <button type="button" class="btn mb-1 btn-select">조회하기</button>
+												<label>Search:<input type="search">
+												</label>
+											</div>
+									
+									</div>
+										</div>
+									
+									</div>
 												 <tbody id="admin_StatList">
 												
                                             <c:if test="${adminAllList !=null }">
@@ -221,46 +205,12 @@ h3,h4{
 
                                         </tbody>
 											</table>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-5">
-											<div class="dataTables_info" id="DataTables_Table_0_info"
-												role="status" aria-live="polite">Showing 1 to 10 of 57
-												entries</div>
-										</div>
-										<div class="col-sm-12 col-md-7">
-											<div class="dataTables_paginate paging_simple_numbers"
-												id="DataTables_Table_0_paginate">
-												<ul class="pagination">
-													<li class="paginate_button page-item previous disabled"
-														id="DataTables_Table_0_previous"><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="0"
-														tabindex="0" class="page-link">Previous</a></li>
-													<li class="paginate_button page-item active"><a
-														href="#" aria-controls="DataTables_Table_0"
-														data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="2"
-														tabindex="0" class="page-link">2</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="3"
-														tabindex="0" class="page-link">3</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="4"
-														tabindex="0" class="page-link">4</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="5"
-														tabindex="0" class="page-link">5</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="DataTables_Table_0" data-dt-idx="6"
-														tabindex="0" class="page-link">Next</a></li>
-												</ul>
 											</div>
 										</div>
 									</div>
+								
 								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

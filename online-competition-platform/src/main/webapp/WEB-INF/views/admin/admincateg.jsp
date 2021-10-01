@@ -149,24 +149,7 @@ h3, h4 {
 														</c:forEach>
 												</c:forEach>
 											
-												<!-- <tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-														<td>2008/11/28</td>
-														<td>$162,700</td>
-														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-														<td>2009/10/09</td>
-														<td>$1,200,000</td>
-														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
-													</tr> -->
+									
 											</tbody>
                                     </table>
                                 </div>

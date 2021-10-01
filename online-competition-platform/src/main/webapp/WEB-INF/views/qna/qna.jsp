@@ -4,6 +4,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+
 <script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
 <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
 <script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
