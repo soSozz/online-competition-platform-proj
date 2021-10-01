@@ -16,7 +16,14 @@ public class ListContentsVO {
 	private String mem_nickname;
 	private int cmt1;
 	private int likes1;
+	private String contents_text;
 	
+	public String getContents_text() {
+		return contents_text;
+	}
+	public void setContents_text(String contents_text) {
+		this.contents_text = contents_text;
+	}
 	public int getCmt1() {
 		return cmt1;
 	}

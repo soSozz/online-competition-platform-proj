@@ -13,6 +13,7 @@
 		<result property = "contents_reject_reason" column = "contents_reject_reason" />
 		<result property = "contents_view" column = "contents_view" />
 		<result property = "contents_name" column = "contents_name" />
+		<result property = "contents_text" column = "contents_text" />
 	</resultMap>
 	
 	<resultMap id="ContentsFileResult" type="contentsFileVO">
@@ -65,7 +66,7 @@
 	
 	<select id="selectContentsView" resultMap="ContentsResult" parameterType="int">
 	<![CDATA[
-				select contents_id, mem_id,	contents_name,
+				select contents_id, mem_id,	contents_name, contents_text,
 					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date
 				from contents
 				where contents_id=#{contents_id}

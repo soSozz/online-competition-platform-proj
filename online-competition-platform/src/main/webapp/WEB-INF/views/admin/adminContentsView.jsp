@@ -27,9 +27,7 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 					<img class="img-fluid" src="images/big/img1.jpg" alt="">
 					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text
-							and below as a natural lead-in to the additional content. This
-							content is a little bit longer.</p>
+						<p class="card-text">${contentsView[0].contents_text}</p>
 					</div>
 					<div class="card-footer">
 						<button type="button"
