@@ -156,7 +156,9 @@ function changeList(e) {
 
 			for(var i = 0; i < contentsList.length; i++){
 				$contentsTable.append("<tr role='row'><td class='NO'>"+ (i + 1) +
-									"</td><td class='contentsName'>"+ contentsList[i].contents_name + 
+									"</td><td class='contentsName'>"+"<a href='${contextPath}/admin/adminContentsView.do?contents_id="
+									+ contentsList[i].contents_id + "'>"
+									+ contentsList[i].contents_name + "</a>" + 
 									"</td><td class = 'mem_id'>" + contentsList[i].mem_id + 
 									"</td><td class = 'contents_processing_date'>" + contentsList[i].contents_processing_date + 
 									"</td></tr>")

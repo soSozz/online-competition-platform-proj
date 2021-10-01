@@ -182,7 +182,7 @@ h3, h4 {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
-					<strong>대회 추가하기</strong>
+					<strong>카테고리 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
@@ -212,7 +212,7 @@ h3, h4 {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
-					<strong>카테고리 추가하기</strong>
+					<strong>대회 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">

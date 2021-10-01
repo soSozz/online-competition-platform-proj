@@ -116,6 +116,7 @@ public class ContentsControllerImpl implements ContentsController {
 		out.close();
 	}
 	
+	// ÄÁÅÙÃ÷ °Ô½ÃÆÇ
 	@Override
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,

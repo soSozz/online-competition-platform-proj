@@ -22,7 +22,7 @@
 	
 	<select id="selectListContents" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
-	select contents.contents_name, mem.mem_nickname, contents.contents_processing_date, contents.contents_view, likes1, cmt1
+	select contents.contents_id,contents.contents_name, mem.mem_nickname, contents.contents_processing_date, contents.contents_view, likes1, cmt1
 from contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
                                                     from likes, contents
                                                     where likes.contents_id = contents.contents_id
