@@ -13,4 +13,9 @@
 		<put-attribute name="title" value="트스테콘 대회 컨텐츠 게시판" />
 		<put-attribute name="body" value="/WEB-INF/views/contents/listContents.jsp" />
 	</definition>
+	
+	<definition name="/contents/contentsView" extends="baseLayout">
+		<put-attribute name="title" value="트스테콘 대회 컨텐츠 게시판" />
+		<put-attribute name="body" value="/WEB-INF/views/contents/contentsView.jsp" />
+	</definition>
 </tiles-definitions>
