@@ -13,6 +13,7 @@
 		<result property = "contents_reject_reason" column = "contents_reject_reason" />
 		<result property = "contents_view" column = "contents_view" />
 		<result property = "contents_name" column = "contents_name" />
+		<result property = "contents_text" column = "contents_text" />
 	</resultMap>
 	
 	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
@@ -42,6 +43,13 @@
 		   ]]>
 	</select>
 
+	<select id="selectNewContentsId" resultType="int">
+		  <![CDATA[
+				SELECT nvl(max(contents_id), 0) + 1 
+				from contents
+		   ]]>
+	</select>
+
 	<insert id="insertNewContentsFileWithOutContentsId" parameterType="contentsFileVO">
 		  <![CDATA[
  		  		insert into contents_file(contents_file_id, contents_file_type, contents_file_name) values(#{contents_file_id}, #{contents_file_type}, #{contents_file_name})
@@ -53,11 +61,27 @@
 		  		insert into contents_file values(#{contents_file_id}, #{contents_id}, #{contents_file_type}, #{contents_file_name})
 		   ]]>
 	</insert>
+
 	<update id="updateApprContents" parameterType="int">
 	<![CDATA[
 				update contents
 				set contents_state = '승인', contents_processing_date = sysdate
 				where contents_id = #{contents_id}
+	]]>
+	</update>
+
+	<insert id="insertNewContents" parameterType="contentsVO">
+		  <![CDATA[
+		  		insert into contents(contents_id, mem_id, compet_id, contents_state, contents_processing_date, contents_name, contents_text)
+		  		values(#{contents_id}, #{mem_id}, #{compet_id}, #{contents_state}, sysdate, #{contents_name}, #{contents_text})
+		   ]]>
+	</insert>
+
+	<update id="updateContentsFiles" parameterType="java.util.Map">
+	<![CDATA[
+				update contents_file
+				set contents_id = #{contents_id}
+				where contents_file_id = #{contents_file_id}
 	]]>
 	</update>
 	
