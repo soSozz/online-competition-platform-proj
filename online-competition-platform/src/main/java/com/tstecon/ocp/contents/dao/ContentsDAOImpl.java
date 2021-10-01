@@ -66,7 +66,7 @@ public class ContentsDAOImpl implements ContentsDAO {
 	// 牧刨明 颇老 府胶飘 历厘
 	@Override
 	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException {
-		List<ContentsFileVO> contentsFile = sqlSession.selectList("mappers.listContens.selectContentsFile",contents_id);
+		List<ContentsFileVO> contentsFile = sqlSession.selectList("mappers.listContents.selectContentsFile",contents_id);
 		return contentsFile;
 	}
 

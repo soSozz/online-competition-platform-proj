@@ -123,12 +123,8 @@ public class ContentsControllerImpl implements ContentsController {
 		in.close();
 		out.close();
 	}
-<<<<<<< HEAD
 
-=======
-	
 	// ÄÁÅÙÃ÷ °Ô½ÃÆÇ
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	@Override
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
