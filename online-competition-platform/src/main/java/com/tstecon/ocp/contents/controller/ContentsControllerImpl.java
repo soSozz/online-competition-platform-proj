@@ -129,4 +129,32 @@ public class ContentsControllerImpl implements ContentsController {
 		return mav;
 	}
 
+	// 컨텐츠 자세히 보기
+	@Override
+	@RequestMapping(value = { "/contents/contentsView.do" }, method = { RequestMethod.GET })
+	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		// 클릭 시 조회 수 증가
+		contentsService.updateContentsView(contents_id);
+		
+		// 댓글 제외 리스트 저장
+		List<ListContentsVO> contentsView = contentsService.selectContentsView(contents_id);
+		
+		// 댓글 리스트 저장
+		List<ListContentsVO> contentsCmt = contentsService.selectContentsCmt(contents_id);
+		
+		// 컨텐츠 파일 리스트 저장
+		List<ContentsFileVO> contentsFileView = contentsService.selectContentsFile(contents_id);
+		
+		mav.addObject("contentsView", contentsView);
+		mav.addObject("contentsCmt", contentsCmt);
+		mav.addObject("contentsFileView", contentsFileView);
+		return mav;
+	}
+	
+	
+
 }

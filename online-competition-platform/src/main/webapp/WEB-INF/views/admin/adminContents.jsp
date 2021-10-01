@@ -39,7 +39,7 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 			</div>
 			<br />
-			<h3>컨텐츠 조회</h3>
+			<h3>제출된 컨텐츠 조회</h3>
 			<hr />
 			<div class="container-fluid">
 				<div class="row">

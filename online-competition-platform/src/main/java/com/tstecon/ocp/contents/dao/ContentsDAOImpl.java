@@ -42,5 +42,30 @@ public class ContentsDAOImpl implements ContentsDAO {
 		List<ListContentsVO> listContents = sqlSession.selectList("mappers.listContents.selectListContents", compet_id);
 		return listContents;
 	}
+	// 클릭 시 조회수 증가
+	@Override
+	public void updateContentsView(int contents_id) throws DataAccessException {
+		sqlSession.update("mappers.listContents.updateContentsView",contents_id);
+		return;
+		
+	}
+	// 댓글 제외 리스트 저장
+	@Override
+	public List<ListContentsVO> selectContentsView(int contents_id) throws DataAccessException {
+		List<ListContentsVO> contentsView = sqlSession.selectList("mappers.listContents.selectContentsView", contents_id);
+		return contentsView;
+	}
+	// 댓글 리스트 저장
+	@Override
+	public List<ListContentsVO> selectContentsCmt(int contents_id) throws DataAccessException {
+		List<ListContentsVO> contentsCmt = sqlSession.selectList("mappers.listContents.selectContentsCmt", contents_id);
+		return contentsCmt;
+	}
+	// 컨텐츠 파일 리스트 저장
+	@Override
+	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException {
+		List<ContentsFileVO> contentsFile = sqlSession.selectList("mappers.listContens.selectContentsFile",contents_id);
+		return contentsFile;
+	}
 
 }

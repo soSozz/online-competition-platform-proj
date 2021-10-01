@@ -13,6 +13,13 @@ public interface ContentsService {
 
 	public void addNewContentsFile(ContentsFileVO contentsFileVO) throws Exception;
 
-	public List<ListContentsVO> listContents(int compet_id) throws DataAccessException;;
+	public List<ListContentsVO> listContents(int compet_id) throws DataAccessException;
 
+	public void updateContentsView(int contents_id) throws DataAccessException;
+
+	public List<ListContentsVO> selectContentsView(int contents_id) throws DataAccessException;
+
+	public List<ListContentsVO> selectContentsCmt(int contents_id) throws DataAccessException;
+
+	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException;
 }

@@ -25,4 +25,8 @@ public interface ContentsController {
 	// ÄÁÅÙÃ÷ °Ô½ÃÆÇ
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
+	
+	// ÄÁÅÙÃ÷ ÀÚ¼¼È÷ º¸±â
+	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception;
 }
