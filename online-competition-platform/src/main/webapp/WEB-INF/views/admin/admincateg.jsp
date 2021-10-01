@@ -148,6 +148,7 @@ h3, h4 {
 														</c:if>
 														</c:forEach>
 												</c:forEach>
+
 											</tbody>
                                     </table>
                                 </div>

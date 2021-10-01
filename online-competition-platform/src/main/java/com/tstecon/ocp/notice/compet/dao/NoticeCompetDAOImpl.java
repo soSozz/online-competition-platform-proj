@@ -20,8 +20,7 @@ public class NoticeCompetDAOImpl implements NoticeCompetDAO {
 	@Override
 	public List<NoticeCompetVO> selectNoticesCompetList(int compet_id) throws DataAccessException {
 
-		List<NoticeCompetVO> NoticescompetList = (ArrayList) sqlSession
-				.selectList("mappers.notice.compet.selectNoticesCompetList", compet_id);
+		List<NoticeCompetVO> NoticescompetList = (ArrayList) sqlSession.selectList("mappers.notice.compet.selectNoticesCompetList", compet_id);
 		return NoticescompetList;
 
 
@@ -29,8 +28,7 @@ public class NoticeCompetDAOImpl implements NoticeCompetDAO {
 
 	@Override
 	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
-		CompetFileVO CompetSmallPoster = sqlSession.selectOne("mappers.notice.compet.selectCompetSmallPoster",
-				compet_id);
+		CompetFileVO CompetSmallPoster = sqlSession.selectOne("mappers.notice.compet.selectCompetSmallPoster",compet_id);
 		return CompetSmallPoster;
 	}
 
