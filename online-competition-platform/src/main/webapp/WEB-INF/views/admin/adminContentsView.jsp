@@ -25,9 +25,10 @@ request.setCharacterEncoding("UTF-8");
 						</h5>
 						<hr />
 					</div>
-					<img class="img-fluid" src="images/big/img1.jpg" alt="">
 					<div class="card-body">
 						<p class="card-text">${contentsView[0].contents_text}</p>
+						<img class="img-fluid" 
+					src="${contextPath}/contentsFile_download.do?contents_file_id=${contentsFileView[0].contents_file_id}&contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}">
 					</div>
 					<div class="card-footer">
 						<button type="button"

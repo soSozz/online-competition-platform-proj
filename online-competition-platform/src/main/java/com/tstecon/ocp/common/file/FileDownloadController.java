@@ -87,10 +87,10 @@ public class FileDownloadController {
 
 	@RequestMapping("/contentsFile_download")
 	protected void contentsFile_download(@RequestParam("contents_file_name") String contents_file_name,
-			@RequestParam("contents_file_type") String contents_file_type, @RequestParam("contents_id") int contents_id,
+			@RequestParam("contents_file_type") String contents_file_type, @RequestParam("contents_file_id") int contents_file_id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\contentsfile\\" + contents_id + "\\" + contents_file_type + "\\"
+		String filePath = CURR_IMAGE_REPO_PATH + "\\contentsfile\\" + contents_file_id + "\\" + contents_file_type + "\\"
 				+ contents_file_name;
 		File image = new File(filePath);
 
