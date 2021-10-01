@@ -44,43 +44,52 @@ request.setCharacterEncoding("UTF-8");
     }
 
 </style>
-<compet-detail>
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta charset="UTF-8" />
+        <title>공지사항</title>
+        <style></style>
+    </head>
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="endCompet">공지사항</h4>
+					
 					<div class="table-responsive">
 						<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-							<div class="row">
-								<div class="col-sm-12 col-md-6">
-									<div class="dataTables_length" id="DataTables_Table_0_length">
-										<label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-												<option value="10">10</option>
-												<option value="25">25</option>
-												<option value="50">50</option>
-												<option value="100">100</option>
-											</select> entries
-										</label>
-									</div>
-								</div>
-								<div class="col-sm-12 col-md-6">
-									<div id="DataTables_Table_0_filter" class="dataTables_filter">
-										<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">
-										</label>
-									</div>
-								</div>
-							</div>
+							<div class="col-lg-12">
+                    <div class="poster">
+                        <a href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}"
+                            ><img
+                                src="${contextPath}/competNoticeFile_download.do?compet_notice_id=${compet_notice_id}&compet_notice_file_name=${competSmallFileName}&compet_notice_file_type=${competSmallFileType}"
+                                width="100%"
+                                height="200px"
+                        /></a>
+                    </div>
+                </div>
+                 <div class="col-lg-12">
+                    <ul class="nav nav-tabs mb-3 justify-content-lg-center">
+                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}" >공지사항</a > </li>
+                        <li class="nav-item"><a class="nav-link" href="${contextPath }/contents/listContents.do?compet_id=${compet_id}">컨텐츠 게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="javascript:submitContents('${loginStatus }', '${loginInfo }');">제출</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a> </li>
+                    </ul>
+                </div>
+							<div class="container-fluid">
 							<div class="row">
 								<div class="col-sm-12">
-									<table class="table table-striped table-bordered dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+								<div class="card-body">
+								<h4 class="card-title">공지사항</h4>
+									<table class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr role="row">
-												<th class="No" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="No" style="width: 145.531px;">No.</th>
-												<th class="categ_name" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="categ_name" style="width: 236.656px;">제목</th>
-												<th class="compet_name" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="compet_name" style="width: 105.656px;">작성자</th>
-												<th class="compet_start" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="compet_start" style="width: 95.7188px;">작성일</th>
-												<th class="compet_end sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="compet_end : activate to sort column ascending" style="width: 79.8906px;">조회수</th>
+												<th class="No">No.</th>
+												<th class="categ_name">제목</th>
+												<th class="compet_name" style="width: 105.656px;">작성자</th>
+												<th class="compet_start" style="width: 95.7188px;">작성일</th>
+												<th class="compet_end sorting"style="width: 79.8906px;">조회수</th>
 
 											</tr>
 										</thead>
@@ -102,24 +111,14 @@ request.setCharacterEncoding("UTF-8");
 									</table>
 								</div>
 							</div>
+							</div>
+							</div>
 							<div class="row">
 								<div class="col-sm-12 col-md-5">
 									<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 57
 										entries</div>
 								</div>
-								<div class="col-sm-12 col-md-7">
-									<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-										<ul class="pagination">
-											<li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-											<li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-											<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-											<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-											<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-											<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-											<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">Next</a></li>
-										</ul>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -127,4 +126,4 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</div>
 	</div>
-</compet-detail>
+</html>

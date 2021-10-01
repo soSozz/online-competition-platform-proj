@@ -17,6 +17,7 @@ import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.notice.compet.service.NoticeCompetService;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 
+
 @Controller("NoticeCompetController")
 public class NoticeCompetControllerImpl implements NoticeCompetController {
 
@@ -38,7 +39,7 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 		List<NoticeCompetVO> noticeCompetList = NoticeCompetService.listCompetNotices(compet_id);
 
 		CompetFileVO smallPoster = NoticeCompetService.CompetSmallPoster(compet_id);
-
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("compet_id", compet_id);
 		mav.addObject("noticeCompetList", noticeCompetList);

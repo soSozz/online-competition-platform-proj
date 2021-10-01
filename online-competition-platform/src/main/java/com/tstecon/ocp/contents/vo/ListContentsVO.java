@@ -13,10 +13,17 @@ public class ListContentsVO {
 	private String contents_name;
 	private int like;
 	private int cmt;
-	private String mem_nickname;
+	private String mem_name;
 	private int cmt1;
 	private int likes1;
+	private String contents_text;
 	
+	public String getContents_text() {
+		return contents_text;
+	}
+	public void setContents_text(String contents_text) {
+		this.contents_text = contents_text;
+	}
 	public int getCmt1() {
 		return cmt1;
 	}
@@ -29,11 +36,11 @@ public class ListContentsVO {
 	public void setLikes1(int likes1) {
 		this.likes1 = likes1;
 	}
-	public String getMem_nickname() {
-		return mem_nickname;
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setMem_nickname(String mem_nickname) {
-		this.mem_nickname = mem_nickname;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 	public int getContents_id() {
 		return contents_id;

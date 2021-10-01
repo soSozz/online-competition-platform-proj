@@ -21,4 +21,12 @@ public interface ContentsDAO {
 
 	public void updateContentsFiles(List<String> contents_file_list, int contents_id) throws DataAccessException;
 
+	public void updateContentsView(int contents_id) throws DataAccessException;
+
+	public List<ListContentsVO> selectContentsView(int contents_id) throws DataAccessException;
+
+	public List<ListContentsVO> selectContentsCmt(int contents_id) throws DataAccessException;
+
+	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException;
+
 }

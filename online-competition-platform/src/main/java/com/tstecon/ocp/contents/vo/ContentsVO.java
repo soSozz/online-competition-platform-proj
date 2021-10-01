@@ -14,6 +14,14 @@ public class ContentsVO {
 	private String contents_name;
 	private String contents_text;
 
+	public String getContents_text() {
+		return contents_text;
+	}
+
+	public void setContents_text(String contents_text) {
+		this.contents_text = contents_text;
+	}
+
 	public int getContents_id() {
 		return contents_id;
 	}

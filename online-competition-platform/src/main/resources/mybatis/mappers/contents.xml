@@ -14,6 +14,16 @@
 		<result property = "contents_view" column = "contents_view" />
 		<result property = "contents_name" column = "contents_name" />
 		<result property = "contents_text" column = "contents_text" />
+<<<<<<< HEAD
+=======
+	</resultMap>
+	
+	<resultMap id="ContentsFileResult" type="contentsFileVO">
+		<result property = "contents_file_id" column = "contents_file_id" />
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "contents_file_type" column = "contents_file_type" />
+		<result property = "contents_file_name" column = "contents_file_name" />
+>>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	</resultMap>
 	
 	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
@@ -52,20 +62,31 @@
 
 	<insert id="insertNewContentsFileWithOutContentsId" parameterType="contentsFileVO">
 		  <![CDATA[
- 		  		insert into contents_file(contents_file_id, contents_file_type, contents_file_name) values(#{contents_file_id}, #{contents_file_type}, #{contents_file_name})
+ 		  		insert into contents_file(contents_file_id, contents_file_type, contents_file_name) 
+ 		  		values(#{contents_file_id}, #{contents_file_type}, #{contents_file_name})
  		   ]]> 
 	</insert>
 
 	<insert id="insertNewContentsFile" parameterType="contentsFileVO">
 		  <![CDATA[
-		  		insert into contents_file values(#{contents_file_id}, #{contents_id}, #{contents_file_type}, #{contents_file_name})
+		  		insert into contents_file 
+		  		values(#{contents_file_id}, #{contents_id}, #{contents_file_type}, #{contents_file_name})
 		   ]]>
 	</insert>
-
+	
+	<select id="selectContentsView" resultMap="ContentsResult" parameterType="int">
+	<![CDATA[
+				select contents_id, mem_id,	contents_name, contents_text,
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date
+				from contents
+				where contents_id=#{contents_id}
+	]]>
+	</select>
+	
 	<update id="updateApprContents" parameterType="int">
 	<![CDATA[
 				update contents
-				set contents_state = '승인', contents_processing_date = sysdate
+				set contents_state = '승인', contents_processing_date = sysdate, contents_view=0
 				where contents_id = #{contents_id}
 	]]>
 	</update>
@@ -85,4 +106,19 @@
 	]]>
 	</update>
 	
+	<update id="updateRefusalContents" parameterType="java.util.Map">
+	<![CDATA[
+				update contents
+				set contents_state = '거절', contents_processing_date = sysdate, contents_reject_reason = #{contents_reject_reason}
+				where contents_id=#{contents_id}
+	]]>
+	</update>
+	
+	<select id="selectContentsFileView" resultMap="ContentsFileResult" parameterType="int">
+	<![CDATA[
+				select *
+				from contents_file
+				where contents_id=#{contents_id}
+	]]>
+	</select>
 </mapper>

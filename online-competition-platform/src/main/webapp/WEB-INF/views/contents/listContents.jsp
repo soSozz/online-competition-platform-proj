@@ -48,8 +48,8 @@ request.setCharacterEncoding("UTF-8");
 											varStatus="status">
 											<tr>
 												<td>${status.count}</td>
-												<td><a href="#">${listContents.contents_name}</a></td>
-												<td>${listContents.mem_nickname}</td>
+												<td><a href="${contextPath}/contents/contentsView.do?contents_id=${listContents.contents_id}">${listContents.contents_name}</a></td>
+												<td>${listContents.mem_name}</td>
 												<td>${listContents.contents_processing_date}</td>
 												<td>${listContents.contents_view}</td>
 												<td>${listContents.likes1}</td>

@@ -76,7 +76,7 @@ h3, h4 {
 <div class="container">
 	<span style="font-size: 25px; font-weight: bold; color: black;">카테고리
 		및 대회</span>
-	<a href = "#" class="addCateg float-right btn btn-primary" 
+	<a href = "#" class="addCateg float-right btn btn-outline-success" 
 	data-toggle="modal" data-target="#add-categ">카테고리 추가</a>
 	<hr />
 	<h4>진행 중인 대회</h4>
@@ -88,10 +88,10 @@ h3, h4 {
 					<span class="categ float-center">${categ.key}</span>
 						
 					<a href="#" data-toggle="modal" data-target="#add-compet"
-						class="categBtn btn btn-primary float-right" onclick="fn_add_compet(event)">
+						class="categBtn btn btn-outline-success float-right" onclick="fn_add_compet(event)">
 						<i class="ti-plus f-s-12 m-r-5"></i> 대회 추가</a>
 						
-					<a href="#" class="categBtn btn btn-primary float-right" onclick="fn_delete_categ(event)">
+					<a href="#" class="categBtn btn btn-outline-success float-right" onclick="fn_delete_categ(event)">
 						<i class="ti-minus f-s-12 m-r-5"></i> 카테고리 삭제</a>
 					
 				</div>
@@ -99,7 +99,7 @@ h3, h4 {
 					<c:forEach var="compet" items="${categ.value}">
 						<div class="competList">
 							<div class="compet_name"><span>${compet.compet_name}</span>
-							<button class="btn btn-primary float-right" style="height: 35px;"
+							<button class="btn btn-outline-success float-right" style="height: 35px;"
 									onclick="fn_finish_compet(event)">대회 종료</button>
 							</div>
 						</div>
@@ -140,7 +140,7 @@ h3, h4 {
 														<td class="compet_start">${compet.compet_start}</td>
 														<td class="compet_end">${compet.compet_end}</td>
 														<td class="compet_create">${compet.compet_create}</td>
-														<td class="deletebtn"><button class="deletebtn btn btn-primary float-center"
+														<td class="deletebtn"><button class="deletebtn btn btn-outline-success float-center"
 																			   onclick="fn_delete_compet(event)">삭제하기</button></td>
 														</tr>
 														<c:if test="${status.last == true}" >
@@ -148,25 +148,7 @@ h3, h4 {
 														</c:if>
 														</c:forEach>
 												</c:forEach>
-											
-												<!-- <tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-														<td>2008/11/28</td>
-														<td>$162,700</td>
-														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-														<td>2009/10/09</td>
-														<td>$1,200,000</td>
-														<td><button class="deletebtn btn btn-primary">삭제하기</button></td>
-													</tr> -->
+
 											</tbody>
                                     </table>
                                 </div>
@@ -182,7 +164,7 @@ h3, h4 {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
-					<strong>대회 추가하기</strong>
+					<strong>카테고리 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
@@ -212,7 +194,7 @@ h3, h4 {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
-					<strong>카테고리 추가하기</strong>
+					<strong>대회 추가하기</strong>
 				</h4>
 			</div>
 			<div id="modal-body" class="modal-body">
