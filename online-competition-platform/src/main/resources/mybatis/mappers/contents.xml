@@ -14,8 +14,6 @@
 		<result property = "contents_view" column = "contents_view" />
 		<result property = "contents_name" column = "contents_name" />
 		<result property = "contents_text" column = "contents_text" />
-<<<<<<< HEAD
-=======
 	</resultMap>
 	
 	<resultMap id="ContentsFileResult" type="contentsFileVO">
@@ -23,7 +21,6 @@
 		<result property = "contents_id" column = "contents_id" />
 		<result property = "contents_file_type" column = "contents_file_type" />
 		<result property = "contents_file_name" column = "contents_file_name" />
->>>>>>> branch 'master' of https://github.com/ITHwang/online-competition-platform-proj.git
 	</resultMap>
 	
 	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
