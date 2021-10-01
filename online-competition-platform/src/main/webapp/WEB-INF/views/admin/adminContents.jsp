@@ -11,92 +11,129 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
-<link href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link
+	href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css"
+	rel="stylesheet" />
 
 </head>
 
 <body>
-<div id="main-wrapper">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-md-6"></div>
-			<div class="dropdown col-sm-12 col-md-3">
-			<select class="form-control" id="categDropdown" onchange="changeCompet(this.value)">
-					<option value="">카테고리를 선택해주세요.</option>
-					<c:forEach var="dropdown" items="${dropdown}" varStatus="status">
-						<option id="categList" value="${status.count}">${dropdown.key}</option>
-					</c:forEach>
-				</select> 
+	<div id="main-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-6"></div>
+				<div class="dropdown col-sm-12 col-md-3">
+					<select class="form-control" id="categDropdown"
+						onchange="changeCompet(this.value)">
+						<option value="">카테고리를 선택해주세요.</option>
+						<c:forEach var="dropdown" items="${dropdown}" varStatus="status">
+							<option id="categList" value="${status.count}">${dropdown.key}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="dropdown col-sm-12 col-md-3">
+					<select class="form-control" id="competLists" name="competList"
+						onchange="changeList(this.value)">
+						<option value="">대회를 선택해주세요.</option>
+					</select>
+				</div>
 			</div>
-			<div class="dropdown col-sm-12 col-md-3">
-				<select class="form-control" id="competLists" name="competList" onchange="changeList(this.value)">
- 					<option value="">대회를 선택해주세요.</option>
-				</select>
+			<br />
+			<h3>컨텐츠 조회</h3>
+			<hr />
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title"></h4>
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered ">
+										<thead>
+											<tr>
+												<th style="width: 60.531px;">No.</th>
+												<th style="width: 256.656px;">컨텐츠</th>
+												<th style="width: 105.656px;">아이디</th>
+												<th style="width: 130.7188px;">제출일</th>
+											</tr>
+										</thead>
+										<tbody id="contentsList">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3>컨텐츠 승인</h3>
+			<hr />
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title"></h4>
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered">
+										<!-- 테이블 바꾸기 zero-configuration -->
+										<thead>
+											<tr>
+												<th style="width: 60.531px;">No.</th>
+												<th style="width: 256.656px;">컨텐츠</th>
+												<th style="width: 105.656px;">아이디</th>
+												<th style="width: 130.7188px;">승인일</th>
+											</tr>
+										</thead>
+										<tbody id="apprContentsList">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-<br />
-		<h3>컨텐츠 조회</h3>
-		<hr />
-		<div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                             <h4 class="card-title"></h4>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered zero-configuration">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 60.531px;">No.</th>
-                                                <th style="width: 256.656px;">컨텐츠</th>
-                                                <th style="width: 105.656px;">아이디</th>
-                                                <th style="width: 130.7188px;">제출일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="contentsList">
-													
-										</tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-		<h3>컨텐츠 승인</h3>
-		<hr />
-		<div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                            <h4 class="card-title"></h4>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered zero-configuration">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 60.531px;">No.</th>
-                                                <th style="width: 256.656px;">컨텐츠</th>
-                                                <th style="width: 105.656px;">아이디</th>
-                                                <th style="width: 130.7188px;">승인일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="apprContentsList">
-													
-										</tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 	</div>
-</div>
-    
-    
-<script>
+	
+<!-- 컨텐츠 뷰 modal -->
+<!-- "<a href='#' data-toggle='modal' data-target='#viewContents'>"+ 
+									contentsList[i].contents_name + "</a>" -->
+<%-- <div class="modal fade none-border" id="viewContents"
+	style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<strong>컨텐츠 자세히 보기</strong>
+				</h4>
+			</div>
+			<div id="modal-body" class="modal-body">
+				<form action="${contextPath }/admin/adminApprContents.do" method="get">
+					<div class="row">
+							<label class="control-label">카테고리명</label> 
+							<input
+								class="form-control form-white" placeholder="카테고리명을 입력해주세요."
+								type="text" name="categ_name">
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default waves-effect"
+							data-dismiss="modal">닫기</button>
+						<button type="submit" 
+							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> --%>
+
+	<script>
 function changeList(e) {
 	$("#competLists option:selected").prop("selected", false);
 	$("#competLists").val(e).prop("selected", true);
@@ -119,7 +156,7 @@ function changeList(e) {
 
 			for(var i = 0; i < contentsList.length; i++){
 				$contentsTable.append("<tr role='row'><td class='NO'>"+ (i + 1) +
-									"</td><td class='contentsName'>" + contentsList[i].contents_name + 
+									"</td><td class='contentsName'>"+ contentsList[i].contents_name + 
 									"</td><td class = 'mem_id'>" + contentsList[i].mem_id + 
 									"</td><td class = 'contents_processing_date'>" + contentsList[i].contents_processing_date + 
 									"</td></tr>")

@@ -144,7 +144,6 @@ public class AdminContentsControllerImpl implements AdminContentsController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		adminContentsService.updateApprContents(contents_id);
-		mav.setViewName("redirect:/admin/adminContents.do");
 		return mav;
 	}
 
