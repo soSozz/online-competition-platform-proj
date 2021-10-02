@@ -7,22 +7,27 @@
 	<definition name="/compet/competInfo" extends="baseLayout">
 		<put-attribute name="title" value="대회안내페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competInfo.jsp" />
-	</definition>
+	</definition>	
 	<definition name="/qna/qna" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 문의페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/qna/qna.jsp" />
 	</definition>
-	<definition name="/compet/qnaForm" extends="baseLayout">
+	<definition name="/qna/qnaForm" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
 		<put-attribute name="body" value="/WEB-INF/views/qna/qnaForm.jsp" />
 	</definition>
-	<definition name="/compet/qnaDetail" extends="baseLayout">
+	<definition name="/qna/qnaDetail" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
 		<put-attribute name="body" value="/WEB-INF/views/qna/qnaDetail.jsp" />
+</definition>
+<definition name="/qna/qnaReplyForm" extends="baseLayout">
+		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
+		<put-attribute name="body" value="/WEB-INF/views/qna/qnaReplyForm.jsp" />
 </definition>
 <definition name="/compet/competList" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 대회목록" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competList.jsp" />
 	</definition>
+
 </tiles-definitions>
 

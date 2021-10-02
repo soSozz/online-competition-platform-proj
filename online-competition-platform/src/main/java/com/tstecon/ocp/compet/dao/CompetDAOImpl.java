@@ -83,7 +83,7 @@ public class CompetDAOImpl implements CompetDAO {
 	// 카테고리 아이디을 통해 대회 이름 가져오기
 	@Override
 	public List<CompetVO> selectCompetNameByName(int i) throws DataAccessException {
-		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName");
+		List<CompetVO> competName = (ArrayList) sqlSession.selectList("mappers.compet.selectCompetNameByName", i);
 		return competName;
 	}
 
@@ -115,19 +115,19 @@ public class CompetDAOImpl implements CompetDAO {
 		return competId;
 	}
 
-	//대회 종료하기
+	// 대회 종료하기
 	@Override
 	public int updateCompetTerminated(String compet_name) throws DataAccessException {
 		int updateCompet = sqlSession.update("mappers.compet.updateCompetTerminated", compet_name);
 		return updateCompet;
 	}
-	
+
 	// 종료된 대회 삭제하기
 	@Override
 	public int deleteCompet(String compet_name) throws DataAccessException {
 		return sqlSession.delete("mappers.compet.deleteCompet", compet_name);
 	}
-	
+
 	// 카테고리 아이디를 통해 대회 리스트 가져오기
 	@Override
 	public List<CompetVO> selectCompetListByCategId(int categ_id) throws DataAccessException {
@@ -139,4 +139,21 @@ public class CompetDAOImpl implements CompetDAO {
 	public List<CompetVO> selectCompetByTerminated(String terminated) throws DataAccessException {
 		return sqlSession.selectList("mappers.compet.selectCompetListByTerminated", terminated);
 	}
+
+	@Override
+	public List<CompetVO> selectAllCompets() throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectAllCompets");
+	}
+
+	@Override
+	public List<CompetVO> selectCompetsByCategName(String categ_name) throws DataAccessException {
+		return sqlSession.selectList("mappers.compet.selectCompetsByCategName", categ_name);
+	}
+
+	@Override
+	public int selectCompetIdByName(String compet_name) throws DataAccessException {
+		int compet_id = sqlSession.selectOne("mappers.compet.selectCompetIdByName", compet_name);
+		return compet_id;
+	}
+
 }

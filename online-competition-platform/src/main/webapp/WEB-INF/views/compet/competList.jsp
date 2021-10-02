@@ -30,98 +30,46 @@
                     <div class="dropdown">
                         <button type="button" id="categ-btn" class="btn btn-success dropdown-toggle"
                             data-toggle="dropdown">
-                            <b>전체보기</b>
+                            <b>${dropdown }</b>
                         </button>
                         <div class="dropdown-menu" id="dropdown-menu">
-                            <a class="dropdown-item" href="#">알고리즘</a>
-                            <a class="dropdown-item" href="#">빅데이터</a>
+							<a class="dropdown-item" href="#">전체보기</a>
+                        	<c:forEach var="categ" items="${categList }">
+								<a class="dropdown-item" href="#">${categ.categ_name }</a>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- competition start -->
-    <div class="row">
-        <div class="card mb-3 col-lg-12">
+    <c:forEach var="compet" items="${competList }">
+		<!-- competition start -->
+		<div class="row">
+			<div class="card mb-3 col-lg-12">
 
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <img src="images/imgs/1.jpg" class="img-fluid h-100 p-1" alt="...">
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-body">
-                        <h5 class="card-title">해양과학 빅데이터 활용 경진대회</h5>
-                        <p class="card-text">
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                        </p>
-                        <p class="card-text"><small class="text-muted">2021-08-01 ~ 2021-08-31</small></p>
-                    </div>
-                </div>
-                <div class="col-lg-2 mb-md-3 my-auto text-center">
-                    <div class="btn btn-outline-success">
-                        <b>자세히 보기</b>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- competition end -->
-    <!-- competition start -->
-    <div class="row">
-        <div class="card mb-3 col-lg-12">
+				<div class="row g-0">
+					<div class="col-lg-4">
+						<img src="/ocp/competFile_download.do?compet_id=${compet.compet_id }&compet_file_name=${compet.compet_file_name }&compet_file_type=${compet.compet_file_type}" class="img-fluid h-100 p-1" alt="...">
+					</div>
+					<div class="col-lg-6">
+						<div class="card-body">
+							<h5 class="card-title">${compet.compet_name }</h5>
+							<p class="card-text">${compet.compet_text }</p>
+							<p class="card-text"><small class="text-muted">${compet.compet_start } ~ ${compet.compet_end}</small></p>
+						</div>
+					</div>
+					<div class="col-lg-2 mb-md-3 my-auto text-center">
+						<div class="btn btn-outline-success" onclick="location.href='${contextPath }/compet/competInfo.do?compet_id=${compet.compet_id}'">
+							<b>자세히 보기</b>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- competition end -->
+	</c:forEach>
 
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <img src="images/imgs/2.png" class="img-fluid h-100 p-1" alt="...">
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-body">
-                        <h5 class="card-title">해양과학 빅데이터 활용 경진대회</h5>
-                        <p class="card-text">
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                        </p>
-                        <p class="card-text"><small class="text-muted">2021-08-01 ~ 2021-08-31</small></p>
-                    </div>
-                </div>
-                <div class="col-lg-2 mb-md-3 my-auto text-center">
-                    <div class="btn btn-outline-success">
-                        <b>자세히 보기</b>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- competition end -->
-    <!-- competition start -->
-    <div class="row">
-        <div class="card mb-3 col-lg-12">
-
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <img src="images/imgs/3.png" class="img-fluid h-100 p-1" alt="...">
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-body">
-                        <h5 class="card-title">해양과학 빅데이터 활용 경진대회</h5>
-                        <p class="card-text">
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                        </p>
-                        <p class="card-text"><small class="text-muted">2021-08-01 ~ 2021-08-31</small></p>
-                    </div>
-                </div>
-                <div class="col-lg-2 mb-md-3 my-auto text-center">
-                    <div class="btn btn-outline-success">
-                        <b>자세히 보기</b>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- competition end -->
 </div>
 
 <!--**********************************
@@ -132,7 +80,7 @@
 
     dropdownItems.forEach(e => {
         e.addEventListener('click', (evt) => {
-            window.location.href = '${contextPath}/compet/competList.do?categ=' + evt.target.innerText;
+            window.location.href = '${contextPath}/compet/competList.do?categ_name=' + evt.target.innerText;
         })
     });
 </script>

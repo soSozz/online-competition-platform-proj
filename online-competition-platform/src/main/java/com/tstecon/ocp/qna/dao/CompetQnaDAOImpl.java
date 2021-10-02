@@ -25,12 +25,6 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 		List<CompetQnaVO> qnaList = sqlSession.selectList("mappers.competQna.selectAllQnaList", compet_id);
 		return qnaList;
 	}
-// 문의 로그인
-	public CompetQnaVO quaLogin(CompetQnaVO competqnaVO) throws DataAccessException {
-		CompetQnaVO vo = sqlSession.selectOne("mappers.competQna.qnaLogin", competqnaVO); // vo가 들어가는 이유는 vo에 담겨있는 login
-																							// 값을 쿼리문에 보내줘야 해서?
-		return vo;
-	}
 //글 쓰기 추가
 	public int insertNewArticle(Map articleMap) throws DataAccessException {
 		int articleNO = selectNewArticleNO();
@@ -57,5 +51,11 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 	public void deleteArticle(int articleNO) throws DataAccessException{
 		sqlSession.delete("mappers.competQna.deleteArticle", articleNO);
 	}
-
+//문의 댓글 글쓰기	
+	public int insertReplyNewArticle(Map articleMap) throws DataAccessException{
+		int articleNO = selectNewArticleNO();
+		articleMap.put("articleNO", articleNO);
+		sqlSession.insert("mappers.competQna.insertReplyNewQna", articleMap);
+		return articleNO;
+	}
 }

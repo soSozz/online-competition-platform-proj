@@ -40,7 +40,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 						<div class="mb-lg-3 d-flex align-items-center">
 							<i class="mr-2 fas fa-flag-checkered" style="font-size:3em; color: black;"></i>
 							<span id="compet_title" class="bold">${categ.key }</span>
-							<a href="#" class="ml-auto"><span>더보기</span></a>
+							<a href="${contextPath }/compet/competList.do?categ_name=${categ.key}" class="ml-auto"><span>더보기</span></a>
 						</div>
 						<div class="row justify-content-lg-center">
 							<div class="col-lg-12">
