@@ -3,7 +3,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link href="${contextPath}/resources/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet" />
-<c:set var="compet_id" value="${competInfo.compet_id[0].compet_id}" />
+
 <%request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
@@ -26,16 +26,26 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <form 
           name="articleForm" 
           method="post"   
-          action="${contextPath}/qna/addNewArticle.do"  
-          enctype="multipart/form-data"
-          action="#" 
+          action="${contextPath}/qna/addNewArticle.do?compet_id=${compet_id}"  
+          enctype="multipart/form-data" 
           style="width: 50%; position: relative; left: 23%; margin: 40px;"
           
           >
-
+            <div class="form-group" >
+                <input hidden class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
+            </div>
+           <!--  회원 작성자 -->
+            <c:if test="${loginStatus ==  'member'}">
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" value="${loginInfo.mem_id}" readonly placeholder=" 작성자">
             </div>
+            </c:if>
+            <!-- 관리자 작성자 -->
+            <c:if test="${loginStatus ==  'admin'}">
+            <div class="form-group" >
+                <input type="text" class="form-control bg-transparent" value="${loginInfo.admin_id}" readonly placeholder=" 작성자">
+            </div>
+            </c:if>                                  
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" name="title" placeholder=" 글제목">
             </div>

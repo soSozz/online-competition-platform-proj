@@ -4,14 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Base64;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.tstecon.ocp.contents.service.ContentsService;
 import com.tstecon.ocp.contents.vo.ContentsFileVO;
-import com.tstecon.ocp.contents.service.ContentsService;
 import com.tstecon.ocp.contents.vo.ContentsVO;
 import com.tstecon.ocp.contents.vo.ListContentsVO;
+import com.tstecon.ocp.member.vo.MemberVO;
 
 @Controller("contentsController")
 public class ContentsControllerImpl implements ContentsController {
@@ -37,12 +43,19 @@ public class ContentsControllerImpl implements ContentsController {
 	@Autowired
 	private ContentsFileVO contentsFileVO;
 
+	@Autowired
+	private ContentsVO contentsVO;
+
 	@Override
 	@RequestMapping(value = { "/contents/contentsForm.do" }, method = { RequestMethod.GET })
-	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, @RequestParam("mem_id") int mem_id,
+	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id,
 			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		HttpSession session = request.getSession();
+		
+		mav.addObject("mem_id", ((MemberVO)session.getAttribute("loginInfo")).getMem_id());
 		mav.addObject("compet_id", compet_id);
 		return mav;
 	}
@@ -66,7 +79,6 @@ public class ContentsControllerImpl implements ContentsController {
 		contentsFileVO.setContents_file_id(contents_file_id);
 		contentsFileVO.setContents_file_name(fileName);
 		contentsFileVO.setContents_file_type("img");
-		// contents_id는 업로드 될때
 
 		File outFile = new File(CONTENTS_IMAGE_IN_TEXT + "\\" + String.valueOf(contents_file_id) + "\\" + fileName);
 		if (!outFile.exists()) {
@@ -115,7 +127,7 @@ public class ContentsControllerImpl implements ContentsController {
 		in.close();
 		out.close();
 	}
-	
+
 	// 컨텐츠 게시판
 	@Override
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
@@ -127,6 +139,40 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("compet_id", compet_id);
 		mav.addObject("listContents", contentsList);
 		return mav;
+	}
+
+//	@Override
+	@RequestMapping(value = { "/contents/addContents.do" }, method = { RequestMethod.POST })
+	public ResponseEntity listContents(@RequestParam HashMap<String, String> contentsMap, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+
+		contentsVO.setCompet_id(Integer.parseInt(contentsMap.get("compet_id")));
+		contentsVO.setContents_name(contentsMap.get("contents_name"));
+		contentsVO.setContents_text(contentsMap.get("contents_text"));
+		contentsVO.setContents_state("제출완료");
+		contentsVO.setMem_id(contentsMap.get("mem_id"));
+
+		int contents_id = contentsService.addNewContents(contentsVO); // 컨텐츠 추가한 후 contents_id 반환
+
+		// 미리 저장되어 있던 파일들의 contents_id를 업데이트
+		String contents_file_list_string = contentsMap.get("constents_file_list");
+		contents_file_list_string = contents_file_list_string.substring(0, contents_file_list_string.length() - 1);
+		List<String> contents_file_list = Arrays.asList(contents_file_list_string.split(","));
+		contentsService.addContentsIdToFiles(contents_file_list, contents_id);
+
+		String message = "<script>";
+		message += "alert('컨텐츠가 제출되었습니다');";
+		message += "location.href='" + request.getContextPath() + "/compet/competInfo.do?compet_id="
+				+ contentsMap.get("compet_id") + "';";
+		message += ("</script>");
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		ResponseEntity resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 
 	// 컨텐츠 자세히 보기
