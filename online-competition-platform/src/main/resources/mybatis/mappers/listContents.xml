@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.listContents">
+	<resultMap id="listContentsResult" type="listContentsVO">
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "contents_state" column = "contents_state" />
+		<result property = "contents_processing_date" column = "contents_processing_date" />
+		<result property = "contents_reject_reason" column = "contents_reject_reason" />
+		<result property = "contents_view" column = "contents_view" />
+		<result property = "contents_name" column = "contents_name" />
+		<result property = "like" column = "like" />
+		<result property = "cmt" column = "cmt" />
+		<result property = "mem_name" column = "mem_name" />
+		<result property = "cmt1" column = "cmt1" />
+		<result property = "likes1" column = "likes1" />
+	</resultMap>
+	
+	<resultMap id="ContentsViewFileResult" type="contentsFileVO">
+		<result property = "contents_file_id" column = "contents_file_id" />
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "contents_file_type" column = "contents_file_type" />
+		<result property = "contents_file_name" column = "contents_file_name" />
+	</resultMap>
+	
+	<resultMap id="CmtResult" type="cmtVO">
+		<result property = "cmt_id" column = "cmt_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "cmt_text" column = "cmt_text" />
+		<result property = "cmt_date" column = "cmt_date" />
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "mem_name" column = "mem_name" />
+	</resultMap>
+	
+	<select id="selectListContents" resultMap="listContentsResult" parameterType="int">
+	<![CDATA[
+	select contents.contents_id,contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, likes1, cmt1
+from contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
+                                                    from likes, contents
+                                                    where likes.contents_id = contents.contents_id
+                                                    group by contents.contents_id) likes_table,
+                                                    (select contents.contents_id contents_id3, count(*)cmt1
+                                                    from cmt, contents
+                                                    where cmt.contents_id = contents.contents_id
+                                                    group by contents.contents_id) cmt_table
+where contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_id = contents_id3 and contents_state='승인' and contents.compet_id=#{compet_id}
+
+	]]>
+	</select>
+	
+	<update id="updateContentsView" parameterType="int">
+	<![CDATA[
+				update contents
+				set contents_view = contents_view + 1
+				where contents_id = #{contents_id}
+	]]>
+	</update>
+	
+	<select id="selectContentsView" resultMap="listContentsResult" parameterType="int">
+	<![CDATA[
+				select contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
+				from contents, member mem
+				where contents.mem_id = mem.mem_id and contents.contents_id = #{contents_id} 
+	]]>
+	</select>
+	
+	<select id="selectContentsCmt" resultMap = "CmtResult" parameterType="int">
+	<![CDATA[
+				select c.*, mem.mem_name
+				from cmt c, member mem
+				where c.mem_id = mem.mem_id and c.contents_id = #{contents_id}
+				order by c.cmt_date DESC
+				
+	]]>
+	</select>
+	
+	<select id="selectContentsFile" resultMap = "ContentsViewFileResult" parameterType="int">
+	<![CDATA[
+				select *
+				from contents_file
+				where contents_id = #{contents_id}
+	]]>
+	</select>
+</mapper>

@@ -39,7 +39,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 
 	@Autowired
 	private CompetQnaVO competqnaVO;
-	
+
 	@Autowired
 	private MemberVO memberVO;
 	
@@ -49,7 +49,8 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 //문의 페이지	
 	@Override
 	@RequestMapping(value = "/qna/qna.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView Compet_qna_list(@RequestParam("compet_id") int compet_id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView Compet_qna_list(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		List qnaList = competQnaService.qnalistArticles(compet_id);
 		ModelAndView mav = new ModelAndView(viewName);
@@ -82,10 +83,10 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
-			mav.setViewName("redirect:/login.do"); 
+			mav.setViewName("redirect:/login.do");
 		}
 
-		return mav; 
+		return mav;
 	}
 
 //문의 페이지 로그아웃	
@@ -97,7 +98,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		session.removeAttribute("isLogOn");
 		System.out.println("isLogOn2 : " + true);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/main/main.do"); 
+		mav.setViewName("redirect:/main/main.do");
 		return mav;
 	}
 
@@ -157,6 +158,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 			articleMap.put(name, value);
 		}
 
+
 	     HttpSession session = multipartRequest.getSession();
 	 	  String action = (String) session.getAttribute("loginStatus");
 	     if(action == "member" ) {
@@ -175,6 +177,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 	     String compet_id = multipartRequest.getParameter("compet_id");
 	     	
 	     
+
 
 		String message;
 		ResponseEntity resEnt = null;
@@ -199,6 +202,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		return resEnt;
 
 	}
+
 	
 	//문의 답변 글 쓰기 추가	 
 	@Override
@@ -212,6 +216,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 			String value = multipartRequest.getParameter(name);
 			articleMap.put(name, value);
 		}
+
 
 	     HttpSession session = multipartRequest.getSession();			
 	               adminVO = (AdminVO) session.getAttribute("loginInfo");					
@@ -255,7 +260,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		competqnaVO = competQnaService.viewArticle(articleNO);
-		System.out.println("articleNO : "+  articleNO );
+		System.out.println("articleNO : " + articleNO);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("article", competqnaVO);
@@ -263,39 +268,42 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 	}
 
 //문의 글 수정
-	@RequestMapping(value="/qna/modArticle.do" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/qna/modArticle.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception{
+	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
-		Map<String,Object> articleMap = new HashMap<String, Object>();
-		Enumeration enu=multipartRequest.getParameterNames();
-		while(enu.hasMoreElements()){
-			String name=(String)enu.nextElement();
-			String value=multipartRequest.getParameter(name);
-			articleMap.put(name,value);
+		Map<String, Object> articleMap = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			articleMap.put(name, value);
 		}
-		
-		String articleNO=(String)articleMap.get("articleNO");
-		System.out.println( "articleNO 데이터1 :" + articleNO );
+
+		String articleNO = (String) articleMap.get("articleNO");
+		System.out.println("articleNO 데이터1 :" + articleNO);
 		String message;
-		ResponseEntity resEnt=null;
+		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			   competQnaService.modArticle(articleMap);
-			   message = "<script>";
-			   message += " alert('글을 수정했습니다.');";
-			   message += " location.href='"+multipartRequest.getContextPath()+"/qna/qnaDetail.do?articleNO="+articleNO+"';";
-			   message +=" </script>";
-		       resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		}catch(Exception e){
-			  message = "<script>";
-			  message += " alert('오류가 발생했습니다.다시 수정해주세요');";
-			  message += " location.href='"+multipartRequest.getContextPath()+"/qna/qnaDetail.do?articleNO="+articleNO+"';";
-			  message +=" </script>";
-		      resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);		
+			competQnaService.modArticle(articleMap);
+			message = "<script>";
+			message += " alert('글을 수정했습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/qna/qnaDetail.do?articleNO="
+					+ articleNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			message = "<script>";
+			message += " alert('오류가 발생했습니다.다시 수정해주세요');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/qna/qnaDetail.do?articleNO="
+					+ articleNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
-		return  resEnt;
+		return resEnt;
 	}
 
 //문의  글 삭제	
@@ -325,14 +333,13 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		  }catch(Exception e) {
 			  message = "<script>";
 			  message += " alert('작업중 오류가 발생했습니다.다시 시도해 주세요.');";
+
 //			  message += " location.href='"+request.getContextPath()+"/qna/qna.do';";
-			  message +=" </script>";
-			  resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			  e.printStackTrace();
-		  }
-		  return resEnt;
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
 		}
-
-
+		return resEnt;
+	}
 
 }

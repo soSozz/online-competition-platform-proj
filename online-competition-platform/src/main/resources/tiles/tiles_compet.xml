@@ -7,7 +7,7 @@
 	<definition name="/compet/competInfo" extends="baseLayout">
 		<put-attribute name="title" value="대회안내페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competInfo.jsp" />
-	</definition>
+	</definition>	
 	<definition name="/qna/qna" extends="baseLayout">
 		<put-attribute name="title" value="트스테콘 문의페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/qna/qna.jsp" />
@@ -28,5 +28,6 @@
 		<put-attribute name="title" value="트스테콘 대회목록" />
 		<put-attribute name="body" value="/WEB-INF/views/compet/competList.jsp" />
 	</definition>
+
 </tiles-definitions>
 

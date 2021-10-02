@@ -80,12 +80,30 @@
 <!-- 종료되지 않은 대회 -->
 	<select id="selectCompetNames" resultMap="CompetResult" parameterType = "int">
   	<![CDATA[
-		select compet_name
+		select compet_name as compet_name
 		from compet
 		where categ_id = #{categ_id} and compet_terminated = 'N'
    	]]>
 	</select>
 
+<!-- 진행 중인 대회 모두 가져오기 -->
+	<select id="selectAllCompets" resultMap="CompetResult">
+  	<![CDATA[
+  		select *
+  		from compet natural join compet_file
+		where compet_terminated = 'N' and compet_file_name like '%-small%' order by compet_create asc
+   	]]>
+	</select>
+
+<!-- 카테고리별로 진행 중인 대회 가져오기 -->
+	<select id="selectCompetsByCategName" resultMap="CompetResult" parameterType = "String">
+  	<![CDATA[
+  		select *
+  		from compet natural join compet_file
+		where compet_terminated = 'N' and compet_file_name like '%-small%' and categ_id = (select categ_id from category where categ_name = #{categ_name})
+		order by compet_create asc
+   	]]>
+	</select>
 
 	
 <!-- 카테고리별로 진행 중인 대회 3개 가져오기-->
@@ -122,7 +140,7 @@
   	<![CDATA[
 		select compet_name
 		from compet
-		where categ_id = #{categ_id}
+		where categ_id = #{i} and compet_terminated = 'N'
    	]]>
 	</select>
 	
@@ -160,6 +178,7 @@
    	]]>
 	</insert>
 	
+	<!-- 진행 중인 대회 종료 -->
 	<update id="updateCompetTerminated" parameterType="String">
 	<![CDATA[
 		update compet 
@@ -168,11 +187,33 @@
 	]]>
 	</update>
 	
+	<!-- 종료된 대회 삭제하기 -->
 	<delete id="deleteCompet" parameterType = "String">
 	<![CDATA[
 		delete from compet
 		where compet_name = #{compet_name}
 	]]>
 	</delete>
+	
+	<select id="selectCompetListByCategId" resultMap="CompetResult" parameterType="int">
+	<![CDATA[
+		select *
+		from compet
+		where categ_id = #{categ_id}
+	]]>
+	</select>
+	
+	<select id="selectCompetListByTerminated" resultMap="CompetResult" parameterType="String" >
+     <![CDATA[
+        select * from compet where compet_terminated = #{terminated}
+     ]]>
+	</select>
 
+	<select id="selectCompetIdByName" resultType = "int" parameterType="String">
+	<![CDATA[
+				select compet_id
+				from compet
+				where compet_name = #{compet_name}
+	]]>
+	</select>
 </mapper>

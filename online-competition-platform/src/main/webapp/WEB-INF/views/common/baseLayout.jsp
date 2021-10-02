@@ -27,21 +27,124 @@
 
 </head>
 <body>
-	<div id="outer_wrap">
-		<div id="wrap">
-			<header>
-				   <tiles:insertAttribute name="header" />
-			</header>
-			<div class="clear"></div>
-			<article>
-			 	<tiles:insertAttribute name="body" />
-			</article>
-			<div class="clear"></div>
-			<footer>
-        		<tiles:insertAttribute name="footer" />
-        	</footer>
+	<div class="container-fluid" style="width:80%">
+	
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="header" />
+			</div>
 		</div>
-    </div>      
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="body" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<tiles:insertAttribute name="footer" />
+			</div>
+		</div>
+		
+	</div>
+    <!--**********************************
+        Scripts(대회 상세 페이지들)
+    ***********************************-->
+<script>
+	class competDetail extends HTMLElement {
+		constructor() {
+			super();
+			this.containerBodyInner = this.innerHTML;
+			this.innerHTML = "";
+		}
+
+		connectedCallback() {
+			this.render();
+		}
+
+		render() {
+			const container = this.createContainer();
+
+			const containerHeader = document.createElement("div");
+			containerHeader.id = "container-header";
+			const row = this.createRow();
+			const nav = this.createNav();
+			row.querySelector("div.col-lg-12").appendChild(nav);
+			containerHeader.appendChild(row);
+
+			const containerBody = document.createElement("div");
+			containerBody.id = "container-body";
+			containerBody.innerHTML = this.containerBodyInner;
+
+			container.appendChild(containerHeader);
+			container.appendChild(containerBody);
+			this.appendChild(container);
+		}
+
+		createContainer() {
+			const div = document.createElement("div");
+			div.classList.add("container", "justify-content-lg-center");
+			return div;
+		}
+
+		createRow() {
+			const div = document.createElement("div");
+			div.classList.add("row");
+
+			const div2 = document.createElement("div");
+			div2.classList.add("col-lg-12");
+
+			div.appendChild(div2);
+			return div;
+		}
+
+		createNav() {
+			const ul = document.createElement("ul");
+			ul.classList.add("nav", "nav-tabs", "mb-3", "justify-content-lg-center");
+
+			const hrefArr = [
+				"${contextPath}/compet/competInfo.do?compet_id=${compet_id}",
+				"${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}",
+				"${contextPath }/contents/listContents.do?compet_id=${compet_id}",
+				"javascript:submitContents('${loginStatus}');",
+				"${contextPath}/qna/qna.do?compet_id=${compet_id}"
+			];
+			const innerHTMLArr = ["대회안내", "공지사항", "컨텐츠 게시판", "제출", "문의"];
+
+			for (let i = 0; i < hrefArr.length; i++) {
+				const li = document.createElement("li");
+				li.classList.add("nav-item");
+
+				const a = document.createElement("a");
+				a.classList.add("nav-link");
+				a.href = hrefArr[i];
+				a.innerHTML = innerHTMLArr[i];
+
+				li.appendChild(a);
+				ul.appendChild(li);
+			}
+
+			return ul;
+		}
+	}
+
+	window.customElements.define("compet-detail", competDetail);
+</script>
+<script>
+	function submitContents(loginStatus) {
+		if (loginStatus != null && loginStatus != '') {
+			if (loginStatus === 'member') {
+				location.href = "${contextPath}/contents/contentsForm.do?compet_id=${compet_id}&mem_id=" + "${loginInfo.mem_id}";
+			} else {
+				alert("회원만 대회 참여가 가능합니다");
+			}
+		} else {
+			alert("로그인 후 대회 참여가 가능합니다");
+		}
+	
+	}
+</script>
     
         <!--**********************************
         Scripts
@@ -59,6 +162,29 @@
 <script src="${contextPath }/resources/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
 <script src="${contextPath }/resources/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
     
+    <!--**********************************
+        Scripts(contentsForm.jsp)
+    ***********************************-->
+<script src="${contextPath }/resources/plugins/summernote/dist/summernote.min.js"></script>
+<script src="${contextPath }/resources/plugins/summernote/dist/summernote-init.js"></script>
+
+    <!--**********************************
+        Scripts(adminmonitor.jsp)
+    ***********************************-->
+<script src="${contextPath }/resources/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<script src="${contextPath }/resources/plugins/moment/moment.js"></script>
+<script src="${contextPath }/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+<script src="${contextPath }/resources/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="${contextPath }/resources/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+<script src="${contextPath }/resources/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+<script src="${contextPath }/resources/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+<script src="${contextPath }/resources/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+<script src="${contextPath }/resources/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="${contextPath }/resources/js/plugins-init/form-pickers-init.js"></script>
+
       	
+
 </body>      
 </html>

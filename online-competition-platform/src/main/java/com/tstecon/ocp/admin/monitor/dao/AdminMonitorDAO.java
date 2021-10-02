@@ -13,4 +13,5 @@ import com.tstecon.ocp.admin.stat.vo.AdminStatVO;
 public interface AdminMonitorDAO {
 	public List<AdminCmtVO> selectAdminCmtList() throws DataAccessException;
 	public List<AdminMonitorVO> selectAdminMoniterLikeList() throws DataAccessException;
+	public List<AdminMonitorVO> selectAdminMoniterCmtList() throws DataAccessException;
 }
