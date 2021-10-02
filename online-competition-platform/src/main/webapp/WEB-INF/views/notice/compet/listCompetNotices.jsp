@@ -77,7 +77,7 @@ request.setCharacterEncoding("UTF-8");
                         <li class="nav-item"> <a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a> </li>
                     </ul>
                 </div>
-							<div class="container-fluid">
+							<div class="container">
 							<div class="row">
 								<div class="col-sm-12">
 								<div class="card-body">

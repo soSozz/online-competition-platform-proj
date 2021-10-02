@@ -1,6 +1,7 @@
 package com.tstecon.ocp.admin.monitor.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,21 +17,7 @@ public class AdminMonitorServiceImpl implements AdminMonitorService {
 	@Autowired
 	private AdminMonitorDAO adminMonitorDAO;
 	
-	@Override
-	public List<AdminMonitorVO> adminLikeList() throws DataAccessException{
-		List<AdminMonitorVO> adminLikeList = adminMonitorDAO.selectAdminMoniterLikeList();
-		
-		
-		return adminLikeList;
-}
 	
-	@Override
-	public List<AdminMonitorVO> adminCmtsList() throws DataAccessException{
-		List<AdminMonitorVO> adminCmtsList = adminMonitorDAO.selectAdminMoniterCmtList();
-		
-		
-		return adminCmtsList;
-}
 
 	@Override
 	public List<AdminCmtVO> adminCmtList() throws DataAccessException{
@@ -39,4 +26,24 @@ public class AdminMonitorServiceImpl implements AdminMonitorService {
 		
 		return adminCmtList;
 }
+
+
+
+	@Override
+	public List<AdminMonitorVO> adminLikeList(Map dateMap) throws DataAccessException {
+List<AdminMonitorVO> adminLikeList = adminMonitorDAO.selectAdminMoniterLikeList(dateMap);
+		
+		
+		return adminLikeList;
+	}
+
+
+
+	@Override
+	public List<AdminMonitorVO> adminCmtsList(Map dateMaps) throws DataAccessException {
+List<AdminMonitorVO> adminCmtsList = adminMonitorDAO.selectAdminMoniterCmtList(dateMaps);
+		
+		
+		return adminCmtsList ;
+	}
 }
