@@ -20,6 +20,17 @@ request.setCharacterEncoding("UTF-8");
 	.heart:hover {
 	color:red;
 	}
+	
+	table {
+    width: 100%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #444444;
+    padding: 10px;
+  }
+  
 </style>
 
 <div id="main-wrapper" style="width:88%; margin: 0 auto;">
@@ -28,9 +39,9 @@ request.setCharacterEncoding("UTF-8");
 			<div class="col-12">
 				<div class="card" style="padding:10px;">
 					<div class="card-header bg-white">
-						<h4 class="card-title" style="font-size: 25px">
+						<h3 class="card-title" style="font-size: 25px">
 							<strong>${contentsView[0].contents_name}</strong>
-						</h4>
+						</h3>
 						<h5>
 							<span class=" text-muted">제출자 : </span>${contentsView[0].mem_name}
 						</h5>
@@ -57,22 +68,27 @@ request.setCharacterEncoding("UTF-8");
                     <div class="card-body">
                             <div class="message_box col-lg-12">
                                 <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글달기</button> 
-                                <textarea class="form-control float-right col-lg-10" name="textarea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요."></textarea>
+                                <textarea class="form-control float-right col-lg-10" name="textarea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_articleForm('${loginStatus}')"></textarea>
                             </div>          
                     </div>
-                                <div class="table-responsive" style="padding:0px 50px;">
-                                    <table class="table  verticle-middle">
+                    <br /><br /><br />
+                    <div class="card">
+                    <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table verticle-middle" >
                                         <tbody>
                                         <c:forEach var="cmtList" items="${contentsCmt}">
                                             <tr>
-                                                <td class="memName">${cmtList.mem_name}</td>
-                                                <td class="cmtText">${cmtList.cmt_text}</td>
-                                                <td class="cmtDelete"><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td class="memName" width="30px">${cmtList.mem_name}</td>
+                                                <td class="cmtText" width="150px">${cmtList.cmt_text}</td>
+                                                <td class="cmtDelete" width="10px"><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
                                     </table>
+                                </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -87,4 +103,13 @@ request.setCharacterEncoding("UTF-8");
 				const cmt = e.target.parentNode.querySelector("textarea").value
 				console.log(cmt);
 			}
+			
+			function fn_articleForm(loginStatus){
+				
+				  if (loginStatus == "member" || loginStatus == "admin"){
+				    location.href= "${contextPath}/qna/qnaForm.do?compet_id=${compet_id}";
+				  } else {
+				    alert("로그인 후 글쓰기가 가능합니다.");
+				  }
+				}
 		</script>

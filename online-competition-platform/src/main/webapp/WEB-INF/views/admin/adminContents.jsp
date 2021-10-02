@@ -100,38 +100,6 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 	
-<!-- 컨텐츠 뷰 modal -->
-<!-- "<a href='#' data-toggle='modal' data-target='#viewContents'>"+ 
-									contentsList[i].contents_name + "</a>" -->
-<%-- <div class="modal fade none-border" id="viewContents"
-	style="display: none;" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">
-					<strong>컨텐츠 자세히 보기</strong>
-				</h4>
-			</div>
-			<div id="modal-body" class="modal-body">
-				<form action="${contextPath }/admin/adminApprContents.do" method="get">
-					<div class="row">
-							<label class="control-label">카테고리명</label> 
-							<input
-								class="form-control form-white" placeholder="카테고리명을 입력해주세요."
-								type="text" name="categ_name">
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default waves-effect"
-							data-dismiss="modal">닫기</button>
-						<button type="submit" 
-							class="btn btn-danger waves-effect waves-light save-category" >추가하기</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div> --%>
 
 	<script>
 function changeList(e) {
