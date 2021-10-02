@@ -8,33 +8,31 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>  
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-	<div class="container p-5 my-5 border">
-  		<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner1.jpg&banner_file_type=img&banner_id=1" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-
+<div class="container">
+		
+	<div class="row">
+		<p class="bold" style="font-size: 25px; color: black;">배너 관리</p>
+		<hr class="w-100" />
 	</div>
+	<c:forEach var="item" items="${bannerFileList }">
+		<div class="row">
+				<div class="card mb-3 col-lg-8">
+					<div class="row g-0">
+						<div class="col-lg-6 p-0">
+							<img src="${contextPath }/bannerFile_download.do?banner_file_name=${item.banner_file_name }&banner_file_type=${item.banner_file_type }&banner_id=${item.banner_id }" class="img-fluid h-100 p-1" alt="ss">
+						</div>
+						<div class="col-lg-6">
+							<div class="card-body">
+								<h5 class="card-title">우드테라피</h5>
+								<p class="card-text">광고 기간</p>
+								<p class="card-text"><small class="text-muted">2021.09.10. ~ 2021.10.10.</small></p>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</c:forEach>
+</div>
 
-	<div class="container p-5 my-5 bg-dark text-white">
-  		<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner2.jpg&banner_file_type=img&banner_id=2" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-  		
-	</div>
 
-	<div class="container p-5 my-5 bg-primary text-white">
-  		<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner3.png&banner_file_type=img&banner_id=3" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-  		
-	</div>
-
-
-
-	<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner1.jpg&banner_file_type=img&banner_id=1" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-	<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner2.jpg&banner_file_type=img&banner_id=2" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-	<img src="${contextPath }/bannerFile_download.do?banner_file_name=banner3.png&banner_file_type=img&banner_id=3" alt="ss" align="middle" style="margin-left: auto; margin-right: auto; display: block;">
-</body>
-</html>
+	
