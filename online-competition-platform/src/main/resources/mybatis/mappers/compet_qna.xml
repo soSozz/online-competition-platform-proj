@@ -45,13 +45,6 @@
         SELECT nvl(max(compet_qna_id), 0) + 1 from compet_qna
      ]]>
 </select>
-
- <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
-	<![CDATA[
-		select * from compet_qna	
-		where id=#{id} and pwd=#{pwd}		
-	]]>
-  </select>
   
   <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
     <![CDATA[

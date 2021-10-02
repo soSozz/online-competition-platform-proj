@@ -9,8 +9,6 @@ public interface CompetQnaService {
 
 //문의 	
 	public List<CompetQnaVO> qnalistArticles(int compet_id) throws Exception;
-//문의 로그인
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception;
 //문의 글 쓰기 추가	 
 	public int addNewArticle(Map articleMap) throws Exception;
 //문의 상세글	

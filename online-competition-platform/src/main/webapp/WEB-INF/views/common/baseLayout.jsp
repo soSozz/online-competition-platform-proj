@@ -133,9 +133,9 @@
 </script>
 <script>
 	function submitContents(loginStatus) {
-		if (loginStatus != null && loginStatus != '') {
+		if (loginStatus != null && loginStatus != "") {
 			if (loginStatus === 'member') {
-				location.href = "${contextPath}/contents/contentsForm.do?compet_id=${compet_id}&mem_id=" + "${loginInfo.mem_id}";
+				location.href = "${contextPath}/contents/contentsForm.do?compet_id=${compet_id}";
 			} else {
 				alert("회원만 대회 참여가 가능합니다");
 			}
@@ -161,6 +161,11 @@
 <script src="${contextPath }/resources/plugins/tables/js/jquery.dataTables.min.js"></script>
 <script src="${contextPath }/resources/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
 <script src="${contextPath }/resources/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+ <script src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
+<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
+<script src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
     
     <!--**********************************
         Scripts(contentsForm.jsp)
@@ -184,7 +189,6 @@
 <script src="${contextPath }/resources/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="${contextPath }/resources/js/plugins-init/form-pickers-init.js"></script>
 
-      	
 
 </body>      
 </html>

@@ -60,47 +60,6 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 
 	}
 
-//문의 페이지 로그인
-	@Override
-	@RequestMapping(value = "/qna/login.do", method = RequestMethod.POST)
-	public ModelAndView Compet_qna_login(@ModelAttribute("member") CompetQnaVO member, RedirectAttributes rAttr,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		competqnaVO = competQnaService.login(member);
-		if (competqnaVO != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", competqnaVO);
-			session.setAttribute("isLogOn", true);
-			System.out.println("isLogOn : " + true);
-			String action = (String) session.getAttribute("action");
-			session.removeAttribute("action");
-
-			if (action != null) {
-				mav.setViewName("redirect:" + action); // 뷰 이름
-			} else {
-				mav.setViewName("redirect:/qna/qna.do");
-			}
-
-		} else {
-			rAttr.addAttribute("result", "loginFailed");
-			mav.setViewName("redirect:/login.do");
-		}
-
-		return mav;
-	}
-
-//문의 페이지 로그아웃	
-	@Override
-	@RequestMapping(value = "/qna/logout.do", method = RequestMethod.GET)
-	public ModelAndView Compet_qna_logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		session.removeAttribute("member");
-		session.removeAttribute("isLogOn");
-		System.out.println("isLogOn2 : " + true);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/main/main.do");
-		return mav;
-	}
 
 //문의 페이지 폼 이동
 	@RequestMapping(value = "/qna/qnaForm.do", method = RequestMethod.GET)

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,7 @@ import com.tstecon.ocp.contents.service.ContentsService;
 import com.tstecon.ocp.contents.vo.ContentsFileVO;
 import com.tstecon.ocp.contents.vo.ContentsVO;
 import com.tstecon.ocp.contents.vo.ListContentsVO;
+import com.tstecon.ocp.member.vo.MemberVO;
 
 @Controller("contentsController")
 public class ContentsControllerImpl implements ContentsController {
@@ -46,12 +48,14 @@ public class ContentsControllerImpl implements ContentsController {
 
 	@Override
 	@RequestMapping(value = { "/contents/contentsForm.do" }, method = { RequestMethod.GET })
-	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, @RequestParam("mem_id") int mem_id,
+	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id,
 			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
-		mav.addObject("mem_id", mem_id);
+		
+		HttpSession session = request.getSession();
+		
+		mav.addObject("mem_id", ((MemberVO)session.getAttribute("loginInfo")).getMem_id());
 		mav.addObject("compet_id", compet_id);
 		return mav;
 	}

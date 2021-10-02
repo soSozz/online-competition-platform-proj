@@ -23,11 +23,6 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		List<CompetQnaVO> qnaList = competQnaDAO.selectAllQnaList(compet_id);
 		return qnaList;
 	}
-//로그인
-	@Override
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		return competQnaDAO.quaLogin(competqnaVO);
-	}
 //글 쓰기 추가
 	@Override
 	public int addNewArticle(Map articleMap) throws Exception {
