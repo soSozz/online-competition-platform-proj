@@ -60,7 +60,6 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 
 	}
 
-
 //문의 페이지 폼 이동
 	@RequestMapping(value = "/qna/qnaForm.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
@@ -72,7 +71,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		mav.setViewName(viewName);
 		
 		
-		String compet_id = (String) request.getParameter("compet_id");
+		String compet_id = request.getParameter("compet_id");
 		System.out.println("compet_id 111: " + compet_id );
 		mav.addObject("compet_id", compet_id);
 		

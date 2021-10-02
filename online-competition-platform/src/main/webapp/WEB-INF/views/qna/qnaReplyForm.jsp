@@ -28,12 +28,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           method="post"   
           action="${contextPath}/qna/replyAddNewArticle.do?compet_id=${compet_id}"
           enctype="multipart/form-data"
-          action="#" 
           style="width: 50%; position: relative; left: 23%; margin: 40px;"
           
           >
             <div class="form-group" >
-                <input hidden class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
+                <input type="text" class="form-control bg-transparent" name="compet_id" value="${compet_id}" readonly>
             </div>
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" value="${loginInfo.admin_id}" readonly placeholder=" 작성자">

@@ -27,8 +27,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           name="articleForm" 
           method="post"   
           action="${contextPath}/qna/addNewArticle.do?compet_id=${compet_id}"  
-          enctype="multipart/form-data"
-          action="#" 
+          enctype="multipart/form-data" 
           style="width: 50%; position: relative; left: 23%; margin: 40px;"
           
           >
