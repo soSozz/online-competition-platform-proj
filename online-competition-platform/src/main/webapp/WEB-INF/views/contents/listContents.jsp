@@ -23,24 +23,32 @@ request.setCharacterEncoding("UTF-8");
 											<th>닉네임</th>
 											<th>작성일</th>
 											<th>조회수</th>
-											<th>좋아요</th>
-											<th>댓글</th>
 										</tr>
 									</thead>
+									<c:choose>
+							<c:when test="${listContents == null} ">
+								<tr height="10">
+									<td colspan="5">
+										<p align="center">
+											<b><span style="font-size: 9pt">등록된 댓글이 없습니다.</span></b>
+										</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
 									<tbody>
-										<c:forEach var="listContents" items="${listContents}"
-											varStatus="status">
+										<c:forEach var="listContents" items="${listContents}" varStatus="status">
 											<tr>
 												<td>${status.count}</td>
 												<td><a href="${contextPath}/contents/contentsView.do?contents_id=${listContents.contents_id}">${listContents.contents_name}</a></td>
 												<td>${listContents.mem_name}</td>
 												<td>${listContents.contents_processing_date}</td>
 												<td>${listContents.contents_view}</td>
-												<td>${listContents.likes1}</td>
-												<td>${listContents.cmt1}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
+									</c:otherwise>
+									</c:choose>
 									<tfoot>
 
 									</tfoot>

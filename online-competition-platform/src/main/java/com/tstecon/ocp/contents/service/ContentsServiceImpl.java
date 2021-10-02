@@ -31,6 +31,7 @@ public class ContentsServiceImpl implements ContentsService {
 	@Override
 	public List<ListContentsVO> listContents(int compet_id) throws DataAccessException {
 		List<ListContentsVO> listContents = contentsDAO.listContents(compet_id);
+		System.out.println("¸®½ºÆ® : " + listContents);
 		return listContents;
 	}
 	
@@ -70,6 +71,18 @@ public class ContentsServiceImpl implements ContentsService {
 	@Override
 	public void addContentsIdToFiles(List<String> contents_file_list, int contents_id) throws DataAccessException {
 		contentsDAO.updateContentsFiles(contents_file_list, contents_id);
+	}
+	// ÄÁÅÙÃ÷ ´ñ±Û Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> listContentsCmt(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsCmtList = contentsDAO.selectContentsCmtList(compet_id);
+		return contentsCmtList;
+	}
+	// ÄÁÅÙÃ÷ ÁÁ¾Æ¿ä Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> listContentsLikes(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsLikesList = contentsDAO.selectContentsLikesList(compet_id);
+		return contentsLikesList;
 	}
 
 }
