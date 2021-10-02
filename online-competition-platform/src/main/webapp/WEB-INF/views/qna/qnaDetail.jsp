@@ -71,14 +71,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 								<c:if test="${loginInfo.mem_id ==  article.mem_id}">
 									<button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
 									<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
-									<button type="button" class="btn btn-outline-secondary" >목록보기</button>
+									<button type="button"  id="toList" class="btn btn-outline-secondary" >목록보기</button>
 								</c:if>   
 							</c:when>
 							<c:when  test="${loginStatus == 'admin' }"> 
 							    <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>                    
 								<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>                          
 								<button type="button" class="btn btn-outline-secondary" onClick="fn_reply_form( ${article.compet_qna_id},${article.compet_id} )">답글쓰기</button>                                       
-								<button type="button" class="btn btn-outline-secondary">목록보기</button>
+								<button type="button" id="toList"class="btn btn-outline-secondary">목록보기</button>
 							</c:when>
 						</c:choose>
 	                  </c:when>  
@@ -152,7 +152,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		     competIdInput.setAttribute("name","compet_id");
 		     competIdInput.setAttribute("value", compet_id);
 		     
-		     form.appendChild(competIdInput);
+		     form.appendChild(parentNOInput);
 		     form.appendChild(parentNOInput);
 		     document.body.appendChild(form);
 			 form.submit();

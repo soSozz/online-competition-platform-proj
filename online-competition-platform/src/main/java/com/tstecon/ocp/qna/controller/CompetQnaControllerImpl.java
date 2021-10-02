@@ -102,15 +102,11 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 	}
 
 //문의 페이지 폼 이동
-	@RequestMapping(value = "/qna/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/qna/qnaForm.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
-			@RequestParam(value = "parentNO", required = false) int parentNO, 
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("parentNO 111 :" + parentNO);
-		HttpSession session = request.getSession();
-		session.setAttribute("parentNO", parentNO);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
 		mav.setViewName(viewName);
@@ -122,6 +118,29 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		
 		return mav;
 	}
+	
+	//문의 답글 페이지 폼 이동
+		@RequestMapping(value = "/qna/qnaReplyForm.do", method = RequestMethod.GET)
+		private ModelAndView replyform(@RequestParam(value = "result", required = false) String result,
+				@RequestParam(value = "parentNO", required = false) int parentNO, 
+				HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			String viewName = (String) request.getAttribute("viewName");
+			System.out.println("parentNO 111 :" + parentNO);
+			HttpSession session = request.getSession();
+			session.setAttribute("parentNO", parentNO);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("result", result);
+			mav.setViewName(viewName);
+			
+			
+			String compet_id = (String) request.getParameter("compet_id");
+			System.out.println("compet_id 111: " + compet_id );
+			mav.addObject("compet_id", compet_id);
+			
+			return mav;
+		}
+
 
 //문의 글쓰기 창
 	@Override
