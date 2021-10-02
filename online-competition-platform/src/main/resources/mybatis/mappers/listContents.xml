@@ -62,7 +62,7 @@ where contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_i
 	
 	<select id="selectContentsView" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
-				select contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
+				select contents.contents_id, contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
 				from contents, member mem
 				where contents.mem_id = mem.mem_id and contents.contents_id = #{contents_id} 
 	]]>

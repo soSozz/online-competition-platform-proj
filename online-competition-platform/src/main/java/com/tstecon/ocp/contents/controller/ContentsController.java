@@ -29,4 +29,7 @@ public interface ContentsController {
 	// ÄÁÅÙÃ÷ ÀÚ¼¼È÷ º¸±â
 	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
+	
+//	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, HttpServletRequest request,
+//			HttpServletResponse reponse) throws Exception;
 }
