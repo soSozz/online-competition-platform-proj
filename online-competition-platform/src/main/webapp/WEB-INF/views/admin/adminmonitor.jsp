@@ -109,14 +109,12 @@ request.setCharacterEncoding("UTF-8");
     var button = document.getElementById("cmtview");
     button.addEventListener("click", function() {
     	const date = document.getElementById("cmt_date").value;
-    	
-    	var start_date = 
-    	var end_date = 
+    
     		
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectCmtgraph.do?start_date=" + start_date + "&end_date=" + end_date,
+            url: "/ocp/admin/monitor/selectCmtgraph.do?date=" +  date,
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];
@@ -161,10 +159,11 @@ request.setCharacterEncoding("UTF-8");
 <script>
     var button = document.getElementById("view");
     button.addEventListener("click", function() {
+    	const date = document.getElementById("likes_date").value;
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectLikegraph.do",
+            url: "/ocp/admin/monitor/selectLikegraph.do?date=" + date, 
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];

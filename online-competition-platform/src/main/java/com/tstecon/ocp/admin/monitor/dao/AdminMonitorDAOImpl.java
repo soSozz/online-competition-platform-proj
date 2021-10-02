@@ -3,6 +3,7 @@ package com.tstecon.ocp.admin.monitor.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,14 @@ public class AdminMonitorDAOImpl implements AdminMonitorDAO{
 	}
 	
 	@Override
-	public List<AdminMonitorVO> selectAdminMoniterLikeList() throws DataAccessException {
-		List<AdminMonitorVO> adminLikeList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterLikeList");
+	public List<AdminMonitorVO> selectAdminMoniterLikeList(Map dateMap) throws DataAccessException {
+		List<AdminMonitorVO> adminLikeList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterLikeList", dateMap);
 		return adminLikeList;
 	}
 	
 	@Override
-	public List<AdminMonitorVO> selectAdminMoniterCmtList() throws DataAccessException {
-		List<AdminMonitorVO> adminCmtList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterCmtList");
+	public List<AdminMonitorVO> selectAdminMoniterCmtList(Map dateMaps) throws DataAccessException {
+		List<AdminMonitorVO> adminCmtList = (ArrayList)sqlSession.selectList("mappers.admin.monitor.selectAdminMoniterCmtList", dateMaps);
 		return adminCmtList;
 	}
 	
