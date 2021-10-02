@@ -22,7 +22,7 @@ request.setCharacterEncoding("UTF-8");
 	}
 </style>
 
-<div id="main-wrapper" style="width:70%; margin: 0 auto;">
+<div id="main-wrapper" style="width:88%; margin: 0 auto;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -55,23 +55,22 @@ request.setCharacterEncoding("UTF-8");
                    <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
                 </div>              
                     <div class="card-body">
-                        <form action="#" class="form-profile">
                             <div class="message_box col-lg-12">
-                                <button class="btn btn-outline-success float-right col-lg-1" style="margin:15px;">댓글</button> 
+                                <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글달기</button> 
                                 <textarea class="form-control float-right col-lg-10" name="textarea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요."></textarea>
                             </div>          
-                        </form>
                     </div>
                                 <div class="table-responsive" style="padding:0px 50px;">
                                     <table class="table  verticle-middle">
                                         <tbody>
+                                        <c:forEach var="cmtList" items="${contentsCmt}">
                                             <tr>
-                                                <td>Air Conditioner</td>
-                                                <td>Apr 20,2018</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td class="memName">${cmtList.mem_name}</td>
+                                                <td class="cmtText">${cmtList.cmt_text}</td>
+                                                <td class="cmtDelete"><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 </td>
                                             </tr>
-                                           
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -82,3 +81,10 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 			</div>
 		</div>
+
+		<script>
+			function fn_addCmt(e){
+				const cmt = e.target.parentNode.querySelector("textarea").value
+				console.log(cmt);
+			}
+		</script>
