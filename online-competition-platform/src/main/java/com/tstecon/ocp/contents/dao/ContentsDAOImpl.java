@@ -38,7 +38,7 @@ public class ContentsDAOImpl implements ContentsDAO {
 			sqlSession.insert("mappers.contents.insertNewContentsFile", contentsFileVO);
 		}
 	}
-
+	// ÄÁÅÙÃ÷ ¸®½ºÆ® »ı¼º
 	@Override
 	public List<ListContentsVO> listContents(int compet_id) throws DataAccessException {
 		List<ListContentsVO> listContents = sqlSession.selectList("mappers.listContents.selectListContents", compet_id);
@@ -91,6 +91,18 @@ public class ContentsDAOImpl implements ContentsDAO {
 			fileMap.put("contents_file_id", Integer.parseInt(contents_file_id));
 			sqlSession.update("mappers.contents.updateContentsFiles", fileMap);
 		}
+	}
+	// ÄÁÅÙÃ÷ ´ñ±Û Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> selectContentsCmtList(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsCmtList = sqlSession.selectList("selectListContentsCmt",compet_id);
+		return contentsCmtList;
+	}
+	// ÄÁÅÙÃ÷ ÁÁ¾Æ¿ä Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> selectContentsLikesList(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsLikesList = sqlSession.selectList("selectListContentsLikes",compet_id);
+		return contentsLikesList;
 	}
 
 }

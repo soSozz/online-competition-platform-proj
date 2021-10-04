@@ -27,4 +27,8 @@ public interface ContentsService {
 	public List<ListContentsVO> selectContentsCmt(int contents_id) throws DataAccessException;
 
 	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException;
+	// ÄÁÅÙÃ÷ ´ñ±Û Ä«¿îÆ®
+	public List<ListContentsVO> listContentsCmt(int compet_id) throws DataAccessException;
+	// ÄÁÅÙÃ÷ ÁÁ¾Æ¿ä Ä«¿îÆ®
+	public List<ListContentsVO> listContentsLikes(int compet_id) throws DataAccessException;
 }

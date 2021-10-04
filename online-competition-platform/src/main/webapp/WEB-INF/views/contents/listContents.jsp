@@ -8,22 +8,6 @@ request.setCharacterEncoding("UTF-8");
 %>
 
 
-<!-- 	<div id="main-wrapper"> -->
-<!-- 		<div class="container-fluid"> -->
-<%-- 			<%-- <div class="col-lg-12"> --%>
-<%-- 				<ul class="nav nav-tabs mb-3 justify-content-lg-center"> --%>
-<%-- 					<li class="nav-item"><a class="nav-link" --%>
-<%-- 						href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a></li> --%>
-<%-- 					<li class="nav-item"><a class="nav-link" --%>
-<%-- 						href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}">공지사항</a></li> --%>
-<%-- 					<li class="nav-item"><a class="nav-link" --%>
-<%-- 						href="${contextPath }/contents/listContents.do?compet_id=${compet_id}">컨텐츠 게시판</a></li> --%>
-<%-- 					<li class="nav-item"><a class="nav-link" --%>
-<%-- 						href="javascript:submitContents('${loginStatus }', '${loginInfo }');">제출</a></li> --%>
-<%-- 					<li class="nav-item"><a class="nav-link" --%>
-<%-- 						href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a></li> --%>
-<%-- 				</ul> --%>
-<%-- 			</div> --%> 
 <compet-detail>
 			<div class="row">
 				<div class="col-12">
@@ -39,24 +23,32 @@ request.setCharacterEncoding("UTF-8");
 											<th>닉네임</th>
 											<th>작성일</th>
 											<th>조회수</th>
-											<th>좋아요</th>
-											<th>댓글</th>
 										</tr>
 									</thead>
+									<c:choose>
+							<c:when test="${listContents == null} ">
+								<tr height="10">
+									<td colspan="5">
+										<p align="center">
+											<b><span style="font-size: 9pt">등록된 댓글이 없습니다.</span></b>
+										</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
 									<tbody>
-										<c:forEach var="listContents" items="${listContents}"
-											varStatus="status">
+										<c:forEach var="listContents" items="${listContents}" varStatus="status">
 											<tr>
 												<td>${status.count}</td>
 												<td><a href="${contextPath}/contents/contentsView.do?contents_id=${listContents.contents_id}">${listContents.contents_name}</a></td>
 												<td>${listContents.mem_name}</td>
 												<td>${listContents.contents_processing_date}</td>
 												<td>${listContents.contents_view}</td>
-												<td>${listContents.likes1}</td>
-												<td>${listContents.cmt1}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
+									</c:otherwise>
+									</c:choose>
 									<tfoot>
 
 									</tfoot>
@@ -67,5 +59,3 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 			</div>
 			</compet-detail>
-<!-- 		</div> -->
-<!-- 	</div> -->

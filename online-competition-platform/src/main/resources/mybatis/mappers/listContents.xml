@@ -36,19 +36,31 @@
 		<result property = "mem_name" column = "mem_name" />
 	</resultMap>
 	
+	<!-- 댓글, 좋아요 카운트 뺌 -->
 	<select id="selectListContents" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
-	select contents.contents_id,contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, likes1, cmt1
-from contents, member mem, (select contents.contents_id contents_id2, count(*) likes1
-                                                    from likes, contents
-                                                    where likes.contents_id = contents.contents_id
-                                                    group by contents.contents_id) likes_table,
-                                                    (select contents.contents_id contents_id3, count(*)cmt1
-                                                    from cmt, contents
-                                                    where cmt.contents_id = contents.contents_id
-                                                    group by contents.contents_id) cmt_table
-where contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_id = contents_id3 and contents_state='승인' and contents.compet_id=#{compet_id}
+				select contents.contents_id,contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view
+				from contents, member mem
+				where contents.mem_id = mem.mem_id and contents.contents_state like '%승인%' and contents.compet_id=#{compet_id}
 
+	]]>
+	</select>
+	
+	<!-- 댓글 카운트 -->
+	<select id="selectListContentsCmt" resultMap="listContentsResult" parameterType="int">
+	<![CDATA[
+				select count(cmt_id) cmt1
+				from cmt, contents
+				where contents.contents_id = cmt.contents_id and contents.contents_state like '%승인%' and contents.compet_id=#{compet_id}
+	]]>
+	</select>
+	
+	<!-- 좋아요 카운트 -->
+	<select id="selectListContentsLikes" resultMap="listContentsResult" parameterType="int">
+	<![CDATA[
+				select count(likes_id) likes1
+				from likes, contents
+				where  contents.contents_id = likes.contents_id and contents.contents_state like '%승인%' and contents.compet_id=#{compet_id}
 	]]>
 	</select>
 	
@@ -62,7 +74,7 @@ where contents.mem_id = mem.mem_id and contents_id = contents_id2 and contents_i
 	
 	<select id="selectContentsView" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
-				select contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
+				select contents.contents_id, contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
 				from contents, member mem
 				where contents.mem_id = mem.mem_id and contents.contents_id = #{contents_id} 
 	]]>
