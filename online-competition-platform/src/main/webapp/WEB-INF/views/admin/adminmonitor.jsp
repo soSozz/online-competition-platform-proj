@@ -5,7 +5,6 @@
 <link href="${contextPath}/resources/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <%
 request.setCharacterEncoding("UTF-8");
 %>
