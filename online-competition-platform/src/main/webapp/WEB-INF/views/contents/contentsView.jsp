@@ -32,7 +32,7 @@ request.setCharacterEncoding("UTF-8");
   }
   
 </style>
-
+<body>
 <div id="main-wrapper" style="width:88%; margin: 0 auto;">
 	<div class="container-fluid">
 		<div class="row">
@@ -65,17 +65,25 @@ request.setCharacterEncoding("UTF-8");
                 <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
                    <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
                 </div>
-                           
+                </div>           
                     <div class="card-body">
                             <div class="message_box col-lg-12">
-                                <input type="submit" class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)"> 
-                                <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_articleForm('${loginStatus}')"></textarea>
+                                <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글 달기</button> 
+                                <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_cmtForm(${loginStatus})"></textarea>
+                                <input type="hidden" value="${contentsView[0].contents_id}" >
                             </div>          
                     </div>
                     
                     <br /><br /><br />
-                    <c:choose>
-							<c:when test="${contentsCmt==null} ">
+                    
+                    <div class="card">
+                    <div class="card-body">
+                    
+                                <div class="table-responsive">
+                                
+                                    <table class="table verticle-middle" >
+                                     <c:choose>
+							<c:when test="${empty contentsCmt[0].cmt_id} ">
 								<tr height="10">
 									<td colspan="5">
 										<p align="center">
@@ -85,49 +93,41 @@ request.setCharacterEncoding("UTF-8");
 								</tr>
 							</c:when>
 							<c:otherwise>
-                    <div class="card">
-                    <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table verticle-middle" >
-                                        <tbody>
                                         <c:forEach var="cmtList" items="${contentsCmt}">
                                             <tr>
                                                 <td class="memName" width="30px">${cmtList.mem_name}</td>
-                                                <td class="cmtText" width="150px">${cmtList.cmt_text}</td>
-                                                <td class="cmtDelete" width="10px"><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
+                                                <td class="cmtText" width="150px">${cmtList.cmt_text}<span><i class="fa fa-close color-danger float-right"></i></span></td>
                                             </tr>
                                         </c:forEach>
-                                        </tbody>
+                                        </c:otherwise>
+                                </c:choose>
                                     </table>
                                 </div>
                                 </div>
                                 </div>
-                                </c:otherwise>
-                                </c:choose>
+                                
                             </div>
                         </div>
                       </div>
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<script>
 			function fn_addCmt(e){
 				const cmt_text = e.target.parentNode.querySelector("textarea").value
-				const mem_id = ${loginInfo.mem_id};
-				
+				const contents_id = e.target.parentNode.querySelector("input").value
 				console.log(cmt_text);
-				console.log(mem_id);
+				location.href= "${contextPath}/contents/addCmt.do?cmt_text="+cmt_text+"&contents_id="+contents_id;
 			}
 			
-			function fn_articleForm(loginStatus){
-				  if (loginStatus == "member" || loginStatus == "admin"){
-				    
+			function fn_cmtForm(e){
+				  if ("${sessionScope.loginStatus eq null}"){
+					  alert("로그인 후 글쓰기가 가능합니다.");
+					    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
 				  } else {
-				    alert("로그인 후 글쓰기가 가능합니다.");
-				    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
+				   
 				  }
 				}
 		</script>
+</body>

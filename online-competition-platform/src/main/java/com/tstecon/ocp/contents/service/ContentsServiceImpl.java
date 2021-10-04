@@ -1,6 +1,7 @@
 package com.tstecon.ocp.contents.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -83,6 +84,19 @@ public class ContentsServiceImpl implements ContentsService {
 	public List<ListContentsVO> listContentsLikes(int compet_id) throws DataAccessException {
 		List<ListContentsVO> contentsLikesList = contentsDAO.selectContentsLikesList(compet_id);
 		return contentsLikesList;
+	}
+	// ÄÁÅÙÃ÷ ´ñ±Û Ãß°¡
+	@Override
+	public void insertCmtAdd(Map map) throws DataAccessException {
+		contentsDAO.insertCmtAdd(map);
+		return;
+		
+	}
+
+	@Override
+	public int selectCmtPlusId() throws DataAccessException {
+		int cmtId = contentsDAO.selectCmtPlusId();
+		return cmtId;
 	}
 
 }
