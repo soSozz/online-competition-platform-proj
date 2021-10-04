@@ -66,4 +66,9 @@ public class MainController extends BaseController {
 	public String mainOnlySlash(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return "redirect:/main/main.do";
 	}
+
+	@RequestMapping(value = { "/main/siteInfo.do" }, method = { RequestMethod.GET })
+	public String siteInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return (String) request.getAttribute("viewName");
+	}
 }

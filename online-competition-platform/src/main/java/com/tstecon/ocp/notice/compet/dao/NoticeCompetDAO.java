@@ -11,6 +11,6 @@ import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
 public interface NoticeCompetDAO {
 	public List<NoticeCompetVO> selectNoticesCompetList(int compet_id) throws DataAccessException;
 	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException;
-
+	public NoticeCompetVO selectCompetNoticeDetail(int compet_notice_id) throws DataAccessException;
 }
 

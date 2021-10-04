@@ -208,7 +208,7 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
-
+	
 	@Override
 	@RequestMapping(value = { "/contents/addCmt.do" }, method = { RequestMethod.GET })
 	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
@@ -232,6 +232,9 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.setViewName("redirect:/contents/contentsView.do?contents_id="+contents_id);
 		return mav;
 	}
+
+	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ ≈¨∏Ø
+
 	
 	
 

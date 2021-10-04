@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>	
-	<definition name="/admin/monitor/adminMonitor" extends="baseLayout">
+	<definition name="/admin/monitor/adminMonitor" extends="adminLayout">
 		<put-attribute name="title" value="통계" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminmonitor.jsp" />
 	</definition>

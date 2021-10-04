@@ -53,31 +53,30 @@ public class AdminMonitorControllerImpl implements AdminMonitorController {
 		StringTokenizer dates = new StringTokenizer(date, "-");
 		String start_date;
 		String end_date;
-		
+
 		String date1 = dates.nextToken().trim();
 		String date2 = dates.nextToken().trim();
 
 //		end_date = date2.trim();
 
 		StringTokenizer st1 = new StringTokenizer(date1, "/");
-        String month = st1.nextToken();
-        String day = st1.nextToken();
-        String year = st1.nextToken();
+		String month = st1.nextToken();
+		String day = st1.nextToken();
+		String year = st1.nextToken();
 
-		start_date = year + "-" + month + "-" + day ; 
-		
+		start_date = year + "-" + month + "-" + day;
+
 		StringTokenizer st2 = new StringTokenizer(date2, "/");
 
-			String month1 = st2.nextToken();
-	        String day1 = st2.nextToken();
-	        String year1 = st2.nextToken();
+		String month1 = st2.nextToken();
+		String day1 = st2.nextToken();
+		String year1 = st2.nextToken();
 
-		end_date = year1 + "-" + month1 + "-" + day1 ;
+		end_date = year1 + "-" + month1 + "-" + day1;
 		Map<String, String> dateMap = new HashMap<String, String>();
 		dateMap.put("start_dateMap", start_date);
 		dateMap.put("end_dateMap", end_date);
 
-		
 		List<AdminMonitorVO> adminLikeList = AdminMonitorService.adminLikeList(dateMap);
 		ArrayList responses = new ArrayList();
 		for (int i = 0; i < adminLikeList.size(); i++) {
@@ -95,40 +94,40 @@ public class AdminMonitorControllerImpl implements AdminMonitorController {
 		return jsonInfo;
 	}
 
-	@RequestMapping(value = "/admin/monitor/selectCmtgraph.do", method = { RequestMethod.GET})
+	@RequestMapping(value = "/admin/monitor/selectCmtgraph.do", method = { RequestMethod.GET })
 	@ResponseBody
-	public String adminCmtsList(@RequestParam("date") String date, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String adminCmtsList(@RequestParam("date") String date, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+
 		StringTokenizer dates = new StringTokenizer(date, "-");
 		String start_date;
 		String end_date;
-		
+
 		String date1 = dates.nextToken().trim();
 		String date2 = dates.nextToken().trim();
 
 //		end_date = date2.trim();
 
 		StringTokenizer st1 = new StringTokenizer(date1, "/");
-        String month = st1.nextToken();
-        String day = st1.nextToken();
-        String year = st1.nextToken();
+		String month = st1.nextToken();
+		String day = st1.nextToken();
+		String year = st1.nextToken();
 
-		start_date = year + "-" + month + "-" + day ; 
-		
+		start_date = year + "-" + month + "-" + day;
+
 		StringTokenizer st2 = new StringTokenizer(date2, "/");
 
-			String month1 = st2.nextToken();
-	        String day1 = st2.nextToken();
-	        String year1 = st2.nextToken();
+		String month1 = st2.nextToken();
+		String day1 = st2.nextToken();
+		String year1 = st2.nextToken();
 
-		end_date = year1 + "-" + month1 + "-" + day1 ;
+		end_date = year1 + "-" + month1 + "-" + day1;
 		Map<String, String> dateMaps = new HashMap<String, String>();
 		dateMaps.put("start_dateMaps", start_date);
 		dateMaps.put("end_dateMaps", end_date);
-		
+
 		List<AdminMonitorVO> adminCmtsList = AdminMonitorService.adminCmtsList(dateMaps);
 		ArrayList responses = new ArrayList();
 		for (int i = 0; i < adminCmtsList.size(); i++) {
