@@ -111,4 +111,10 @@
 				values (#{cmt_id}, #{mem_id}, #{cmt_text}, sysdate, #{contents_id})
 	]]>
 	</insert>
+	
+	<delete id="deleteCmt" parameterType="int">
+	<![CDATA[
+				delete from cmt where cmt_id=#{cmt_id}
+	]]>
+	</delete>
 </mapper>

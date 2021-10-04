@@ -233,6 +233,21 @@ public class ContentsControllerImpl implements ContentsController {
 		return mav;
 	}
 
+	// ƒ¡≈Ÿ√˜ ¥Ò±€ ªË¡¶
+	@Override
+	@RequestMapping(value = { "/contents/deleteCmt.do" }, method = { RequestMethod.GET })
+	public ModelAndView deleteCmt(@RequestParam("cmt_id") int cmt_id, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		contentsService.deleteCmt(cmt_id);
+		
+		mav.setViewName("redirect:/contents/contentsView.do?contents_id=" + contents_id);
+		return mav;
+	}
+
+	
 	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ ≈¨∏Ø
 
 	

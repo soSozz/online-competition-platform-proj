@@ -99,4 +99,10 @@ public class ContentsServiceImpl implements ContentsService {
 		return cmtId;
 	}
 
+	@Override
+	public void deleteCmt(int cmt_id) throws DataAccessException {
+		contentsDAO.deleteCmt(cmt_id);
+		return;
+	}
+
 }

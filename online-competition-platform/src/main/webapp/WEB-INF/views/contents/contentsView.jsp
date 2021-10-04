@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contents_id" value="${contentsView[0].contents_id}" />
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -14,7 +15,7 @@ request.setCharacterEncoding("UTF-8");
     <script src="${contextPath}/resources/js/settings.js"></script>
     <script src="${contextPath}/resources/js/gleek.js"></script>
     <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
-    <link rel="icon" type="${contextPath}/resources/image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${contextPath}/resources/images/favicon.png">
     
 <style>
 	.heart:hover {
@@ -29,6 +30,10 @@ request.setCharacterEncoding("UTF-8");
   th, td {
     border: 1px solid #444444;
     padding: 10px;
+  }
+  
+  .trash:hover{
+  	color: black;
   }
   
 </style>
@@ -58,7 +63,7 @@ request.setCharacterEncoding("UTF-8");
 					<div class="card-body">
 						<p class="card-text">${contentsView[0].contents_text}</p>
 						<img class="img-fluid" 
-					src="${contextPath}/contentsFile_download.do?contents_file_id=${contentsFileView[0].contents_file_id}&contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}">
+					src="${contextPath}/contentsFile_download.do?contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}&contents_file_id=${contentsFileView[0].contents_file_id}">
 					</div>
 					<div class="card-footer">
 						<div class="col-lg-12">  
@@ -70,7 +75,7 @@ request.setCharacterEncoding("UTF-8");
                             <div class="message_box col-lg-12">
                                 <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글 달기</button> 
                                 <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_cmtForm(${loginStatus})"></textarea>
-                                <input type="hidden" value="${contentsView[0].contents_id}" >
+                                <input type="hidden" value="${contents_id}" >
                             </div>          
                     </div>
                     
@@ -93,10 +98,24 @@ request.setCharacterEncoding("UTF-8");
 								</tr>
 							</c:when>
 							<c:otherwise>
-                                        <c:forEach var="cmtList" items="${contentsCmt}">
-                                            <tr>
+                                        <c:forEach var="cmtList" items="${contentsCmt}" varStatus="cmtCount">
+                                        	<input id="${cmtCount.count}" type="hidden" value="${cmtList.cmt_id}" >
+                                            <tr>                                       
                                                 <td class="memName" width="30px">${cmtList.mem_name}</td>
-                                                <td class="cmtText" width="150px">${cmtList.cmt_text}<span><i class="fa fa-close color-danger float-right"></i></span></td>
+                                                <td width="150px">${cmtList.cmt_text}
+                                                <c:choose>
+                                                	<c:when test="${loginStatus != null}">
+                                                		<c:if test="${loginInfo.mem_id == cmtList.mem_id}">
+                                                		<a class="trash" href="#" onclick="fn_deleteCmt(${cmtCount.count})"><i class="fas fa-trash float-right"></i></a></c:if>
+                                                       </c:when>                                                
+                                                	<c:otherwise>
+                                                		<span></span>
+                                                	</c:otherwise>
+
+                                                </c:choose>
+                                                
+
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </c:otherwise>
@@ -118,7 +137,7 @@ request.setCharacterEncoding("UTF-8");
 				const cmt_text = e.target.parentNode.querySelector("textarea").value
 				const contents_id = e.target.parentNode.querySelector("input").value
 				console.log(cmt_text);
-				location.href= "${contextPath}/contents/addCmt.do?cmt_text="+cmt_text+"&contents_id="+contents_id;
+				location.href= "${contextPath}/contents/addCmt.do?cmt_text="+cmt_text+"&contents_id="+ contents_id;
 			}
 			
 			function fn_cmtForm(e){
@@ -129,5 +148,13 @@ request.setCharacterEncoding("UTF-8");
 				   
 				  }
 				}
+			
+			function fn_deleteCmt(cnt){
+				const cmt_id = document.getElementById(cnt).value;
+				const contents_id = ${contents_id};
+				
+				location.href="${contextPath}/contents/deleteCmt.do?cmt_id="+ cmt_id + "&contents_id=" + contents_id;
+
+			}
 		</script>
 </body>

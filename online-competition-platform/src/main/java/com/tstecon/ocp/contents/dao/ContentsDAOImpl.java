@@ -117,4 +117,11 @@ public class ContentsDAOImpl implements ContentsDAO {
 		return cmtId;
 	}
 
+	@Override
+	public void deleteCmt(int cmt_id) throws DataAccessException {
+		sqlSession.delete("mappers.listContents.deleteCmt",cmt_id);
+		return;
+		
+	}
+
 }

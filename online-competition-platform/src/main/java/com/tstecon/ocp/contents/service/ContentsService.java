@@ -36,4 +36,6 @@ public interface ContentsService {
 	public void insertCmtAdd(Map map) throws DataAccessException;
 
 	public int selectCmtPlusId() throws DataAccessException;
+
+	public void deleteCmt(int cmt_id) throws DataAccessException;
 }

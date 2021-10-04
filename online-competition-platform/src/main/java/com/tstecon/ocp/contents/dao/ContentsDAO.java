@@ -38,4 +38,6 @@ public interface ContentsDAO {
 
 	public int selectCmtPlusId() throws DataAccessException;
 
+	public void deleteCmt(int cmt_id) throws DataAccessException;
+
 }
