@@ -7,6 +7,7 @@
 	<resultMap id = "noticeCompetResult" type = "noticeCompetVO"> 
 		<result property = "compet_notice_id" column = "compet_notice_id" />
 		<result property = "compet_id" column = "compet_id" />
+		<result property = "admin_id" column = "admin_id" />
 		<result property = "compet_notice_title" column = "compet_notice_title" />
 		<result property = "compet_notice_date" column = "compet_notice_date" />
 		<result property = "compet_notice_view" column = "compet_notice_view" />
@@ -31,7 +32,7 @@
 
 	</select>
 	
-	<!-- 대회 안내 정보 -->
+
 	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
 			select compet_file_name
@@ -40,6 +41,15 @@
 
 		]]>
 	</select>
+	
+	 <select id="selectCompetNoticeDetail" resultMap = "noticeCompetResult"  parameterType = "int">
+     <![CDATA[
+       SELECT * from compet_notice
+      where compet_notice_id = #{compet_notice_id};
+     ]]>
+</select>
+
+
 
 
 </mapper>
