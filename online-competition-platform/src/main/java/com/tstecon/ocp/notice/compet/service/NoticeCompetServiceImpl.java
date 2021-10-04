@@ -32,4 +32,9 @@ public class NoticeCompetServiceImpl implements NoticeCompetService{
 		return CompetSmallPoster;
 	}
 	
+	public NoticeCompetVO noticeCompetDetail(int compet_notice_id) throws DataAccessException{
+		NoticeCompetVO noticeCompetDetail = noticeCompetDAO.selectCompetNoticeDetail(compet_notice_id);
+		return noticeCompetDetail;
+	}
+	
 }

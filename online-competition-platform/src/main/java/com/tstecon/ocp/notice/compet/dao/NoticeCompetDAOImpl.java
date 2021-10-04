@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 @Repository("noticeCompetDAO")
 public class NoticeCompetDAOImpl implements NoticeCompetDAO {
@@ -30,6 +31,10 @@ public class NoticeCompetDAOImpl implements NoticeCompetDAO {
 	public CompetFileVO selectCompetSmallPoster(int compet_id) throws DataAccessException {
 		CompetFileVO CompetSmallPoster = sqlSession.selectOne("mappers.notice.compet.selectCompetSmallPoster",compet_id);
 		return CompetSmallPoster;
+	}
+	
+	public NoticeCompetVO selectCompetNoticeDetail(int compet_notice_id) throws DataAccessException {
+		return sqlSession.selectOne("mappers.competQna.selectCompetNoticeDetail", compet_notice_id);
 	}
 
 }

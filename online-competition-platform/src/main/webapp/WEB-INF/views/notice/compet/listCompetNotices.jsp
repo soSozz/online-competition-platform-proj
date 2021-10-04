@@ -103,7 +103,7 @@ request.setCharacterEncoding("UTF-8");
 												<c:forEach var="compet_Notice" items="${noticeCompetList}" varStatus="noticeNum">
 													<tr align="center">
 														<td width="5%">${compet_Notice.compet_notice_id}</td>
-														<td width="25%">${compet_Notice.compet_notice_title }</td>
+														<td width="25%" a href="${contextPath}/notice/compet/noticeCompetDetail.do?compet_notice_id=${compet_notice_id}">${compet_Notice.compet_notice_title }</a></td>
 														<td width="5%">${compet_Notice.admin_id}</td>
 														<td width="5%">${compet_Notice.compet_notice_date}</td>
 														<td width="5%">${compet_Notice.compet_notice_view}</td>
