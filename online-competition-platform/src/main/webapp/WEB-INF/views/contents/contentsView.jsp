@@ -18,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
     
 <style>
 	.heart:hover {
-	color:red;
+	color:#c0d126;
 	}
 	
 	table {
