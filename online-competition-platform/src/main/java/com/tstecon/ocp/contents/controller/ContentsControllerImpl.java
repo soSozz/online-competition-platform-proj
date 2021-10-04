@@ -135,9 +135,15 @@ public class ContentsControllerImpl implements ContentsController {
 			HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+
+		//댓글, 좋아요 뺀 리스트 정보 가져오기
 		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
+
+		// 대회 아이디 저장
 		mav.addObject("compet_id", compet_id);
+		// 댓글, 좋아요 뺀 리스트 정보 저장
 		mav.addObject("listContents", contentsList);
+
 		return mav;
 	}
 
@@ -200,6 +206,9 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
+	//컨텐츠 좋아요 클릭
+	
+	
 	
 	
 

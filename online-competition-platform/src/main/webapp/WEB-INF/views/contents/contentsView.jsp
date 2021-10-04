@@ -18,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
     
 <style>
 	.heart:hover {
-	color:red;
+	color:#c0d126;
 	}
 	
 	table {
@@ -64,14 +64,27 @@ request.setCharacterEncoding("UTF-8");
 						<div class="col-lg-12">  
                 <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
                    <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
-                </div>              
+                </div>
+                           
                     <div class="card-body">
                             <div class="message_box col-lg-12">
-                                <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글달기</button> 
-                                <textarea class="form-control float-right col-lg-10" name="textarea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_articleForm('${loginStatus}')"></textarea>
+                                <input type="submit" class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)"> 
+                                <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_articleForm('${loginStatus}')"></textarea>
                             </div>          
                     </div>
+                    
                     <br /><br /><br />
+                    <c:choose>
+							<c:when test="${contentsCmt==null} ">
+								<tr height="10">
+									<td colspan="5">
+										<p align="center">
+											<b><span style="font-size: 9pt">등록된 댓글이 없습니다.</span></b>
+										</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
                     <div class="card">
                     <div class="card-body">
                                 <div class="table-responsive">
@@ -90,6 +103,8 @@ request.setCharacterEncoding("UTF-8");
                                 </div>
                                 </div>
                                 </div>
+                                </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                       </div>
@@ -100,16 +115,19 @@ request.setCharacterEncoding("UTF-8");
 
 		<script>
 			function fn_addCmt(e){
-				const cmt = e.target.parentNode.querySelector("textarea").value
-				console.log(cmt);
+				const cmt_text = e.target.parentNode.querySelector("textarea").value
+				const mem_id = ${loginInfo.mem_id};
+				
+				console.log(cmt_text);
+				console.log(mem_id);
 			}
 			
 			function fn_articleForm(loginStatus){
-				
 				  if (loginStatus == "member" || loginStatus == "admin"){
-				    location.href= "${contextPath}/qna/qnaForm.do?compet_id=${compet_id}";
+				    
 				  } else {
 				    alert("로그인 후 글쓰기가 가능합니다.");
+				    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
 				  }
 				}
 		</script>
