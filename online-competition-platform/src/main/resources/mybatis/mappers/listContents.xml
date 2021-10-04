@@ -97,4 +97,18 @@
 				where contents_id = #{contents_id}
 	]]>
 	</select>
+	
+	<select id="selectCmtPlusId" resultType="int">
+	<![CDATA[
+				SELECT nvl(max(cmt_id), 0) + 1 
+        		from cmt
+	]]>
+	</select>
+	
+	<insert id="insertCmtAdd" parameterType="java.util.Map">
+	<![CDATA[
+				insert into cmt (cmt_id, mem_id, cmt_text, cmt_date, contents_id)
+				values (#{cmt_id}, #{mem_id}, #{cmt_text}, sysdate, #{contents_id})
+	]]>
+	</insert>
 </mapper>

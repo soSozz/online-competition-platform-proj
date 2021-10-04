@@ -82,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
                                 <c:if test="${adminCmtList !=null }">
                                     <c:forEach var="admin_CmtList" items="${adminCmtList}" varStatus="adminNum">
                                         <tr align="center">
-                                            <td width="5%"></td>
+                                            <td width="5%" style="text-align:center">${adminNum.count}</td>
                                             <td width="15%">${admin_CmtList.contents_name}</td>
                                             <td width="20%">${admin_CmtList.cmt_text}</td>
                                             <td width="10%">${admin_CmtList.mem_id}</td>

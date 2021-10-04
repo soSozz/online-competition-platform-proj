@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -133,6 +134,7 @@ public class ContentsControllerImpl implements ContentsController {
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception {
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
@@ -206,9 +208,33 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = { "/contents/addCmt.do" }, method = { RequestMethod.GET })
+	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session = request.getSession();
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginInfo");
+		String memId = memberVO.getMem_id();
+		int cmtId = contentsService.selectCmtPlusId();
+		
+		Map map = new HashMap();
+		map.put("mem_id", memId);
+		map.put("cmt_text", cmt_text);
+		map.put("contents_id", contents_id);
+		map.put("cmt_id", cmtId);
+		
+		contentsService.insertCmtAdd(map);
+		
+		mav.setViewName("redirect:/contents/contentsView.do?contents_id="+contents_id);
+		return mav;
+	}
+
 	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ ≈¨∏Ø
-	
-	
+
 	
 	
 
