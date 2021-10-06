@@ -175,7 +175,7 @@ request.setCharacterEncoding("UTF-8");
 				//좋아요 버튼 클릭시(추천 추가 또는 추천 제거)
 				$("#like_update").click(function(){
 					$.ajax({
-						url: "/ocp/contents/like_Update.do",
+						url: "${contextPath}/contents/like_Update.do",
 		                type: "POST",
 		                data: {
 		                    contents_id: ${contentsView[0].contents_id},
@@ -203,7 +203,7 @@ request.setCharacterEncoding("UTF-8");
 				//  좋아요 수
 			    function likeCount() {
 					$.ajax({
-						url: "/ocp/contents/likeCount.do",
+						url: "${contextPath}/contents/likeCount.do",
 		                type: "POST",
 		                data: {
 		                 contents_id: ${contentsView[0].contents_id}

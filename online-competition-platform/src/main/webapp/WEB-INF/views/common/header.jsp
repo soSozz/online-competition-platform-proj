@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-lg-6">
 					<c:choose>
-						<c:when test="${loginStatus == 'member'}">
+						<c:when test="${loginStatus == 'member' && loginInfo != null}">
 							<div class="mb-lg-2 row justify-content-center align-items-center ">
 								<div class="mr-lg-1">
 									<i class="fas fa-user" style="font-size: 2em; color: black;"></i>
@@ -55,7 +55,7 @@
 								</div>
 							</div>
 						</c:when>
-						<c:when test="${loginStatus == 'admin'}">
+						<c:when test="${loginStatus == 'admin' && loginInfo != null}">
 
 							<div class="mb-lg-2 row justify-content-center align-items-center ">
 								<div class="mr-lg-1">

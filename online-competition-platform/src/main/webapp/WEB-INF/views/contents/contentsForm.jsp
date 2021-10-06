@@ -132,7 +132,7 @@ function upload(uploadedImg){
 		if (xhr.readyState === xhr.DONE && xhr.status === 200) { //정상 응답 시
 			contents_file_list += xhr.responseText + ",";
 			
-			uploadedImg.src = "/ocp/contents/downloadImgInText.do?contents_file_id=" + xhr.responseText + "&fileName=" + fileName;
+			uploadedImg.src = '${contextPath}/contents/downloadImgInText.do?contents_file_id=' + xhr.responseText + '&fileName=' + fileName;
 		}
 	};
 

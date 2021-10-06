@@ -227,7 +227,6 @@ public class ContentsControllerImpl implements ContentsController {
 		update.put("contents_id", contents_id);
 		update.put("mem_id", mem_id);
 		int like_check = contentsService.likeChenk(update);
-		System.out.println("----------------------update============= 1 : " + update);
 		if (like_check == 0) {
 			contentsService.likeUpdate(update);
 		} else {
@@ -242,7 +241,6 @@ public class ContentsControllerImpl implements ContentsController {
 		PrintWriter writer = response.getWriter();
 		int contents_id = Integer.parseInt(request.getParameter("contents_id"));
 		int count = contentsService.likeCount(contents_id);
-		System.out.println("---------contents_id --------------------------------------- : " + contents_id);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("count", count);
 		String jsoncount = jsonObject.toString();
