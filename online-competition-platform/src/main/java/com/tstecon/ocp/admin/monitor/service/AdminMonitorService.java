@@ -2,6 +2,7 @@ package com.tstecon.ocp.admin.monitor.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -10,9 +11,7 @@ import com.tstecon.ocp.admin.monitor.vo.AdminMonitorVO;
 
 
 public interface AdminMonitorService {
-//	public AdminMonitorVO Likes(HashMap LikesMap) throws Exception;
-//	public AdminMonitorVO Cmt(HashMap CmtMap) throws Exception;
 	public List<AdminCmtVO> adminCmtList() throws DataAccessException;
-	public List<AdminMonitorVO> adminLikeList() throws DataAccessException;
-	public List<AdminMonitorVO> adminCmtsList() throws DataAccessException;
+	public List<AdminMonitorVO> adminLikeList(Map dateMap) throws DataAccessException;
+	public List<AdminMonitorVO> adminCmtsList(Map dateMaps) throws DataAccessException;
 }

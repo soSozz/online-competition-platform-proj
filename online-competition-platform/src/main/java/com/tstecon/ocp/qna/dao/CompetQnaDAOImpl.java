@@ -58,4 +58,8 @@ public class CompetQnaDAOImpl implements CompetQnaDAO {
 		sqlSession.insert("mappers.competQna.insertReplyNewQna", articleMap);
 		return articleNO;
 	}
+	@Override
+	public void updateQnaView(int articleNO) throws DataAccessException {
+		sqlSession.update("mappers.competQna.updateQnaView", articleNO);
+	}
 }

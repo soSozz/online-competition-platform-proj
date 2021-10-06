@@ -24,21 +24,24 @@
 	
 
 	
-	<select id = "selectAdminMoniterLikeList" resultMap = "adminMonitorResult">
+	<select id = "selectAdminMoniterLikeList" resultMap = "adminMonitorResult" parameterType="java.util.Map">
 		<![CDATA[
 			select to_char(likes_date, 'yyyy-mm-dd') as likesdate, nvl(count(*), 0) as cnt
                from likes
+               
+               where likes_date between #{start_dateMap} and #{end_dateMap}
+              
                group by to_char(likes_date, 'yyyy-mm-dd')
                order by to_char(likes_date, 'yyyy-mm-dd')
 		]]>
 	</select>
 	
-	<select id = "selectAdminMoniterCmtList" resultMap = "adminMonitorResult">
+	<select id = "selectAdminMoniterCmtList" resultMap = "adminMonitorResult" parameterType="java.util.Map">
 		<![CDATA[
 			select to_char(cmt_date, 'yyyy-mm-dd') as cmtsdate, nvl(count(*), 0) as cmtcnt
                from cmt
                
-               where cmt_date between #{start_date} and #{end_date}
+               where cmt_date between #{start_dateMaps} and #{end_dateMaps}
                
                group by to_char(cmt_date, 'yyyy-mm-dd')
                order by to_char(cmt_date, 'yyyy-mm-dd')

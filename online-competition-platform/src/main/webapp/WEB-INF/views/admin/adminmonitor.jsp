@@ -5,7 +5,6 @@
 <link href="${contextPath}/resources/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -83,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
                                 <c:if test="${adminCmtList !=null }">
                                     <c:forEach var="admin_CmtList" items="${adminCmtList}" varStatus="adminNum">
                                         <tr align="center">
-                                            <td width="5%"></td>
+                                            <td width="5%" style="text-align:center">${adminNum.count}</td>
                                             <td width="15%">${admin_CmtList.contents_name}</td>
                                             <td width="20%">${admin_CmtList.cmt_text}</td>
                                             <td width="10%">${admin_CmtList.mem_id}</td>
@@ -109,14 +108,12 @@ request.setCharacterEncoding("UTF-8");
     var button = document.getElementById("cmtview");
     button.addEventListener("click", function() {
     	const date = document.getElementById("cmt_date").value;
-    	
-    	var start_date = 
-    	var end_date = 
+    
     		
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectCmtgraph.do?start_date=" + start_date + "&end_date=" + end_date,
+            url: "/ocp/admin/monitor/selectCmtgraph.do?date=" +  date,
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];
@@ -161,10 +158,11 @@ request.setCharacterEncoding("UTF-8");
 <script>
     var button = document.getElementById("view");
     button.addEventListener("click", function() {
+    	const date = document.getElementById("likes_date").value;
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectLikegraph.do",
+            url: "/ocp/admin/monitor/selectLikegraph.do?date=" + date, 
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];

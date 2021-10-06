@@ -14,32 +14,27 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
   function backToList(obj){
-    obj.action="${contextPath}/qna/qna.do";
+    obj.action="${contextPath}/notice/compet/listCompetNotices.do";
     obj.submit();
   }
   
   
 </script>
 <body>
-<h1 style="text-align:center; font-weight: bold;">문의 게시판</h1>
-    <div class=qna_box style="width: 100%;  padding: 0%; ">
+<h1 style="text-align:center; font-weight: bold;">대회 공지사항 작성 게시판</h1>
+    <div class=notice_box style="width: 100%;  padding: 0%; ">
         <form 
           name="articleForm" 
           method="post"   
-          action="${contextPath}/qna/addNewArticle.do?compet_id=${compet_id}"  
+          action="${contextPath}/notice/compet/addNoticeCompet.do?compet_id=${compet_id}"  
           enctype="multipart/form-data" 
           style="width: 50%; position: relative; left: 23%; margin: 40px;"
           
           >
             <div class="form-group" >
-                <input type="hidden" class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
+                <input hidden class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
             </div>
-           <!--  회원 작성자 -->
-            <c:if test="${loginStatus ==  'member'}">
-            <div class="form-group" >
-                <input type="text" class="form-control bg-transparent" value="${loginInfo.mem_id}" readonly placeholder=" 작성자">
-            </div>
-            </c:if>
+           
             <!-- 관리자 작성자 -->
             <c:if test="${loginStatus ==  'admin'}">
             <div class="form-group" >
@@ -50,7 +45,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <input type="text" class="form-control bg-transparent" name="title" placeholder=" 글제목">
             </div>
             <div class="form-group">
-                <textarea class="textarea_editor form-control bg-light" rows="15" name="content" placeholder="글내용"></textarea>
+                <textarea class="textarea_editor form-control bg-light" rows="15" name="notice" placeholder="글내용"></textarea>
             </div>
             <button type="submit" class="btn btn-outline-secondary">글쓰기</button>
             <button type="button" class="btn btn-outline-secondary" onClick="backToList(this.form)">목록보기</button>

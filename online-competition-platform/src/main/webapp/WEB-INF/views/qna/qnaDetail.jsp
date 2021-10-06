@@ -72,24 +72,26 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 									<button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
 									<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
 									<button type="button"  id="toList" class="btn btn-outline-secondary" >목록보기</button>
-								</c:if>   
+								</c:if>
+								<c:if test="${loginInfo.mem_id !=  article.mem_id}">
+								<button type="button"  id="toList" class="btn btn-outline-secondary" >목록보기</button>
+								</c:if>
 							</c:when>
 							<c:when  test="${loginStatus == 'admin' }"> 
 							    <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>                    
 								<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>                          
 								<button type="button" class="btn btn-outline-secondary" onClick="fn_reply_form( ${article.compet_qna_id},${article.compet_id} )">답글쓰기</button>                                       
 								<button type="button" id="toList"class="btn btn-outline-secondary">목록보기</button>
-							</c:when>
+							</c:when>						
 						</c:choose>
 	                  </c:when>  
 	                  <c:otherwise>
 	                  	<button type="button" id="toList" class="btn btn-outline-secondary">목록보기</button>
 	                  </c:otherwise>
+	                 
                                                    
              </c:choose>    
-                
-             
-                                           
+                              
                     
              </div>
            
@@ -103,17 +105,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	document.getElementById("toList").addEventListener("click", ()=>{
+	 document.getElementById("toList").addEventListener("click", ()=>{
 		location.href="${contextPath}/qna/qna.do?compet_id=${article.compet_id}";
-	});
+	}); 
+	 
 // 	  function backToList(){
 // 	    location.href="${contextPath}/qna/qna.do?compet_id=${article.compet_id}";
 
 // 	  }
 	  function fn_enable(event){
 		 	 event.preventDefault();
-		 	document.getElementById("i_title").removeAttribute("readonly");
-		 	document.getElementById("i_content").removeAttribute("readonly");
+		 	 document.getElementById("i_title").removeAttribute("readonly");
+		 	 document.getElementById("i_content").removeAttribute("readonly");
 			 document.getElementById("tr_btn_modify").style.display="block";		 
 			 document.getElementById("tr_btn").style.display="none";
 		 }
@@ -147,13 +150,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		     parentNOInput.setAttribute("type","hidden");
 		     parentNOInput.setAttribute("name","parentNO");
 		     parentNOInput.setAttribute("value", parentNO);
+		     console.log('parentNo', parentNO);
 		     
 		     var competIdInput = document.createElement("input");
 		     competIdInput.setAttribute("name","compet_id");
 		     competIdInput.setAttribute("value", compet_id);
+		     console.log('compet_id', compet_id);
 		     
 		     form.appendChild(parentNOInput);
-		     form.appendChild(parentNOInput);
+		     form.appendChild(competIdInput);
 		     document.body.appendChild(form);
 			 form.submit();
 		 }

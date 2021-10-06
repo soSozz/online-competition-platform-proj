@@ -38,7 +38,7 @@ public class ContentsDAOImpl implements ContentsDAO {
 			sqlSession.insert("mappers.contents.insertNewContentsFile", contentsFileVO);
 		}
 	}
-
+	// ÄÁÅÙÃ÷ ¸®½ºÆ® »ý¼º
 	@Override
 	public List<ListContentsVO> listContents(int compet_id) throws DataAccessException {
 		List<ListContentsVO> listContents = sqlSession.selectList("mappers.listContents.selectListContents", compet_id);
@@ -91,6 +91,69 @@ public class ContentsDAOImpl implements ContentsDAO {
 			fileMap.put("contents_file_id", Integer.parseInt(contents_file_id));
 			sqlSession.update("mappers.contents.updateContentsFiles", fileMap);
 		}
+	}
+	// ÄÁÅÙÃ÷ ´ñ±Û Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> selectContentsCmtList(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsCmtList = sqlSession.selectList("mappers.listContents.selectListContentsCmt",compet_id);
+		return contentsCmtList;
+	}
+	// ÄÁÅÙÃ÷ ÁÁ¾Æ¿ä Ä«¿îÆ®
+	@Override
+	public List<ListContentsVO> selectContentsLikesList(int compet_id) throws DataAccessException {
+		List<ListContentsVO> contentsLikesList = sqlSession.selectList("mappers.listContents.selectListContentsLikes",compet_id);
+		return contentsLikesList;
+	}
+
+	// ÁÁ¾Æ¿ä Å¬¸¯ ¿©ºÎ °Ë»ö
+	public int selectlikeChenk(Map update) throws DataAccessException{
+		System.out.println("----------------------update============= 3 : " + update);
+		return sqlSession.selectOne("mappers.listContents.like_check", update);
+	}
+
+	@Override
+	public void updateLike(Map update) throws DataAccessException {
+		int likeNO = likesNewNO();
+		update.put("likeNO", likeNO);
+		int updateLike = sqlSession.update("mappers.listContents.updateLike", update);
+		return ;
+	}
+	
+	private int likesNewNO() throws DataAccessException {
+		return sqlSession.selectOne("mappers.listContents.likesNewNO");
+	}
+	
+
+	@Override
+	public void deleteLike(Map update) throws DataAccessException {
+		sqlSession.delete("mappers.listContents.deleteLike", update);		
+	}
+
+	
+	@Override
+	public int countLike(int contents_id) throws DataAccessException {	
+		return sqlSession.selectOne("mappers.listContents.countLike", contents_id);
+	}
+
+	// ÄÁÅÙÃ÷ ´ñ±Û Ãß°¡
+	@Override
+	public void insertCmtAdd(Map map) throws DataAccessException {
+		sqlSession.insert("mappers.listContents.insertCmtAdd", map);
+		return;
+	}
+
+	@Override
+	public int selectCmtPlusId() throws DataAccessException {
+		int cmtId = sqlSession.selectOne("mappers.listContents.selectCmtPlusId");
+		return cmtId;
+	}
+
+	@Override
+	public void deleteCmt(int cmt_id) throws DataAccessException {
+		sqlSession.delete("mappers.listContents.deleteCmt",cmt_id);
+		return;
+		
+
 	}
 
 }

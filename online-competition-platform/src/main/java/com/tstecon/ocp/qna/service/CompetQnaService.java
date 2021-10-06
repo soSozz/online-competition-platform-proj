@@ -18,5 +18,7 @@ public interface CompetQnaService {
 //문의 글 삭제		
 	public void removeArticle(int articleNO) throws Exception;
 //문의 댓글 쓰기 추가
-	   public int replyAddNewArticle(Map articleMap) throws Exception;	
+	   public int replyAddNewArticle(Map articleMap) throws Exception;
+// 조회수 1 증가	   	   
+	public void updateQnaView(int articleNO)throws Exception;	
 }

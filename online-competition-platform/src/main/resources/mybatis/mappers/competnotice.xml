@@ -7,6 +7,7 @@
 	<resultMap id = "noticeCompetResult" type = "noticeCompetVO"> 
 		<result property = "compet_notice_id" column = "compet_notice_id" />
 		<result property = "compet_id" column = "compet_id" />
+		<result property = "admin_id" column = "admin_id" />
 		<result property = "compet_notice_title" column = "compet_notice_title" />
 		<result property = "compet_notice_date" column = "compet_notice_date" />
 		<result property = "compet_notice_view" column = "compet_notice_view" />
@@ -24,14 +25,13 @@
 	
 	<select id = "selectNoticesCompetList" resultMap = "noticeCompetResult" parameterType = "int">
 
-			select compet_notice_title, compet_notice_date,
-			compet_notice_view, compet_notice_text
+			select *
 			from compet_notice
 			where compet_id = #{compet_id}
 
 	</select>
 	
-	<!-- 대회 안내 정보 -->
+
 	<select id = "selectCompetSmallPoster" resultMap = "CompetFileResult" parameterType = "int">
 		<![CDATA[		
 			select compet_file_name
@@ -40,6 +40,45 @@
 
 		]]>
 	</select>
+	
+	 <select id="selectCompetNoticeDetail" resultMap = "noticeCompetResult"  parameterType = "int">
+     <![CDATA[
+       SELECT * from compet_notice
+      where compet_notice_id = #{compet_notice_id}
+     ]]>
+</select>
 
+<update id="updateCompetNotice"  parameterType="java.util.Map">
+   update compet_notice
+   set compet_notice_title =  #{title}, compet_notice_text = #{notice}
+   where compet_notice_id = #{compet_notice_id}
+   </update>
+   
+<delete id="deleteCompetNotice"  parameterType="int">
+    <![CDATA[
+      delete from compet_notice
+      where compet_notice_id = #{compet_notice_id}
+    ]]>      
+  </delete>
 
+<select id="selectNewCompetNoticeNO" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_notice_id), 0) + 1 from compet_notice
+     ]]>
+</select>
+
+<insert id="insertNewCompetNotice" parameterType="java.util.Map">
+    <![CDATA[
+       INSERT into compet_notice (compet_notice_id, compet_notice_title, compet_notice_text, compet_id, compet_notice_date, admin_id, compet_notice_view) 
+       VALUES(#{compet_notice_id},#{title}, #{notice}, #{compet_id}, sysdate, #{admin_id}, 0)
+    ]]>
+</insert>
+
+<update id="updateCompetNoticesView" parameterType="int">
+	<![CDATA[
+				update compet_notice
+				set compet_notice_view = compet_notice_view + 1
+				where compet_notice_id = #{compet_notice_id}
+	]]>
+	</update>
 </mapper>

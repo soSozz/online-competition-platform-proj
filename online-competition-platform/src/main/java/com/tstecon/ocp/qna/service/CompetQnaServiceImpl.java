@@ -51,4 +51,9 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		  public int replyAddNewArticle(Map articleMap) throws Exception{
 			  return competQnaDAO.insertReplyNewArticle(articleMap);
 		  }
+// 조회수 1 증가		  
+		@Override
+		public void updateQnaView(int articleNO) throws Exception {		
+			competQnaDAO.updateQnaView(articleNO);
+		} 
 }
