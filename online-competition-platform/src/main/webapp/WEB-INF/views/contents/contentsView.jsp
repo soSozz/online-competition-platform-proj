@@ -140,7 +140,7 @@ request.setCharacterEncoding("UTF-8");
                                 </div>
                                 </div>                           
                             <a class="btn btn-outline-success float-right" href="${contextPath}/contents/listContents.do?compet_id=${contentsView[0].compet_id}">글 목록</a>
-                            </div>t
+                            </div>
                         </div>
                       </div>
 					</div>
@@ -216,17 +216,14 @@ request.setCharacterEncoding("UTF-8");
 		                },
 					})
 			    };
-			    
+			    function fn_deleteCmt(cnt){
+					const cmt_id = document.getElementById(cnt).value;
+					const contents_id = ${contents_id};
+					
+					location.href="${contextPath}/contents/deleteCmt.do?cmt_id="+ cmt_id + "&contents_id=" + contents_id;
+
+				}
 		
-		</script>
-
-			function fn_deleteCmt(cnt){
-				const cmt_id = document.getElementById(cnt).value;
-				const contents_id = ${contents_id};
-				
-				location.href="${contextPath}/contents/deleteCmt.do?cmt_id="+ cmt_id + "&contents_id=" + contents_id;
-
-			}
 		</script>
 </body>
 

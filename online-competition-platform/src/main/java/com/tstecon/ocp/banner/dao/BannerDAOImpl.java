@@ -19,7 +19,7 @@ public class BannerDAOImpl implements BannerDAO {
 
 	@Override
 	public List<BannerFileVO> selectAllBannerFiles() throws DataAccessException {
-		return sqlSession.selectList("mappers.banner.selectAllBannerFiles");
+		return sqlSession.selectList("mappers.banner.selectAllBannerFilesWithName");
 	}
 
 }
