@@ -7,4 +7,4 @@ encoding//src/main/java/com/tstecon/ocp/member/dao/MemberDAOImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/adminstat.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/member/listMembers.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/header.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/notice/compet/listCompetNoticesDetail.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/notice/compet/noticeCompetDetail.jsp=UTF-8

@@ -33,7 +33,7 @@
 	
 	<select id = "selectAdminStatLikesList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) likes from category, contents, compet, likes
+			select category.categ_name, count(*) likes1 from category, contents, compet, likes
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and likes.contents_id = contents.contents_id and contents.contents_state='승인'
             group by category.categ_name
 		]]>
@@ -41,7 +41,7 @@
 	
 	<select id = "selectAdminStatCmtList" resultMap = "adminStatResult" parameterType = "int">
 		<![CDATA[
-			select category.categ_name, count(*) cmt from category, contents, compet, cmt
+			select category.categ_name, count(*) cmt1 from category, contents, compet, cmt
             where category.categ_id=compet.categ_id and compet.compet_id=contents.compet_id and cmt.contents_id = contents.contents_id and contents.contents_state='승인'
             group by category.categ_name
 		]]>

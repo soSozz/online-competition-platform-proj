@@ -50,15 +50,10 @@ request.setCharacterEncoding("UTF-8");
   <head>
         <meta charset="UTF-8" />
         <title>공지사항</title>
+        
         <style></style>
     </head>
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-					
-					<div class="table-responsive">
-						<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+
 							<div class="col-lg-12">
                     <div class="poster">
                         <a href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}"
@@ -69,7 +64,12 @@ request.setCharacterEncoding("UTF-8");
                         /></a>
                     </div>
                 </div>
-							<div class="container">
+
+                 
+
+
+							
+
 
 <compet-detail>
 
@@ -77,6 +77,7 @@ request.setCharacterEncoding("UTF-8");
 								<div class="col-sm-12">
 								<div class="card-body">
 								<h4 class="card-title">공지사항</h4>
+								<button type="button" class="btn btn-outline-secondary" onClick="fn_articleForm('${loginStatus}')">글쓰기</button>
 									<table class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr role="row">
@@ -93,25 +94,36 @@ request.setCharacterEncoding("UTF-8");
 											<c:if test="${noticeCompetList !=null }">
 												<c:forEach var="compet_Notice" items="${noticeCompetList}" varStatus="noticeNum">
 													<tr align="center">
-														<td width="5%">${compet_Notice.compet_notice_id}</td>
-														<td width="25%" a href="${contextPath}/notice/compet/noticeCompetDetail.do?compet_notice_id=${compet_notice_id}">${compet_Notice.compet_notice_title }</a></td>
+														<td width="5%">${noticeNum.count}</td>
+														<td width="25%"><a href="${contextPath}/notice/compet/noticeCompetDetail.do?compet_notice_id=${compet_Notice.compet_notice_id}">${compet_Notice.compet_notice_title }</a></td>
 														<td width="5%">${compet_Notice.admin_id}</td>
 														<td width="5%">${compet_Notice.compet_notice_date}</td>
 														<td width="5%">${compet_Notice.compet_notice_view}</td>
 													</tr>
 												</c:forEach>
 											</c:if>
-
+ 
 										</tbody>
 									</table>
 								</div>
 							</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-12 col-md-5">
-									<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 57
-										entries</div>
-								</div>
-								
-							</div>
+						
 </compet-detail>
+ <script>
+    window.onload = () => {
+    	document.getElementById("redirect").value =  "${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}";
+    }
+    
+	function fn_articleForm(loginStatus){
+		console.log(loginStatus)
+		
+	  if (loginStatus == "admin"){
+	    location.href= "${contextPath}/notice/compet/noticeCompetForm.do?compet_id=${compet_id}";
+	  } else {
+	    alert("로그인 후 글쓰기가 가능합니다.");
+	  }
+	}
+	
+</script> 
+
