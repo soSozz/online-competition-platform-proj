@@ -127,7 +127,7 @@ request.setCharacterEncoding("UTF-8");
                                 </div>
                                 </div>
                                 </div>
-                                
+                                <a class="btn btn-outline-success float-right" href="${contextPath}/contents/listContents.do?compet_id=${contentsView[0].compet_id}">글 목록</a>
                             </div>
                         </div>
                       </div>

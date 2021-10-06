@@ -140,7 +140,7 @@ public class ContentsControllerImpl implements ContentsController {
 
 		//댓글, 좋아요 뺀 리스트 정보 가져오기
 		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
-
+		
 		// 대회 아이디 저장
 		mav.addObject("compet_id", compet_id);
 		// 댓글, 좋아요 뺀 리스트 정보 저장

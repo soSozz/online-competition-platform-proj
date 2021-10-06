@@ -74,7 +74,7 @@
 	
 	<select id="selectContentsView" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
-				select contents.contents_id, contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
+				select contents.compet_id, contents.contents_id, contents.contents_name, mem.mem_name, contents.contents_processing_date, contents.contents_view, contents.contents_text
 				from contents, member mem
 				where contents.mem_id = mem.mem_id and contents.contents_id = #{contents_id} 
 	]]>
