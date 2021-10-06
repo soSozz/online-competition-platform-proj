@@ -91,6 +91,11 @@
 
 <script src="${contextPath }/resources/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="${contextPath }/resources/js/plugins-init/form-pickers-init.js"></script>
+    <!--**********************************
+        Scripts(adminmonitor.jsp)
+    ***********************************-->
+
+<%-- 	<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script> --%>
 </body>      
         
         

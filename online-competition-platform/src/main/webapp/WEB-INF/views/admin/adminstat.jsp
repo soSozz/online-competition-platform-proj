@@ -7,39 +7,19 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- 차트 링크 -->
-<script
-	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
-<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
-<script
-	src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
-<script
-	src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
-<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
-<script src="${contextPath}/resources/js/custom.min.js"></script>
-<script src="${contextPath}/resources/js/settings.js"></script>
-<script src="${contextPath}/resources/js/gleek.js"></script>
-<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Insert title here</title>
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-<link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+
+
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 차트 링크 -->
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script> --%>
+<%-- <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script> --%>
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script> --%>
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script> --%>
    
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Insert title here</title>
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+
 <style>
 .chart{
        display: flex;
@@ -64,15 +44,19 @@ request.setCharacterEncoding("UTF-8");
                             <div class="card-body">
                             <div class="row">
                             <div class="col-lg-3">
+                            	<h5 class="text-center">컨텐츠 개수</h5>
                                 <canvas id="pieChart" width="300" height="250"></canvas>
                                </div>
                                <div class="col-lg-3">
+                            	<h5 class="text-center">좋아요 개수</h5>
                                 <canvas id="pieChart1" width="300" height="250"></canvas>
                                 </div>
                                 <div class="col-lg-3">
+                            	<h5 class="text-center">댓글 개수</h5>
                                 <canvas id="pieChart2" width="300" height="250"></canvas>
                                 </div>
                                 <div class="col-lg-3">
+                            	<h5 class="text-center">조회수 개수</h5>
                                 <canvas id="pieChart3" width="300" height="250"></canvas>
                                 </div>
                                </div>
@@ -148,9 +132,9 @@ request.setCharacterEncoding("UTF-8");
 												 <tbody id="admin_StatList">
 												
                                             <c:if test="${adminAllList !=null }">
-                                                <c:forEach var="admin_StatList" items="${adminAllList}">
+                                                <c:forEach var="admin_StatList" items="${adminAllList}" varStatus="i">
                                                     <tr align="center">
-                        
+                        								<td width="5%">${i.count}</td>
                                                         <td width="15%" id="ctg_name">${admin_StatList.ctg_name}</td>
                                                         <td width="20%" id="compet_name">${admin_StatList.compet_name }</td>
                                                         <td width="20%" id="contents_name">${admin_StatList.contents_name}</td>
@@ -178,8 +162,8 @@ request.setCharacterEncoding("UTF-8");
 		
 	</div>
 </div>
-	
 	<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+	
 	
     <script>
 	    const ctgNames = []
@@ -239,9 +223,9 @@ request.setCharacterEncoding("UTF-8");
             }
         });
         
-        var ctx = document.getElementById("pieChart1");
+        ctx = document.getElementById("pieChart1");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{
@@ -264,9 +248,9 @@ request.setCharacterEncoding("UTF-8");
             }
         });
         
-        var ctx = document.getElementById("pieChart2");
+        ctx = document.getElementById("pieChart2");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{
@@ -292,9 +276,9 @@ request.setCharacterEncoding("UTF-8");
             }
         });
         
-        var ctx = document.getElementById("pieChart3");
+        ctx = document.getElementById("pieChart3");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{
