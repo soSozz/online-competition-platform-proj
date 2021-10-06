@@ -31,7 +31,7 @@ import com.tstecon.ocp.compet.vo.CompetVO;
 
 @Controller("AdminCategController")
 public class AdminCategControllerImpl implements AdminCategController {
-	private static final String COMPET_IMAGE_REPO = "C:\\ocp\\competfile";
+	private static final String COMPET_IMAGE_REPO = "/home/ubuntu/ocp/competfile";
 
 	@Autowired
 	private AdminCategService adminCategService;
@@ -87,41 +87,41 @@ public class AdminCategControllerImpl implements AdminCategController {
 	// 관리자 카테고리 추가
 	@Override
 	@RequestMapping(value = { "/admin/addCateg.do" }, method = { RequestMethod.GET })
-	public ModelAndView addCateg(@RequestParam("categ_name") String categ_name, 
-							HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView addCateg(@RequestParam("categ_name") String categ_name, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		int categ_id = adminCategService.categPlusId();
 		Map map = new HashMap();
-		map.put("categ_name",categ_name);
+		map.put("categ_name", categ_name);
 		map.put("categ_id", categ_id);
 		adminCategService.addCateg(map);
 		mav.setViewName("redirect:/admin/admincateg.do");
 		return mav;
 	}
-	
+
 	// 카테고리 삭제
 	@Override
 	@RequestMapping(value = { "/admin/deleteCateg.do" }, method = { RequestMethod.GET })
-	public ResponseEntity deleteCateg(@RequestParam("categ_name") String categ_name,
-			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		
-		//카테고리 아이디 가져오기
+	public ResponseEntity deleteCateg(@RequestParam("categ_name") String categ_name, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
+
+		// 카테고리 아이디 가져오기
 		int categ_id = adminCategService.CategIdByName(categ_name);
 
 		// 해당 카테고리 안에 있는 대회 리스트 가져오기
 		List<CompetVO> competList = competService.competListByCategId(categ_id);
-		
+
 		System.out.println(competList);
-		
+
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		
+
 		// 해당 카테고리 안 대회리스트가 없을 경우
-		if(competList.isEmpty()) {
-			//카테고리 삭제
+		if (competList.isEmpty()) {
+			// 카테고리 삭제
 			adminCategService.deleteCateg(categ_name);
 
 			message = "<script>";
@@ -129,20 +129,17 @@ public class AdminCategControllerImpl implements AdminCategController {
 			message += " location.href='/ocp/admin/admincateg.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		} 
+		}
 		// 해당 카테고리 안 대회리스트가 있을 경우
 		else {
-			
-			
+
 			message = "<script>";
 			message += " alert('해당 카테고리 안에 대회가 있습니다.');";
 			message += " location.href='/ocp/admin/admincateg.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
-		
-		
-		
+
 		return resEnt;
 	}
 
@@ -186,8 +183,8 @@ public class AdminCategControllerImpl implements AdminCategController {
 			imageFileList.add(competFileVO);
 
 			// 하드디스크에 파일 저장
-			File file = new File(COMPET_IMAGE_REPO + "\\" + String.valueOf(competMap.get("compet_id")) + "\\img\\"
-					+ updatedFileName);
+			File file = new File(
+					COMPET_IMAGE_REPO + "/" + String.valueOf(competMap.get("compet_id")) + "/img/" + updatedFileName);
 			if (mFile.getSize() != 0) { // File Null Check
 				if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
 					file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
