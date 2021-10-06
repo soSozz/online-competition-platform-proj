@@ -36,6 +36,13 @@
 		<result property = "mem_name" column = "mem_name" />
 	</resultMap>
 	
+	<resultMap id="ContentsLike" type="comtentsLikeVO">
+		<result property = "likes_id" column = "likes_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "likes_date" column = "likes_date" />
+		<result property = "contents_id" column = "contents_id" />
+	</resultMap>
+	
 	<!-- 댓글, 좋아요 카운트 뺌 -->
 	<select id="selectListContents" resultMap="listContentsResult" parameterType="int">
 	<![CDATA[
@@ -97,4 +104,42 @@
 				where contents_id = #{contents_id}
 	]]>
 	</select>
+	
+	<!-- 좋아요 클릭 여부 검색: likes_id 값이 나온다면 true 없으면 false -->
+	<select id="like_check" parameterType="java.util.Map" resultType="int">
+	<![CDATA[
+		select count(likes_id) from likes where contents_id = #{contents_id} and mem_id = #{mem_id}
+		]]>
+	</select>
+	<!-- 좋아요 클릭 시  -->
+	<insert id="updateLike" parameterType="java.util.Map">
+	<![CDATA[
+	insert into likes(likes_id,contents_id, mem_id)  values(#{likeNO},#{contents_id}, #{mem_id})
+		]]>
+	</insert>
+	<!-- Likes_id 값 가져오기  -->
+	 <select id="likesNewNO" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(likes_id), 0) + 1 from likes
+     ]]>
+</select>
+	<!-- 좋아요 클릭 취소 -->
+	<delete id="deleteLike" parameterType="java.util.Map">
+	<![CDATA[
+		delete from likes where contents_id = #{contents_id} and mem_id = #{mem_id}
+			]]>
+	</delete>
+	<!-- 좋아요 개수 확인 -->
+	<select id="countLike" parameterType="int" resultType="int">
+	<![CDATA[
+		select count(*) from likes where contents_id = #{contents_id}
+		]]>
+	</select>
+
+
+
+	
+
+
+	
 </mapper>

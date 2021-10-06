@@ -18,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
     
 <style>
 	.heart:hover {
-	color:#c0d126;
+	color:#e04031
 	}
 	
 	table {
@@ -59,13 +59,25 @@ request.setCharacterEncoding("UTF-8");
 						<p class="card-text">${contentsView[0].contents_text}</p>
 						<img class="img-fluid" 
 					src="${contextPath}/contentsFile_download.do?contents_file_id=${contentsFileView[0].contents_file_id}&contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}">
-					</div>
+					</div>					
 					<div class="card-footer">
-						<div class="col-lg-12">  
-                <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
-                   <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
-                </div>
-                           
+					<!-- Like icon --> <!-- <i class="fas fa-heart  fa-3x"></i> -->
+					  <div class="col-lg-12">  
+					   <c:if test="${ loginInfo == nulll }">
+                         <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
+                            <a href="" class="heart" onclick="alert('로그인 후 이용 가능합니다.');" style="cursor:pointer"><i class="far fa-heart  fa-3x"></i>50</a>                           
+                         </div>
+                       </c:if> 
+                       <c:if test="${ loginInfo != null }">
+	                     <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
+						    <a href="" class="heart" id="like_update" ><i class="far fa-heart  fa-3x"></i></a>
+						     &nbsp;<span id="like_count"></span>
+					     </div>
+				      </c:if>                      
+                      </div>
+                
+                
+                 <!--    댓글 입력      -->   
                     <div class="card-body">
                             <div class="message_box col-lg-12">
                                 <input type="submit" class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)"> 
@@ -104,8 +116,7 @@ request.setCharacterEncoding("UTF-8");
                                 </div>
                                 </div>
                                 </c:otherwise>
-                                </c:choose>
-                            </div>
+                                </c:choose>                            
                         </div>
                       </div>
 					</div>
@@ -114,6 +125,12 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 
 		<script>
+		  window.onload = () => {
+		    	document.getElementById("redirect").value =  "${contextPath}/contents/listContents.do?compet_id=${compet_id}";
+		    	likeCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+		  }
+		
+		
 			function fn_addCmt(e){
 				const cmt_text = e.target.parentNode.querySelector("textarea").value
 				const mem_id = ${loginInfo.mem_id};
@@ -130,4 +147,52 @@ request.setCharacterEncoding("UTF-8");
 				    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
 				  }
 				}
+			
+		 $(function(){
+				//좋아요 버튼 클릭시(추천 추가 또는 추천 제거)
+				$("#like_update").click(function(){
+					$.ajax({
+						url: "/ocp/contents/like_Update.do",
+		                type: "POST",
+		                data: {
+		                    contents_id: ${contentsView[0].contents_id},
+		                    mem_id: ${loginInfo.mem_id}
+		                }, dataType: "json",
+		                success: function () {
+					        likeCount();
+		                },
+					})
+				})
+			})  
+				/* function like_update(){
+				$.ajax({
+					url: "/ocp/contents/like_Update.do",
+	                type: "POST",
+	                data: {
+	                    contents_id: ${contentsView[0].contents_id},
+	                    mem_id: ${loginInfo.mem_id}
+	                }, dataType: "json",
+	                success: function () {
+				        likeCount();
+	                },
+				})		
+		} */
+				//  좋아요 수
+			    function likeCount() {
+					$.ajax({
+						url: "/ocp/contents/likeCount.do",
+		                type: "POST",
+		                data: {
+		                 contents_id: ${contentsView[0].contents_id}
+		                }, dataType: "json",
+		                success: function (data) {
+		                var jsoncount = data;
+		                var likeCount = jsoncount["count"];
+		                var like_count= document.getElementById('like_count');
+		                like_count.append(likeCount);
+		                },
+					})
+			    };
+			    
+		
 		</script>

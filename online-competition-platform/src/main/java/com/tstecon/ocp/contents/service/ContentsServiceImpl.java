@@ -1,6 +1,7 @@
 package com.tstecon.ocp.contents.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -84,5 +85,33 @@ public class ContentsServiceImpl implements ContentsService {
 		List<ListContentsVO> contentsLikesList = contentsDAO.selectContentsLikesList(compet_id);
 		return contentsLikesList;
 	}
+	// 좋아요 클릭 여부 검색
+	public int likeChenk(Map update) throws DataAccessException{
+		System.out.println("----------------------update=============2 : " + update);
+		 return contentsDAO.selectlikeChenk(update);
+	}
+	// 좋아요 클릭 시
+	@Override
+	public void likeUpdate(Map update) throws DataAccessException {
+		 contentsDAO.updateLike(update);
+		 return ;
+		 
+	}
+	
+
+	@Override
+	public void likeDelete(Map update) throws DataAccessException {
+		contentsDAO.deleteLike(update);
+		return;
+	}
+
+
+	@Override
+	public int likeCount(int contents_id) throws DataAccessException {
+		return contentsDAO.countLike(contents_id);
+		
+	}
+
+
 
 }

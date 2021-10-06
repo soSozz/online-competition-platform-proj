@@ -32,7 +32,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           
           >
             <div class="form-group" >
-                <input hidden class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
+                <input type="hidden" class="form-control bg-transparent" name="compet_id" value="${compet_id}" placeholder="대회번호">
             </div>
            <!--  회원 작성자 -->
             <c:if test="${loginStatus ==  'member'}">

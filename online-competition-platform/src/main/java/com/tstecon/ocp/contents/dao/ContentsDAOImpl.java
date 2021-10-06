@@ -104,5 +104,34 @@ public class ContentsDAOImpl implements ContentsDAO {
 		List<ListContentsVO> contentsLikesList = sqlSession.selectList("selectListContentsLikes",compet_id);
 		return contentsLikesList;
 	}
+	// 좋아요 클릭 여부 검색
+	public int selectlikeChenk(Map update) throws DataAccessException{
+		System.out.println("----------------------update============= 3 : " + update);
+		return sqlSession.selectOne("mappers.listContents.like_check", update);
+	}
+
+	@Override
+	public void updateLike(Map update) throws DataAccessException {
+		int likeNO = likesNewNO();
+		update.put("likeNO", likeNO);
+		int updateLike = sqlSession.update("mappers.listContents.updateLike", update);
+		return ;
+	}
+	
+	private int likesNewNO() throws DataAccessException {
+		return sqlSession.selectOne("mappers.listContents.likesNewNO");
+	}
+	
+
+	@Override
+	public void deleteLike(Map update) throws DataAccessException {
+		sqlSession.delete("mappers.listContents.deleteLike", update);		
+	}
+
+	
+	@Override
+	public int countLike(int contents_id) throws DataAccessException {	
+		return sqlSession.selectOne("mappers.listContents.countLike", contents_id);
+	}
 
 }

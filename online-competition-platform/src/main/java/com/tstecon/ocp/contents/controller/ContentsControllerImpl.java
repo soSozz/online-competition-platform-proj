@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
@@ -32,6 +33,8 @@ import com.tstecon.ocp.contents.vo.ContentsFileVO;
 import com.tstecon.ocp.contents.vo.ContentsVO;
 import com.tstecon.ocp.contents.vo.ListContentsVO;
 import com.tstecon.ocp.member.vo.MemberVO;
+
+import net.sf.json.JSONObject;
 
 @Controller("contentsController")
 public class ContentsControllerImpl implements ContentsController {
@@ -206,10 +209,37 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
-	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ ≈¨∏Ø
+	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ √ﬂ∞°,¡¶∞≈
+	@RequestMapping(value = { "/contents/like_Update.do" }, method = { RequestMethod.POST })
+	public void like_Update(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		   Map<String, Object> update = new HashMap<String, Object>();
+		   int contents_id =Integer.parseInt(request.getParameter("contents_id")); 
+	       String mem_id = request.getParameter("mem_id");
+	       update.put("contents_id", contents_id);
+	       update.put("mem_id", mem_id);
+	    	int like_check = contentsService.likeChenk(update);
+	    	System.out.println("----------------------update============= 1 : " + update);
+	    	if(like_check == 0 ) {
+	    		contentsService.likeUpdate(update);
+	    	}else {
+	    		contentsService.likeDelete(update);
+	    	}   	
+	       
+	}
 	
-	
-	
-	
+	//ƒ¡≈Ÿ√˜ ¡¡æ∆ø‰ Count
+	@RequestMapping(value = { "/contents/likeCount.do" }, method = { RequestMethod.POST })
+	public void likeCount(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	    PrintWriter writer = response.getWriter();
+		int contents_id =Integer.parseInt(request.getParameter("contents_id")); 
+		int count = contentsService.likeCount(contents_id);
+		System.out.println("---------contents_id --------------------------------------- : " + contents_id );
+		 JSONObject jsonObject = new JSONObject();
+		  jsonObject.put("count", count);
+		  String jsoncount = jsonObject.toString();
+		  writer.print(jsoncount);
+		 
+				
+	}
 
 }

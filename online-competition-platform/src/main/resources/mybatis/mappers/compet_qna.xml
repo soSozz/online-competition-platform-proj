@@ -77,4 +77,12 @@
     ]]>
 </insert>
 
+<update id="updateQnaView" parameterType="int">
+	<![CDATA[
+				update compet_qna
+				set compet_qna_view = compet_qna_view + 1
+				where compet_qna_id = #{articleNO}
+	]]>
+	</update>
+
 </mapper>
