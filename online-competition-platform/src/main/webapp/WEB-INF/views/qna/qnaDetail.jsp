@@ -37,16 +37,19 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <input type="text" class="form-control bg-transparent" name="date" value="${article.compet_qna_date }" placeholder="등록일자"  readonly>
                 </div>
               </div>   
-           
-            <div style=" position: relative; bottom: 65px;">
-               
-              <%--  <div class="form-group"  >
+             <!-- 글 작성자 회원 확인 -->
+            <div style=" position: relative; bottom: 65px;"> 
+              <c:if test="${article.parent_id == 0}">
+               <div class="form-group"  >
                 <input type="text" class="form-control bg-transparent" name="mem_id" value="${article.mem_id }" readonly placeholder=" 작성자">
-            </div> --%>
-            
-            <div class="form-group"  >
+            </div> 
+            </c:if>
+             <!-- 글 작성자 관리자 확인 -->
+            <c:if test="${article.parent_id !=  0}">
+           <div class="form-group"  >
                 <input type="text" class="form-control bg-transparent" name="mem_id" value="${article.admin_id }" readonly placeholder=" 작성자">
             </div>
+            </c:if>
             
             <div class="form-group" >
                 <input type="text" class="form-control bg-transparent" name="title"  id="i_title"  value="${article.compet_qna_title }" readonly placeholder=" 글제목">
@@ -60,26 +63,36 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" class="btn btn-outline-secondary"  onClick="backToList(articleForm)">취소</button>           
              </div>
              <!-- 수정하기 버튼  -->  
-             <c:choose>
-                  <c:when test="${loginInfo != null}">
-                     <c:when test="${loginStatus == 'member'}"></c:when>
-                  </c:when>
-                  
-                  <c:when  test="${loginInfo.mem_id == article.mem_id }"></c:when>    
+             <div id="tr_btn">                       
+                  <c:choose>
+	                  <c:when test="${loginInfo != null}">
+					  	<c:choose>
+							<c:when test="${loginStatus == 'member' }">
+								<c:if test="${loginInfo.mem_id ==  article.mem_id}">
+									<button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
+									<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
+									<button type="button"  id="toList" class="btn btn-outline-secondary" >목록보기</button>
+								</c:if>
+								<c:if test="${loginInfo.mem_id !=  article.mem_id}">
+								<button type="button"  id="toList" class="btn btn-outline-secondary" >목록보기</button>
+								</c:if>
+							</c:when>
+							<c:when  test="${loginStatus == 'admin' }"> 
+							    <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>                    
+								<button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>                          
+								<button type="button" class="btn btn-outline-secondary" onClick="fn_reply_form( ${article.compet_qna_id},${article.compet_id} )">답글쓰기</button>                                       
+								<button type="button" id="toList"class="btn btn-outline-secondary">목록보기</button>
+							</c:when>						
+						</c:choose>
+	                  </c:when>  
+	                  <c:otherwise>
+	                  	<button type="button" id="toList" class="btn btn-outline-secondary">목록보기</button>
+	                  </c:otherwise>
+	                 
+                                                   
+             </c:choose>    
+                              
                     
-             </c:choose> -        
-             
-
-            <c:if test="${loginInfo.mem_id == article.mem_id || loginInfo.admin_id == article.admin_id }">
-              <div id="tr_btn">
-            <button class="btn btn-outline-secondary" onClick="fn_enable(event)">수정하기</button>
-            <button  class="btn btn-outline-secondary" onClick="fn_remove_article(${article.compet_qna_id})">삭제하기</button>
-           </c:if>
-           
-           <c:if test="${loginStatus == 'admin' }">
-            <button type="submit" class="btn btn-outline-secondary" onClick="fn_reply_form('${contextPath}/qna/replyForm.do', ${article.compet_qna_id})">답글쓰기</button>
-           </c:if>
-            <button type="button" class="btn btn-outline-secondary" onClick="backToList(this.form)">목록보기</button>
              </div>
            
            
@@ -92,14 +105,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	  function backToList(obj){
-	    obj.action="${contextPath}/qna/qna.do";
-	    obj.submit();
-	  }
+	 document.getElementById("toList").addEventListener("click", ()=>{
+		location.href="${contextPath}/qna/qna.do?compet_id=${article.compet_id}";
+	}); 
+	 
+// 	  function backToList(){
+// 	    location.href="${contextPath}/qna/qna.do?compet_id=${article.compet_id}";
+
+// 	  }
 	  function fn_enable(event){
 		 	 event.preventDefault();
-		 	document.getElementById("i_title").removeAttribute("readonly");
-		 	document.getElementById("i_content").removeAttribute("readonly");
+		 	 document.getElementById("i_title").removeAttribute("readonly");
+		 	 document.getElementById("i_content").removeAttribute("readonly");
 			 document.getElementById("tr_btn_modify").style.display="block";		 
 			 document.getElementById("tr_btn").style.display="none";
 		 }
@@ -108,30 +125,40 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 			 obj.submit();
 		 }
 	  
-	  function fn_remove_article(articleNO){
+	  function fn_remove_article(articleNO, compet_id){
 		     event.preventDefault();
 			 var form = document.createElement("form");
 			 form.setAttribute("method", "post");
-			 form.setAttribute("action", "${contextPath}/qna/removeArticle.do");
+			 form.setAttribute("action", "${contextPath}/qna/removeArticle.do?articleNO=${article.compet_qna_id}&compet_id=${article.compet_id}");
 		     var articleNOInput = document.createElement("input");
 		     articleNOInput.setAttribute("type","hidden");
 		     articleNOInput.setAttribute("name","articleNO");
 		     articleNOInput.setAttribute("value", articleNO);
+		     articleNOInput.setAttribute("name","compet_id");
+		     articleNOInput.setAttribute("value", compet_id);
 			 /* form.action = "${contextPath}/compet/removeArticle.do"; */
 		     form.appendChild(articleNOInput);
 		     document.body.appendChild(form);
 		     form.submit()	 
 		 }
-	  function fn_reply_form(url, parentNO){
+
+	  function fn_reply_form(parentNO, compet_id){
 			 var form = document.createElement("form");
-			 form.setAttribute("method", "post");
-			 form.setAttribute("action", url);
+			 form.setAttribute("method", "get");
+			 form.setAttribute("action", "${contextPath}/qna/qnaReplyForm.do");
 		     var parentNOInput = document.createElement("input");
 		     parentNOInput.setAttribute("type","hidden");
 		     parentNOInput.setAttribute("name","parentNO");
 		     parentNOInput.setAttribute("value", parentNO);
-			 
+		     console.log('parentNo', parentNO);
+		     
+		     var competIdInput = document.createElement("input");
+		     competIdInput.setAttribute("name","compet_id");
+		     competIdInput.setAttribute("value", compet_id);
+		     console.log('compet_id', compet_id);
+		     
 		     form.appendChild(parentNOInput);
+		     form.appendChild(competIdInput);
 		     document.body.appendChild(form);
 			 form.submit();
 		 }

@@ -106,14 +106,23 @@ window.addEventListener("load", ()=>{
 function upload(uploadedImg){
 	if (uploadedImg !== undefined){
 	const srcData = uploadedImg.getAttribute("src");
-	const fileName = uploadedImg.getAttribute("data-filename"); //이미지 이름
+	let fileName = uploadedImg.getAttribute("data-filename"); //이미지 이름
     
     //srcData = data:image/{이미지 확장자};base64,{인코딩된 파일}
 	const commaIdx = srcData.indexOf(",");
 	const semicolonIdx = srcData.indexOf(";");
 	const slashIdx = srcData.indexOf("/");
 	const base64 = srcData.slice(commaIdx + 1); // base64로 인코딩 되어 있는 이미지 데이터
-	const ext = srcData.slice(slashIdx + 1, semicolonIdx);
+	let ext = srcData.slice(slashIdx + 1, semicolonIdx);
+	if (ext === "jpeg"){
+		ext = "jpg";
+	}
+	if (fileName === null){
+		const date = new Date();
+		fileName = String(date.getFullYear()) + String(date.getMonth() + 1) + String(date.getDate()) + String(date.getHours())
+		+ String(date.getMinutes()) + String(date.getSeconds()) + '.' + ext;
+	}
+	
     
 	//ajax 요청 객체 생성
 	const xhr = new XMLHttpRequest();

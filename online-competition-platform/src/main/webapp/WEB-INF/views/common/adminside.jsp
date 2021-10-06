@@ -14,11 +14,11 @@
 			<div class="basic-list-group">
 				<div class="list-group">
 					<a href="${contextPath}/admin/stat/adminStat.do" class="list-group-item list-group-item-action active">통계</a>
-					<a href="#" class="list-group-item list-group-item-action">모니터링</a> 
+					<a href="${contextPath}/admin/monitor/adminMonitor.do" class="list-group-item list-group-item-action">모니터링</a> 
 					<a href="${contextPath}/admin/member/listMembers.do" class="list-group-item list-group-item-action">회원</a>
 					<a href="${contextPath}/admin/adminContents.do" class="list-group-item list-group-item-action">컨텐츠</a> 
 					<a href="${contextPath}/admin/admincateg.do" class="list-group-item list-group-item-action">카테고리 및 대회</a> 
-					<a href="#" class="list-group-item list-group-item-action">배너</a>
+					<a href="${contextPath}/admin/adminBanner.do" class="list-group-item list-group-item-action">배너</a>
 				</div>
 			</div>
 		</div>

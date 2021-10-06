@@ -10,4 +10,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface AdminMonitorController {
 	public ModelAndView adminMonitor(HttpServletRequest request, HttpServletResponse response);
+	
 }

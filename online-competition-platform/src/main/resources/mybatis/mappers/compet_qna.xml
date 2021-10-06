@@ -32,11 +32,11 @@
        ]]>
 </select>
 
-<!-- 문의 게시판 새 글 DB추가 -->  <!--values #{mem_id} 추가 -->
+<!-- 문의 게시판 새 글 DB추가 -->  
 <insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
-       INSERT into compet_qna (compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id, compet_qna_date) 
-       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, #{parent_id}, 1, sysdate)
+       INSERT into compet_qna (compet_qna_id, compet_qna_title, compet_qna_text, mem_id, parent_id, compet_id, compet_qna_date, admin_id) 
+       VALUES(#{articleNO},#{title}, #{content}, #{mem_id}, #{parent_id}, #{compet_id}, sysdate, #{admin_id})
     ]]>
 </insert>
 
@@ -45,13 +45,6 @@
         SELECT nvl(max(compet_qna_id), 0) + 1 from compet_qna
      ]]>
 </select>
-
- <select id="qnaLogin"  resultType="competQnaVO"   parameterType="competQnaVO" >
-	<![CDATA[
-		select * from compet_qna	
-		where id=#{id} and pwd=#{pwd}		
-	]]>
-  </select>
   
   <select id="selectQnaArticle" resultType="competQnaVO"   parameterType="int">
     <![CDATA[
@@ -75,5 +68,21 @@
          CONNECT BY PRIOR  compet_qna_id = parent_id )
     ]]>      
   </delete>
+  
+  <insert id="insertReplyNewQna" parameterType="java.util.Map">
+    <![CDATA[
+       INSERT into compet_qna (compet_qna_id, compet_qna_title, compet_qna_text, admin_id, parent_id, compet_id, compet_qna_date) 
+       VALUES(#{articleNO},#{title}, #{content}, #{admin_id}, #{parent_id}, #{compet_id}, sysdate)
+       
+    ]]>
+</insert>
+
+<update id="updateQnaView" parameterType="int">
+	<![CDATA[
+				update compet_qna
+				set compet_qna_view = compet_qna_view + 1
+				where compet_qna_id = #{articleNO}
+	]]>
+	</update>
 
 </mapper>

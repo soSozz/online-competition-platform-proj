@@ -23,11 +23,6 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		List<CompetQnaVO> qnaList = competQnaDAO.selectAllQnaList(compet_id);
 		return qnaList;
 	}
-//로그인
-	@Override
-	public CompetQnaVO login(CompetQnaVO competqnaVO) throws Exception {
-		return competQnaDAO.quaLogin(competqnaVO);
-	}
 //글 쓰기 추가
 	@Override
 	public int addNewArticle(Map articleMap) throws Exception {
@@ -52,5 +47,13 @@ public class CompetQnaServiceImpl implements CompetQnaService {
 		public void removeArticle(int articleNO) throws Exception{
 			competQnaDAO.deleteArticle(articleNO);
 		}
-
+//문의 댓글쓰기 추가		
+		  public int replyAddNewArticle(Map articleMap) throws Exception{
+			  return competQnaDAO.insertReplyNewArticle(articleMap);
+		  }
+// 조회수 1 증가		  
+		@Override
+		public void updateQnaView(int articleNO) throws Exception {		
+			competQnaDAO.updateQnaView(articleNO);
+		} 
 }

@@ -7,84 +7,31 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- 차트 링크 -->
-<script
-	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script>
-<script src="${contextPath}/resources/plugins/moment/moment.min.js"></script>
-<script
-	src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script>
-<script
-	src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script>
-<script src="${contextPath}/resources/plugins/common/common.min.js"></script>
-<script src="${contextPath}/resources/js/custom.min.js"></script>
-<script src="${contextPath}/resources/js/settings.js"></script>
-<script src="${contextPath}/resources/js/gleek.js"></script>
-<script src="${contextPath}/resources/js/styleSwitcher.js"></script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Insert title here</title>
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-<link href="${contextPath}/resources/css/font.css" rel="stylesheet">
+
+
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 차트 링크 -->
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/plugins/jqueryui/js/jquery-ui.min.js"></script> --%>
+<%-- <script src="${contextPath}/resources/plugins/moment/moment.min.js"></script> --%>
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/plugins/fullcalendar/js/fullcalendar.min.js"></script> --%>
+<!-- <script -->
+<%-- 	src="${contextPath}/resources/js/plugins-init/fullcalendar-init.js"></script> --%>
    
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Insert title here</title>
-<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+
 <style>
-h3,h4{
-	font-weight:bold;
-}
-.categ {
-	font-size: 30px;
-	font-weight: bold;
-	color: black;
-}
-.competName{
-	font-size: 20px;
-	font-weight: bold;
-	color: black;
-	text-align:center;
-}
-.competEdit{
-	background: orange;
-	height: 35px;
-}
-.categ_btn {
-	
-}
-
-
-.endCompet{
-	color: black;
-	font-weight: bold;
-}
-
 .chart{
        display: flex;
        justify-content: center;
        position: relative;
        left: 240px;
    } 
-.allbox{
- width: 100%
-}
-
-
 </style>
 </head>
 
 <body>
-   <div class="allbox">
+   
     <div class="container">
         <div class="row my-3">
     <span style="font-size: 25px; font-weight:bold; color:black;">카테고리별 통계</span>
@@ -97,15 +44,19 @@ h3,h4{
                             <div class="card-body">
                             <div class="row">
                             <div class="col-lg-3">
+                            	<h5 class="text-center">컨텐츠 개수</h5>
                                 <canvas id="pieChart" width="300" height="250"></canvas>
                                </div>
                                <div class="col-lg-3">
+                            	<h5 class="text-center">좋아요 개수</h5>
                                 <canvas id="pieChart1" width="300" height="250"></canvas>
                                 </div>
                                 <div class="col-lg-3">
+                            	<h5 class="text-center">댓글 개수</h5>
                                 <canvas id="pieChart2" width="300" height="250"></canvas>
                                 </div>
                                 <div class="col-lg-3">
+                            	<h5 class="text-center">조회수 개수</h5>
                                 <canvas id="pieChart3" width="300" height="250"></canvas>
                                 </div>
                                </div>
@@ -122,17 +73,23 @@ h3,h4{
 						<div class="card-body">
 							<h4 class="card-title">전체조회</h4>
 							<div class="table-responsive">
-								
+							<table class="table table-striped table-bordered zero-configuration">
 									
-									<div class="row">
-										
-										
-									<div class="row">
+											
+											<div class="general-button">
+									            <button type="button"  class="float-right" id="node" onclick="downloadEXCEL()">엑셀출력</button>
+											
+												
+										    </div>
+								    
+									
+									
+                               <div class="row">
 										<div class="col-sm-12">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered zero-configuration">
 												<thead id="listhead">
-													<tr role="row">
+													<tr role="row"  align="center">
 														<th class="No" tabindex="0"
 															
 															style="width: 95.7188px;">No.</th>
@@ -171,33 +128,20 @@ h3,h4{
 														
 													</tr>
 												</thead>
-												<div class="col-sm-12 col-md-6">
-											<div id="DataTables_Table_0_filter" class="dataTables_filter">
-											<div class="general-button">
-									            <button type="button" class="btn mb-2 btn-exel" id="node" onclick="downloadEXCEL()">엑셀출력</button>
-												<div class="general-button">
-									            <button type="button" class="btn mb-1 btn-select">조회하기</button>
-												<label>Search:<input type="search">
-												</label>
-											</div>
-									
-									</div>
-										</div>
-									
-									</div>
+											
 												 <tbody id="admin_StatList">
 												
                                             <c:if test="${adminAllList !=null }">
-                                                <c:forEach var="admin_StatList" items="${adminAllList}">
+                                                <c:forEach var="admin_StatList" items="${adminAllList}" varStatus="i">
                                                     <tr align="center">
-                        
+                        								<td width="5%">${i.count}</td>
                                                         <td width="15%" id="ctg_name">${admin_StatList.ctg_name}</td>
                                                         <td width="20%" id="compet_name">${admin_StatList.compet_name }</td>
                                                         <td width="20%" id="contents_name">${admin_StatList.contents_name}</td>
                                                         <td width="10%" id="mem_nickname">${admin_StatList.mem_nickname}</td>
                                                         <td width="15%" id="contents_processing_date">${admin_StatList.contents_processing_date}</td>
                                                         <td width="12%" id="contents_view">${admin_StatList.contents_view}</td>
-                                                        <td width="15%" id="likes1">${admin_StatList.likes1}</td>
+                                                        <td width="18%" id="likes1">${admin_StatList.likes1}</td>
                                                         <td width="15%" id="cmt1">${admin_StatList.cmt1}</td>
                                                     </tr>
                                                 </c:forEach>
@@ -209,8 +153,8 @@ h3,h4{
 										</div>
 									</div>
 								
-								</div>
-							
+								
+							</table>
 						</div>
 					</div>
 				</div>
@@ -218,8 +162,8 @@ h3,h4{
 		
 	</div>
 </div>
-	
 	<script src="${contextPath }/resources/plugins/chart.js/Chart.bundle.min.js"></script>
+	
 	
     <script>
 	    const ctgNames = []
@@ -279,9 +223,9 @@ h3,h4{
             }
         });
         
-        var ctx = document.getElementById("pieChart1");
+        ctx = document.getElementById("pieChart1");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{
@@ -304,9 +248,9 @@ h3,h4{
             }
         });
         
-        var ctx = document.getElementById("pieChart2");
+        ctx = document.getElementById("pieChart2");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{
@@ -332,9 +276,9 @@ h3,h4{
             }
         });
         
-        var ctx = document.getElementById("pieChart3");
+        ctx = document.getElementById("pieChart3");
         ctx.height = 300;
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 datasets: [{

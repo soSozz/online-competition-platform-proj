@@ -13,16 +13,11 @@
 
 <!--Header-->
 <div class="row">
-	<nav class="navbar navbar-expand-lg navbar-light col-lg-12">
-		<div class="col-lg-7">
+	<nav class="navbar navbar-expand navbar-light col-lg-12">
+		<div class="col-sm-8">
 			<div class="row">
 				<a href="${contextPath }/main/main.do" class="m-3"><img class="logo__icon"
 						src="${contextPath }/resources/images/ocp/logo/icon.png" alt="brand logo"></a>
-				<button class="navbar-toggler " type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon btn-sm"></span>
-				</button>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto ml-3 ">
@@ -32,11 +27,7 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link fw-bold bold"
-								href="#">공지사항</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link fw-bold bold"
-								href="#">사이트
+								href="${contextPath }/main/siteInfo.do">사이트
 								소개</a>
 						</li>
 					</ul>
@@ -47,14 +38,6 @@
 		<div class="col-lg-5">
 			<div class="row align-items-center">
 				<div class="col-lg-6">
-					<form class="d-flex justify-content-between align-items-center">
-						<div class="mr-2" style="font-size: 2em; color: green;">
-							<i class="fas fa-search"></i>
-						</div>
-						<input class="mr-2 form-control btn-sm rounded-pill " type="search"
-							placeholder="검색어를 입력해주세요" aria-label="Search">
-						<button class="btn btn-outline-success btn-sm " type="submit">검색</button>
-					</form>
 				</div>
 				<div class="col-lg-6">
 					<c:choose>
@@ -66,16 +49,9 @@
 								<div><span class="bold">${loginInfo.mem_nickname}</span> 님 안녕하세요!</div>
 							</div>
 							<div class="row justify-content-center align-items-center">
-								<div class="mr-lg-2"><a href="#"><i class="fas fa-bell"
-											style="color:#57CC99; font-size: 2em;"></i></a>
-								</div>
 								<div>
 									<a href="${contextPath }/member/logout.do"><button type="button"
 											class="btn btn-light btn-sm">로그아웃</button></a>
-								</div>
-								<div>
-									<a href="#"><button type="button"
-											class="btn btn-light btn-sm">마이페이지</button></a>
 								</div>
 							</div>
 						</c:when>
@@ -187,5 +163,6 @@
 			"pwd": pwd
 		}))
 	}
+
 </script>
     

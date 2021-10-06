@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public interface ContentsController {
 
 // 제출 페이지
-	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, @RequestParam("mem_id") int mem_id,
+	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id,
 			HttpServletRequest request, HttpServletResponse reponse) throws Exception;
 
 // 컨텐츠 작성 시 삽입되는 이미지들을 DB와 스토리지에 저장
@@ -28,5 +28,12 @@ public interface ContentsController {
 	
 	// 컨텐츠 자세히 보기
 	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception;
+	// 컨텐츠 댓글 추가
+	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception;
+	
+	// 컨텐츠 댓글 삭제
+	public ModelAndView deleteCmt(@RequestParam("cmt_id") int cmt_id, @RequestParam("contents_id") int contents_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception;
 }
