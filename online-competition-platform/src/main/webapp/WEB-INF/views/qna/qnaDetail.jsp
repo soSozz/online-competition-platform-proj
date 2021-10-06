@@ -115,8 +115,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 // 	  }
 	  function fn_enable(event){
 		 	 event.preventDefault();
-		 	document.getElementById("i_title").removeAttribute("readonly");
-		 	document.getElementById("i_content").removeAttribute("readonly");
+		 	 document.getElementById("i_title").removeAttribute("readonly");
+		 	 document.getElementById("i_content").removeAttribute("readonly");
 			 document.getElementById("tr_btn_modify").style.display="block";		 
 			 document.getElementById("tr_btn").style.display="none";
 		 }

@@ -25,8 +25,7 @@
 	
 	<select id = "selectNoticesCompetList" resultMap = "noticeCompetResult" parameterType = "int">
 
-			select compet_notice_title, compet_notice_date,
-			compet_notice_view, compet_notice_text
+			select *
 			from compet_notice
 			where compet_id = #{compet_id}
 
@@ -45,11 +44,41 @@
 	 <select id="selectCompetNoticeDetail" resultMap = "noticeCompetResult"  parameterType = "int">
      <![CDATA[
        SELECT * from compet_notice
-      where compet_notice_id = #{compet_notice_id};
+      where compet_notice_id = #{compet_notice_id}
      ]]>
 </select>
 
+<update id="updateCompetNotice"  parameterType="java.util.Map">
+   update compet_notice
+   set compet_notice_title =  #{title}, compet_notice_text = #{notice}
+   where compet_notice_id = #{compet_notice_id}
+   </update>
+   
+<delete id="deleteCompetNotice"  parameterType="int">
+    <![CDATA[
+      delete from compet_notice
+      where compet_notice_id = #{compet_notice_id}
+    ]]>      
+  </delete>
 
+<select id="selectNewCompetNoticeNO" resultType="int">
+     <![CDATA[
+        SELECT nvl(max(compet_notice_id), 0) + 1 from compet_notice
+     ]]>
+</select>
 
+<insert id="insertNewCompetNotice" parameterType="java.util.Map">
+    <![CDATA[
+       INSERT into compet_notice (compet_notice_id, compet_notice_title, compet_notice_text, compet_id, compet_notice_date, admin_id, compet_notice_view) 
+       VALUES(#{compet_notice_id},#{title}, #{notice}, #{compet_id}, sysdate, #{admin_id}, 0)
+    ]]>
+</insert>
 
+<update id="updateCompetNoticesView" parameterType="int">
+	<![CDATA[
+				update compet_notice
+				set compet_notice_view = compet_notice_view + 1
+				where compet_notice_id = #{compet_notice_id}
+	]]>
+	</update>
 </mapper>

@@ -10,7 +10,24 @@
 	</definition>
 	
 	<definition name="/notice/compet/noticeCompetDetail.do" extends="baseLayout">
-		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
-		<put-attribute name="body" value="/WEB-INF/views/notice/compet/listCompetNoticesDetail.jsp" />
+		<put-attribute name="title" value="대회 공지사항 상세페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/notice/compet/noticeCompetDetail.jsp" />
 </definition>
+
+<definition name="/notice/compet/modNoticeCompet.do" extends="baseLayout">
+		<put-attribute name="title" value="대회 공지사항 상세페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/notice/compet/noticeCompetDetail.jsp" />
+</definition>
+
+<definition name="/notice/compet/removeNoticeCompet.do" extends="baseLayout">
+		<put-attribute name="title" value="대회 공지사항 상세페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/notice/compet/listCompetNotices.jsp" />
+</definition>
+
+
+
+<definition name="/notice/compet/noticeCompetForm" extends="baseLayout">
+		<put-attribute name="title" value="트스테콘 문의글쓰기창" />
+		<put-attribute name="body" value="/WEB-INF/views/notice/compet/noticeCompetForm.jsp" />
+	</definition>
 	</tiles-definitions>
