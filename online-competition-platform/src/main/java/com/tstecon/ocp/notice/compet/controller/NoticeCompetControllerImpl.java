@@ -16,6 +16,7 @@ import com.tstecon.ocp.compet.service.CompetService;
 import com.tstecon.ocp.compet.vo.CompetFileVO;
 import com.tstecon.ocp.notice.compet.service.NoticeCompetService;
 import com.tstecon.ocp.notice.compet.vo.NoticeCompetVO;
+import com.tstecon.ocp.qna.vo.CompetQnaVO;
 
 
 @Controller("NoticeCompetController")
@@ -25,6 +26,9 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 	private NoticeCompetService NoticeCompetService;
 	@Autowired
 	private CompetService CompetService;
+	
+	@Autowired
+	private NoticeCompetVO NoticeCompetVO;
 
 	@Override
 	@RequestMapping(value = "/notice/compet/listCompetNotices.do", method = RequestMethod.GET)
@@ -46,16 +50,20 @@ public class NoticeCompetControllerImpl implements NoticeCompetController {
 		mav.addObject("smallPoster", smallPoster);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/notice/compet/noticeCompetDetail.do", method = RequestMethod.GET)
+	public ModelAndView noticeCompetDetail(@RequestParam("compet_notice_id") int compet_notice_id, HttpServletRequest request,
+			HttpServletResponse response) {
+		String viewName = (String) request.getAttribute("viewName");
+		NoticeCompetVO noticeCompetDetail = NoticeCompetService.noticeCompetDetail(compet_notice_id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.addObject("noticeCompetDetail", noticeCompetDetail);
+		return mav;
+	}
+	
+	
+	
 }
 
-//	@Override
-//	@RequestMapping(value="/member/listMembers.do", method = RequestMethod.GET)
-//	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		/* String viewName = getViewName(request); */
-//		String viewName = (String)request.getAttribute("viewName");
-//		logger.debug("debug ·¹º§ : viewName: "+ viewName);
-//		List membersList = NoticeCompetService.listMembers();
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("membersList", membersList);
-//		return mav;
-//	}

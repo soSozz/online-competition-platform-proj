@@ -42,4 +42,10 @@ public interface ContentsDAO {
 
 	public int countLike(int contents_id) throws DataAccessException;
 
+	public void insertCmtAdd(Map map) throws DataAccessException;
+
+	public int selectCmtPlusId() throws DataAccessException;
+
+	public void deleteCmt(int cmt_id) throws DataAccessException;
+
 }

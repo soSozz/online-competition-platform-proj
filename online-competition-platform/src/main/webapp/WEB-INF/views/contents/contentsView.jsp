@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contents_id" value="${contentsView[0].contents_id}" />
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -14,7 +15,7 @@ request.setCharacterEncoding("UTF-8");
     <script src="${contextPath}/resources/js/settings.js"></script>
     <script src="${contextPath}/resources/js/gleek.js"></script>
     <script src="${contextPath}/resources/js/styleSwitcher.js"></script>
-    <link rel="icon" type="${contextPath}/resources/image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${contextPath}/resources/images/favicon.png">
     
 <style>
 	.heart:hover {
@@ -31,8 +32,12 @@ request.setCharacterEncoding("UTF-8");
     padding: 10px;
   }
   
+  .trash:hover{
+  	color: black;
+  }
+  
 </style>
-
+<body>
 <div id="main-wrapper" style="width:88%; margin: 0 auto;">
 	<div class="container-fluid">
 		<div class="row">
@@ -57,8 +62,7 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 					<div class="card-body">
 						<p class="card-text">${contentsView[0].contents_text}</p>
-						<img class="img-fluid" 
-					src="${contextPath}/contentsFile_download.do?contents_file_id=${contentsFileView[0].contents_file_id}&contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}">
+						<img class="img-fluid"  src="${contextPath}/contentsFile_download.do?contents_file_id=${contentsFileView[0].contents_file_id}&contents_file_name=${contentsFileView[0].contents_file_name}&contents_file_type=${contentsFileView[0].contents_file_type}">
 					</div>					
 					<div class="card-footer">
 					<!-- Like icon --> <!-- <i class="fas fa-heart  fa-3x"></i> -->
@@ -78,16 +82,31 @@ request.setCharacterEncoding("UTF-8");
                 
                 
                  <!--    댓글 입력      -->   
+
+						<div class="col-lg-12">  
+                <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
+                   <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
+                </div>
+                </div>           
+
                     <div class="card-body">
                             <div class="message_box col-lg-12">
-                                <input type="submit" class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)"> 
-                                <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_articleForm('${loginStatus}')"></textarea>
+                                <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글 달기</button> 
+                                <textarea class="form-control float-right col-lg-10" name="cmtTextArea" id="textarea" cols="50" rows="3" style="width:80%;" placeholder="댓글을 입력해주세요." onclick="fn_cmtForm(${loginStatus})"></textarea>
+                                <input type="hidden" value="${contents_id}" >
                             </div>          
                     </div>
                     
                     <br /><br /><br />
-                    <c:choose>
-							<c:when test="${contentsCmt==null} ">
+                    
+                    <div class="card">
+                    <div class="card-body">
+                    
+                                <div class="table-responsive">
+                                
+                                    <table class="table verticle-middle" >
+                                     <c:choose>
+							<c:when test="${empty contentsCmt[0].cmt_id} ">
 								<tr height="10">
 									<td colspan="5">
 										<p align="center">
@@ -97,32 +116,42 @@ request.setCharacterEncoding("UTF-8");
 								</tr>
 							</c:when>
 							<c:otherwise>
-                    <div class="card">
-                    <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table verticle-middle" >
-                                        <tbody>
-                                        <c:forEach var="cmtList" items="${contentsCmt}">
-                                            <tr>
+                                        <c:forEach var="cmtList" items="${contentsCmt}" varStatus="cmtCount">
+                                        	<input id="${cmtCount.count}" type="hidden" value="${cmtList.cmt_id}" >
+                                            <tr>                                       
                                                 <td class="memName" width="30px">${cmtList.mem_name}</td>
-                                                <td class="cmtText" width="150px">${cmtList.cmt_text}</td>
-                                                <td class="cmtDelete" width="10px"><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td width="150px">${cmtList.cmt_text}
+                                                <c:choose>
+                                                	<c:when test="${loginStatus != null}">
+                                                	<c:choose>
+                                                	<c:when test = "${loginStatus == 'member' }">
+                                                		<c:if test="${loginInfo.mem_id == cmtList.mem_id}">
+                                                		<a class="trash" href="#" onclick="fn_deleteCmt(${cmtCount.count})"><i class="fas fa-trash float-right"></i></a></c:if>
+                                                       </c:when>                                                
+                                                	<c:when test = "${loginStatus == 'admin'}">
+                                                		<a class="trash" href="#" onclick="fn_deleteCmt(${cmtCount.count})"><i class="fas fa-trash float-right"></i></a>
+                                                	</c:when>
+                                                	</c:choose>
+                                                	</c:when>
+                                                </c:choose>
+                                                
+
                                                 </td>
                                             </tr>
                                         </c:forEach>
-                                        </tbody>
+                                        </c:otherwise>
+                                </c:choose>
                                     </table>
                                 </div>
                                 </div>
-                                </div>
-                                </c:otherwise>
-                                </c:choose>                            
+                                </div>                           
+                            <a class="btn btn-outline-success float-right" href="${contextPath}/contents/listContents.do?compet_id=${contentsView[0].compet_id}">글 목록</a>
+                            </div>t
                         </div>
                       </div>
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<script>
 		  window.onload = () => {
@@ -133,21 +162,21 @@ request.setCharacterEncoding("UTF-8");
 		
 			function fn_addCmt(e){
 				const cmt_text = e.target.parentNode.querySelector("textarea").value
-				const mem_id = ${loginInfo.mem_id};
-				
+				const contents_id = e.target.parentNode.querySelector("input").value
 				console.log(cmt_text);
-				console.log(mem_id);
+				location.href= "${contextPath}/contents/addCmt.do?cmt_text="+cmt_text+"&contents_id="+ contents_id;
 			}
 			
-			function fn_articleForm(loginStatus){
-				  if (loginStatus == "member" || loginStatus == "admin"){
-				    
+			function fn_cmtForm(e){
+				  if ("${sessionScope.loginStatus eq null}"){
+					  alert("로그인 후 글쓰기가 가능합니다.");
+					    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
 				  } else {
-				    alert("로그인 후 글쓰기가 가능합니다.");
-				    location.href= "${contextPath}/contents/contentsView.do?contents_id=${contentsView[0].contents_id}";
+				   
 				  }
 				}
 			
+
 		 $(function(){
 				//좋아요 버튼 클릭시(추천 추가 또는 추천 제거)
 				$("#like_update").click(function(){
@@ -196,3 +225,14 @@ request.setCharacterEncoding("UTF-8");
 			    
 		
 		</script>
+
+			function fn_deleteCmt(cnt){
+				const cmt_id = document.getElementById(cnt).value;
+				const contents_id = ${contents_id};
+				
+				location.href="${contextPath}/contents/deleteCmt.do?cmt_id="+ cmt_id + "&contents_id=" + contents_id;
+
+			}
+		</script>
+</body>
+

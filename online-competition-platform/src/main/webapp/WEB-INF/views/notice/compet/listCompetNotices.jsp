@@ -69,15 +69,6 @@ request.setCharacterEncoding("UTF-8");
                         /></a>
                     </div>
                 </div>
-                 <div class="col-lg-12">
-                    <ul class="nav nav-tabs mb-3 justify-content-lg-center">
-                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">대회안내</a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/notice/compet/listCompetNotices.do?compet_id=${compet_id}" >공지사항</a > </li>
-                        <li class="nav-item"><a class="nav-link" href="${contextPath }/contents/listContents.do?compet_id=${compet_id}">컨텐츠 게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="javascript:submitContents('${loginStatus }', '${loginInfo }');">제출</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="${contextPath}/qna/qna.do?compet_id=${compet_id}">문의</a> </li>
-                    </ul>
-                </div>
 							<div class="container">
 
 <compet-detail>
@@ -103,7 +94,7 @@ request.setCharacterEncoding("UTF-8");
 												<c:forEach var="compet_Notice" items="${noticeCompetList}" varStatus="noticeNum">
 													<tr align="center">
 														<td width="5%">${compet_Notice.compet_notice_id}</td>
-														<td width="25%">${compet_Notice.compet_notice_title }</td>
+														<td width="25%" a href="${contextPath}/notice/compet/noticeCompetDetail.do?compet_notice_id=${compet_notice_id}">${compet_Notice.compet_notice_title }</a></td>
 														<td width="5%">${compet_Notice.admin_id}</td>
 														<td width="5%">${compet_Notice.compet_notice_date}</td>
 														<td width="5%">${compet_Notice.compet_notice_view}</td>

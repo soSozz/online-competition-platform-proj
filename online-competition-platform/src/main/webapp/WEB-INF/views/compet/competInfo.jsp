@@ -22,7 +22,8 @@ request.setCharacterEncoding("UTF-8");
 				<div class="col-lg-12">
 					<div class="poster">
 						<a
-							href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}"><img
+							href="${contextPath}/compet/competInfo.do?compet_id=${compet_id}">
+							<img
 							src="${contextPath}/competFile_download.do?compet_id=${compet_id}&compet_file_name=${competSmallFileName}&compet_file_type=${competSmallFileType}"
 							width="100%" height="200px" /></a>
 					</div>

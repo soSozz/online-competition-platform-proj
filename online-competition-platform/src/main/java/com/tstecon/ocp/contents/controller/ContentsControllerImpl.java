@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -136,12 +137,13 @@ public class ContentsControllerImpl implements ContentsController {
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception {
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
 		//댓글, 좋아요 뺀 리스트 정보 가져오기
 		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
-
+		
 		// 대회 아이디 저장
 		mav.addObject("compet_id", compet_id);
 		// 댓글, 좋아요 뺀 리스트 정보 저장
@@ -209,6 +211,7 @@ public class ContentsControllerImpl implements ContentsController {
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
+
 	//컨텐츠 좋아요 추가,제거
 	@RequestMapping(value = { "/contents/like_Update.do" }, method = { RequestMethod.POST })
 	public void like_Update(HttpServletRequest request, HttpServletResponse response)throws Exception {
@@ -241,5 +244,51 @@ public class ContentsControllerImpl implements ContentsController {
 		 
 				
 	}
+
+	
+	@Override
+	@RequestMapping(value = { "/contents/addCmt.do" }, method = { RequestMethod.GET })
+	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session = request.getSession();
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginInfo");
+		String memId = memberVO.getMem_id();
+		int cmtId = contentsService.selectCmtPlusId();
+		
+		Map map = new HashMap();
+		map.put("mem_id", memId);
+		map.put("cmt_text", cmt_text);
+		map.put("contents_id", contents_id);
+		map.put("cmt_id", cmtId);
+		
+		contentsService.insertCmtAdd(map);
+		
+		mav.setViewName("redirect:/contents/contentsView.do?contents_id="+contents_id);
+		return mav;
+	}
+
+	// 컨텐츠 댓글 삭제
+	@Override
+	@RequestMapping(value = { "/contents/deleteCmt.do" }, method = { RequestMethod.GET })
+	public ModelAndView deleteCmt(@RequestParam("cmt_id") int cmt_id, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		contentsService.deleteCmt(cmt_id);
+		
+		mav.setViewName("redirect:/contents/contentsView.do?contents_id=" + contents_id);
+		return mav;
+	}
+
+	
+	//컨텐츠 좋아요 클릭
+
+	
+	
+
 
 }

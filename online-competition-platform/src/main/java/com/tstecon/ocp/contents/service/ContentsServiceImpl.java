@@ -111,7 +111,24 @@ public class ContentsServiceImpl implements ContentsService {
 		return contentsDAO.countLike(contents_id);
 		
 	}
+	// ÄÁÅÙÃ÷ ´ñ±Û Ãß°¡
+	@Override
+	public void insertCmtAdd(Map map) throws DataAccessException {
+		contentsDAO.insertCmtAdd(map);
+		return;
+		
+	}
 
+	@Override
+	public int selectCmtPlusId() throws DataAccessException {
+		int cmtId = contentsDAO.selectCmtPlusId();
+		return cmtId;
+	}
 
+	@Override
+	public void deleteCmt(int cmt_id) throws DataAccessException {
+		contentsDAO.deleteCmt(cmt_id);
+		return;
+	}
 
 }

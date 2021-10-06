@@ -41,6 +41,10 @@ public interface ContentsService {
 
 	public int likeCount(int contents_id) throws DataAccessException;
 
-	
+	public void insertCmtAdd(Map map) throws DataAccessException;
+
+	public int selectCmtPlusId() throws DataAccessException;
+
+	public void deleteCmt(int cmt_id) throws DataAccessException;
 
 }
