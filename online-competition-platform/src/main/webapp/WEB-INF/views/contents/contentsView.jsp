@@ -105,13 +105,16 @@ request.setCharacterEncoding("UTF-8");
                                                 <td width="150px">${cmtList.cmt_text}
                                                 <c:choose>
                                                 	<c:when test="${loginStatus != null}">
+                                                	<c:choose>
+                                                	<c:when test = "${loginStatus == 'member' }">
                                                 		<c:if test="${loginInfo.mem_id == cmtList.mem_id}">
                                                 		<a class="trash" href="#" onclick="fn_deleteCmt(${cmtCount.count})"><i class="fas fa-trash float-right"></i></a></c:if>
                                                        </c:when>                                                
-                                                	<c:otherwise>
-                                                		<span></span>
-                                                	</c:otherwise>
-
+                                                	<c:when test = "${loginStatus == 'admin'}">
+                                                		<a class="trash" href="#" onclick="fn_deleteCmt(${cmtCount.count})"><i class="fas fa-trash float-right"></i></a>
+                                                	</c:when>
+                                                	</c:choose>
+                                                	</c:when>
                                                 </c:choose>
                                                 
 
