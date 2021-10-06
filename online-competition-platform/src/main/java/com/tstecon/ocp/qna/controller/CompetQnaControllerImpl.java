@@ -85,7 +85,6 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 				HttpServletRequest request,
 				HttpServletResponse response) throws Exception {
 			String viewName = (String) request.getAttribute("viewName");
-			System.out.println("parentNO 111 :" + parentNO);
 			HttpSession session = request.getSession();
 			session.setAttribute("parentNO", parentNO);
 			ModelAndView mav = new ModelAndView();
@@ -151,7 +150,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/qna/*Form.do';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/qna/Form.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -203,7 +202,7 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/qna/*Form.do';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/qna/qnaReplyForm.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -217,6 +216,8 @@ public class CompetQnaControllerImpl implements CompetQnaController {
 	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
+		// 클릭 시 조회 수 증가
+		competQnaService.updateQnaView(articleNO);
 		competqnaVO = competQnaService.viewArticle(articleNO);
 		System.out.println("articleNO : " + articleNO);
 		ModelAndView mav = new ModelAndView();

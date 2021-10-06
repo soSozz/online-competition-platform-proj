@@ -31,6 +31,7 @@
 
 		 <typeAlias type="com.tstecon.ocp.contents.vo.ContentsVO" alias="contentsVO" />
 		 <typeAlias type="com.tstecon.ocp.contents.vo.ContentsFileVO" alias="contentsFileVO" />
+		  <typeAlias type="com.tstecon.ocp.contents.vo.ComtentsLikeVO" alias = "comtentsLikeVO"/>
 
 		 <typeAlias type="com.tstecon.ocp.contents.vo.ListContentsVO" alias="listContentsVO"/>
 		 <typeAlias type="com.tstecon.ocp.cmt.vo.CmtVO" alias="cmtVO" />

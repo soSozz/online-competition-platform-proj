@@ -13,9 +13,11 @@
 	<section class="">
 	  <p class="d-flex justify-content-center align-items-center">
 		<span class="me-3 mr-3">TSTECON</span>
-		<button type="button" class="btn btn-outline-light btn-rounded">
-		  깃헙 코드 보기
-		</button>
+		<a href="https://github.com/ITHwang/online-competition-platform-proj">
+			<button type="button" class="btn btn-outline-light btn-rounded">
+			  깃헙 코드 보기
+			</button>
+		</a>
 	  </p>
 	</section>
 	<!-- Section: CTA -->

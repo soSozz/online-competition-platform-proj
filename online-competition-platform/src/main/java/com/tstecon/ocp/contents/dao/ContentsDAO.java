@@ -1,6 +1,7 @@
 package com.tstecon.ocp.contents.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -28,5 +29,23 @@ public interface ContentsDAO {
 	public List<ListContentsVO> selectContentsCmt(int contents_id) throws DataAccessException;
 
 	public List<ContentsFileVO> selectContentsFile(int contents_id) throws DataAccessException;
+	// 컨텐츠 댓글 카운트
+	public List<ListContentsVO> selectContentsCmtList(int compet_id) throws DataAccessException;
+	// 컨텐츠 좋아요 카운트
+	public List<ListContentsVO> selectContentsLikesList(int compet_id) throws DataAccessException;
+	// 좋아요 클릭 여부 검색
+	public int selectlikeChenk(Map update)throws DataAccessException;
+	// 좋아요 클릭 시 
+	public void updateLike(Map update)throws DataAccessException;
+    // 좋아요 클릭 취소
+	public void deleteLike(Map update)throws DataAccessException;
+
+	public int countLike(int contents_id) throws DataAccessException;
+
+	public void insertCmtAdd(Map map) throws DataAccessException;
+
+	public int selectCmtPlusId() throws DataAccessException;
+
+	public void deleteCmt(int cmt_id) throws DataAccessException;
 
 }
