@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -52,14 +51,14 @@ public class ContentsControllerImpl implements ContentsController {
 
 	@Override
 	@RequestMapping(value = { "/contents/contentsForm.do" }, method = { RequestMethod.GET })
-	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id,
-			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView contentsForm(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		HttpSession session = request.getSession();
-		
-		mav.addObject("mem_id", ((MemberVO)session.getAttribute("loginInfo")).getMem_id());
+
+		mav.addObject("mem_id", ((MemberVO) session.getAttribute("loginInfo")).getMem_id());
 		mav.addObject("compet_id", compet_id);
 		return mav;
 	}
@@ -73,7 +72,14 @@ public class ContentsControllerImpl implements ContentsController {
 
 		Map<String, String> imageMap = new Gson().fromJson(jsonMap, Map.class);
 		String base64 = imageMap.get("base64");
+
 		String fileName = imageMap.get("fileName");
+//		if (fileName == null) { // fileName이 없을 경우 업로드된 시간을 fileName으로 지정
+//			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+//			fileName = sdf.format(timestamp);
+//		}
+
 		String ext = (imageMap.get("ext") == "jpeg") ? "jpg" : imageMap.get("ext");
 		byte[] binary = Base64.getDecoder().decode(base64);
 
@@ -137,13 +143,13 @@ public class ContentsControllerImpl implements ContentsController {
 	@RequestMapping(value = { "/contents/listContents.do" }, method = { RequestMethod.GET })
 	public ModelAndView listContents(@RequestParam("compet_id") int compet_id, HttpServletRequest request,
 			HttpServletResponse reponse) throws Exception {
-		
+
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
-		//댓글, 좋아요 뺀 리스트 정보 가져오기
+		// 댓글, 좋아요 뺀 리스트 정보 가져오기
 		List<ListContentsVO> contentsList = contentsService.listContents(compet_id);
-		
+
 		// 대회 아이디 저장
 		mav.addObject("compet_id", compet_id);
 		// 댓글, 좋아요 뺀 리스트 정보 저장
@@ -189,106 +195,99 @@ public class ContentsControllerImpl implements ContentsController {
 	// 컨텐츠 자세히 보기
 	@Override
 	@RequestMapping(value = { "/contents/contentsView.do" }, method = { RequestMethod.GET })
-	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
-			throws Exception {
+	public ModelAndView contentsView(@RequestParam("contents_id") int contents_id, HttpServletRequest request,
+			HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		// 클릭 시 조회 수 증가
 		contentsService.updateContentsView(contents_id);
-		
+
 		// 댓글 제외 리스트 저장
 		List<ListContentsVO> contentsView = contentsService.selectContentsView(contents_id);
-		
+
 		// 댓글 리스트 저장
 		List<ListContentsVO> contentsCmt = contentsService.selectContentsCmt(contents_id);
-		
+
 		// 컨텐츠 파일 리스트 저장
 		List<ContentsFileVO> contentsFileView = contentsService.selectContentsFile(contents_id);
-		
+
 		mav.addObject("contentsView", contentsView);
 		mav.addObject("contentsCmt", contentsCmt);
 		mav.addObject("contentsFileView", contentsFileView);
 		return mav;
 	}
 
-	//컨텐츠 좋아요 추가,제거
+	// 컨텐츠 좋아요 추가,제거
 	@RequestMapping(value = { "/contents/like_Update.do" }, method = { RequestMethod.POST })
-	public void like_Update(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		   Map<String, Object> update = new HashMap<String, Object>();
-		   int contents_id =Integer.parseInt(request.getParameter("contents_id")); 
-	       String mem_id = request.getParameter("mem_id");
-	       update.put("contents_id", contents_id);
-	       update.put("mem_id", mem_id);
-	    	int like_check = contentsService.likeChenk(update);
-	    	System.out.println("----------------------update============= 1 : " + update);
-	    	if(like_check == 0 ) {
-	    		contentsService.likeUpdate(update);
-	    	}else {
-	    		contentsService.likeDelete(update);
-	    	}   	
-	       
-	}
-	
-	//컨텐츠 좋아요 Count
-	@RequestMapping(value = { "/contents/likeCount.do" }, method = { RequestMethod.POST })
-	public void likeCount(HttpServletRequest request, HttpServletResponse response)throws Exception {
-	    PrintWriter writer = response.getWriter();
-		int contents_id =Integer.parseInt(request.getParameter("contents_id")); 
-		int count = contentsService.likeCount(contents_id);
-		System.out.println("---------contents_id --------------------------------------- : " + contents_id );
-		 JSONObject jsonObject = new JSONObject();
-		  jsonObject.put("count", count);
-		  String jsoncount = jsonObject.toString();
-		  writer.print(jsoncount);
-		 
-				
+	public void like_Update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> update = new HashMap<String, Object>();
+		int contents_id = Integer.parseInt(request.getParameter("contents_id"));
+		String mem_id = request.getParameter("mem_id");
+		update.put("contents_id", contents_id);
+		update.put("mem_id", mem_id);
+		int like_check = contentsService.likeChenk(update);
+		System.out.println("----------------------update============= 1 : " + update);
+		if (like_check == 0) {
+			contentsService.likeUpdate(update);
+		} else {
+			contentsService.likeDelete(update);
+		}
+
 	}
 
-	
+	// 컨텐츠 좋아요 Count
+	@RequestMapping(value = { "/contents/likeCount.do" }, method = { RequestMethod.POST })
+	public void likeCount(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PrintWriter writer = response.getWriter();
+		int contents_id = Integer.parseInt(request.getParameter("contents_id"));
+		int count = contentsService.likeCount(contents_id);
+		System.out.println("---------contents_id --------------------------------------- : " + contents_id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("count", count);
+		String jsoncount = jsonObject.toString();
+		writer.print(jsoncount);
+
+	}
+
 	@Override
 	@RequestMapping(value = { "/contents/addCmt.do" }, method = { RequestMethod.GET })
-	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
-			throws Exception {
+	public ModelAndView addCmt(@RequestParam("cmt_text") String cmt_text, @RequestParam("contents_id") int contents_id,
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session = request.getSession();
 
-		MemberVO memberVO = (MemberVO)session.getAttribute("loginInfo");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginInfo");
 		String memId = memberVO.getMem_id();
 		int cmtId = contentsService.selectCmtPlusId();
-		
+
 		Map map = new HashMap();
 		map.put("mem_id", memId);
 		map.put("cmt_text", cmt_text);
 		map.put("contents_id", contents_id);
 		map.put("cmt_id", cmtId);
-		
+
 		contentsService.insertCmtAdd(map);
-		
-		mav.setViewName("redirect:/contents/contentsView.do?contents_id="+contents_id);
+
+		mav.setViewName("redirect:/contents/contentsView.do?contents_id=" + contents_id);
 		return mav;
 	}
 
 	// 컨텐츠 댓글 삭제
 	@Override
 	@RequestMapping(value = { "/contents/deleteCmt.do" }, method = { RequestMethod.GET })
-	public ModelAndView deleteCmt(@RequestParam("cmt_id") int cmt_id, @RequestParam("contents_id") int contents_id, HttpServletRequest request, HttpServletResponse reponse)
-			throws Exception {
+	public ModelAndView deleteCmt(@RequestParam("cmt_id") int cmt_id, @RequestParam("contents_id") int contents_id,
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		contentsService.deleteCmt(cmt_id);
-		
+
 		mav.setViewName("redirect:/contents/contentsView.do?contents_id=" + contents_id);
 		return mav;
 	}
 
-	
-	//컨텐츠 좋아요 클릭
-
-	
-	
-
+	// 컨텐츠 좋아요 클릭
 
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component("adminVO")
 public class AdminVO {
+	private String mem_id;
 	private String admin_id;
 	private String admin_class;
 	private String admin_pwd;
@@ -39,5 +40,13 @@ public class AdminVO {
 
 	public void setAdmin_name(String admin_name) {
 		this.admin_name = admin_name;
+	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 }
