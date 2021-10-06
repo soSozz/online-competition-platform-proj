@@ -23,7 +23,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="card-body">
-								<h5 class="card-title">우드테라피</h5>
+								<h5 class="card-title">${item.banner_name }</h5>
 								<p class="card-text">광고 기간</p>
 								<p class="card-text"><small class="text-muted">2021.09.10. ~ 2021.10.10.</small></p>
 							</div>
