@@ -69,7 +69,8 @@ request.setCharacterEncoding("UTF-8");
 					  <div class="col-lg-12">  
 					   <c:if test="${ loginInfo == nulll }">
                          <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
-                            <a href="" class="heart" onclick="alert('로그인 후 이용 가능합니다.');" style="cursor:pointer"><i class="far fa-heart  fa-3x"></i>50</a>                           
+                             <a href="" class="heart" onclick="alert('로그인 후 이용 가능합니다.');"  id="like_update" ><i class="far fa-heart  fa-3x"></i></a>
+						     &nbsp;<span id="like_count"></span>                 
                          </div>
                        </c:if> 
                        <c:if test="${ loginInfo != null }">
@@ -81,14 +82,7 @@ request.setCharacterEncoding("UTF-8");
                       </div>
                 
                 
-                 <!--    댓글 입력      -->   
-
-						<div class="col-lg-12">  
-                <div class="like_icon" style="display: flex; justify-content: center; padding:20px;">
-                   <a href="" class="heart"><i class="far fa-heart  fa-3x"></i>50</a> 
-                </div>
-                </div>           
-
+                 <!--    댓글 입력      -->        
                     <div class="card-body">
                             <div class="message_box col-lg-12">
                                 <button class="btn btn-outline-success float-right" style="margin:15px;" onclick="fn_addCmt(event)">댓글 달기</button> 
