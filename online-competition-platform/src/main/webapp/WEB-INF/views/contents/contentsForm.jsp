@@ -69,7 +69,7 @@ window.addEventListener("load", ()=>{
 		e.preventDefault();
 		const form = document.createElement("form");
 		form.method = "post";
-		form.action = "/ocp/contents/addContents.do";
+		form.action = "${contextPath}/contents/addContents.do";
 		
 		const compet_id = document.createElement("input");
 		compet_id.name = "compet_id";
@@ -88,15 +88,15 @@ window.addEventListener("load", ()=>{
 		const textarea = document.querySelector("#summernote > div.note-editor.note-frame.panel.panel-default > div.note-editing-area > div.note-editable.panel-body").innerHTML;
 		contents_text.value = textarea;
 		
-		const constents_file_list_input = document.createElement("input");
-		constents_file_list_input.name = "constents_file_list";
-		constents_file_list_input.value = contents_file_list;
+		const contents_file_list_input = document.createElement("input");
+		contents_file_list_input.name = "contents_file_list";
+		contents_file_list_input.value = contents_file_list;
 		
 		form.appendChild(compet_id);
 		form.appendChild(mem_id);
 		form.appendChild(contents_name);
 		form.appendChild(contents_text);
-		form.appendChild(constents_file_list_input);
+		form.appendChild(contents_file_list_input);
 		
 		document.body.appendChild(form);
 		form.submit();

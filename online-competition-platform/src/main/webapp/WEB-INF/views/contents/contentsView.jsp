@@ -174,13 +174,15 @@ request.setCharacterEncoding("UTF-8");
 		 $(function(){
 				//좋아요 버튼 클릭시(추천 추가 또는 추천 제거)
 				$("#like_update").click(function(){
+					
 					$.ajax({
 						url: "${contextPath}/contents/like_Update.do",
 		                type: "POST",
 		                data: {
 		                    contents_id: ${contentsView[0].contents_id},
 		                    mem_id: ${loginInfo.mem_id}
-		                }, dataType: "json",
+		                }, 
+		                dataType: "json",
 		                success: function () {
 					        likeCount();
 		                },

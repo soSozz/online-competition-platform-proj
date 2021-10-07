@@ -94,8 +94,14 @@ public class ContentsControllerImpl implements ContentsController {
 		if (!outFile.exists()) {
 			// 하드디스크에 파일 저장
 			try {
-				if (!outFile.getParentFile().exists()) {
-					outFile.getParentFile().mkdirs();
+				File parentFile = outFile.getParentFile();
+				if (!parentFile.exists()) {
+
+					parentFile.mkdirs();
+					parentFile.setReadable(true, false); // set readable
+					parentFile.setWritable(true, false); // set writable
+					parentFile.setExecutable(true, false); // set executable
+
 				}
 				FileOutputStream fileOutputStream = new FileOutputStream(outFile);
 				fileOutputStream.write(binary);
@@ -174,10 +180,12 @@ public class ContentsControllerImpl implements ContentsController {
 		int contents_id = contentsService.addNewContents(contentsVO); // 컨텐츠 추가한 후 contents_id 반환
 
 		// 미리 저장되어 있던 파일들의 contents_id를 업데이트
-		String contents_file_list_string = contentsMap.get("constents_file_list");
-		contents_file_list_string = contents_file_list_string.substring(0, contents_file_list_string.length() - 1);
-		List<String> contents_file_list = Arrays.asList(contents_file_list_string.split(","));
-		contentsService.addContentsIdToFiles(contents_file_list, contents_id);
+		String contents_file_list_string = contentsMap.get("contents_file_list");
+		if (!contents_file_list_string.equals("")) {
+			contents_file_list_string = contents_file_list_string.substring(0, contents_file_list_string.length() - 1);
+			List<String> contents_file_list = Arrays.asList(contents_file_list_string.split(","));
+			contentsService.addContentsIdToFiles(contents_file_list, contents_id);
+		}
 
 		String message = "<script>";
 		message += "alert('컨텐츠가 제출되었습니다');";
