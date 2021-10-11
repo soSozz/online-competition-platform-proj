@@ -113,7 +113,7 @@ request.setCharacterEncoding("UTF-8");
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectCmtgraph.do?date=" +  date,
+            url: "${contextPath}/admin/monitor/selectCmtgraph.do?date=" +  date,
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];
@@ -162,7 +162,7 @@ request.setCharacterEncoding("UTF-8");
         $.ajax({
 
             type: "GET",
-            url: "/ocp/admin/monitor/selectLikegraph.do?date=" + date, 
+            url: "${contextPath}/admin/monitor/selectLikegraph.do?date=" + date, 
             success: function(data, textStatus) {
                 var jsonInfo = JSON.parse(data);
                 const responses = jsonInfo["responses"];

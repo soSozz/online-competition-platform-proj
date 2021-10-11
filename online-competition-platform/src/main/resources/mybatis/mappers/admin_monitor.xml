@@ -29,7 +29,7 @@
 			select to_char(likes_date, 'yyyy-mm-dd') as likesdate, nvl(count(*), 0) as cnt
                from likes
                
-               where likes_date between #{start_dateMap} and #{end_dateMap}
+               where likes_date between to_date(#{start_dateMap}, 'yyyy-mm-dd') and to_date(#{end_dateMap}, 'yyyy-mm-dd')
               
                group by to_char(likes_date, 'yyyy-mm-dd')
                order by to_char(likes_date, 'yyyy-mm-dd')
@@ -41,7 +41,7 @@
 			select to_char(cmt_date, 'yyyy-mm-dd') as cmtsdate, nvl(count(*), 0) as cmtcnt
                from cmt
                
-               where cmt_date between #{start_dateMaps} and #{end_dateMaps}
+               where cmt_date between to_date(#{start_dateMaps}, 'yyyy-mm-dd') and to_date(#{end_dateMaps}, 'yyyy-mm-dd')
                
                group by to_char(cmt_date, 'yyyy-mm-dd')
                order by to_char(cmt_date, 'yyyy-mm-dd')
