@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mappers.banner">
+
+    <resultMap id="bannerFileResult" type="bannerFileVO">
+        <result property="banner_file_id" column="banner_file_id" />
+        <result property="banner_id" column="banner_id" />
+        <result property="banner_file_name" column="banner_file_name" />
+        <result property="banner_file_type" column="banner_file_type" />
+        
+        <result property="banner_name" column="banner_name" />
+   </resultMap>
+
+	<select id="selectAllBannerFiles" resultMap="bannerFileResult">
+	    <![CDATA[
+			select * from banner_file 
+		]]>
+	</select>
+	
+	<select id="selectAllBannerFilesWithName" resultMap="bannerFileResult">
+	    <![CDATA[
+			select banner_file.*, banner_name
+			from banner_file, banner
+			where banner_file.banner_id = banner.banner_id 
+		]]>
+	</select>
+
+</mapper>

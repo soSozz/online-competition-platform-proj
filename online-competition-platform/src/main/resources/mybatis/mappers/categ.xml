@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+<mapper namespace = "mappers.categ"> 
+
+	<resultMap id = "CategResult" type = "categVO">
+        <result property = "categ_id" column = "categ_id" />
+		<result property = "categ_name" column = "categ_name" />
+	</resultMap>
+	
+	<select id="selectAllCateg" resultMap="CategResult">
+  	<![CDATA[
+				select *
+				from category
+   	]]>
+	</select>
+
+	<select id="selectCategName" resultMap="CategResult">
+  	<![CDATA[
+				select categ_name
+				from category
+   	]]>
+	</select>
+
+	
+</mapper>

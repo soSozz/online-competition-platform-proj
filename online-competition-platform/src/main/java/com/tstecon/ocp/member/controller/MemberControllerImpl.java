@@ -7,16 +7,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.tstecon.ocp.common.base.BaseController;
 import com.tstecon.ocp.member.service.MemberService;
+import com.tstecon.ocp.member.vo.AdminVO;
 import com.tstecon.ocp.member.vo.MemberVO;
 
 @Controller("memberController")
@@ -26,34 +29,48 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
+	@Autowired
+	private AdminVO adminVO;
 
 	@Override
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST, headers = { "Accept=application/json",
-			"Content-Type=application/json" })
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody String login, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Map<String, String> loginMap = new Gson().fromJson(login, Map.class);
 
-		memberVO = memberService.login(loginMap);
-		if (memberVO != null && memberVO.getMem_id() != null) { // ·Î±×ÀÎ ¼º°øÇßÀ¸¸é ¼¼¼Ç¿¡ ÀúÀå
-			HttpSession session = request.getSession();
-			session = request.getSession();
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo", memberVO);
+		memberVO = memberService.loginByMember(loginMap);
+		adminVO = memberService.loginByAdmin(loginMap);
+
+		HttpSession session = request.getSession();
+		if (memberVO != null) { // memberï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+			session.setAttribute("loginStatus", "member");
+			session.setAttribute("loginInfo", memberVO);
 			return "true";
-		} else {
+		} else if (adminVO != null) { // adminï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+			session.setAttribute("loginStatus", "admin");
+			session.setAttribute("loginInfo", adminVO);
+			return "true";
+		} else { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			return "false";
 		}
 	}
 
 	@Override
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn", false);
-		session.removeAttribute("memberInfo");
-		mav.setViewName("redirect:/main/main.do");
-		return mav;
+		session.removeAttribute("loginStatus");
+		session.removeAttribute("loginInfo");
+
+		String message = "<script>";
+		message += "alert('ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤');";
+		message += "location.href='" + request.getContextPath() + "/main/main.do';";
+		message += ("</script>");
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		ResponseEntity resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 }

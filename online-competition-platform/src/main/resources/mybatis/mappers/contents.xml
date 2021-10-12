@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mappers.contents">
+	<resultMap id="ContentsResult" type="contentsVO">
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "mem_id" column = "mem_id" />
+		<result property = "compet_id" column = "compet_id" />
+		<result property = "contents_state" column = "contents_state" />
+		<result property = "contents_processing_date" column = "contents_processing_date" />
+		<result property = "contents_reject_reason" column = "contents_reject_reason" />
+		<result property = "contents_view" column = "contents_view" />
+		<result property = "contents_name" column = "contents_name" />
+		<result property = "contents_text" column = "contents_text" />
+	</resultMap>
+	
+	<resultMap id="ContentsFileResult" type="contentsFileVO">
+		<result property = "contents_file_id" column = "contents_file_id" />
+		<result property = "contents_id" column = "contents_id" />
+		<result property = "contents_file_type" column = "contents_file_type" />
+		<result property = "contents_file_name" column = "contents_file_name" />
+	</resultMap>
+	
+	<select id="selectContentsList" resultMap="ContentsResult" parameterType="int">
+  	<![CDATA[
+				select contents_id, mem_id, compet_id, contents_state, 
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date,
+					   contents_reject_reason, contents_view, contents_name
+				from contents
+				where contents_state = '제출완료' and compet_id = #{compet_id}
+   	]]>
+	</select>
+	
+	<select id="selectApprContentsList" resultMap="ContentsResult" parameterType="int">
+  	<![CDATA[
+				select contents_id, mem_id, compet_id, contents_state, 
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date,
+					   contents_reject_reason, contents_view, contents_name
+				from contents
+				where contents_state = '승인' and compet_id = #{compet_id}
+   	]]>
+	</select>
+	
+	<select id="selectNewContentsFileId" resultType="int">
+		  <![CDATA[
+				SELECT nvl(max(contents_file_id), 0) + 1 
+				from contents_file
+		   ]]>
+	</select>
+
+	<select id="selectNewContentsId" resultType="int">
+		  <![CDATA[
+				SELECT nvl(max(contents_id), 0) + 1 
+				from contents
+		   ]]>
+	</select>
+
+	<insert id="insertNewContentsFileWithOutContentsId" parameterType="contentsFileVO">
+		  <![CDATA[
+ 		  		insert into contents_file(contents_file_id, contents_file_type, contents_file_name) 
+ 		  		values(#{contents_file_id}, #{contents_file_type}, #{contents_file_name})
+ 		   ]]> 
+	</insert>
+
+	<insert id="insertNewContentsFile" parameterType="contentsFileVO">
+		  <![CDATA[
+		  		insert into contents_file 
+		  		values(#{contents_file_id}, #{contents_id}, #{contents_file_type}, #{contents_file_name})
+		   ]]>
+	</insert>
+	
+	<select id="selectContentsView" resultMap="ContentsResult" parameterType="int">
+	<![CDATA[
+				select contents_id, mem_id,	contents_name, contents_text,
+					   to_char(contents_processing_date, 'yyyy-mm-dd') as contents_processing_date
+				from contents
+				where contents_id=#{contents_id}
+	]]>
+	</select>
+	
+	<update id="updateApprContents" parameterType="int">
+	<![CDATA[
+				update contents
+				set contents_state = '승인', contents_processing_date = sysdate, contents_view=0
+				where contents_id = #{contents_id}
+	]]>
+	</update>
+
+	<insert id="insertNewContents" parameterType="contentsVO">
+		  <![CDATA[
+		  		insert into contents(contents_id, mem_id, compet_id, contents_state, contents_processing_date, contents_name, contents_text)
+		  		values(#{contents_id}, #{mem_id}, #{compet_id}, #{contents_state}, sysdate, #{contents_name}, #{contents_text})
+		   ]]>
+	</insert>
+
+	<update id="updateContentsFiles" parameterType="java.util.Map">
+	<![CDATA[
+				update contents_file
+				set contents_id = #{contents_id}
+				where contents_file_id = #{contents_file_id}
+	]]>
+	</update>
+	
+	<update id="updateRefusalContents" parameterType="java.util.Map">
+	<![CDATA[
+				update contents
+				set contents_state = '거절', contents_processing_date = sysdate, contents_reject_reason = #{contents_reject_reason}
+				where contents_id=#{contents_id}
+	]]>
+	</update>
+	
+	<select id="selectContentsFileView" resultMap="ContentsFileResult" parameterType="int">
+	<![CDATA[
+				select *
+				from contents_file
+				where contents_id=#{contents_id}
+	]]>
+	</select>
+</mapper>

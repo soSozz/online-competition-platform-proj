@@ -4,10 +4,13 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.tstecon.ocp.member.vo.AdminVO;
 import com.tstecon.ocp.member.vo.MemberVO;
 
 public interface MemberDAO {
-	public MemberVO login(Map loginMap) throws DataAccessException;
+	public MemberVO selectMemberByLogin(Map loginMap) throws DataAccessException;
+
+	public AdminVO selectAdminByLogin(Map loginMap) throws DataAccessException;
 
 	public void insertNewMember(MemberVO memberVO) throws DataAccessException;
 
